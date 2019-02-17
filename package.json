@@ -1,0 +1,24 @@
+{
+  "name": "formalism",
+  "version": "1.0.0",
+  "description": "Modern forms, your way. Modular. Lightweight. Responsive. Stuff that matters.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simple-integrated-marketing/formalism.git"
+  },
+  "keywords": [
+    "form",
+    "framework",
+    "form bootstrap"
+  ],
+  "author": "simple-integrated-marketing",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simple-integrated-marketing/formalism/issues"
+  },
+  "homepage": "https://github.com/simple-integrated-marketing/formalism#readme"
+}
