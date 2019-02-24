@@ -1,0 +1,18 @@
+// Variables, mixins, and functions
+@import 'node_modules/formalism-framework/core/outlined';
+
+// Theme
+.f-input--outlined {
+    $b: ".f-input";
+    @include f-core-outlined-field($b);
+
+    @include f-core-outlined-label($b) {
+        top: 0;
+        bottom: 0;
+        left: calc(#{$f-core-border-width} + #{$f-core-padding-horizontal});
+    }
+
+    @include f-core-outlined-label-text($b);
+    @include f-core-outlined-indicator($b);
+    @include f-core-outlined-message($b);
+}

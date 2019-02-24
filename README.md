@@ -1,3 +1,3 @@
-# formalism
+# Formalism
 
-Coming soon
+Coming soon.

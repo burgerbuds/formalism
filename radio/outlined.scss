@@ -1,0 +1,45 @@
+// Variables, mixins, and functions
+@import 'node_modules/formalism-framework/core/outlined';
+
+// Variables
+$f-radio-dot-color: $f-core-highlight-color !default;
+$f-radio-dot-color-hover: $f-radio-dot-color !default;
+$f-radio-dot-color-focus: $f-radio-dot-color !default;
+
+// Theme
+.f-radio--outlined {
+    $b: ".f-radio";
+
+    #{$b}__field:not([disabled]) {
+
+        // Dot
+        +.f-radio__radio+.f-radio__label:after {
+            color: $f-radio-dot-color;
+        }
+
+        // Dot hovered
+        &:hover+.f-radio__radio:after {
+            color: $f-radio-dot-color-hover;
+        }
+
+        // Dot hovered
+        &:focus+.f-radio__radio:after {
+            color: $f-radio-dot-color-focus;
+        }
+
+        // Circle checked
+        &:checked+.f-radio__radio:before {
+            color: $f-radio-circle-color-checked;
+        }
+
+        // Circle hovered
+        &:hover+.f-radio__radio:before {
+            color: $f-radio-circle-color-hover;
+        }
+
+        // Circle hovered
+        &:focus+.f-radio__radio:before {
+            color: $f-radio-circle-color-focus;
+        }
+    }
+}

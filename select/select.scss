@@ -1,0 +1,92 @@
+// Core
+@import 'node_modules/formalism-framework/core/core';
+
+// Variables
+$f-select-arrow-thickness: 2px !default;
+$f-select-arrow-size: 0.5em !default;
+$f-select-arrow-color: grey !default;
+$f-select-arrow-color-hover: $f-core-highlight-color !default;
+$f-select-arrow-color-focus: $f-select-arrow-color-hover !default;
+$f-select-box-padding-right: $f-core-padding-horizontal * 3 !default;
+$f-select-arrow-lined: false !default;
+
+// Base
+.f-select {
+    $b: #{&};
+    @include f-base;
+    @include f-inner;
+
+    @include f-field {
+        line-height: initial; // Reset height
+        appearance: none;
+        padding-right: $f-select-box-padding-right;
+    }
+
+    @include f-label($b);
+    @include f-label-text($b);
+    @include f-indicator($b);
+    @include f-message;
+
+    // Down arrow
+    &__arrow:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform-origin: center right;
+        pointer-events: none;
+        transition: transition(border-color);
+    }
+
+    @if ($f-select-arrow-lined) {
+
+        // Lined arrow
+        &__arrow:after {
+            right: $f-core-padding-horizontal * 1.25;
+            transform: translateY(-50%) rotate(45deg);
+            border-style: solid;
+            border-width: 0 $f-select-arrow-thickness $f-select-arrow-thickness 0;
+            width: $f-select-arrow-size;
+            height: $f-select-arrow-size;
+            display: block;
+            border-color: $f-select-arrow-color;
+        }
+
+        #{$b}__field:hover~&__arrow:after {
+            border-color: $f-select-arrow-color-hover;
+        }
+
+        #{$b}__field:focus~&__arrow:after {
+            border-color: $f-select-arrow-color-focus;
+        }
+
+        #{$b}__field[disabled]~&__arrow:after {
+            border-color: $f-core-disabled-color;
+        }
+    }
+
+    @else {
+
+        // Solid arrow
+        &__arrow:after {
+            right: $f-core-padding-horizontal;
+            width: 0;
+            height: 0;
+            border-left: $f-select-arrow-size/1.5 solid transparent;
+            border-right: $f-select-arrow-size/1.5 solid transparent;
+            border-top: $f-select-arrow-size/1.5 solid $f-select-arrow-color;
+            transform: translateY(-50%);
+        }
+
+        #{$b}__field:hover~&__arrow:after {
+            border-top-color: $f-select-arrow-color-hover;
+        }
+
+        #{$b}__field:focus~&__arrow:after {
+            border-top-color: $f-select-arrow-color-focus;
+        }
+
+        #{$b}__field[disabled]~&__arrow:after {
+            border-top-color: $f-core-disabled-color;
+        }
+    }
+}

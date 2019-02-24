@@ -1,0 +1,15 @@
+// Variables, mixins, and functions
+@import 'node_modules/formalism-framework/core/core';
+
+// Theme base
+// Base styles to give you a prime starting point
+.f-input {
+    $b: #{&};
+    @include f-core-base;
+    @include f-core-inner;
+    @include f-core-field;
+    @include f-core-label($b);
+    @include f-core-label-text($b);
+    @include f-core-indicator($b);
+    @include f-core-message;
+}

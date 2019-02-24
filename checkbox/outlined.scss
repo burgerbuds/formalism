@@ -1,0 +1,46 @@
+// Variables, mixins, and functions
+@import './formalism/core/fields/checkbox';
+
+// Variables
+$f-outlined-tick-color: $f-core-highlight-color !default;
+$f-outlined-tick-color-hover: $f-outlined-tick-color !default;
+$f-outlined-tick-color-focus: $f-outlined-tick-color !default;
+
+// Theme selector
+$theme: '.f-checkbox--outlined';
+
+// Outlined
+.f-checkbox {
+    #{$theme} &__field:not([disabled]) {
+
+        // Tick
+        +.f-checkbox__label:after {
+            color: $f-outlined-tick-color;
+        }
+
+        // Tick hovered
+        &:hover+.f-checkbox__label:after {
+            color: $f-outlined-tick-color-hover;
+        }
+
+        // Tick hovered
+        &:focus+.f-checkbox__label:after {
+            color: $f-outlined-tick-color-focus;
+        }
+
+        // Tickbox checked
+        &:checked+.f-checkbox__label:before {
+            color: $f-checkbox-box-color-checked;
+        }
+
+        // Tickbox hovered
+        &:hover+.f-checkbox__label:before {
+            color: $f-checkbox-box-color-hover;
+        }
+
+        // Tickbox hovered
+        &:focus+.f-checkbox__label:before {
+            color: $f-checkbox-box-color-focus;
+        }
+    }
+}

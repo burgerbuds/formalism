@@ -1,0 +1,73 @@
+// Base
+// TODO: Create core element
+// @import './formalism/core/fields/notification';
+
+// Variables
+$f-notification-padding-left: 1em !default;
+$f-notification-padding-right: $f-notification-padding-left !default;
+$f-notification-padding-top: 1.5em !default;
+$f-notification-padding-bottom: $f-notification-padding-top !default;
+
+$f-notification-border-width: 2 * $f-core-border-width !default;
+$f-notification-border-color: $f-core-border-color !default;
+
+$f-notification-error-modifier: "alert";
+$f-notification-valid-modifier: "success";
+
+// TODO: more variables?
+// $f-notification-text-size
+// $f-notification-icon-size
+// $f-notification-background-opacity?
+
+.f-notification {}
+
+// Outlined
+.f-notification--outlined {
+    $b: ".f-notification";
+
+    #{$b}__inner {
+        border: $f-notification-border-width solid $f-notification-border-color;
+        border-radius: $f-outlined-border-radius;
+        padding-top: $f-notification-padding-top;
+        padding-bottom: $f-notification-padding-bottom;
+        padding-left: $f-notification-padding-left;
+        padding-right: $f-notification-padding-right;
+    }
+
+    #{$b}__text {}
+
+    #{$b}__icon {}
+
+    // Error > Border colour
+    &#{$b}--#{$f-notification-error-modifier} #{$b}__inner {
+        border-color: $f-core-border-color-error;
+        background-color: rgba($f-core-error-color, 0.1);
+    }
+
+    // Error > Text colours
+    &#{$b}--#{$f-notification-error-modifier} #{$b}__text {
+        color: $f-core-error-color;
+    }
+
+    // Error > Icon colours
+    &#{$b}--#{$f-notification-error-modifier} #{$b}__icon {
+        color: $f-core-error-color;
+    }
+
+    // Valid > Border colour
+    &#{$b}--#{$f-notification-valid-modifier} #{$b}__inner {
+        border-color: $f-core-border-color-valid;
+        background-color: rgba($f-core-valid-color, 0.1);
+    }
+
+    // Valid > Text colours
+    &#{$b}--#{$f-notification-valid-modifier} #{$b}__text {
+        color: $f-core-valid-color;
+    }
+
+    // Valid > Icon colours
+    &#{$b}--#{$f-notification-valid-modifier} #{$b}__icon {
+        color: $f-core-valid-color;
+    }
+
+}

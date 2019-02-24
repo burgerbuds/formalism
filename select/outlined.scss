@@ -1,0 +1,17 @@
+// Base
+@import './formalism/core/fields/select';
+@import './formalism/core/themes/outlined';
+
+// Outlined
+.f-select {
+    @include f-theme-outlined-field;
+
+    @include f-theme-outlined-label {
+        top: 0;
+        bottom: 0;
+        left: $f-core-padding-horizontal;
+    }
+
+    @include f-theme-outlined-label-text;
+    @include f-theme-outlined-indicator;
+}
