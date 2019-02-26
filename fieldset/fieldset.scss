@@ -1,5 +1,5 @@
 // Variables, mixins, and functions
-@import 'node_modules/formalism-framework/core/core';
+@import './../core/core';
 
 // Variables
 $f-fieldset-label-font-size: $f-core-text-font-size !default;
@@ -33,12 +33,11 @@ $f-fieldset-contents-spacing: 1.25em !default;
     }
 
     &__inner {
-
         &--stacked {
             display: flex;
             flex-wrap: wrap;
 
-            &>* {
+            & > * {
                 width: 100%;
 
                 &:not(:last-child) {
@@ -51,7 +50,7 @@ $f-fieldset-contents-spacing: 1.25em !default;
             display: flex;
             flex-wrap: wrap;
 
-            &>* {
+            & > * {
                 width: auto;
 
                 &:not(:last-child) {

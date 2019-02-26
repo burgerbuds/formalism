@@ -1,5 +1,5 @@
 // Variables, mixins, and functions
-@import 'node_modules/formalism-framework/core/outlined';
+@import './../core/outlined';
 
 // Variables
 $f-radio-dot-color: $f-core-highlight-color !default;
@@ -8,7 +8,7 @@ $f-radio-dot-color-focus: $f-radio-dot-color !default;
 
 // Theme
 .f-radio--outlined {
-    $b: ".f-radio";
+    $b: '.f-radio';
 
     #{$b}__field:not([disabled]) {
 

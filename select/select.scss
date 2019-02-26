@@ -1,5 +1,5 @@
 // Core
-@import 'node_modules/formalism-framework/core/core';
+@import './../core/core';
 
 // Variables
 $f-select-arrow-thickness: 2px !default;
@@ -38,34 +38,33 @@ $f-select-arrow-lined: false !default;
     }
 
     @if ($f-select-arrow-lined) {
-
         // Lined arrow
         &__arrow:after {
             right: $f-core-padding-horizontal * 1.25;
             transform: translateY(-50%) rotate(45deg);
             border-style: solid;
-            border-width: 0 $f-select-arrow-thickness $f-select-arrow-thickness 0;
+            border-width: 0
+                $f-select-arrow-thickness
+                $f-select-arrow-thickness
+                0;
             width: $f-select-arrow-size;
             height: $f-select-arrow-size;
             display: block;
             border-color: $f-select-arrow-color;
         }
 
-        #{$b}__field:hover~&__arrow:after {
+        #{$b}__field:hover ~ &__arrow:after {
             border-color: $f-select-arrow-color-hover;
         }
 
-        #{$b}__field:focus~&__arrow:after {
+        #{$b}__field:focus ~ &__arrow:after {
             border-color: $f-select-arrow-color-focus;
         }
 
-        #{$b}__field[disabled]~&__arrow:after {
+        #{$b}__field[disabled] ~ &__arrow:after {
             border-color: $f-core-disabled-color;
         }
-    }
-
-    @else {
-
+    } @else {
         // Solid arrow
         &__arrow:after {
             right: $f-core-padding-horizontal;
@@ -77,15 +76,15 @@ $f-select-arrow-lined: false !default;
             transform: translateY(-50%);
         }
 
-        #{$b}__field:hover~&__arrow:after {
+        #{$b}__field:hover ~ &__arrow:after {
             border-top-color: $f-select-arrow-color-hover;
         }
 
-        #{$b}__field:focus~&__arrow:after {
+        #{$b}__field:focus ~ &__arrow:after {
             border-top-color: $f-select-arrow-color-focus;
         }
 
-        #{$b}__field[disabled]~&__arrow:after {
+        #{$b}__field[disabled] ~ &__arrow:after {
             border-top-color: $f-core-disabled-color;
         }
     }

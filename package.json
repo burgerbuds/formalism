@@ -2,10 +2,35 @@
   "name": "formalism-framework",
   "version": "1.0.0",
   "description": "Modern forms, your way. Modular. Lightweight. Responsive. Stuff that matters.",
-  "main": "core/main.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "echo \"Coming soon",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --mode development --devtool inline-source-map --config webpack.config.js",
+    "build": "webpack --mode production --config webpack.config.js --progress --hide-modules"
+  },
+  "dependencies": {
+    "core-js": "^2.6.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "autoprefixer": "^9.4.9",
+    "babel-loader": "^8.0.5",
+    "clean-webpack-plugin": "^1.0.1",
+    "css-loader": "^2.1.0",
+    "cssnano": "^4.1.10",
+    "file-loader": "^3.0.1",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.11.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
+    "sass": "^1.17.2",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "terser-webpack-plugin": "^1.2.3",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
   },
   "prettier": {
     "trailingComma": "es5",
@@ -14,13 +39,6 @@
     "semi": true,
     "singleQuote": true
   },
-  "dependencies": {
-    "core-js": "^2.6.5"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/simple-integrated-marketing/formalism.git"
-  },
   "keywords": [
     "form",
     "framework",
@@ -28,6 +46,10 @@
   ],
   "author": "simple-integrated-marketing",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simple-integrated-marketing/formalism.git"
+  },
   "bugs": {
     "url": "https://github.com/simple-integrated-marketing/formalism/issues"
   },

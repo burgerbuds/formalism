@@ -1,11 +1,11 @@
 // Variables, mixins, and functions
-@import 'node_modules/formalism-framework/core/core';
+@import './../core/core';
 
 // Common
 $f-radio-outer-thickness: 2px !default;
 $f-radio-outer-size: 1.2em !default;
 
-$f-radio-inner-scale: .3 !default;
+$f-radio-inner-scale: 0.3 !default;
 
 // Dot
 // Defined in the radio/[theme].scss file
@@ -47,7 +47,6 @@ $f-radio-transition-duration: 0.35s !default;
     }
 
     &__radio {
-
         & {
             display: flex;
             align-items: center;
@@ -148,7 +147,6 @@ $f-radio-transition-duration: 0.35s !default;
                 color: $f-radio-label-checked;
             }
         }
-
     }
 
     @include f-label-text($b) {

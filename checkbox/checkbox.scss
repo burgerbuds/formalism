@@ -1,5 +1,5 @@
 // Variables, mixins, and functions
-@import 'node_modules/formalism-framework/core/core';
+@import './../core/core';
 
 // Common
 $f-checkbox-thickness: 2px !default;
@@ -51,11 +51,11 @@ $f-checkbox-transition-duration: 0.35s !default;
         }
 
         // Cursors
-        #{$b}__field:not(:disabled)+& {
+        #{$b}__field:not(:disabled) + & {
             cursor: pointer;
         }
 
-        #{$b}__field:disabled+& {
+        #{$b}__field:disabled + & {
             cursor: not-allowed;
         }
 
@@ -64,12 +64,12 @@ $f-checkbox-transition-duration: 0.35s !default;
             color: $f-checkbox-label;
 
             // Checked label colour
-            #{$b}__field:hover+& {
+            #{$b}__field:hover + & {
                 color: $f-checkbox-label-hover;
             }
 
             // Checked label colour
-            #{$b}__field:checked+& {
+            #{$b}__field:checked + & {
                 color: $f-checkbox-label-checked;
             }
         }
@@ -97,11 +97,11 @@ $f-checkbox-transition-duration: 0.35s !default;
         }
 
         // Tickbox error colours
-        #{$b}__field:not([disabled])#{$f-core-error-selector}+&:before {
+        #{$b}__field:not([disabled])#{$f-core-error-selector} + &:before {
             color: $f-core-error-color;
         }
 
-        #{$b}__field:disabled+&:before {
+        #{$b}__field:disabled + &:before {
             color: $f-core-disabled-color;
         }
 
@@ -124,7 +124,7 @@ $f-checkbox-transition-duration: 0.35s !default;
         }
 
         // Tick checked
-        #{$b}__field:checked+&:after {
+        #{$b}__field:checked + &:after {
             animation: check $f-checkbox-transition-duration forwards;
             visibility: visible;
             will-change: width, height;
