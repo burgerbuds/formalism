@@ -1,72 +1,3 @@
-// Customizable core variables
-// More styles are available in the theme core files
-
-// Base size
-$f-core-base-size: inherit !default;
-
-// Highlights
-$f-core-highlight-color: #9c27b0 !default;
-
-// Labels
-$f-core-label-color: gray !default;
-$f-core-label-color-hover: $f-core-highlight-color !default;
-$f-core-label-color-focus: $f-core-label-color-hover !default;
-
-// Text
-$f-core-text-font-size: 1em !default;
-$f-core-text-color: inherit !default;
-$f-core-text-caret-color: $f-core-highlight-color !default;
-
-// Validity
-$f-core-error-color: #cc0000 !default;
-$f-core-valid-color: #03b86a !default;
-
-// Box > Padding
-$f-core-padding-vertical: 1em !default;
-$f-core-padding-horizontal: 0.9em !default;
-
-// Box > Border
-$f-core-border-color: silver !default;
-$f-core-border-color-hover: $f-core-highlight-color !default;
-$f-core-border-color-focus: $f-core-border-color-hover !default;
-$f-core-border-color-error: $f-core-error-color !default;
-$f-core-border-color-valid: $f-core-valid-color !default;
-$f-core-border-width: 1px !default;
-$f-core-border-width-focus: 2px !default;
-$f-core-border-width-error: 2px !default;
-$f-core-border-width-valid: 2px !default;
-
-// Messages
-$f-core-message-color: gray !default;
-$f-core-message-font-size: 0.8em !default;
-
-// Disabled
-$f-core-disabled-color: silver !default;
-$f-core-disabled-border-color: gainsboro !default;
-
-// Indicator
-$f-core-indicator-color: silver !default;
-$f-core-indicator-color-hover: $f-core-highlight-color !default;
-$f-core-indicator-color-focus: $f-core-indicator-color-hover !default;
-$f-core-indicator-required-size: 1em !default;
-$f-core-indicator-optional-size: .5em !default;
-
-// Transitions
-$f-core-transition-duration: 0.2s !default;
-$f-core-transition-timing: cubic-bezier(0.51, 0.92, 0.24, 1) !default;
-
-// Selectors
-$f-core-filled-selector: '.is-filled' !default;
-$f-core-error-selector: '.has-error' !default;
-$f-core-valid-selector: '.is-valid' !default;
-
-// Selections
-$f-core-selection-color: white !default;
-$f-core-selection-bg: $f-core-highlight-color !default;
-
-// Other
-$hide-instructions-when-error: true !default;
-
 // Mixins
 
 // The element root
@@ -102,6 +33,7 @@ $hide-instructions-when-error: true !default;
         border: 0;
         caret-color: $f-core-text-caret-color;
         font-size: $f-core-text-font-size;
+        font-family: inherit;
 
         &:focus {
             outline: 0; // Focus indicator is handled $f-core-border-color-focus instead
@@ -166,7 +98,7 @@ $hide-instructions-when-error: true !default;
         color: $f-core-label-color;
 
         // Disabled > Label text color (extra specificity)
-        #{$b}__field[disabled]#{$b}__field[disabled]+#{$b}__label & {
+        #{$b}__field[disabled]#{$b}__field[disabled] + #{$b}__label & {
             color: $f-core-disabled-color;
         }
 
@@ -191,20 +123,19 @@ $hide-instructions-when-error: true !default;
         }
 
         // Error state > Indicator hover/focus
-        #{$f-core-error-selector} #{$b}__field:hover~&,
-        #{$f-core-error-selector} #{$b}__field:focus~& {
+        #{$f-core-error-selector} #{$b}__field:hover ~ &,
+        #{$f-core-error-selector} #{$b}__field:focus ~ & {
             color: $f-core-error-color !important;
         }
 
         // Disabled > Indicator color (extra specificity)
-        #{$b}__field[disabled]#{$b}__field[disabled]~& {
+        #{$b}__field[disabled]#{$b}__field[disabled] ~ & {
             color: $f-core-disabled-color;
         }
 
         @content;
     }
 }
-
 
 // The message (error, instructions etc)
 @mixin f-core-message {
@@ -234,7 +165,7 @@ $hide-instructions-when-error: true !default;
 
         // Hide the instructions if there's an error
         @if ($hide-instructions-when-error) {
-            &--error+&--instruction {
+            &--error + &--instruction {
                 display: none;
             }
         }

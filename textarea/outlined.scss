@@ -1,17 +1,19 @@
-// Base
-@import './formalism/core/fields/textarea';
-@import './formalism/core/themes/outlined';
+// Variables, mixins, and functions
+@import './imports/common';
+@import './../common/outlined/all';
 
 // Outlined
-.f-textarea {
-    @include f-theme-outlined-field;
+.f-textarea--outlined {
+    $b: '.f-textarea';
+    @include f-core-outlined-field($b);
 
-    @include f-theme-outlined-label {
+    @include f-core-outlined-label($b) {
         top: $f-core-padding-vertical;
         left: $f-core-padding-horizontal;
         line-height: $f-textarea-lineheight;
     }
 
-    @include f-theme-outlined-label-text;
-    @include f-theme-outlined-indicator;
+    @include f-core-outlined-label-text($b);
+    @include f-core-outlined-indicator($b);
+    @include f-core-outlined-message($b);
 }

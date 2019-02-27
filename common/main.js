@@ -1,7 +1,7 @@
 // Formalism
 
 // Polyfill
-import 'core-js/modules/es6.array.for-each.js'
+// import 'core-js/modules/es6.array.for-each.js'
 
 // Get a list of form fields
 const fields = document.querySelectorAll('[data-field]');
@@ -11,19 +11,20 @@ const fields = document.querySelectorAll('[data-field]');
  */
 
 // Add a class if the field isn't empty
-const handleBlurEvent = ({
-    target
-}) => {
-    if (target.tagName === "SELECT" && target.options.length > 0) {
+const handleBlurEvent = ({ target }) => {
+    if (target.tagName === 'SELECT' && target.options.length > 0) {
         // Check if selected option has a label, to cater for placeholders
         const selectedIndex = target.options.selectedIndex;
-        target.classList.toggle('is-filled', target.options[selectedIndex].label.length > 0);
+        target.classList.toggle(
+            'is-filled',
+            target.options[selectedIndex].label.length > 0
+        );
     } else {
         // Otherwise, check value!
         target.classList.toggle('is-filled', target.value.length > 0);
     }
     // TODO: Cater for checkboxes and radios
-}
+};
 
 // Add listeners for blur events on form fields
 fields.forEach(field => field.addEventListener('blur', handleBlurEvent));
@@ -33,9 +34,7 @@ fields.forEach(field => field.addEventListener('blur', handleBlurEvent));
  */
 
 // Add listeners for input events on form fields
-const handleInputEvent = ({
-    target
-}) => {
+const handleInputEvent = ({ target }) => {
     if (target.tagName.toLowerCase() !== 'textarea') return;
     expandTextarea(target);
 };

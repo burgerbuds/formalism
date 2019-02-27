@@ -1,0 +1,12 @@
+// Variables, mixins, and functions
+@import './../../common/core/all';
+
+// Variables
+$f-select-arrow-lined: true !default;
+$f-select-arrow-thickness: 2px !default;
+$f-select-arrow-size: 0.5em !default;
+$f-select-arrow-color: grey !default;
+$f-select-arrow-color-hover: $f-core-highlight-color !default;
+$f-select-arrow-color-focus: $f-select-arrow-color-hover !default;
+
+$f-select-box-padding-right: $f-core-padding-horizontal * 3 !default;

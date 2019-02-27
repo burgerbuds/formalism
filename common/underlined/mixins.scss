@@ -1,31 +1,12 @@
-@import './../core/core';
-
-// Underlined theme core
-
-// Background
-$f-underlined-background-color: white !default;
-
-// Labels
-$f-underlined-label-scale: 0.8 !default;
-$f-underlined-label-color-filled: inherit !default;
-
-// Indicator
-$f-underlined-indicator-optional-top: 0 !default;
-$f-underlined-indicator-optional-right: 0 !default;
-$f-underlined-indicator-required-top: 0 !default;
-$f-underlined-indicator-required-right: 0 !default;
-
-// Messages
-$f-underlined-message-margin: 0.5em 0 0 0 !default;
-
+@import './../core/variables';
 
 @mixin f-core-underlined-field($b) {
-
     #{$b}__field {
         color: $f-core-text-color;
         background-color: $f-underlined-background-color;
         border-bottom: $f-core-border-width solid $f-core-border-color;
-        transition: border-color $f-core-transition-duration $f-core-transition-timing;
+        transition: border-color $f-core-transition-duration
+            $f-core-transition-timing;
         will-change: border-color;
         padding: $f-core-padding-vertical 0;
 
@@ -45,8 +26,7 @@ $f-underlined-message-margin: 0.5em 0 0 0 !default;
         // Webkit focus
         &:-webkit-autofill:focus,
         &:-webkit-autofill:active {
-            -webkit-box-shadow:
-                inset 0 0 0 10em $f-underlined-background-color !important;
+            -webkit-box-shadow: inset 0 0 0 10em $f-underlined-background-color !important;
         }
 
         @content;
@@ -73,7 +53,7 @@ $f-underlined-message-margin: 0.5em 0 0 0 !default;
     }
 
     // Label > Focus movement
-    #{$b}__field#{$f-core-filled-selector}+#{$b}__label {
+    #{$b}__field#{$f-core-filled-selector} + #{$b}__label {
         opacity: 0;
     }
 }
@@ -92,18 +72,17 @@ $f-underlined-message-margin: 0.5em 0 0 0 !default;
     }
 
     // Hover > Label text
-    #{$b}__field:hover+#{$b}__label #{$b}__label-text {
+    #{$b}__field:hover + #{$b}__label #{$b}__label-text {
         color: $f-core-label-color-hover;
     }
 
     // Error > Label text colours
-    &#{$f-core-error-selector} #{$b}__field+#{$b}__label #{$b}__label-text {
+    &#{$f-core-error-selector} #{$b}__field + #{$b}__label #{$b}__label-text {
         color: $f-core-error-color;
     }
 }
 
 @mixin f-core-underlined-indicator($b) {
-
     // Indicator
     #{$b}__indicator {
         position: absolute;
@@ -124,12 +103,12 @@ $f-underlined-message-margin: 0.5em 0 0 0 !default;
     }
 
     // Indicator > hover
-    #{$b}__field:hover~#{$b}__indicator {
+    #{$b}__field:hover ~ #{$b}__indicator {
         color: $f-core-indicator-color-hover;
     }
 
     // Indicator > focus
-    #{$b}__field:focus~#{$b}__indicator {
+    #{$b}__field:focus ~ #{$b}__indicator {
         color: $f-core-indicator-color-focus;
     }
 }

@@ -1,30 +1,5 @@
 // Variables, mixins, and functions
-@import './../core/core';
-
-// Common
-$f-checkbox-thickness: 2px !default;
-$f-checkbox-size: 1em !default;
-
-// Tick
-// Defined in the checkbox/[theme].scss file
-
-// Tickbox
-$f-checkbox-box-radius: 0.15em !default;
-$f-checkbox-box-color: $f-core-border-color !default;
-$f-checkbox-box-color-checked: $f-core-highlight-color !default;
-$f-checkbox-box-color-hover: $f-checkbox-box-color-checked !default;
-$f-checkbox-box-color-focus: $f-checkbox-box-color-checked !default;
-
-// Label
-$f-checkbox-label: $f-core-text-color !default;
-$f-checkbox-label-hover: $f-checkbox-label !default;
-$f-checkbox-label-checked: $f-checkbox-label !default;
-$f-checkbox-label-font-size: 1em !default;
-$f-checkbox-label-line-height: 1 !default;
-
-// Other
-$f-checkbox-margin-right: 1em !default;
-$f-checkbox-transition-duration: 0.35s !default;
+@import './imports/common';
 
 // Base
 .f-checkbox {
@@ -39,7 +14,7 @@ $f-checkbox-transition-duration: 0.35s !default;
         position: absolute;
     }
 
-    @include f-label($b) {
+    @include f-core-label($b) {
         & {
             color: inherit;
             position: relative;
@@ -107,7 +82,7 @@ $f-checkbox-transition-duration: 0.35s !default;
 
         // Tick
         &:after {
-            transform: scaleX(-1) translate(-0.22em, 0.03em) rotate(135deg);
+            transform: scaleX(-1) translate(-0.22em, 0) rotate(135deg);
             transform-origin: top left;
             visibility: hidden;
             transition: transition(color);
@@ -151,14 +126,11 @@ $f-checkbox-transition-duration: 0.35s !default;
         }
     }
 
-    @include f-label-text($b) {
+    @include f-core-label-text($b) {
         font-size: $f-checkbox-label-font-size;
         line-height: $f-checkbox-label-line-height;
     }
 
-    @include f-indicator($b);
-
-    @include f-message {
-        margin-left: 0;
-    }
+    @include f-core-indicator($b);
+    @include f-core-message;
 }

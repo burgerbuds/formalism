@@ -1,0 +1,67 @@
+// Customizable core variables
+// More styles are available in the theme core files
+
+// Base size
+$f-core-base-size: inherit !default;
+
+// Highlights
+$f-core-highlight-color: #6fcf97 !default;
+
+// Field
+$f-core-background-color: white !default;
+
+// Labels
+$f-core-label-color: gray !default;
+$f-core-label-color-hover: $f-core-highlight-color !default;
+$f-core-label-color-focus: $f-core-label-color-hover !default;
+
+// Text
+$f-core-text-font-size: 1em !default;
+$f-core-text-color: inherit !default;
+$f-core-text-caret-color: $f-core-highlight-color !default;
+
+// Validity
+$f-core-error-color: #d33944 !default;
+
+// Field > Padding
+$f-core-padding-vertical: 1em !default;
+$f-core-padding-horizontal: 0.9em !default;
+
+// Field > Border
+$f-core-border-color: silver !default;
+$f-core-border-color-hover: $f-core-highlight-color !default;
+$f-core-border-color-focus: $f-core-border-color-hover !default;
+$f-core-border-color-error: $f-core-error-color !default;
+$f-core-border-width: 1px !default;
+$f-core-border-width-focus: 2px !default;
+$f-core-border-width-error: 2px !default;
+
+// Messages
+$f-core-message-color: gray !default;
+$f-core-message-font-size: 0.8em !default;
+
+// Disabled
+$f-core-disabled-color: silver !default;
+$f-core-disabled-border-color: gainsboro !default;
+
+// Indicator
+$f-core-indicator-color: silver !default;
+$f-core-indicator-color-hover: $f-core-highlight-color !default;
+$f-core-indicator-color-focus: $f-core-indicator-color-hover !default;
+$f-core-indicator-required-size: 1em !default;
+$f-core-indicator-optional-size: 0.5em !default;
+
+// Transitions
+$f-core-transition-duration: 0.2s !default;
+$f-core-transition-timing: cubic-bezier(0.51, 0.92, 0.24, 1) !default;
+
+// Selectors
+$f-core-filled-selector: '.is-filled' !default;
+$f-core-error-selector: '.has-error' !default;
+
+// Selections
+$f-core-selection-color: white !default;
+$f-core-selection-bg: $f-core-highlight-color !default;
+
+// Other
+$hide-instructions-when-error: true !default;

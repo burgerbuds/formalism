@@ -1,16 +1,13 @@
-// Core
-@import './common';
-
-// Variables
-$f-textarea-lineheight: 1.5 !default;
+// Variables, mixins, and functions
+@import './imports/common';
 
 // Base
 .f-textarea {
     $b: #{&};
-    @include f-base;
-    @include f-inner;
+    @include f-core-base;
+    @include f-core-inner;
 
-    @include f-field {
+    @include f-core-field {
         line-height: $f-textarea-lineheight;
         display: block; // Gets rid of bottom padding
 
@@ -19,8 +16,8 @@ $f-textarea-lineheight: 1.5 !default;
         }
     }
 
-    @include f-label($b);
-    @include f-label-text($b);
-    @include f-indicator($b);
-    @include f-message;
+    @include f-core-label($b);
+    @include f-core-label-text($b);
+    @include f-core-indicator($b);
+    @include f-core-message;
 }

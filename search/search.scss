@@ -1,0 +1,14 @@
+// Variables, mixins, and functions
+@import './imports/common';
+
+// Base
+.f-search {
+    $b: #{&};
+    @include f-core-base;
+    @include f-core-inner;
+    @include f-core-field;
+    @include f-core-label($b);
+    @include f-core-label-text($b);
+    @include f-core-indicator($b);
+    @include f-core-message;
+}

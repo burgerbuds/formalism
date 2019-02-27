@@ -1,46 +1,44 @@
 // Variables, mixins, and functions
-@import './formalism/core/fields/checkbox';
+@import './imports/common';
+@import './../common/solid/all';
 
 // Variables
 $f-solid-tick-color: white !default;
 $f-solid-tick-color-hover: $f-solid-tick-color !default;
 $f-solid-tick-color-focus: $f-solid-tick-color !default;
 
-// Theme selector
-$theme: '.f-checkbox--solid';
-
 // Solid
-.f-checkbox {
-    #{$theme} &__field:not([disabled]) {
-
+.f-checkbox--solid {
+    $b: '.f-checkbox';
+    #{$b} &__field:not([disabled]) {
         // Tick
-        +.f-checkbox__label:after {
+        + .f-checkbox__label:after {
             color: $f-solid-tick-color;
         }
 
         // Tick hovered
-        &:hover+.f-checkbox__label:after {
+        &:hover + .f-checkbox__label:after {
             color: $f-solid-tick-color-hover;
         }
 
         // Tick hovered
-        &:focus+.f-checkbox__label:after {
+        &:focus + .f-checkbox__label:after {
             color: $f-solid-tick-color-focus;
         }
 
         // Tickbox checked
-        &:checked+.f-checkbox__label:before {
+        &:checked + .f-checkbox__label:before {
             color: $f-checkbox-box-color-checked;
             background-color: currentColor;
         }
 
         // Tickbox hovered
-        &:hover+.f-checkbox__label:before {
+        &:hover + .f-checkbox__label:before {
             color: $f-checkbox-box-color-hover;
         }
 
         // Tickbox hovered
-        &:focus+.f-checkbox__label:before {
+        &:focus + .f-checkbox__label:before {
             color: $f-checkbox-box-color-focus;
         }
     }

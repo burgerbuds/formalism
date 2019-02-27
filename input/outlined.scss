@@ -1,9 +1,10 @@
 // Variables, mixins, and functions
-@import './../core/outlined';
+@import './../common/core/all';
+@import './../common/outlined/all';
 
 // Theme
 .f-input--outlined {
-    $b: ".f-input";
+    $b: '.f-input';
     @include f-core-outlined-field($b);
 
     @include f-core-outlined-label($b) {

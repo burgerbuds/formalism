@@ -1,9 +1,10 @@
 // Variables, mixins, and functions
-@import './../core/underlined';
+@import './../common/core/all';
+@import './../common/underlined/all';
 
 // Theme
 .f-input--underlined {
-    $b: ".f-input";
+    $b: '.f-input';
     @include f-core-underlined-field($b);
 
     @include f-core-underlined-label($b) {

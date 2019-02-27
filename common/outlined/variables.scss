@@ -1,0 +1,22 @@
+@import './../core/variables';
+
+// Outlined theme core
+
+// Background
+$f-outlined-background-color: $f-core-background-color !default;
+
+// Labels
+$f-outlined-label-scale: 0.8 !default;
+$f-outlined-label-color-filled: inherit !default;
+
+// Box > Border
+$f-outlined-border-radius: 0.25em !default;
+
+// Indicator
+$f-outlined-indicator-required-top: 0.4em !default;
+$f-outlined-indicator-required-right: 0.4em !default;
+$f-outlined-indicator-optional-top: 1em !default;
+$f-outlined-indicator-optional-right: 1em !default;
+
+// Messages
+$f-outlined-message-margin: 0.5em 0 0 0.5em !default;

@@ -1,48 +1,23 @@
-// Core
-@import './formalism/core/fields/common';
-
-// Theme
-@import './formalism/core/themes/outlined';
-
-// Variables
-$f-search-size: 3em !default;
-$f-search-background-color: $f-core-background-color !default;
-$f-search-label-color: $black !default;
-
-$f-search-border-color: $f-core-border-color !default;
-$f-search-border-width: $f-core-border-width !default;
-
-$f-search-label-color-hover: $f-core-background-color !default;
-$f-search-label-color-focus: $f-search-label-color-hover !default;
-
-$f-search-background-color-hover: $f-core-highlight-color !default;
-$f-search-background-color-focus: $f-search-background-color-hover !default;
+// Variables, mixins, and functions
+@import './imports/common';
+@import './../common/outlined/all';
 
 // Base
 .f-search {
     $b: #{&};
-    @include f-base;
-    @include f-inner;
-    @include f-field;
-    @include f-label($b);
-    @include f-label-text($b);
-    @include f-indicator($b);
-    @include f-message;
 
-
-    @include f-theme-outlined-field {
+    @include f-core-outlined-field($b) {
         box-sizing: border-box;
-        padding-right: calc($f-core-padding-horizontal + $f-search-icon-size);
+        padding-right: calc(
+            #{$f-core-padding-horizontal} + #{$f-search-icon-size}
+        );
     }
-
-    @include f-theme-outlined-label {
+    @include f-core-outlined-label($b) {
         top: 0;
         bottom: 0;
         left: $f-core-padding-horizontal;
     }
-
-    @include f-theme-outlined-label-text;
-    // @include f-theme-outlined-indicator;
+    @include f-core-outlined-label-text($b);
 
     #{$b}__button {
         position: absolute;
@@ -77,5 +52,9 @@ $f-search-background-color-focus: $f-search-background-color-hover !default;
             border-left-color: $f-search-background-color-focus;
             background-color: $f-search-background-color-focus;
         }
+    }
+
+    @include f-core-outlined-message($b) {
+        margin-left: 0;
     }
 }

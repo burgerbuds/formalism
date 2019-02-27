@@ -1,0 +1,17 @@
+@import './../core/variables';
+
+// Background
+$f-underlined-background-color: white !default;
+
+// Labels
+$f-underlined-label-scale: 0.8 !default;
+$f-underlined-label-color-filled: inherit !default;
+
+// Indicator
+$f-underlined-indicator-optional-top: 0 !default;
+$f-underlined-indicator-optional-right: 0 !default;
+$f-underlined-indicator-required-top: 0 !default;
+$f-underlined-indicator-required-right: 0 !default;
+
+// Messages
+$f-underlined-message-margin: 0.5em 0 0 0 !default;
