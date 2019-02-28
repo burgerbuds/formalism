@@ -1,0 +1,8 @@
+// Variables, mixins, and functions
+@import './imports/common';
+
+// Base
+.f-notification {
+    $b: #{&};
+    @include f-core-base;
+}

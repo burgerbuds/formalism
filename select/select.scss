@@ -10,7 +10,7 @@
     @include f-core-field {
         line-height: initial; // Reset height
         appearance: none;
-        padding-right: $f-select-box-padding-right;
+        padding-right: $f-select-field-padding-right;
     }
 
     @include f-core-label($b);
@@ -28,8 +28,8 @@
         transition: transition(border-color);
     }
 
-    @if ($f-select-arrow-lined) {
-        // Lined arrow
+    @if ($f-select-arrow-type == 'chevron') {
+        // Open chevron arrow
         &__arrow:after {
             right: $f-core-padding-horizontal * 1.25;
             transform: translateY(-50%) rotate(45deg);
@@ -42,25 +42,26 @@
             height: $f-select-arrow-size;
             display: block;
             border-color: $f-select-arrow-color;
-        }
 
-        #{$b}__field:hover ~ &__arrow:after {
-            border-color: $f-select-arrow-color-hover;
-        }
+            #{$b}__field:hover ~ & {
+                border-color: $f-select-arrow-color-hover;
+            }
 
-        #{$b}__field:focus ~ &__arrow:after {
-            border-color: $f-select-arrow-color-focus;
-        }
+            #{$b}__field:focus ~ & {
+                border-color: $f-select-arrow-color-focus;
+            }
 
-        #{$b}__field[disabled] ~ &__arrow:after {
-            border-color: $f-core-disabled-color;
-        }
+            #{$b}__field[disabled] ~ & {
+                border-color: $f-core-disabled-color;
+            }
 
-        #{$b}__field#{$f-core-error-selector} ~ &__arrow:after {
-            border-color: $f-core-border-color-error;
+            #{$b}#{$f-core-error-selector} #{$b}__field:hover ~ &,
+            #{$b}#{$f-core-error-selector} #{$b}__field:focus ~ & {
+                border-color: $f-core-border-color-error;
+            }
         }
-    } @else {
-        // Solid arrow
+    } @else if ($f-select-arrow-type == 'triangle') {
+        // Solid triangle arrow
         &__arrow:after {
             right: $f-core-padding-horizontal;
             width: 0;
@@ -69,22 +70,23 @@
             border-right: $f-select-arrow-size/1.5 solid transparent;
             border-top: $f-select-arrow-size/1.5 solid $f-select-arrow-color;
             transform: translateY(-50%);
-        }
 
-        #{$b}__field:hover ~ &__arrow:after {
-            border-top-color: $f-select-arrow-color-hover;
-        }
+            #{$b}__field:hover ~ & {
+                border-top-color: $f-select-arrow-color-hover;
+            }
 
-        #{$b}__field:focus ~ &__arrow:after {
-            border-top-color: $f-select-arrow-color-focus;
-        }
+            #{$b}__field:focus ~ & {
+                border-top-color: $f-select-arrow-color-focus;
+            }
 
-        #{$b}__field[disabled] ~ &__arrow:after {
-            border-top-color: $f-core-disabled-color;
-        }
+            #{$b}__field[disabled] ~ & {
+                border-top-color: $f-core-disabled-color;
+            }
 
-        #{$b}__field#{$f-core-error-selector} ~ &__arrow:after {
-            border-top-color: $f-core-border-color-error;
+            #{$b}#{$f-core-error-selector} #{$b}__field:hover ~ &,
+            #{$b}#{$f-core-error-selector} #{$b}__field:focus ~ & {
+                border-top-color: $f-core-border-color-error;
+            }
         }
     }
 }

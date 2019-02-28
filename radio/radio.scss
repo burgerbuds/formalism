@@ -5,12 +5,10 @@
 .f-radio {
     $b: #{&};
 
-    & {
-        display: inline-block;
-    }
+    @include f-core-base;
 
     &__inner {
-        display: flex;
+        display: inline-flex;
         flex-wrap: nowrap;
         align-items: center;
     }
@@ -41,36 +39,28 @@
         &:after {
             content: '';
             display: block;
-            font-size: $f-radio-outer-size;
+            font-size: $f-radio-size;
+            width: 1em;
+            height: 1em;
+            flex-shrink: 0;
+            border-radius: $f-radio-radius;
+            border: $f-radio-outer-thickness solid currentColor;
         }
 
         // Circle
         &:before {
-            color: $f-radio-circle-color;
-            border: $f-radio-outer-thickness solid currentColor;
-            border-radius: 50%;
-            width: 1em;
-            height: 1em;
+            color: $f-radio-border-color;
             display: block;
             transition: transition(color);
             will-change: color;
-            flex-shrink: 0;
-        }
-
-        #{$b}__field:disabled + &:before {
-            color: $f-core-disabled-color;
         }
 
         // Dot
         &:after {
             transform: scale(0);
-            // visibility: hidden;
             background-color: currentColor;
-            width: 1em;
-            height: 1em;
-            border-radius: 50%;
             transition: transition(transform);
-            will-change: color;
+            will-change: transform;
 
             // Positioning
             position: absolute;

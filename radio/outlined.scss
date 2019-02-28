@@ -7,35 +7,43 @@
     $b: '.f-radio';
 
     #{$b}__field:not([disabled]) {
-        // Dot
-        + .f-radio__radio + .f-radio__label:after {
-            color: $f-radio-dot-color;
+        // Border (scale(0) by default)
+        + .f-radio__radio:after {
+            color: $f-radio-center-color;
         }
 
-        // Dot hovered
+        // Border checked
+        &:checked + .f-radio__radio:after {
+            color: $f-radio-center-color-checked;
+        }
+
+        // Center hovered
         &:hover + .f-radio__radio:after {
-            color: $f-radio-dot-color-hover;
+            color: $f-radio-center-color-hover;
         }
 
-        // Dot hovered
+        // Center focussed
         &:focus + .f-radio__radio:after {
-            color: $f-radio-dot-color-focus;
+            color: $f-radio-center-color-focus;
         }
 
-        // Circle checked
+        // Border checked
         &:checked + .f-radio__radio:before {
-            color: $f-radio-circle-color-checked;
+            color: $f-radio-border-color-checked;
         }
 
-        // Circle hovered
+        // Border hovered
         &:hover + .f-radio__radio:before {
-            color: $f-radio-circle-color-hover;
+            color: $f-radio-border-color-hover;
         }
 
-        // Circle hovered
+        // Border focussed
         &:focus + .f-radio__radio:before {
-            color: $f-radio-circle-color-focus;
+            color: $f-radio-border-color-focus;
         }
+    }
+
+    #{$b}__field[disabled] {
     }
 
     @include f-core-outlined-message($b) {

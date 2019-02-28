@@ -11,12 +11,14 @@ const settings = {
     jsEntry: {
         'input/input': './input/input.scss',
         'input/outlined': './input/outlined.scss',
+        'input/underlined': './input/underlined.scss',
 
         'select/select': './select/select.scss',
         'select/outlined': './select/outlined.scss',
 
         'checkbox/checkbox': './checkbox/checkbox.scss',
         'checkbox/outlined': './checkbox/outlined.scss',
+        'checkbox/solid': './checkbox/solid.scss',
 
         'radio/radio': './radio/radio.scss',
         'radio/outlined': './radio/outlined.scss',
@@ -26,6 +28,13 @@ const settings = {
 
         'search/search': './search/search.scss',
         'search/outlined': './search/outlined.scss',
+
+        'fieldset/fieldset': './fieldset/fieldset.scss',
+        'fieldset/outlined': './fieldset/outlined.scss',
+        'fieldset/naked': './fieldset/naked.scss',
+
+        'notification/outlined': './notification/notification.scss',
+        'notification/outlined': './notification/outlined.scss',
     },
     destination: path.resolve(__dirname, 'dist'),
     templates: path.resolve(__dirname, 'src'),

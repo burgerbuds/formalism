@@ -10,35 +10,44 @@ $f-outlined-tick-color-focus: $f-outlined-tick-color !default;
 // Outlined
 .f-checkbox--outlined {
     $b: '.f-checkbox';
-    #{$b}__field:not([disabled]) {
-        // Tick
-        + .f-checkbox__label:after {
-            color: $f-outlined-tick-color;
+
+    #{$b}__field {
+        &:not([disabled]) {
+            // Tick
+            + .f-checkbox__label:after {
+                color: $f-outlined-tick-color;
+            }
+
+            // Tick hovered
+            &:hover + .f-checkbox__label:after {
+                color: $f-outlined-tick-color-hover;
+            }
+
+            // Tick hovered
+            &:focus + .f-checkbox__label:after {
+                color: $f-outlined-tick-color-focus;
+            }
+
+            // Tickbox checked
+            &:checked + .f-checkbox__label:before {
+                color: $f-checkbox-field-color-checked;
+            }
+
+            // Tickbox hovered
+            &:hover + .f-checkbox__label:before {
+                color: $f-checkbox-field-color-hover;
+            }
+
+            // Tickbox hovered
+            &:focus + .f-checkbox__label:before {
+                color: $f-checkbox-field-color-focus;
+            }
         }
 
-        // Tick hovered
-        &:hover + .f-checkbox__label:after {
-            color: $f-outlined-tick-color-hover;
-        }
-
-        // Tick hovered
-        &:focus + .f-checkbox__label:after {
-            color: $f-outlined-tick-color-focus;
-        }
-
-        // Tickbox checked
-        &:checked + .f-checkbox__label:before {
-            color: $f-checkbox-box-color-checked;
-        }
-
-        // Tickbox hovered
-        &:hover + .f-checkbox__label:before {
-            color: $f-checkbox-box-color-hover;
-        }
-
-        // Tickbox hovered
-        &:focus + .f-checkbox__label:before {
-            color: $f-checkbox-box-color-focus;
+        &[disabled] {
+            + .f-checkbox__label:before {
+                color: $f-core-disabled-border-color;
+            }
         }
     }
 

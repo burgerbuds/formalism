@@ -5,8 +5,12 @@
 .f-checkbox {
     $b: #{&};
 
-    & {
-        display: inline-block;
+    @include f-core-base;
+
+    &__inner {
+        display: inline-flex;
+        flex-wrap: nowrap;
+        align-items: center;
     }
 
     &__field {
@@ -59,9 +63,9 @@
 
         // Tickbox
         &:before {
-            color: $f-checkbox-box-color;
+            color: $f-checkbox-field-color;
             border: $f-checkbox-thickness solid currentColor;
-            border-radius: $f-checkbox-box-radius;
+            border-radius: $f-checkbox-field-radius;
             margin-right: $f-checkbox-margin-right;
             width: 1.2em;
             height: 1.2em;
@@ -82,7 +86,8 @@
 
         // Tick
         &:after {
-            transform: scaleX(-1) translate(-0.22em, 0) rotate(135deg);
+            transform: scaleX(-1) translate($f-checkbox-tick-position)
+                rotate(135deg);
             transform-origin: top left;
             visibility: hidden;
             transition: transition(color);
@@ -112,12 +117,10 @@
                 height: 0;
                 width: 0;
             }
-
             25% {
                 height: 0;
                 width: 0.35em;
             }
-
             50%,
             100% {
                 height: 0.7em;

@@ -1,3 +1,7 @@
+// Variables, mixins, and functions
+@import './imports/common';
+@import './../common/outlined/all';
+
 // Base
 // TODO: Create core element
 // @import './formalism/core/fields/notification';
@@ -11,19 +15,20 @@ $f-notification-padding-bottom: $f-notification-padding-top !default;
 $f-notification-border-width: 2 * $f-core-border-width !default;
 $f-notification-border-color: $f-core-border-color !default;
 
-$f-notification-error-modifier: "alert";
-$f-notification-valid-modifier: "success";
+$f-notification-error-modifier: 'alert';
+$f-notification-valid-modifier: 'success';
 
 // TODO: more variables?
 // $f-notification-text-size
 // $f-notification-icon-size
 // $f-notification-background-opacity?
 
-.f-notification {}
+.f-notification {
+}
 
 // Outlined
 .f-notification--outlined {
-    $b: ".f-notification";
+    $b: '.f-notification';
 
     #{$b}__inner {
         border: $f-notification-border-width solid $f-notification-border-color;
@@ -34,9 +39,11 @@ $f-notification-valid-modifier: "success";
         padding-right: $f-notification-padding-right;
     }
 
-    #{$b}__text {}
+    #{$b}__text {
+    }
 
-    #{$b}__icon {}
+    #{$b}__icon {
+    }
 
     // Error > Border colour
     &#{$b}--#{$f-notification-error-modifier} #{$b}__inner {
@@ -69,5 +76,4 @@ $f-notification-valid-modifier: "success";
     &#{$b}--#{$f-notification-valid-modifier} #{$b}__icon {
         color: $f-core-valid-color;
     }
-
 }

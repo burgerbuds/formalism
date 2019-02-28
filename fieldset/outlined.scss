@@ -1,5 +1,6 @@
 // Variables, mixins, and functions
-@import './formalism/core/fields/fieldset';
+@import './imports/common';
+@import './../common/outlined/all';
 
 // Padding
 $f-fieldset-padding-left: 1em !default;
@@ -13,14 +14,16 @@ $f-fieldset-border-color: $f-core-border-color !default;
 
 // Theme
 .f-fieldset--outlined {
-    $b: ".f-fieldset";
+    $b: '.f-fieldset';
 
     #{$b}__indicator--optional {
-        line-height: 1 / ($f-core-indicator-optional-size / $f-fieldset-label-font-size);
+        line-height: 1 /
+            ($f-core-indicator-optional-size / $f-fieldset-label-font-size);
     }
 
     #{$b}__indicator--required {
-        line-height: 1 / ($f-core-indicator-required-size / $f-fieldset-label-font-size);
+        line-height: 1 /
+            ($f-core-indicator-required-size / $f-fieldset-label-font-size);
     }
 
     #{$b}__label {
@@ -59,12 +62,13 @@ $f-fieldset-border-color: $f-core-border-color !default;
     // Error > Border colour
     &#{$f-core-error-selector} #{$b}__inner {
         border-color: $f-core-border-color-error;
-        box-shadow: inset 0 0 0 calc(#{$f-core-border-width-error} - #{$f-core-border-width}) $f-core-border-color-error;
+        box-shadow: inset 0 0 0
+            calc(#{$f-core-border-width-error} - #{$f-core-border-width})
+            $f-core-border-color-error;
     }
 
     // Error > Label text colours
     &#{$f-core-error-selector} #{$b}__label #{$b}__label-text {
         color: $f-core-error-color;
     }
-
 }

@@ -1,5 +1,5 @@
 // Variables, mixins, and functions
-@import './formalism/core/fields/fieldset';
+@import './../common/core/variables';
 
 // Variables
 $f-fieldset-top-spacing: 1em !default;
@@ -7,7 +7,7 @@ $f-fieldset-bottom-spacing: 1em !default;
 
 // Theme
 .f-fieldset--naked {
-    $b: ".f-fieldset";
+    $b: '.f-fieldset';
 
     #{$b}__label {
         display: block;
@@ -22,5 +22,4 @@ $f-fieldset-bottom-spacing: 1em !default;
     &#{$f-core-error-selector} #{$b}__label #{$b}__label-text {
         color: $f-core-error-color;
     }
-
 }

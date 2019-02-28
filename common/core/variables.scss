@@ -6,6 +6,7 @@ $f-core-base-size: inherit !default;
 
 // Highlights
 $f-core-highlight-color: #6fcf97 !default;
+$f-core-highlight-color: #4caf50 !default;
 
 // Field
 $f-core-background-color: white !default;
@@ -21,7 +22,8 @@ $f-core-text-color: inherit !default;
 $f-core-text-caret-color: $f-core-highlight-color !default;
 
 // Validity
-$f-core-error-color: #d33944 !default;
+$f-core-error-color: #e91e63 !default;
+$f-core-valid-color: #cddc39 !default;
 
 // Field > Padding
 $f-core-padding-vertical: 1em !default;
@@ -32,9 +34,11 @@ $f-core-border-color: silver !default;
 $f-core-border-color-hover: $f-core-highlight-color !default;
 $f-core-border-color-focus: $f-core-border-color-hover !default;
 $f-core-border-color-error: $f-core-error-color !default;
+$f-core-border-color-valid: $f-core-valid-color !default;
 $f-core-border-width: 1px !default;
 $f-core-border-width-focus: 2px !default;
 $f-core-border-width-error: 2px !default;
+$f-core-border-width-valid: 2px !default;
 
 // Messages
 $f-core-message-color: gray !default;
@@ -58,6 +62,7 @@ $f-core-transition-timing: cubic-bezier(0.51, 0.92, 0.24, 1) !default;
 // Selectors
 $f-core-filled-selector: '.is-filled' !default;
 $f-core-error-selector: '.has-error' !default;
+$f-core-valid-selector: '.is-valid' !default;
 
 // Selections
 $f-core-selection-color: white !default;

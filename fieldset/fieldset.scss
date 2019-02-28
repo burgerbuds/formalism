@@ -1,24 +1,19 @@
 // Variables, mixins, and functions
-@import './../core/core';
-
-// Variables
-$f-fieldset-label-font-size: $f-core-text-font-size !default;
-$f-fieldset-label-color: $f-core-text-color !default;
-$f-fieldset-contents-spacing: 1.25em !default;
+@import './imports/common';
 
 // Theme
 .f-fieldset {
     $b: #{&};
+    @include f-core-base;
+    @include f-core-label($b);
 
-    @include f-label($b);
-
-    @include f-label-text($b) {
+    @include f-core-label-text($b) {
         color: $f-fieldset-label-color;
         font-size: $f-fieldset-label-font-size;
     }
 
-    @include f-indicator($b);
-    @include f-message;
+    @include f-core-indicator($b);
+    @include f-core-message;
 
     & {
         border: 0;
@@ -41,7 +36,7 @@ $f-fieldset-contents-spacing: 1.25em !default;
                 width: 100%;
 
                 &:not(:last-child) {
-                    margin-bottom: $f-fieldset-contents-spacing;
+                    margin-bottom: $f-fieldset-content-spacing;
                 }
             }
         }
@@ -54,7 +49,7 @@ $f-fieldset-contents-spacing: 1.25em !default;
                 width: auto;
 
                 &:not(:last-child) {
-                    margin-right: $f-fieldset-contents-spacing;
+                    margin-right: $f-fieldset-content-spacing;
                 }
             }
         }

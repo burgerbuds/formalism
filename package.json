@@ -5,7 +5,8 @@
     "main": "core/main.js",
     "scripts": {
         "start": "webpack-dev-server --mode development --devtool inline-source-map --config webpack.config.js",
-        "build": "webpack --mode production --config webpack.config.js --progress --hide-modules"
+        "build": "webpack --mode production --config webpack.config.js --progress --hide-modules",
+        "watch": "webpack --watch --mode production --config webpack.config.js --display minimal --hide-modules"
     },
     "dependencies": {
         "core-js": "^2.6.5"

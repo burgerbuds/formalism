@@ -28,18 +28,18 @@ $f-solid-tick-color-focus: $f-solid-tick-color !default;
 
         // Tickbox checked
         &:checked + .f-checkbox__label:before {
-            color: $f-checkbox-box-color-checked;
+            color: $f-checkbox-field-color-checked;
             background-color: currentColor;
         }
 
         // Tickbox hovered
         &:hover + .f-checkbox__label:before {
-            color: $f-checkbox-box-color-hover;
+            color: $f-checkbox-field-color-hover;
         }
 
         // Tickbox hovered
         &:focus + .f-checkbox__label:before {
-            color: $f-checkbox-box-color-focus;
+            color: $f-checkbox-field-color-focus;
         }
     }
 }
