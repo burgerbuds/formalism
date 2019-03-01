@@ -29,6 +29,9 @@ const settings = {
         'search/search': './search/search.scss',
         'search/outlined': './search/outlined.scss',
 
+        'switch/switch': './switch/switch.scss',
+        'switch/outlined': './switch/outlined.scss',
+
         'fieldset/fieldset': './fieldset/fieldset.scss',
         'fieldset/outlined': './fieldset/outlined.scss',
         'fieldset/naked': './fieldset/naked.scss',
@@ -93,32 +96,34 @@ const configureHtmlLoader = () => {
 
 // Configure the stylesheet loader
 const configureStylesheetLoader = isProduction => {
-    return isProduction ? {
-        test: /\.(sa|sc|c)ss$/,
-        use: [
-            MiniCssExtractPlugin.loader, // 4. Convert the JS to a CSS file
-            {
-                loader: 'css-loader', // 3. Convert CSS to JS object
-            },
-            {
-                loader: 'postcss-loader', // 2. Run CSS through PostCss
-            },
-            'sass-loader', // 1. Convert SCSS to CSS
-        ],
-    } : {
-        test: /\.(sa|sc|c)ss$/,
-        use: [
-            'style-loader', // 4. Insert hot CSS into the page
-            'css-loader', // 3. Convert CSS to JS object
-            {
-                loader: 'postcss-loader', // 2. Run CSS through PostCss
-                options: {
-                    plugins: [require('autoprefixer')],
-                },
-            },
-            'sass-loader', // 1. Convert SCSS to CSS
-        ],
-    };
+    return isProduction
+        ? {
+              test: /\.(sa|sc|c)ss$/,
+              use: [
+                  MiniCssExtractPlugin.loader, // 4. Convert the JS to a CSS file
+                  {
+                      loader: 'css-loader', // 3. Convert CSS to JS object
+                  },
+                  {
+                      loader: 'postcss-loader', // 2. Run CSS through PostCss
+                  },
+                  'sass-loader', // 1. Convert SCSS to CSS
+              ],
+          }
+        : {
+              test: /\.(sa|sc|c)ss$/,
+              use: [
+                  'style-loader', // 4. Insert hot CSS into the page
+                  'css-loader', // 3. Convert CSS to JS object
+                  {
+                      loader: 'postcss-loader', // 2. Run CSS through PostCss
+                      options: {
+                          plugins: [require('autoprefixer')],
+                      },
+                  },
+                  'sass-loader', // 1. Convert SCSS to CSS
+              ],
+          };
 };
 
 module.exports = (env, argv) => {
@@ -182,24 +187,24 @@ module.exports = (env, argv) => {
                 verbose: false, // disable logging
                 root: path.resolve(__dirname, '/'),
             }),
-            isProduction ?
-            new MiniCssExtractPlugin({
-                filename: '[name].css',
-            }) :
-            new FriendlyErrorsWebpackPlugin({
-                compilationSuccessInfo: {
-                    messages: [
-                        `The ${settings.name} demo is running at: ${
+            isProduction
+                ? new MiniCssExtractPlugin({
+                      filename: '[name].css',
+                  })
+                : new FriendlyErrorsWebpackPlugin({
+                      compilationSuccessInfo: {
+                          messages: [
+                              `The ${settings.name} demo is running at: ${
                                   settings.devServerUrl
                               }`,
-                    ],
-                },
-                onErrors: (severity, errors) => {
-                    if (severity !== 'error') return;
-                    const error = errors[0];
-                    console.log(error.message);
-                },
-            }),
+                          ],
+                      },
+                      onErrors: (severity, errors) => {
+                          if (severity !== 'error') return;
+                          const error = errors[0];
+                          console.log(error.message);
+                      },
+                  }),
         ],
     };
 };
