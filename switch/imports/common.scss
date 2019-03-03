@@ -1,0 +1,25 @@
+// Variables, mixins, and functions
+@import './../../common/core/all';
+
+// Common
+$f-switch-thickness: 2px !default;
+$f-switch-size: 1em !default;
+
+// Tickbox
+$f-switch-field-radius: 0.15em !default;
+$f-switch-field-color: $f-core-border-color !default;
+$f-switch-field-color-checked: $f-core-highlight-color !default;
+$f-switch-field-color-hover: $f-switch-field-color-checked !default;
+$f-switch-field-color-focus: $f-switch-field-color-checked !default;
+
+// Label
+$f-switch-label: $f-core-text-color !default;
+$f-switch-label-hover: $f-switch-label !default;
+$f-switch-label-checked: $f-switch-label !default;
+$f-switch-label-font-size: 1em !default;
+$f-switch-label-line-height: 1 !default;
+
+// Other
+$f-switch-margin-right: 0.75em !default;
+$f-switch-transition-duration: 0.35s !default;
+$f-switch-tick-position: -0.22em, 0 !default; // x, y
