@@ -1,9 +1,14 @@
-// Variables, mixins, and functions
-@import './../common/core/variables';
+// ================================
+// Fieldset Naked
+// Requires: fieldset/base.scss
+// ================================
+
+// Imports
+@import './imports/imports';
 
 // Variables
-$f-fieldset-top-spacing: 1em !default;
-$f-fieldset-bottom-spacing: 1em !default;
+$f-fieldset--naked__top-spacing: 1em !default;
+$f-fieldset--naked__bottom-spacing: 1em !default;
 
 // Theme
 .f-fieldset--naked {
@@ -14,12 +19,12 @@ $f-fieldset-bottom-spacing: 1em !default;
     }
 
     #{$b}__inner {
-        margin-top: $f-fieldset-top-spacing;
-        margin-bottom: $f-fieldset-bottom-spacing;
+        margin-top: $f-fieldset--naked__top-spacing;
+        margin-bottom: $f-fieldset--naked__bottom-spacing;
     }
 
     // Error > Label text colours
-    &#{$f-core-error-selector} #{$b}__label #{$b}__label-text {
-        color: $f-core-error-color;
+    &#{$f-modifier__error-fieldset} #{$b}__label #{$b}__label-text {
+        color: $f-common__error-color;
     }
 }

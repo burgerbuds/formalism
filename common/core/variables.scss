@@ -2,71 +2,70 @@
 // More styles are available in the theme core files
 
 // Base size
-$f-core-base-size: inherit !default;
+$f-common__base-size: inherit !default;
 
 // Highlights
-$f-core-highlight-color: #6fcf97 !default;
-$f-core-highlight-color: #4caf50 !default;
+$f-common__highlight-color: #a42cf9 !default;
 
 // Field
-$f-core-background-color: white !default;
+$f-common__background-color: white !default;
 
 // Labels
-$f-core-label-color: gray !default;
-$f-core-label-color-hover: $f-core-highlight-color !default;
-$f-core-label-color-focus: $f-core-label-color-hover !default;
+$f-common__label-color: gray !default;
+$f-common__label-color-hover: $f-common__highlight-color !default;
+$f-common__label-color-focus: $f-common__label-color-hover !default;
 
 // Text
-$f-core-text-font-size: 1em !default;
-$f-core-text-color: inherit !default;
-$f-core-text-caret-color: $f-core-highlight-color !default;
+$f-common__text-font-size: 1em !default;
+$f-common__text-color: inherit !default;
+$f-common__text-caret-color: $f-common__highlight-color !default;
 
 // Validity
-$f-core-error-color: #e91e63 !default;
-$f-core-valid-color: #cddc39 !default;
+$f-common__error-color: #e91e63 !default;
+$f-common__valid-color: #cddc39 !default;
 
 // Field > Padding
-$f-core-padding-vertical: 1em !default;
-$f-core-padding-horizontal: 0.9em !default;
+$f-common__padding-vertical: 1em !default;
+$f-common__padding-horizontal: 0.9em !default;
 
 // Field > Border
-$f-core-border-color: silver !default;
-$f-core-border-color-hover: $f-core-highlight-color !default;
-$f-core-border-color-focus: $f-core-border-color-hover !default;
-$f-core-border-color-error: $f-core-error-color !default;
-$f-core-border-color-valid: $f-core-valid-color !default;
-$f-core-border-width: 1px !default;
-$f-core-border-width-focus: 2px !default;
-$f-core-border-width-error: 2px !default;
-$f-core-border-width-valid: 2px !default;
+$f-common__border-color: silver !default;
+$f-common__border-color-hover: $f-common__highlight-color !default;
+$f-common__border-color-focus: $f-common__border-color-hover !default;
+$f-common__border-color-error: $f-common__error-color !default;
+$f-common__border-color-valid: $f-common__valid-color !default;
+$f-common__border-width: 1px !default;
+$f-common__border-width-focus: 2px !default;
+$f-common__border-width-error: 2px !default;
+$f-common__border-width-valid: 2px !default;
 
 // Messages
-$f-core-message-color: gray !default;
-$f-core-message-font-size: 0.8em !default;
+$f-common__message-color: gray !default;
+$f-common__message-font-size: 0.8em !default;
 
 // Disabled
-$f-core-disabled-color: silver !default;
-$f-core-disabled-border-color: gainsboro !default;
+$f-common__disabled-color: silver !default;
+$f-common__disabled-border-color: gainsboro !default;
 
 // Indicator
-$f-core-indicator-color: silver !default;
-$f-core-indicator-color-hover: $f-core-highlight-color !default;
-$f-core-indicator-color-focus: $f-core-indicator-color-hover !default;
-$f-core-indicator-required-size: 1em !default;
-$f-core-indicator-optional-size: 0.5em !default;
+$f-common__indicator-color: silver !default;
+$f-common__indicator-color-hover: $f-common__highlight-color !default;
+$f-common__indicator-color-focus: $f-common__indicator-color-hover !default;
+$f-common__indicator-required-size: 1em !default;
+$f-common__indicator-optional-size: 0.5em !default;
 
 // Transitions
-$f-core-transition-duration: 0.2s !default;
-$f-core-transition-timing: cubic-bezier(0.51, 0.92, 0.24, 1) !default;
+$f-common__transition-duration: 0.2s !default;
+$f-common__transition-timing: cubic-bezier(0.51, 0.92, 0.24, 1) !default;
 
 // Selectors
-$f-core-filled-selector: '.is-filled' !default;
-$f-core-error-selector: '.has-error' !default;
-$f-core-valid-selector: '.is-valid' !default;
+$f-modifier__filled: '.is-filled' !default;
+$f-modifier__error: '.has-error' !default;
+// $f-modifier__valid: '.is-valid' !default; // TODO: Add valid styles
 
 // Selections
-$f-core-selection-color: white !default;
-$f-core-selection-bg: $f-core-highlight-color !default;
+$f-common__selection-color: white !default;
+$f-common__selection-bg: $f-common__highlight-color !default;
 
 // Other
 $hide-instructions-when-error: true !default;

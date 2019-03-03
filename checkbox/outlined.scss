@@ -1,57 +1,82 @@
-// Variables, mixins, and functions
-@import './imports/common';
+// ================================
+// Checkbox Outlined
+// Requires: checkbox/base.scss
+// ================================
+
+// Imports
+@import './imports/imports';
 @import './../common/outlined/all';
 
 // Variables
-$f-outlined-tick-color: $f-core-highlight-color !default;
-$f-outlined-tick-color-hover: $f-outlined-tick-color !default;
-$f-outlined-tick-color-focus: $f-outlined-tick-color !default;
+$f-checkbox--outlined__tick-color: $f-common__highlight-color !default;
+$f-checkbox--outlined__tick-color-hover: $f-common__highlight-color !default;
+$f-checkbox--outlined__tick-color-focus: $f-checkbox--outlined__tick-color !default;
+$f-checkbox--outlined__tick-color-checked: $f-common__highlight-color !default;
+$f-checkbox--outlined__tick-color-active: $f-common__highlight-color !default;
 
-// Outlined
+$f-checkbox--outlined__tickbox-color: $f-common__border-color !default;
+$f-checkbox--outlined__tickbox-color-checked: $f-common__highlight-color !default;
+$f-checkbox--outlined__tickbox-color-hover: $f-checkbox--outlined__tickbox-color-checked !default;
+$f-checkbox--outlined__tickbox-color-focus: $f-checkbox--outlined__tickbox-color-checked !default;
+$f-checkbox--outlined__tickbox-color-active: $f-checkbox--outlined__tickbox-color-checked !default;
+
+// Theme
 .f-checkbox--outlined {
     $b: '.f-checkbox';
+    $tick: $b + '__label:after';
+    $tickbox: $b + '__label:before';
 
-    #{$b}__field {
-        &:not([disabled]) {
+    // Not error + not disabled fields
+    &:not(#{$f-modifier__error}) {
+        #{$b}__field:not([disabled]) {
             // Tick
-            + .f-checkbox__label:after {
-                color: $f-outlined-tick-color;
+            + #{$tick} {
+                color: $f-checkbox--outlined__tick-color;
             }
 
-            // Tick hovered
-            &:hover + .f-checkbox__label:after {
-                color: $f-outlined-tick-color-hover;
+            // Tick > Hover
+            &:hover + #{$tick} {
+                color: $f-checkbox--outlined__tick-color-hover;
             }
 
-            // Tick hovered
-            &:focus + .f-checkbox__label:after {
-                color: $f-outlined-tick-color-focus;
+            // Tick > Focus
+            &:focus + #{$tick} {
+                color: $f-checkbox--outlined__tick-color-focus;
             }
 
-            // Tickbox checked
-            &:checked + .f-checkbox__label:before {
-                color: $f-checkbox-field-color-checked;
+            // Tick > Active
+            &:active + #{$tick} {
+                color: $f-checkbox--outlined__tick-color-active;
             }
 
-            // Tickbox hovered
-            &:hover + .f-checkbox__label:before {
-                color: $f-checkbox-field-color-hover;
+            // Tickbox
+            + #{$tickbox} {
+                color: $f-checkbox--outlined__tickbox-color;
             }
 
-            // Tickbox hovered
-            &:focus + .f-checkbox__label:before {
-                color: $f-checkbox-field-color-focus;
+            // Tickbox > Hover
+            &:hover + #{$tickbox} {
+                color: $f-checkbox--outlined__tickbox-color-hover;
             }
-        }
 
-        &[disabled] {
-            + .f-checkbox__label:before {
-                color: $f-core-disabled-border-color;
+            // Tickbox > Focus
+            &:focus + #{$tickbox} {
+                color: $f-checkbox--outlined__tickbox-color-focus;
+            }
+
+            // Tickbox > Checked
+            &:checked + #{$tickbox} {
+                color: $f-checkbox--outlined__tickbox-color-checked;
+            }
+
+            // Tickbox > Active
+            &:active + #{$tickbox} {
+                color: $f-checkbox--outlined__tickbox-color-active;
             }
         }
     }
 
-    @include f-core-outlined-message($b) {
-        margin-left: 0;
+    @include f-outlined-message($b) {
+        margin: $f-outlined-message-margin;
     }
 }

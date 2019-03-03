@@ -1,19 +1,26 @@
-// Variables, mixins, and functions
+// ================================
+// Input Outlined
+// Requires: input/base.scss
+// ================================
+
+// Imports
 @import './../common/core/all';
 @import './../common/outlined/all';
 
 // Theme
 .f-input--outlined {
     $b: '.f-input';
-    @include f-core-outlined-field($b);
+    @include f-outlined-field($b);
 
-    @include f-core-outlined-label($b) {
+    @include f-outlined-label($b) {
         top: 0;
         bottom: 0;
-        left: calc(#{$f-core-border-width} + #{$f-core-padding-horizontal});
+        left: calc(#{$f-common__border-width} + #{$f-common__padding-horizontal});
     }
 
-    @include f-core-outlined-label-text($b);
-    @include f-core-outlined-indicator($b);
-    @include f-core-outlined-message($b);
+    @include f-outlined-label-text($b);
+    @include f-outlined-indicator($b);
+    @include f-outlined-message($b) {
+        margin: $f-outlined-message-margin-inset;
+    };
 }

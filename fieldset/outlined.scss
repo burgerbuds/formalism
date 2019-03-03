@@ -1,16 +1,22 @@
-// Variables, mixins, and functions
-@import './imports/common';
+// ================================
+// Fieldset Outlined
+// Requires: fieldset/base.scss
+// ================================
+
+// Imports
+@import './imports/imports';
 @import './../common/outlined/all';
 
 // Padding
-$f-fieldset-padding-left: 1em !default;
-$f-fieldset-padding-right: $f-fieldset-padding-left !default;
-$f-fieldset-padding-top: 1.5em !default;
-$f-fieldset-padding-bottom: $f-fieldset-padding-top !default;
+$f-fieldset--outlined__padding-left: 1em !default;
+$f-fieldset--outlined__padding-right: $f-fieldset--outlined__padding-left !default;
+$f-fieldset--outlined__padding-top: 1.75em !default;
+$f-fieldset--outlined__padding-bottom: 1.25em !default;
 
 // Borders
-$f-fieldset-border-width: $f-core-border-width !default;
-$f-fieldset-border-color: $f-core-border-color !default;
+$f-fieldset--outlined__border-width: $f-common__border-width !default;
+$f-fieldset--outlined__border-color: $f-common__border-color !default;
+$f-fieldset--outlined__border-radius: $f-outlined-border-radius !default;
 
 // Theme
 .f-fieldset--outlined {
@@ -18,12 +24,12 @@ $f-fieldset-border-color: $f-core-border-color !default;
 
     #{$b}__indicator--optional {
         line-height: 1 /
-            ($f-core-indicator-optional-size / $f-fieldset-label-font-size);
+            ($f-common__indicator-optional-size / $f-fieldset-label-font-size);
     }
 
     #{$b}__indicator--required {
         line-height: 1 /
-            ($f-core-indicator-required-size / $f-fieldset-label-font-size);
+            ($f-common__indicator-required-size / $f-fieldset-label-font-size);
     }
 
     #{$b}__label {
@@ -33,7 +39,7 @@ $f-fieldset-border-color: $f-core-border-color !default;
         align-items: center;
         line-height: 1;
         top: 0;
-        left: $f-fieldset-padding-left;
+        left: $f-fieldset--outlined__padding-left;
         transform: translateY(-50%);
     }
 
@@ -46,29 +52,33 @@ $f-fieldset-border-color: $f-core-border-color !default;
             left: -0.35em;
             right: -0.35em;
             z-index: -1;
-            background-color: $f-core-background-color;
+            background-color: $f-common__background-color;
+        }
+
+        // Error > Label text colours
+        &#{$f-modifier__error-fieldset} #{$b}__label & {
+            color: $f-common__error-color;
         }
     }
 
     #{$b}__inner {
-        border: $f-fieldset-border-width solid $f-fieldset-border-color;
-        border-radius: $f-outlined-border-radius;
-        padding-top: $f-fieldset-padding-top;
-        padding-bottom: $f-fieldset-padding-bottom;
-        padding-left: $f-fieldset-padding-left;
-        padding-right: $f-fieldset-padding-right;
+        border: $f-fieldset--outlined__border-width solid $f-fieldset--outlined__border-color;
+        border-radius: $f-fieldset--outlined__border-radius;
+        padding-top: $f-fieldset--outlined__padding-top;
+        padding-bottom: $f-fieldset--outlined__padding-bottom;
+        padding-left: $f-fieldset--outlined__padding-left;
+        padding-right: $f-fieldset--outlined__padding-right;
+
+        // Error > Border colour
+        &#{$f-modifier__error-fieldset} & {
+            border-color: $f-common__border-color-error;
+            box-shadow: inset 0 0 0
+                calc(#{$f-common__border-width-error} - #{$f-common__border-width})
+                $f-common__border-color-error;
+        }
     }
 
-    // Error > Border colour
-    &#{$f-core-error-selector} #{$b}__inner {
-        border-color: $f-core-border-color-error;
-        box-shadow: inset 0 0 0
-            calc(#{$f-core-border-width-error} - #{$f-core-border-width})
-            $f-core-border-color-error;
-    }
-
-    // Error > Label text colours
-    &#{$f-core-error-selector} #{$b}__label #{$b}__label-text {
-        color: $f-core-error-color;
-    }
+    @include f-outlined-message($b) {
+        margin: $f-outlined-message-margin-inset;
+    };
 }

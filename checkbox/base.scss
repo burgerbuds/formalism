@@ -1,0 +1,146 @@
+// ================================
+// Checkbox Base
+// The base styles for themes
+// ================================
+
+// Imports
+@import './imports/imports';
+
+// Base
+.f-checkbox {
+    $b: #{&};
+
+    @include f-core-base;
+
+    &__inner {
+        display: inline-flex;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+    &__field {
+        clip: rect(1px, 1px, 1px, 1px); // Allows tabbing still
+        position: absolute;
+    }
+
+    @include f-core-label($b) {
+        $tick: '&:after';
+        $tickbox: '&:before';
+
+        & {
+            color: inherit;
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            transition: transition(color);
+            will-change: color;
+        }
+
+        // The label text
+        #{$b}__label-text {
+            color: $f-checkbox__label-color;
+
+            // Checked label colour
+            #{$b}__field:hover + & {
+                color: $f-checkbox__label-hover;
+            }
+
+            // Checked label colour
+            #{$b}__field:checked + & {
+                color: $f-checkbox__label-checked;
+            }
+        }
+
+        #{$tick},
+        #{$tickbox} {
+            content: '';
+            display: block;
+            font-size: $f-checkbox__size;
+        }
+
+        // Tick
+        #{$tick} {
+            transform: scaleX(-1) translate($f-checkbox__tick-position)
+                rotate(135deg);
+            transform-origin: top left;
+            visibility: hidden;
+            transition: transition(color);
+            will-change: color;
+
+            // Borders
+            border-right: $f-checkbox__border-width solid currentColor;
+            border-top: $f-checkbox__border-width solid currentColor;
+
+            // Positioning
+            position: absolute;
+            left: 0;
+            top: 50%;
+
+            // Tick > Error
+            #{$f-modifier__error} #{$b}__field:not([disabled]) + & {
+                color: $f-common__error-color;
+            }
+
+            // Tick > Checked
+            #{$b}__field:checked + & {
+                animation: check $f-checkbox__transition-duration forwards;
+                visibility: visible;
+                will-change: width, height;
+            }
+
+            // Tickbox > Disabled
+            #{$b}__field:disabled + & {
+                color: $f-common__disabled-color;
+            }
+        }
+
+        #{$tickbox} {
+            border: $f-checkbox__border-width solid currentColor;
+            border-radius: $f-checkbox__box-radius;
+            margin-right: $f-checkbox__spacing;
+            width: 1.2em;
+            height: 1.2em;
+            display: block;
+            transition: transition(color);
+            will-change: color;
+            flex-shrink: 0;
+
+            // Tickbox > Error
+            #{$f-modifier__error} #{$b}__field:not([disabled]) + & {
+                color: $f-common__error-color;
+            }
+
+            // Tickbox > Disabled
+            #{$b}__field:disabled + & {
+                color: $f-common__disabled-color;
+            }
+        }
+
+        // The checkbox animation
+        // Not quite hitting 60fps but unavoidable given we're animating the width and height
+        @keyframes check {
+            0% {
+                height: 0;
+                width: 0;
+            }
+            25% {
+                height: 0;
+                width: 0.35em;
+            }
+            50%,
+            100% {
+                height: 0.7em;
+                width: 0.35em;
+            }
+        }
+    }
+
+    @include f-core-label-text($b) {
+        font-size: $f-checkbox__label-font-size;
+        line-height: $f-checkbox__label-line-height;
+    }
+
+    @include f-core-indicator($b);
+    @include f-core-message;
+}

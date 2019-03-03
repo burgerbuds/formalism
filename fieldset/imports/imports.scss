@@ -1,0 +1,13 @@
+// ================================
+// Fieldset Common
+// Variables / mixins / functions
+// ================================
+
+// Imports
+@import './../../common/core/all';
+
+// Variables
+$f-fieldset-label-font-size: $f-common__text-font-size !default;
+$f-fieldset-label-color: $f-common__text-color !default;
+$f-fieldset-content-spacing: 1.25em !default;
+$f-modifier__error-fieldset: '.has-error-fieldset' !default;

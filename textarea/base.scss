@@ -1,0 +1,26 @@
+// ================================
+// Textarea Base
+// The base styles for themes
+// ================================
+
+// Variables, mixins, and functions
+@import './imports/imports';
+
+// Base
+.f-textarea {
+    $b: #{&};
+    @include f-core-base;
+    @include f-core-inner;
+
+    @include f-core-field {
+        line-height: $f-textarea__line-height;
+        display: block;
+        resize: vertical;
+        max-height: $f-textarea__max-height;
+    }
+
+    @include f-core-label($b);
+    @include f-core-label-text($b);
+    @include f-core-indicator($b);
+    @include f-core-message;
+}

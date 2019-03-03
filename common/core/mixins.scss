@@ -3,13 +3,23 @@
 // The element root
 @mixin f-core-base {
     position: relative;
-    font-size: $f-core-base-size;
+    font-size: $f-common__base-size;
     text-align: left;
 
     *,
     *:before,
     *:after {
         box-sizing: border-box;
+    }
+
+    // Disable motion if the user prefers
+    @media screen and (prefers-reduced-motion) {
+        html & *,
+        html & *:before,
+        html & *:after {
+            transition: none !important;
+            animation: none !important;
+        }
     }
 
     @content;
@@ -27,56 +37,64 @@
 // The form field
 @mixin f-core-field {
     &__field {
-        color: $f-core-text-color;
-        padding: $f-core-padding-vertical $f-core-padding-horizontal;
+        color: $f-common__text-color;
+        padding: $f-common__padding-vertical $f-common__padding-horizontal;
         width: 100%;
         border: 0;
-        caret-color: $f-core-text-caret-color;
-        font-size: $f-core-text-font-size;
+        caret-color: $f-common__text-caret-color;
+        font-size: $f-common__text-font-size;
         font-family: inherit;
 
         &:focus {
-            outline: 0; // Focus indicator is handled $f-core-border-color-focus instead
+            outline: 0; // Focus indicator is handled $f-common__border-color-focus instead
         }
 
         // Disabled  > Field color (extra specificity)
         &#{&}[disabled] {
-            color: $f-core-disabled-color;
+            color: $f-common__disabled-color;
+        }
+
+        &:not(:disabled) {
+            cursor: pointer;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
         }
 
         // Error state > Custom error caret
-        #{$f-core-error-selector} & {
-            caret-color: $f-core-error-color;
+        #{$f-modifier__error} & {
+            caret-color: $f-common__error-color;
         }
 
         // Custom selection colours (important required)
         &::-moz-selection {
-            color: $f-core-selection-color;
-            background: $f-core-selection-bg !important;
+            color: $f-common__selection-color;
+            background: $f-common__selection-bg !important;
             text-shadow: none;
         }
 
         &::selection {
-            color: $f-core-selection-color !important;
-            background: $f-core-selection-bg !important;
+            color: $f-common__selection-color !important;
+            background: $f-common__selection-bg !important;
             text-shadow: none;
         }
 
         // Error > Custom selection colours (important required)
-        #{$f-core-error-selector} &::-moz-selection {
-            color: $f-core-selection-color;
-            background: $f-core-error-color !important;
+        #{$f-modifier__error} &::-moz-selection {
+            color: $f-common__selection-color;
+            background: $f-common__error-color !important;
             text-shadow: none;
         }
 
-        #{$f-core-error-selector} &::selection {
-            color: $f-core-selection-color !important;
-            background: $f-core-error-color !important;
+        #{$f-modifier__error} &::selection {
+            color: $f-common__selection-color !important;
+            background: $f-common__error-color !important;
             text-shadow: none;
         }
 
         &:-webkit-autofill {
-            -webkit-text-fill-color: $f-core-text-color !important;
+            -webkit-text-fill-color: $f-common__text-color !important;
         }
 
         @content;
@@ -87,7 +105,16 @@
 @mixin f-core-label($b) {
     &__label {
         user-select: none;
-        font-size: $f-core-text-font-size;
+        font-size: $f-common__text-font-size;
+
+        #{$b}__field:not(:disabled) + & {
+            cursor: pointer;
+        }
+
+        #{$b}__field:disabled + & {
+            cursor: not-allowed;
+        }
+
         @content;
     }
 }
@@ -95,11 +122,11 @@
 // The field label text
 @mixin f-core-label-text($b) {
     &__label-text {
-        color: $f-core-label-color;
+        color: $f-common__label-color;
 
         // Disabled > Label text color (extra specificity)
         #{$b}__field[disabled]#{$b}__field[disabled] + #{$b}__label & {
-            color: $f-core-disabled-color;
+            color: $f-common__disabled-color;
         }
 
         @content;
@@ -112,25 +139,25 @@
     &__indicator {
         pointer-events: none;
         user-select: none;
-        color: $f-core-indicator-color;
+        color: $f-common__indicator-color;
 
         &--optional {
-            font-size: $f-core-indicator-optional-size;
+            font-size: $f-common__indicator-optional-size;
         }
 
         &--required {
-            font-size: $f-core-indicator-required-size;
+            font-size: $f-common__indicator-required-size;
         }
 
         // Error state > Indicator hover/focus
-        #{$f-core-error-selector} #{$b}__field:hover ~ &,
-        #{$f-core-error-selector} #{$b}__field:focus ~ & {
-            color: $f-core-error-color !important;
+        #{$f-modifier__error} #{$b}__field:hover ~ &,
+        #{$f-modifier__error} #{$b}__field:focus ~ & {
+            color: $f-common__error-color !important;
         }
 
         // Disabled > Indicator color (extra specificity)
         #{$b}__field[disabled]#{$b}__field[disabled] ~ & {
-            color: $f-core-disabled-color;
+            color: $f-common__disabled-color;
         }
 
         @content;
@@ -140,25 +167,25 @@
 // The message (error, instructions etc)
 @mixin f-core-message {
     &__message {
-        font-size: $f-core-message-font-size;
+        font-size: $f-common__message-font-size;
 
         &--instruction {
-            color: $f-core-message-color;
+            color: $f-common__message-color;
         }
 
         &--error {
-            color: $f-core-error-color;
+            color: $f-common__error-color;
 
             // Error > Custom selection colours (important required)
-            #{$f-core-error-selector} &::-moz-selection {
-                color: $f-core-selection-color;
-                background: $f-core-error-color !important;
+            #{$f-modifier__error} &::-moz-selection {
+                color: $f-common__selection-color;
+                background: $f-common__error-color !important;
                 text-shadow: none;
             }
 
-            #{$f-core-error-selector} &::selection {
-                color: $f-core-selection-color !important;
-                background: $f-core-error-color !important;
+            #{$f-modifier__error} &::selection {
+                color: $f-common__selection-color !important;
+                background: $f-common__error-color !important;
                 text-shadow: none;
             }
         }
@@ -178,5 +205,5 @@
 
 // Usage: transition: transition(transform);
 @function transition($property) {
-    @return $property $f-core-transition-duration $f-core-transition-timing;
+    @return $property $f-common__transition-duration $f-common__transition-timing;
 }

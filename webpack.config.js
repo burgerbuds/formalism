@@ -9,32 +9,38 @@ const settings = {
     name: 'Formalism',
     devServerUrl: 'http://localhost:8080',
     jsEntry: {
-        'input/input': './input/input.scss',
+        'input/base': './input/base.scss',
         'input/outlined': './input/outlined.scss',
         'input/underlined': './input/underlined.scss',
 
-        'select/select': './select/select.scss',
+        'select/base': './select/base.scss',
         'select/outlined': './select/outlined.scss',
 
-        'checkbox/checkbox': './checkbox/checkbox.scss',
+        'checkbox/base': './checkbox/base.scss',
         'checkbox/outlined': './checkbox/outlined.scss',
         'checkbox/solid': './checkbox/solid.scss',
 
-        'radio/radio': './radio/radio.scss',
+        'radio/base': './radio/base.scss',
         'radio/outlined': './radio/outlined.scss',
 
-        'textarea/textarea': './textarea/textarea.scss',
+        'textarea/base': './textarea/base.scss',
         'textarea/outlined': './textarea/outlined.scss',
 
-        'search/search': './search/search.scss',
+        'search/base': './search/base.scss',
         'search/outlined': './search/outlined.scss',
 
-        'fieldset/fieldset': './fieldset/fieldset.scss',
+        'fieldset/base': './fieldset/base.scss',
         'fieldset/outlined': './fieldset/outlined.scss',
         'fieldset/naked': './fieldset/naked.scss',
 
-        'notification/outlined': './notification/notification.scss',
+        'notification/base': './notification/base.scss',
         'notification/outlined': './notification/outlined.scss',
+
+        'switch/base': './switch/base.scss',
+        'switch/outlined': './switch/outlined.scss',
+
+        'file/base': './file/base.scss',
+        'file/outlined': './file/outlined.scss',
     },
     destination: path.resolve(__dirname, 'dist'),
     templates: path.resolve(__dirname, 'src'),

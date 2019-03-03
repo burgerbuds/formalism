@@ -1,0 +1,29 @@
+// ================================
+// Switch Common
+// Variables / mixins / functions
+// ================================
+
+// Imports
+@import './../../common/core/all';
+
+// Common
+$f-switch-thickness: 2px !default;
+$f-switch-size: 1.15em !default;
+
+// Switch
+$f-switch__field-radius: 0.15em !default;
+$f-switch__field-color: $f-common__border-color !default;
+
+// Label
+$f-switch__label-color: $f-common__text-color !default;
+$f-switch__label-hover: $f-switch__label-color !default;
+$f-switch__label-focus: $f-switch__label-color !default;
+$f-switch__label-active: $f-switch__label-color !default;
+$f-switch__label-checked: $f-switch__label-color !default;
+$f-switch__label-font-size: 1em !default;
+$f-switch__label-line-height: 1 !default;
+
+// Other
+$f-switch__spacing: 0.75em !default;
+$f-switch__transition-duration: $f-common__transition-duration*1.5 !default;
+$f-switch__transition-timing: $f-common__transition-timing !default;

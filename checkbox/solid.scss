@@ -1,45 +1,102 @@
-// Variables, mixins, and functions
-@import './imports/common';
+// ================================
+// Checkbox Solid
+// Requires: checkbox/base.scss
+// ================================
+
+// Imports
+@import './imports/imports';
 @import './../common/solid/all';
 
-// Variables
-$f-solid-tick-color: white !default;
-$f-solid-tick-color-hover: $f-solid-tick-color !default;
-$f-solid-tick-color-focus: $f-solid-tick-color !default;
+// Tick
+$f-checkbox--solid__tick-color: white !default;
+$f-checkbox--solid__tick-color-checked: $f-checkbox--solid__tick-color !default;
+$f-checkbox--solid__tick-color-hover: $f-checkbox--solid__tick-color !default;
+$f-checkbox--solid__tick-color-focus: $f-checkbox--solid__tick-color !default;
+$f-checkbox--solid__tick-color-active: $f-checkbox--solid__tick-color-checked !default;
 
-// Solid
+// Tickbox
+$f-checkbox--solid__tickbox-color: $f-common__border-color !default;
+$f-checkbox--solid__tickbox-color-checked: $f-common__highlight-color !default;
+$f-checkbox--solid__tickbox-color-hover: $f-checkbox--solid__tickbox-color-checked !default;
+$f-checkbox--solid__tickbox-color-focus: $f-checkbox--solid__tickbox-color-checked !default;
+$f-checkbox--solid__tickbox-color-active: $f-checkbox--solid__tickbox-color-checked !default;
+
+// Theme
 .f-checkbox--solid {
     $b: '.f-checkbox';
-    #{$b} &__field:not([disabled]) {
-        // Tick
-        + .f-checkbox__label:after {
-            color: $f-solid-tick-color;
-        }
+    $tick: $b + '__label:after';
+    $tickbox: $b + '__label:before';
 
-        // Tick hovered
-        &:hover + .f-checkbox__label:after {
-            color: $f-solid-tick-color-hover;
-        }
+    &:not(#{$f-modifier__error}) {
+        #{$b}__field:not([disabled]) {
 
-        // Tick hovered
-        &:focus + .f-checkbox__label:after {
-            color: $f-solid-tick-color-focus;
-        }
+            // Tick
+            +#{$tick} {
+                color: $f-checkbox--solid__tick-color;
+            }
 
-        // Tickbox checked
-        &:checked + .f-checkbox__label:before {
-            color: $f-checkbox-field-color-checked;
-            background-color: currentColor;
-        }
+            // Tick > Checked
+            &:checked+#{$tick} {
+                color: $f-checkbox--solid__tick-color-checked;
+            }
 
-        // Tickbox hovered
-        &:hover + .f-checkbox__label:before {
-            color: $f-checkbox-field-color-hover;
-        }
+            // Tick > Focus
+            &:focus+#{$tick} {
+                color: $f-checkbox--solid__tick-color-focus;
+            }
 
-        // Tickbox hovered
-        &:focus + .f-checkbox__label:before {
-            color: $f-checkbox-field-color-focus;
+            // Tick > Hover
+            &:hover+#{$tick} {
+                color: $f-checkbox--solid__tick-color-hover;
+            }
+
+            // Tick > Active
+            &:active+#{$tick} {
+                color: $f-checkbox--solid__tick-color-active;
+            }
+
+            // Tickbox
+            +#{$tickbox} {
+                color: $f-checkbox--solid__tickbox-color;
+            }
+
+            // Tickbox > Checked
+            &:checked+#{$tickbox} {
+                color: $f-checkbox--solid__tickbox-color-checked;
+                background-color: currentColor;
+            }
+
+            // Tickbox > Focus
+            &:focus+#{$tickbox} {
+                color: $f-checkbox--solid__tickbox-color-focus;
+            }
+
+            // Tickbox > Hover
+            &:hover+#{$tickbox} {
+                color: $f-checkbox--solid__tickbox-color-hover;
+            }
+
+            // Tickbox > Active
+            &:active+#{$tickbox} {
+                color: $f-checkbox--solid__tickbox-color-active;
+            }
         }
+    }
+
+    // Tick > Error
+    &#{$f-modifier__error} #{$b}__field:checked+#{$tick} {
+        color: $f-checkbox--solid__tick-color-checked;
+    }
+
+    // Tickbox > Error
+    #{$tickbox} {
+        transition: background-color .2s;
+    }
+    &#{$f-modifier__error} #{$b}__field:checked+#{$tickbox} {
+        background-color: currentColor;
+    }
+
+    #{$b}__message {
+        margin: $f-solid-message-margin;
     }
 }

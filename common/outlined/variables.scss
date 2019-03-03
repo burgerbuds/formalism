@@ -3,7 +3,7 @@
 // Outlined theme core
 
 // Background
-$f-outlined-background-color: $f-core-background-color !default;
+$f-outlined-background-color: $f-common__background-color !default;
 
 // Labels
 $f-outlined-label-scale: 0.8 !default;
@@ -19,4 +19,5 @@ $f-outlined-indicator-optional-top: 1em !default;
 $f-outlined-indicator-optional-right: 1em !default;
 
 // Messages
-$f-outlined-message-margin: 0.5em 0 0 0.5em !default;
+$f-outlined-message-margin: 0.5em 0 0 0 !default;
+$f-outlined-message-margin-inset: 0.5em 0 0 0.5em !default;

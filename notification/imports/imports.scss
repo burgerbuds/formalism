@@ -1,0 +1,24 @@
+// ================================
+// Notification Common
+// Variables / mixins / functions
+// ================================
+
+// Imports
+@import './../../common/core/all';
+
+// Variables
+$f-notification-padding-left: 1em !default;
+$f-notification-padding-right: $f-notification-padding-left !default;
+$f-notification-padding-top: 1.5em !default;
+$f-notification-padding-bottom: $f-notification-padding-top !default;
+
+$f-notification-border-width: 2 * $f-common__border-width !default;
+$f-notification-border-color: $f-common__border-color !default;
+
+$f-notification-error-modifier: 'alert';
+$f-notification-valid-modifier: 'success';
+
+// TODO: more variables?
+// $f-notification-text-size
+// $f-notification-icon-size
+// $f-notification-background-opacity?

@@ -1,0 +1,153 @@
+// ================================
+// Switch Base
+// The base styles for themes
+// ================================
+
+// Imports
+@import './imports/imports';
+
+// Base
+.f-switch {
+    $b: #{&};
+
+    @include f-core-base;
+
+    &__inner {
+        display: inline-flex;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+    &__field {
+        clip: rect(1px, 1px, 1px, 1px); // Allows tabbing still
+        position: absolute;
+    }
+
+    @include f-core-label($b) {
+        $switch: '&:after';
+        $switchbox: '&:before';
+
+        & {
+            color: inherit;
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            transition: transition(color);
+            will-change: color;
+        }
+
+        // The label text
+        #{$b}__label-text {
+            color: $f-switch__label-color;
+
+            // Checked label colour
+            #{$b}__field:hover + & {
+                color: $f-switch__label-hover;
+            }
+
+            // Focus label colour
+            #{$b}__field:active + & {
+                color: $f-switch__label-focus;
+            }
+
+            // Active label colour
+            #{$b}__field:active + & {
+                color: $f-switch__label-active;
+            }
+
+            // Checked label colour
+            #{$b}__field:checked + & {
+                color: $f-switch__label-checked;
+            }
+        }
+
+        // Switchbox + Switch
+        #{$switchbox},
+        #{$switch} {
+            content: '';
+            display: block;
+            font-size: $f-switch-size;
+            color: $f-switch__field-color;
+        }
+
+        #{$switchbox} {
+            border: $f-switch-thickness solid currentColor;
+            border-radius: 50vh;
+            margin-right: $f-switch__spacing;
+            width: 2em;
+            height: 1em;
+            display: block;
+            flex-shrink: 0;
+            transition: transition(color);
+            will-change: color;
+
+            // Switchbox > Disabled
+            #{$b}__field:disabled + & {
+                color: $f-common__disabled-color;
+            }
+
+            // Switchbox > Error
+            #{$f-modifier__error} #{$b}__field:not([disabled]) + & {
+                color: $f-common__error-color;
+            }
+        }
+
+        #{$switch} {
+            position: absolute;
+            left: 0;
+            width: $f-switch-size;
+            height: $f-switch-size;
+            background-color: white;
+            border-radius: 50%;
+            border: $f-switch-thickness solid currentColor;
+            transition: color $f-switch__transition-duration $f-switch__transition-timing, transform .1s;
+            will-change: color, transform;
+            transform: translateX(-.1em);
+
+            // Switch > Disabled
+            #{$b}__field:disabled + & {
+                color: $f-common__disabled-color;
+            }
+
+            // Switch > Error
+            #{$f-modifier__error} #{$b}__field:not([disabled]) + & {
+                color: $f-common__error-color;
+            }
+
+            // Switch > Active
+            #{$b}__field:active + & {
+                animation: tremble $f-common__transition-duration/1.5 forwards infinite;
+            }
+
+            // Switch checked
+            #{$b}__field:checked + & {
+                transform: translateX(.75em + .1em);
+            }
+
+            // Switch > Unchecked > Active
+            #{$b}__field:not(:checked):active + & {
+                transform: translateX(-.2em) scaleY(.94);
+            }
+
+            // Switch > Checked > Active
+            #{$b}__field:checked:active + & {
+                transform: translateX(.75em + .2em) scaleY(.94);
+            }
+        }
+    }
+
+    @keyframes tremble {
+        to {
+            margin-left: 1px;
+        }
+    }
+
+    @include f-core-label-text($b) {
+        font-size: $f-switch__label-font-size;
+        line-height: $f-switch__label-line-height;
+    }
+
+    @include f-core-indicator($b);
+    @include f-core-message;
+}

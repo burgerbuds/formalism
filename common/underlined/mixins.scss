@@ -1,26 +1,26 @@
 @import './../core/variables';
 
-@mixin f-core-underlined-field($b) {
+@mixin f-underlined-field($b) {
     #{$b}__field {
-        color: $f-core-text-color;
+        color: $f-common__text-color;
         background-color: $f-underlined-background-color;
-        border-bottom: $f-core-border-width solid $f-core-border-color;
-        transition: border-color $f-core-transition-duration
-            $f-core-transition-timing;
+        border-bottom: $f-common__border-width solid $f-common__border-color;
+        transition: border-color $f-common__transition-duration
+            $f-common__transition-timing;
         will-change: border-color;
-        padding: $f-core-padding-vertical 0;
+        padding: $f-common__padding-vertical 0;
 
         &:hover {
-            border-color: $f-core-border-color-hover;
+            border-color: $f-common__border-color-hover;
         }
 
         &:focus {
-            border-color: $f-core-border-color-focus;
+            border-color: $f-common__border-color-focus;
         }
 
         &[disabled] {
-            cursor: not-allowed;
-            border-color: $f-core-disabled-border-color;
+            // cursor: not-allowed;
+            border-color: $f-common__disabled-border-color;
         }
 
         // Webkit focus
@@ -33,14 +33,14 @@
     }
 
     // Error colours
-    &#{$f-core-error-selector} #{$b}__field,
-    &#{$f-core-error-selector} #{$b}__field:hover,
-    &#{$f-core-error-selector} #{$b}__field:focus {
-        border-color: $f-core-border-color-error;
+    &#{$f-modifier__error} #{$b}__field,
+    &#{$f-modifier__error} #{$b}__field:hover,
+    &#{$f-modifier__error} #{$b}__field:focus {
+        border-color: $f-common__border-color-error;
     }
 }
 
-@mixin f-core-underlined-label($b) {
+@mixin f-underlined-label($b) {
     #{$b}__label {
         position: absolute;
         display: flex;
@@ -53,12 +53,12 @@
     }
 
     // Label > Focus movement
-    #{$b}__field#{$f-core-filled-selector} + #{$b}__label {
+    #{$b}__field#{$f-modifier__filled} + #{$b}__label {
         opacity: 0;
     }
 }
 
-@mixin f-core-underlined-label-text($b) {
+@mixin f-underlined-label-text($b) {
     #{$b}__label-text {
         display: block;
         background-color: $f-underlined-background-color;
@@ -73,16 +73,16 @@
 
     // Hover > Label text
     #{$b}__field:hover + #{$b}__label #{$b}__label-text {
-        color: $f-core-label-color-hover;
+        color: $f-common__label-color-hover;
     }
 
     // Error > Label text colours
-    &#{$f-core-error-selector} #{$b}__field + #{$b}__label #{$b}__label-text {
-        color: $f-core-error-color;
+    &#{$f-modifier__error} #{$b}__field + #{$b}__label #{$b}__label-text {
+        color: $f-common__error-color;
     }
 }
 
-@mixin f-core-underlined-indicator($b) {
+@mixin f-underlined-indicator($b) {
     // Indicator
     #{$b}__indicator {
         position: absolute;
@@ -104,16 +104,16 @@
 
     // Indicator > hover
     #{$b}__field:hover ~ #{$b}__indicator {
-        color: $f-core-indicator-color-hover;
+        color: $f-common__indicator-color-hover;
     }
 
     // Indicator > focus
     #{$b}__field:focus ~ #{$b}__indicator {
-        color: $f-core-indicator-color-focus;
+        color: $f-common__indicator-color-focus;
     }
 }
 
-@mixin f-core-underlined-message($b) {
+@mixin f-underlined-message($b) {
     #{$b}__message {
         margin: $f-underlined-message-margin;
         @content;

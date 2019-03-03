@@ -1,52 +1,63 @@
-// Variables, mixins, and functions
-@import './imports/common';
+// ================================
+// Radio Outlined
+// Requires: radio/base.scss
+// ================================
+
+// Imports
+@import './imports/imports';
 @import './../common/outlined/all';
 
 // Theme
 .f-radio--outlined {
     $b: '.f-radio';
+    $inner: $b + '__label:after';
+    $outer: $b + '__label:before';
 
-    #{$b}__field:not([disabled]) {
-        // Border (scale(0) by default)
-        + .f-radio__radio:after {
-            color: $f-radio-center-color;
-        }
+    // Not error + not disabled fields
+    &:not(#{$f-modifier__error}) {
+        #{$b}__field:not([disabled]) {
+            // Inner (scale(0) by default)
+            + #{$inner} {
+                color: $f-radio-center-color;
+            }
 
-        // Border checked
-        &:checked + .f-radio__radio:after {
-            color: $f-radio-center-color-checked;
-        }
+            // Inner > Hover
+            &:hover + #{$inner} {
+                color: $f-radio-center-color-hover;
+            }
 
-        // Center hovered
-        &:hover + .f-radio__radio:after {
-            color: $f-radio-center-color-hover;
-        }
+            // Inner > Focus
+            &:focus + #{$inner} {
+                color: $f-radio-center-color-focus;
+            }
 
-        // Center focussed
-        &:focus + .f-radio__radio:after {
-            color: $f-radio-center-color-focus;
-        }
+            // Inner > Checked
+            &:checked + #{$inner} {
+                color: $f-radio-center-color-checked;
+            }
 
-        // Border checked
-        &:checked + .f-radio__radio:before {
-            color: $f-radio-border-color-checked;
-        }
+            // Outer
+            + #{$outer} {
+            }
 
-        // Border hovered
-        &:hover + .f-radio__radio:before {
-            color: $f-radio-border-color-hover;
-        }
+            // Outer > Hover
+            &:hover + #{$outer} {
+                color: $f-radio-border-color-hover;
+            }
 
-        // Border focussed
-        &:focus + .f-radio__radio:before {
-            color: $f-radio-border-color-focus;
+            // Outer > Focus
+            &:focus + #{$outer} {
+                color: $f-radio-border-color-focus;
+            }
+
+            // Outer > Checked
+            &:checked + #{$outer} {
+                color: $f-radio-border-color-checked;
+            }
         }
     }
 
-    #{$b}__field[disabled] {
-    }
-
-    @include f-core-outlined-message($b) {
-        margin-left: 0;
-    }
+    @include f-outlined-message($b) {
+        margin: $f-outlined-message-margin;
+    };
 }

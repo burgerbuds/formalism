@@ -1,0 +1,13 @@
+// ================================
+// Notification Base
+// The base styles for themes
+// ================================
+
+// Imports
+@import './imports/imports';
+
+// Base
+.f-notification {
+    $b: #{&};
+    @include f-core-base;
+}

@@ -1,0 +1,27 @@
+// ================================
+// Checkbox Common
+// Variables / mixins / functions
+// ================================
+
+// Imports
+@import './../../common/core/all';
+
+// General
+$f-checkbox__size: 1.1em !default;
+$f-checkbox__border-width: 2px !default;
+$f-checkbox__spacing: 0.75em !default;
+$f-checkbox__transition-duration: $f-common__transition-duration*1.5 !default;
+$f-checkbox__tick-position: -0.22em, .05em !default; // translate(x, y) fine tuning
+
+// Tickbox
+$f-checkbox__box-radius: 0.15em !default;
+
+// Tick
+$f-checkbox__tick-color: $f-common__border-color !default;
+
+// Label
+$f-checkbox__label-color: $f-common__text-color !default;
+$f-checkbox__label-hover: $f-checkbox__label-color !default;
+$f-checkbox__label-checked: $f-checkbox__label-color !default;
+$f-checkbox__label-font-size: 1em !default;
+$f-checkbox__label-line-height: 1 !default;

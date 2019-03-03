@@ -1,19 +1,24 @@
-// Variables, mixins, and functions
+// ================================
+// Input Underlined
+// Requires: input/base.scss
+// ================================
+
+// Imports
 @import './../common/core/all';
 @import './../common/underlined/all';
 
 // Theme
 .f-input--underlined {
     $b: '.f-input';
-    @include f-core-underlined-field($b);
+    @include f-underlined-field($b);
 
-    @include f-core-underlined-label($b) {
+    @include f-underlined-label($b) {
         top: 0;
         bottom: 0;
         left: 0;
     }
 
-    @include f-core-underlined-label-text($b);
-    @include f-core-underlined-indicator($b);
-    @include f-core-underlined-message($b);
+    @include f-underlined-label-text($b);
+    @include f-underlined-indicator($b);
+    @include f-underlined-message($b);
 }

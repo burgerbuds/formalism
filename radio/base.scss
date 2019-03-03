@@ -1,0 +1,122 @@
+// ================================
+// Radio Base
+// The base styles for themes
+// ================================
+
+// Imports
+@import './imports/imports';
+
+// Base
+.f-radio {
+    $b: #{&};
+
+    @include f-core-base;
+
+    &__inner {
+        display: inline-flex;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+    &__field {
+        clip: rect(1px, 1px, 1px, 1px); // Allows tabbing still
+        position: absolute;
+    }
+
+    @include f-core-label($b) {
+        $inner: '&:after';
+        $outer: '&:before';
+
+        & {
+            color: inherit;
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            transition: transition(color);
+            will-change: color;
+        }
+
+        #{$b}__label-text {
+            color: $f-radio-label-color;
+
+            // Label > Hover
+            #{$b}__field:hover+& {
+                color: $f-radio-label-hover;
+            }
+
+            // Label > Checked
+            #{$b}__field:checked+& {
+                color: $f-radio-label-checked;
+            }
+        }
+
+        #{$outer},
+        #{$inner} {
+            content: '';
+            display: block;
+            font-size: $f-radio-size;
+            width: 1em;
+            height: 1em;
+            flex-shrink: 0;
+            border-radius: $f-radio-radius;
+            border: $f-radio-border-thickness solid currentColor;
+        }
+
+        #{$outer} {
+            color: $f-radio-border-color;
+            display: block;
+            margin-right: $f-radio-spacing;
+            transition: color $f-common__transition-duration $f-common__transition-timing, transform .1s;
+            will-change: color, transform;
+
+            // Outer > Error
+            #{$f-modifier__error} #{$b}__field:not([disabled]) + & {
+                color: $f-common__error-color;
+            }
+
+            // Outer > Disabled
+            #{$b}__field:disabled + & {
+                color: $f-common__disabled-color;
+            }
+
+            // Outer > Active
+            #{$b}__field:active+& {
+                transform: scale(#{$f-radio-border-scale-active}) translateZ(0);
+            }
+        }
+
+        #{$inner} {
+            background-color: currentColor;
+            transform: scale(0);
+            transition: transition(transform);
+            will-change: transform;
+            position: absolute;
+
+            // Inner > Error
+            #{$f-modifier__error} #{$b}__field:not([disabled]) + & {
+                color: $f-common__error-color;
+            }
+
+            // Inner > Checked
+            #{$b}__field:checked + & {
+                transform: scale(#{$f-radio-center-scale-checked});
+                visibility: visible;
+            }
+
+            // Inner > Disabled
+            #{$b}__field:disabled + & {
+                color: $f-common__disabled-color;
+            }
+        }
+    }
+
+    @include f-core-label-text($b) {
+        font-size: $f-radio-label-font-size;
+        line-height: $f-radio-label-line-height;
+    }
+
+    @include f-core-indicator($b);
+
+    @include f-core-message;
+}

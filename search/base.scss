@@ -1,0 +1,19 @@
+// ================================
+// Switch Base
+// The base styles for themes
+// ================================
+
+// Imports
+@import './imports/imports';
+
+// Base
+.f-search {
+    $b: #{&};
+    @include f-core-base;
+    @include f-core-inner;
+    @include f-core-field;
+    @include f-core-label($b);
+    @include f-core-label-text($b);
+    @include f-core-indicator($b);
+    @include f-core-message;
+}

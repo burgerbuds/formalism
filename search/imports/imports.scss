@@ -1,0 +1,25 @@
+// ================================
+// Search Common
+// Variables / mixins / functions
+// ================================
+
+// Imports
+@import './../../common/core/all';
+
+// General
+$f-search__size: 3em !default;
+$f-search__icon-size: 1em !default;
+
+// Border
+$f-search__border-color: $f-common__border-color !default;
+$f-search__border-width: $f-common__border-width !default;
+
+// Label
+$f-search__label-color: $f-common__label-color !default;
+$f-search__label-color-hover: $f-common__label-color-hover !default;
+$f-search__label-color-focus: $f-common__label-color-focus !default;
+
+// Box
+$f-search__background-color: $f-common__background-color !default;
+$f-search__background-color-hover: $f-common__highlight-color !default;
+$f-search__background-color-focus: $f-search__background-color-hover !default;

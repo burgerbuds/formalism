@@ -1,0 +1,26 @@
+// ================================
+// File Outlined
+// Requires: file/base.scss
+// ================================
+
+// Imports
+@import './../common/core/all';
+@import './../common/outlined/all';
+
+// Theme
+.f-file--outlined {
+    $b: '.f-file';
+    @include f-outlined-field($b);
+
+    @include f-outlined-label($b) {
+        top: 0;
+        bottom: 0;
+        left: calc(#{$f-common__border-width} + #{$f-common__padding-horizontal});
+    }
+
+    @include f-outlined-label-text($b);
+    @include f-outlined-indicator($b);
+    @include f-outlined-message($b) {
+        margin: $f-outlined-message-margin-inset;
+    };
+}

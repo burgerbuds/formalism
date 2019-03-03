@@ -1,0 +1,98 @@
+// ================================
+// Select Base
+// The base styles for themes
+// ================================
+
+// Imports
+@import './imports/imports';
+
+// Base
+.f-select {
+    $b: #{&};
+    @include f-core-base;
+    @include f-core-inner;
+
+    @include f-core-field {
+        line-height: initial; // Reset height
+        -webkit-appearance: none;
+        appearance: none;
+        padding-right: $f-select__field-padding-right;
+    }
+
+    @include f-core-label($b);
+    @include f-core-label-text($b);
+    @include f-core-indicator($b);
+    @include f-core-message;
+
+    // Down arrow
+    &__arrow:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform-origin: center right;
+        pointer-events: none;
+        transition: transition(border-color);
+    }
+
+    @if ($f-select__arrow-type == 'chevron') {
+        // Open chevron arrow
+        &__arrow:after {
+            right: $f-common__padding-horizontal * 1.25;
+            transform: translateY(-50%) rotate(45deg);
+            border-style: solid;
+            border-width: 0
+                $f-select__arrow-thickness
+                $f-select__arrow-thickness
+                0;
+            width: $f-select__arrow-size;
+            height: $f-select__arrow-size;
+            display: block;
+            border-color: $f-select__arrow-color;
+
+            #{$b}__field:hover ~ & {
+                border-color: $f-select__arrow-color-hover;
+            }
+
+            #{$b}__field:focus ~ & {
+                border-color: $f-select__arrow-color-focus;
+            }
+
+            #{$b}__field[disabled] ~ & {
+                border-color: $f-common__disabled-color;
+            }
+
+            #{$f-modifier__error} #{$b}__field:hover ~ &,
+            #{$f-modifier__error} #{$b}__field:focus ~ & {
+                border-color: $f-common__border-color-error;
+            }
+        }
+    } @else if ($f-select__arrow-type == 'triangle') {
+        // Solid triangle arrow
+        &__arrow:after {
+            right: $f-common__padding-horizontal;
+            width: 0;
+            height: 0;
+            border-left: $f-select__arrow-size/1.5 solid transparent;
+            border-right: $f-select__arrow-size/1.5 solid transparent;
+            border-top: $f-select__arrow-size/1.5 solid $f-select__arrow-color;
+            transform: translateY(-50%);
+
+            #{$b}__field:hover ~ & {
+                border-top-color: $f-select__arrow-color-hover;
+            }
+
+            #{$b}__field:focus ~ & {
+                border-top-color: $f-select__arrow-color-focus;
+            }
+
+            #{$b}__field[disabled] ~ & {
+                border-top-color: $f-common__disabled-color;
+            }
+
+            #{$f-modifier__error} #{$b}__field:hover ~ &,
+            #{$f-modifier__error} #{$b}__field:focus ~ & {
+                border-top-color: $f-common__border-color-error;
+            }
+        }
+    }
+}
