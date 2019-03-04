@@ -36,14 +36,14 @@ $f-switch--outlined__switchbox-color-switched: $f-common__highlight-color !defau
     // Not error + not disabled fields
     &:not(#{$f-modifier__error}) {
         #{$b}__field:not(:disabled) {
-
             // Switch
             & + #{$switch} {
                 color: $f-switch--outlined__switch-color;
-                transition:
-                    background-color $f-common__transition-duration $f-common__transition-timing,
-                    color $f-common__transition-duration $f-common__transition-timing,
-                    transform .1s;
+                transition: background-color $f-common__transition-duration
+                        $f-common__transition-timing,
+                    color $f-common__transition-duration
+                        $f-common__transition-timing,
+                    transform 0.1s;
                 will-change: color, transform;
             }
 
@@ -92,7 +92,6 @@ $f-switch--outlined__switchbox-color-switched: $f-common__highlight-color !defau
             &:checked + #{$switchbox} {
                 color: $f-switch--outlined__switchbox-color-switched;
             }
-
         }
     }
 

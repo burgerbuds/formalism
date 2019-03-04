@@ -29,10 +29,10 @@ const settings = {
         'search/base': './search/base.scss',
         'search/outlined': './search/outlined.scss',
 
-        'switch/switch': './switch/switch.scss',
+        'switch/switch': './switch/base.scss',
         'switch/outlined': './switch/outlined.scss',
 
-        'fieldset/fieldset': './fieldset/fieldset.scss',
+        'fieldset/fieldset': './fieldset/base.scss',
         'fieldset/outlined': './fieldset/outlined.scss',
         'fieldset/naked': './fieldset/naked.scss',
 
@@ -48,17 +48,7 @@ const settings = {
     destination: path.resolve(__dirname, 'dist'),
     templates: path.resolve(__dirname, 'src'),
 };
-
-function recursiveIssuer(m) {
-    if (m.issuer) {
-        return recursiveIssuer(m.issuer);
-    } else if (m.name) {
-        return m.name;
-    } else {
-        return false;
-    }
-}
-
+console.log(path.resolve(__dirname, 'dist'));
 // Configure Babel loader
 const configureBabelLoader = () => {
     return {
@@ -147,31 +137,11 @@ module.exports = (env, argv) => {
                 }),
                 new OptimizeCSSAssetsPlugin({
                     cssProcessorOptions: {
-                        // map: {
-                        //     inline: false,
-                        //     annotation: true,
-                        // },
                         safe: true,
                         discardComments: true,
                     },
                 }),
             ],
-            // splitChunks: {
-            //     cacheGroups: {
-            //         fooStyles: {
-            //             name: 'input/outlined',
-            //             test: (m, c, entry = 'input/outlined') => m.constructor.name === 'CssModule' && recursiveIssuer(m) === entry,
-            //             chunks: 'all',
-            //             enforce: true
-            //         },
-            //         barStyles: {
-            //             name: 'input/input',
-            //             test: (m, c, entry = 'input/input') => console.log(m.constructor.name === 'CssModule') && c,
-            //             // test: (m, c, entry = 'input/input') => m.constructor.name === 'CssModule' && recursiveIssuer(m) === entry,
-            //             chunks: 'all',
-            //             enforce: true
-            //         }
-            //     }
         },
         devServer: {
             public: settings.devServerUrl,
@@ -189,6 +159,7 @@ module.exports = (env, argv) => {
             ],
         },
         plugins: [
+            // Remove build folder before building
             new CleanWebpackPlugin(settings.destination, {
                 verbose: false, // disable logging
                 root: path.resolve(__dirname, '/'),

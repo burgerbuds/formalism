@@ -62,7 +62,8 @@ $f-fieldset--outlined__border-radius: $f-outlined-border-radius !default;
     }
 
     #{$b}__inner {
-        border: $f-fieldset--outlined__border-width solid $f-fieldset--outlined__border-color;
+        border: $f-fieldset--outlined__border-width solid
+            $f-fieldset--outlined__border-color;
         border-radius: $f-fieldset--outlined__border-radius;
         padding-top: $f-fieldset--outlined__padding-top;
         padding-bottom: $f-fieldset--outlined__padding-bottom;
@@ -73,12 +74,14 @@ $f-fieldset--outlined__border-radius: $f-outlined-border-radius !default;
         &#{$f-modifier__error-fieldset} & {
             border-color: $f-common__border-color-error;
             box-shadow: inset 0 0 0
-                calc(#{$f-common__border-width-error} - #{$f-common__border-width})
+                calc(
+                    #{$f-common__border-width-error} - #{$f-common__border-width}
+                )
                 $f-common__border-color-error;
         }
     }
 
     @include f-outlined-message($b) {
         margin: $f-outlined-message-margin-inset;
-    };
+    }
 }
