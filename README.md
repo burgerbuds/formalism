@@ -6,7 +6,7 @@ Coming soon.
 
 👍 Honors the [reduced motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) system feature<br>
 👍 Supports custom themes<br>
-👍 Small footprint
+👍 Small footprint<br>
 👍 Touch screen friendly
 
 ## Browser support
