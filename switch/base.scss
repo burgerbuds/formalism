@@ -69,6 +69,8 @@
             display: block;
             font-size: $f-switch-size;
             color: $f-switch__field-color;
+            flex-shrink: 0;
+            flex-grow: 0;
         }
 
         #{$switchbox} {
@@ -78,7 +80,6 @@
             width: 2em;
             height: 1em;
             display: block;
-            flex-shrink: 0;
             transition: transition(color);
             will-change: color;
 
@@ -101,9 +102,11 @@
             background-color: white;
             border-radius: 50%;
             border: $f-switch-thickness solid currentColor;
-            transition: color $f-switch__transition-duration $f-switch__transition-timing, transform .1s;
+            transition: color $f-switch__transition-duration
+                    $f-switch__transition-timing,
+                transform 0.1s;
             will-change: color, transform;
-            transform: translateX(-.1em);
+            transform: translateX(-0.1em);
 
             // Switch > Disabled
             #{$b}__field:disabled + & {
@@ -117,22 +120,23 @@
 
             // Switch > Active
             #{$b}__field:active + & {
-                animation: tremble $f-common__transition-duration/1.5 forwards infinite;
+                animation: tremble $f-common__transition-duration/1.5 forwards
+                    infinite;
             }
 
             // Switch checked
             #{$b}__field:checked + & {
-                transform: translateX(.75em + .1em);
+                transform: translateX(0.75em + 0.1em);
             }
 
             // Switch > Unchecked > Active
             #{$b}__field:not(:checked):active + & {
-                transform: translateX(-.2em) scaleY(.94);
+                transform: translateX(-0.2em) scaleY(0.94);
             }
 
             // Switch > Checked > Active
             #{$b}__field:checked:active + & {
-                transform: translateX(.75em + .2em) scaleY(.94);
+                transform: translateX(0.75em + 0.2em) scaleY(0.94);
             }
         }
     }

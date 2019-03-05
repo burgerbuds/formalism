@@ -24,7 +24,7 @@ $f-fieldset--naked__bottom-spacing: 1em !default;
     }
 
     // Error > Label text colours
-    &#{$f-modifier__error-fieldset} #{$b}__label #{$b}__label-text {
+    &#{$f-fieldset__modifier-error} #{$b}__label #{$b}__label-text {
         color: $f-common__error-color;
     }
 }

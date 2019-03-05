@@ -7,7 +7,9 @@
 @import './../../common/core/all';
 
 // Variables
-$f-fieldset-label-font-size: $f-common__text-font-size !default;
-$f-fieldset-label-color: $f-common__text-color !default;
-$f-fieldset-content-spacing: 1.25em !default;
-$f-modifier__error-fieldset: '.has-error-fieldset' !default;
+$f-fieldset__label-font-size: $f-common__text-font-size !default;
+$f-fieldset__label-color: $f-common__text-color !default;
+$f-fieldset__content-spacing: 1.25em !default;
+
+// Modifiers
+$f-fieldset__modifier-error: '.has-error-fieldset' !default;

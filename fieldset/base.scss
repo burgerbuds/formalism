@@ -13,8 +13,8 @@
     @include f-core-label($b);
 
     @include f-core-label-text($b) {
-        color: $f-fieldset-label-color;
-        font-size: $f-fieldset-label-font-size;
+        color: $f-fieldset__label-color;
+        font-size: $f-fieldset__label-font-size;
     }
 
     @include f-core-indicator($b);
@@ -41,7 +41,7 @@
                 width: 100%;
 
                 &:not(:last-child) {
-                    margin-bottom: $f-fieldset-content-spacing;
+                    margin-bottom: $f-fieldset__content-spacing;
                 }
             }
         }
@@ -54,7 +54,7 @@
                 width: auto;
 
                 &:not(:last-child) {
-                    margin-right: $f-fieldset-content-spacing;
+                    margin-right: $f-fieldset__content-spacing;
                 }
             }
         }

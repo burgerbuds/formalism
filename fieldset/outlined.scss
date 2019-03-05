@@ -24,12 +24,12 @@ $f-fieldset--outlined__border-radius: $f-outlined-border-radius !default;
 
     #{$b}__indicator--optional {
         line-height: 1 /
-            ($f-common__indicator-optional-size / $f-fieldset-label-font-size);
+            ($f-common__indicator-optional-size / $f-fieldset__label-font-size);
     }
 
     #{$b}__indicator--required {
         line-height: 1 /
-            ($f-common__indicator-required-size / $f-fieldset-label-font-size);
+            ($f-common__indicator-required-size / $f-fieldset__label-font-size);
     }
 
     #{$b}__label {
@@ -56,7 +56,7 @@ $f-fieldset--outlined__border-radius: $f-outlined-border-radius !default;
         }
 
         // Error > Label text colours
-        &#{$f-modifier__error-fieldset} #{$b}__label & {
+        &#{$f-fieldset__modifier-error} #{$b}__label & {
             color: $f-common__error-color;
         }
     }
@@ -71,7 +71,7 @@ $f-fieldset--outlined__border-radius: $f-outlined-border-radius !default;
         padding-right: $f-fieldset--outlined__padding-right;
 
         // Error > Border colour
-        &#{$f-modifier__error-fieldset} & {
+        &#{$f-fieldset__modifier-error} & {
             border-color: $f-common__border-color-error;
             box-shadow: inset 0 0 0
                 calc(

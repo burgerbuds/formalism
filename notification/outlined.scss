@@ -12,73 +12,65 @@
 // @import './formalism/core/fields/notification';
 
 // Variables
-$f-notification-padding-left: 1em !default;
-$f-notification-padding-right: $f-notification-padding-left !default;
-$f-notification-padding-top: 1.5em !default;
-$f-notification-padding-bottom: $f-notification-padding-top !default;
+$f-notification__padding-left: 1em !default;
+$f-notification__padding-right: $f-notification__padding-left !default;
+$f-notification__padding-top: 1.5em !default;
+$f-notification__padding-bottom: $f-notification__padding-top !default;
 
-$f-notification-border-width: 2 * $f-common__border-width !default;
-$f-notification-border-color: $f-common__border-color !default;
+$f-notification__border-width: 2 * $f-common__border-width !default;
+$f-notification__border-color: $f-common__border-color !default;
 
-$f-notification-error-modifier: 'alert';
-$f-notification-valid-modifier: 'success';
+$f-notification__error-modifier: 'alert';
+$f-notification__valid-modifier: 'success';
 
 // TODO: more variables?
-// $f-notification-text-size
-// $f-notification-icon-size
-// $f-notification-background-opacity?
-
-.f-notification {
-}
+// $f-notification__text-size
+// $f-notification__icon-size
+// $f-notification__background-opacity?
 
 // Outlined
 .f-notification--outlined {
     $b: '.f-notification';
 
     #{$b}__inner {
-        border: $f-notification-border-width solid $f-notification-border-color;
+        border: $f-notification__border-width solid
+            $f-notification__border-color;
         border-radius: $f-outlined-border-radius;
-        padding-top: $f-notification-padding-top;
-        padding-bottom: $f-notification-padding-bottom;
-        padding-left: $f-notification-padding-left;
-        padding-right: $f-notification-padding-right;
-    }
-
-    #{$b}__text {
-    }
-
-    #{$b}__icon {
+        padding-top: $f-notification__padding-top;
+        padding-right: $f-notification__padding-right;
+        padding-bottom: $f-notification__padding-bottom;
+        padding-left: $f-notification__padding-left;
     }
 
     // Error > Border colour
-    &#{$b}--#{$f-notification-error-modifier} #{$b}__inner {
+    &#{$b}--#{$f-notification__error-modifier} #{$b}__inner {
         border-color: $f-common__border-color-error;
         background-color: rgba($f-common__error-color, 0.1);
     }
 
     // Error > Text colours
-    &#{$b}--#{$f-notification-error-modifier} #{$b}__text {
+    &#{$b}--#{$f-notification__error-modifier} #{$b}__text {
         color: $f-common__error-color;
     }
 
     // Error > Icon colours
-    &#{$b}--#{$f-notification-error-modifier} #{$b}__icon {
+    &#{$b}--#{$f-notification__error-modifier} #{$b}__icon {
         color: $f-common__error-color;
     }
 
     // Valid > Border colour
-    &#{$b}--#{$f-notification-valid-modifier} #{$b}__inner {
+    &#{$b}--#{$f-notification__valid-modifier} #{$b}__inner {
         border-color: $f-common__border-color-valid;
         background-color: rgba($f-common__valid-color, 0.1);
     }
 
     // Valid > Text colours
-    &#{$b}--#{$f-notification-valid-modifier} #{$b}__text {
+    &#{$b}--#{$f-notification__valid-modifier} #{$b}__text {
         color: $f-common__valid-color;
     }
 
     // Valid > Icon colours
-    &#{$b}--#{$f-notification-valid-modifier} #{$b}__icon {
+    &#{$b}--#{$f-notification__valid-modifier} #{$b}__icon {
         color: $f-common__valid-color;
     }
 }

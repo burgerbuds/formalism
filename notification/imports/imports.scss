@@ -7,18 +7,18 @@
 @import './../../common/core/all';
 
 // Variables
-$f-notification-padding-left: 1em !default;
-$f-notification-padding-right: $f-notification-padding-left !default;
-$f-notification-padding-top: 1.5em !default;
-$f-notification-padding-bottom: $f-notification-padding-top !default;
+$f-notification__padding-left: 1em !default;
+$f-notification__padding-right: $f-notification__padding-left !default;
+$f-notification__padding-top: 1.5em !default;
+$f-notification__padding-bottom: $f-notification__padding-top !default;
 
-$f-notification-border-width: 2 * $f-common__border-width !default;
-$f-notification-border-color: $f-common__border-color !default;
+$f-notification__border-width: 2 * $f-common__border-width !default;
+$f-notification__border-color: $f-common__border-color !default;
 
-$f-notification-error-modifier: 'alert';
-$f-notification-valid-modifier: 'success';
+$f-notification__error-modifier: 'alert';
+$f-notification__valid-modifier: 'success';
 
 // TODO: more variables?
-// $f-notification-text-size
-// $f-notification-icon-size
-// $f-notification-background-opacity?
+// $f-notification__text-size
+// $f-notification__icon-size
+// $f-notification__background-opacity?
