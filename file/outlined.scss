@@ -18,8 +18,7 @@
         left: calc(
             #{$f-common__border-width} + #{$f-common__padding-horizontal}
         );
-
-        transform: translateY(-$f-common__padding-vertical);
+        transform: translateY(-$f-common__padding-top);
     }
 
     @include f-outlined-label-text($b) {

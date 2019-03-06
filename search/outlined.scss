@@ -7,65 +7,84 @@
 @import './imports/imports';
 @import './../common/outlined/all';
 
-// Base
+// non-configurable min width
+$f-search__button-width-base: 3.5em;
+
 .f-search {
     $b: #{&};
+    $button-width: calc(
+        #{$f-search__button-width-base} + #{$f-search__button-extra-width}
+    );
 
     @include f-outlined-field($b) {
         box-sizing: border-box;
-        padding-right: calc(
-            #{$f-common__padding-horizontal} + #{$f-search__icon-size}
-        );
+        padding-right: $button-width;
     }
+
     @include f-outlined-label($b) {
         top: 0;
         bottom: 0;
-        left: $f-common__padding-horizontal;
+        left: calc(
+            #{$f-common__border-width} + #{$f-common__padding-horizontal}
+        );
     }
+
     @include f-outlined-label-text($b);
 
     #{$b}__button {
-        color: $f-search__label-color;
-        background-color: $f-search__background-color;
-        z-index: 2;
+        // reset
+        -webkit-appearance: none;
+        appearance: none;
+        border: 0;
+        outline: 0;
+        font-size: $f-common__text-font-size;
+
+        // alignment
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        // positioning
         position: absolute;
         top: $f-common__border-width;
         bottom: $f-common__border-width;
         right: $f-common__border-width;
-        -webkit-appearance: none;
-        appearance: none;
-        border: 0;
-        border-left: $f-search__border-width solid $f-search__border-color;
-        border-radius: 0 $f-outlined-border-radius $f-outlined-border-radius 0;
-        width: $f-search__size;
-        min-width: 20%;
-        outline: 0;
+        padding: 0;
+
+        // Misc
+        color: $f-search__label-color;
+        background-color: transparent;
+        width: $button-width;
         transition: transition(background-color);
 
         &--default-icon svg {
-            max-height: 50%;
+            width: 1em;
+            height: 1em;
+            pointer-events: none;
+            max-height: $f-search__default-icon-max-height;
+            font-size: $f-search__default-icon-size;
+            transform: translate($f-search__default-icon-position);
         }
 
-        &:hover,
-        &:focus {
-            top: 0;
-            bottom: 0;
-            right: 0;
+        &:not(:disabled):hover,
+        &:not(:disabled):focus {
+            cursor: pointer;
         }
 
         &:hover {
             color: $f-search__label-color-hover;
-            border-left-color: $f-search__background-color-hover;
-            background-color: $f-search__background-color-hover;
         }
 
         &:focus {
             color: $f-search__label-color-focus;
-            border-left-color: $f-search__background-color-focus;
-            background-color: $f-search__background-color-focus;
         }
     }
 
+    #{$b}__field:disabled ~ &__button {
+        opacity: 0.5;
+    }
+
+    @include f-outlined-indicator($b);
     @include f-outlined-message($b) {
         margin: $f-outlined-message-margin-inset;
     }

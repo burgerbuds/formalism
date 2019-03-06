@@ -16,4 +16,8 @@
     @include f-core-label-text($b);
     @include f-core-indicator($b);
     @include f-core-message;
+
+    &__field:disabled ~ &__button {
+        pointer-events: none;
+    }
 }

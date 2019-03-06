@@ -11,7 +11,12 @@
     $b: #{&};
     @include f-core-base;
     @include f-core-inner;
-    @include f-core-field;
+    @include f-core-field {
+        &:not(:disabled):hover,
+        &:not(:disabled):focus {
+            cursor: pointer;
+        }
+    }
     @include f-core-label($b);
     @include f-core-label-text($b);
     @include f-core-indicator($b);

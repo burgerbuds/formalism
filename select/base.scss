@@ -17,6 +17,11 @@
         -webkit-appearance: none;
         appearance: none;
         padding-right: $f-select__field-padding-right;
+
+        &:not(:disabled):hover,
+        &:not(:disabled):focus {
+            cursor: pointer;
+        }
     }
 
     @include f-core-label($b);

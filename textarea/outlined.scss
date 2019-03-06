@@ -13,8 +13,8 @@
     @include f-outlined-field($b);
 
     @include f-outlined-label($b) {
-        top: $f-common__padding-vertical;
-        left: $f-common__padding-horizontal;
+        top: $f-common__padding-top;
+        left: $f-common__padding-left;
         line-height: $f-textarea__line-height;
     }
 
@@ -22,5 +22,5 @@
     @include f-outlined-indicator($b);
     @include f-outlined-message($b) {
         margin: $f-outlined-message-margin-inset;
-    };
+    }
 }

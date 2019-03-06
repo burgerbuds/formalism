@@ -38,7 +38,8 @@
 @mixin f-core-field {
     &__field {
         color: $f-common__text-color;
-        padding: $f-common__padding-vertical $f-common__padding-horizontal;
+        padding: $f-common__padding-top $f-common__padding-right
+            $f-common__padding-bottom $f-common__padding-left;
         width: 100%;
         border: 0;
         caret-color: $f-common__text-caret-color;
@@ -54,9 +55,9 @@
             color: $f-common__disabled-color;
         }
 
-        &:not(:disabled) {
-            cursor: pointer;
-        }
+        // &:not(:disabled) {
+        //     cursor: pointer;
+        // }
 
         &:disabled {
             cursor: not-allowed;
@@ -205,5 +206,6 @@
 
 // Usage: transition: transition(transform);
 @function transition($property) {
-    @return $property $f-common__transition-duration $f-common__transition-timing;
+    @return $property $f-common__transition-duration
+        $f-common__transition-timing;
 }

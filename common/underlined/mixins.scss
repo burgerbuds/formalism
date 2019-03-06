@@ -3,12 +3,12 @@
 @mixin f-underlined-field($b) {
     #{$b}__field {
         color: $f-common__text-color;
-        background-color: $f-underlined-background-color;
+        background-color: $f-underlined-bg-color;
         border-bottom: $f-common__border-width solid $f-common__border-color;
         transition: border-color $f-common__transition-duration
             $f-common__transition-timing;
         will-change: border-color;
-        padding: $f-common__padding-vertical 0;
+        padding: $f-common__padding-top 0 $f-common__padding-bottom 0;
 
         &:hover {
             border-color: $f-common__border-color-hover;
@@ -26,7 +26,7 @@
         // Webkit focus
         &:-webkit-autofill:focus,
         &:-webkit-autofill:active {
-            -webkit-box-shadow: inset 0 0 0 10em $f-underlined-background-color !important;
+            -webkit-box-shadow: inset 0 0 0 10em $f-underlined-bg-color !important;
         }
 
         @content;
@@ -61,7 +61,7 @@
 @mixin f-underlined-label-text($b) {
     #{$b}__label-text {
         display: block;
-        background-color: $f-underlined-background-color;
+        background-color: $f-underlined-bg-color;
         width: 100%;
 
         // Interactions

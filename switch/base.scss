@@ -141,12 +141,6 @@
         }
     }
 
-    @keyframes tremble {
-        to {
-            margin-left: 1px;
-        }
-    }
-
     @include f-core-label-text($b) {
         font-size: $f-switch__label-font-size;
         line-height: $f-switch__label-line-height;

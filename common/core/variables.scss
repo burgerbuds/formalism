@@ -22,22 +22,27 @@ $f-common__text-caret-color: $f-common__highlight-color !default;
 
 // Validity
 $f-common__error-color: #e91e63 !default;
-$f-common__valid-color: #cddc39 !default;
+$f-common__success-color: #cddc39 !default;
 
 // Field > Padding
 $f-common__padding-vertical: 1em !default;
 $f-common__padding-horizontal: 0.9em !default;
+// Field > Padding > Fine tuning
+$f-common__padding-top: $f-common__padding-vertical !default;
+$f-common__padding-right: $f-common__padding-horizontal !default;
+$f-common__padding-bottom: $f-common__padding-vertical !default;
+$f-common__padding-left: $f-common__padding-horizontal !default;
 
 // Field > Border
 $f-common__border-color: silver !default;
 $f-common__border-color-hover: $f-common__highlight-color !default;
 $f-common__border-color-focus: $f-common__border-color-hover !default;
 $f-common__border-color-error: $f-common__error-color !default;
-$f-common__border-color-valid: $f-common__valid-color !default;
+$f-common__border-color-success: $f-common__success-color !default;
 $f-common__border-width: 1px !default;
 $f-common__border-width-focus: 2px !default;
 $f-common__border-width-error: 2px !default;
-$f-common__border-width-valid: 2px !default;
+$f-common__border-width-success: 2px !default;
 
 // Messages
 $f-common__message-color: gray !default;
@@ -61,7 +66,7 @@ $f-common__transition-timing: cubic-bezier(0.51, 0.92, 0.24, 1) !default;
 // Selectors
 $f-modifier__filled: '.is-filled' !default;
 $f-modifier__error: '.has-error' !default;
-// $f-modifier__valid: '.is-valid' !default; // TODO: Add valid styles
+// $f-modifier__success: '.is-success' !default; // TODO: Add success styles
 
 // Selections
 $f-common__selection-color: white !default;
