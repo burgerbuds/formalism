@@ -38,16 +38,16 @@
         }
 
         #{$b}__label-text {
-            color: $f-radio-label-color;
+            color: $f-radio__label-color;
 
             // Label > Hover
-            #{$b}__field:hover+& {
-                color: $f-radio-label-hover;
+            #{$b}__field:hover + & {
+                color: $f-radio__label-hover;
             }
 
             // Label > Checked
-            #{$b}__field:checked+& {
-                color: $f-radio-label-checked;
+            #{$b}__field:checked + & {
+                color: $f-radio__label-checked;
             }
         }
 
@@ -55,20 +55,18 @@
         #{$inner} {
             content: '';
             display: block;
-            font-size: $f-radio-size;
+            font-size: $f-radio__size;
             width: 1em;
             height: 1em;
             flex-shrink: 0;
-            border-radius: $f-radio-radius;
-            border: $f-radio-border-thickness solid currentColor;
+            border-radius: $f-radio__radius;
+            border: $f-radio__border-thickness solid currentColor;
         }
 
         #{$outer} {
-            color: $f-radio-border-color;
+            color: $f-radio__border-color;
             display: block;
-            margin-right: $f-radio-spacing;
-            transition: color $f-common__transition-duration $f-common__transition-timing, transform .1s;
-            will-change: color, transform;
+            margin-right: $f-radio__spacing;
 
             // Outer > Error
             #{$f-modifier__error} #{$b}__field:not([disabled]) + & {
@@ -78,11 +76,6 @@
             // Outer > Disabled
             #{$b}__field:disabled + & {
                 color: $f-common__disabled-color;
-            }
-
-            // Outer > Active
-            #{$b}__field:active+& {
-                transform: scale(#{$f-radio-border-scale-active}) translateZ(0);
             }
         }
 
@@ -100,7 +93,7 @@
 
             // Inner > Checked
             #{$b}__field:checked + & {
-                transform: scale(#{$f-radio-center-scale-checked});
+                transform: scale(#{$f-radio__center-scale-checked});
                 visibility: visible;
             }
 
@@ -112,8 +105,8 @@
     }
 
     @include f-core-label-text($b) {
-        font-size: $f-radio-label-font-size;
-        line-height: $f-radio-label-line-height;
+        font-size: $f-radio__label-font-size;
+        line-height: $f-radio__label-line-height;
     }
 
     @include f-core-indicator($b);

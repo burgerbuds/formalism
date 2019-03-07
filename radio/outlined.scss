@@ -18,46 +18,56 @@
         #{$b}__field:not([disabled]) {
             // Inner (scale(0) by default)
             + #{$inner} {
-                color: $f-radio-center-color;
+                color: $f-radio__center-color;
             }
 
             // Inner > Hover
             &:hover + #{$inner} {
-                color: $f-radio-center-color-hover;
+                color: $f-radio__center-color-hover;
             }
 
             // Inner > Focus
             &:focus + #{$inner} {
-                color: $f-radio-center-color-focus;
+                color: $f-radio__center-color-focus;
             }
 
             // Inner > Checked
             &:checked + #{$inner} {
-                color: $f-radio-center-color-checked;
+                color: $f-radio__center-color-checked;
             }
 
             // Outer
             + #{$outer} {
+                transition: color $f-common__transition-duration
+                        $f-common__transition-timing,
+                    transform 0.1s;
+                will-change: color, transform;
+                backface-visibility: hidden;
             }
 
             // Outer > Hover
             &:hover + #{$outer} {
-                color: $f-radio-border-color-hover;
+                color: $f-radio__border-color-hover;
             }
 
             // Outer > Focus
             &:focus + #{$outer} {
-                color: $f-radio-border-color-focus;
+                color: $f-radio__border-color-focus;
+            }
+
+            // Outer > Active
+            &:active + #{$outer} {
+                transform: scale(#{$f-radio__border-scale-active}) translateZ(0);
             }
 
             // Outer > Checked
             &:checked + #{$outer} {
-                color: $f-radio-border-color-checked;
+                color: $f-radio__border-color-checked;
             }
         }
     }
 
     @include f-outlined-message($b) {
-        margin: $f-outlined-message-margin;
-    };
+        margin: $f-outlined__message-margin;
+    }
 }

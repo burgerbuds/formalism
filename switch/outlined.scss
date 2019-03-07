@@ -10,8 +10,8 @@
 // Button
 $f-switch--outlined__switch-color: $f-common__border-color !default;
 $f-switch--outlined__switch-color-hover: $f-common__highlight-color !default;
-$f-switch--outlined__switch-color-focus: $f-switch--outlined__switch-color !default;
-$f-switch--outlined__switch-color-active: $f-switch--outlined__switch-color !default;
+$f-switch--outlined__switch-color-focus: $f-common__highlight-color !default;
+$f-switch--outlined__switch-color-active: $f-switch--outlined__switch-color-focus !default;
 $f-switch--outlined__switch-color-switched: $f-common__highlight-color !default;
 $f-switch--outlined__switch-bg-color-focus: $f-common__highlight-color !default;
 
@@ -29,8 +29,8 @@ $f-switch--outlined__switchbox-color-switched: $f-common__highlight-color !defau
     $switchbox: $b + '__label:before';
 
     #{$switch} {
-        box-shadow: inset 0 0 0 4px white;
-        background-color: currentColor;
+        // box-shadow: inset 0 0 0 4px white;
+        // background-color: currentColor;
     }
 
     // Not error + not disabled fields
@@ -49,12 +49,11 @@ $f-switch--outlined__switchbox-color-switched: $f-common__highlight-color !defau
 
             // Switch > Hover
             &:hover + #{$switch} {
-                background-color: $f-switch--outlined__switch-bg-color-focus;
+                // background-color: $f-switch--outlined__switch-bg-color-focus;
             }
 
             // Switch > Focus
             &:focus + #{$switch} {
-                background-color: $f-switch--outlined__switch-bg-color-focus;
                 color: $f-switch--outlined__switch-color-focus;
             }
 
@@ -63,7 +62,7 @@ $f-switch--outlined__switchbox-color-switched: $f-common__highlight-color !defau
                 color: $f-switch--outlined__switch-color-active;
             }
 
-            // Switch > Switched
+            // Switch > Checked
             &:checked + #{$switch} {
                 color: $f-switch--outlined__switch-color-switched;
             }
@@ -95,7 +94,12 @@ $f-switch--outlined__switchbox-color-switched: $f-common__highlight-color !defau
         }
     }
 
+    // Switch > Checked
+    #{$b}__field:checked + #{$switch} {
+        transform: translateX(0.75em + 0.1em);
+    }
+
     @include f-outlined-message($b) {
-        margin: $f-outlined-message-margin;
+        margin: $f-outlined__message-margin;
     }
 }

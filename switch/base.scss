@@ -117,27 +117,6 @@
             #{$f-modifier__error} #{$b}__field:not([disabled]) + & {
                 color: $f-common__error-color;
             }
-
-            // Switch > Active
-            #{$b}__field:active + & {
-                animation: tremble $f-common__transition-duration/1.5 forwards
-                    infinite;
-            }
-
-            // Switch checked
-            #{$b}__field:checked + & {
-                transform: translateX(0.75em + 0.1em);
-            }
-
-            // Switch > Unchecked > Active
-            #{$b}__field:not(:checked):active + & {
-                transform: translateX(-0.2em) scaleY(0.94);
-            }
-
-            // Switch > Checked > Active
-            #{$b}__field:checked:active + & {
-                transform: translateX(0.75em + 0.2em) scaleY(0.94);
-            }
         }
     }
 

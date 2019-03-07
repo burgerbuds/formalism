@@ -21,6 +21,6 @@
     @include f-outlined-label-text($b);
     @include f-outlined-indicator($b);
     @include f-outlined-message($b) {
-        margin: $f-outlined-message-margin-inset;
-    };
+        margin: $f-outlined__message-margin-inset;
+    }
 }

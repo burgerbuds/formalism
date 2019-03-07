@@ -77,6 +77,6 @@ $f-checkbox--outlined__tickbox-color-active: $f-checkbox--outlined__tickbox-colo
     }
 
     @include f-outlined-message($b) {
-        margin: $f-outlined-message-margin;
+        margin: $f-outlined__message-margin;
     }
 }

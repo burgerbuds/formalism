@@ -22,11 +22,11 @@
     }
 
     @include f-outlined-label-text($b) {
-        transform: scale($f-outlined-label-scale) translateY(-50%)
+        transform: scale($f-outlined__label-scale) translateY(-50%)
             translateY(floor(-$f-common__border-width/2));
     }
     @include f-outlined-indicator($b);
     @include f-outlined-message($b) {
-        margin: $f-outlined-message-margin-inset;
+        margin: $f-outlined__message-margin-inset;
     }
 }

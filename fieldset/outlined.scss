@@ -16,21 +16,21 @@ $f-fieldset--outlined__padding-bottom: 1.25em !default;
 // Borders
 $f-fieldset--outlined__border-width: $f-common__border-width !default;
 $f-fieldset--outlined__border-color: $f-common__border-color !default;
-$f-fieldset--outlined__border-radius: $f-outlined-border-radius !default;
+$f-fieldset--outlined__border-radius: $f-outlined__border-radius !default;
 
 // Theme
 .f-fieldset--outlined {
     $b: '.f-fieldset';
 
-    #{$b}__indicator--optional {
-        line-height: 1 /
-            ($f-common__indicator-optional-size / $f-fieldset__label-font-size);
-    }
+    // #{$b}__indicator--optional {
+    //     line-height: 1 /
+    //         ($f-common__indicator-optional-size / $f-fieldset__label-font-size);
+    // }
 
-    #{$b}__indicator--required {
-        line-height: 1 /
-            ($f-common__indicator-required-size / $f-fieldset__label-font-size);
-    }
+    // #{$b}__indicator--required {
+    //     line-height: 1 /
+    //         ($f-common__indicator-required-size / $f-fieldset__label-font-size);
+    // }
 
     #{$b}__label {
         position: absolute;
@@ -54,11 +54,11 @@ $f-fieldset--outlined__border-radius: $f-outlined-border-radius !default;
             z-index: -1;
             background-color: $f-common__background-color;
         }
+    }
 
-        // Error > Label text colours
-        &#{$f-fieldset__modifier-error} #{$b}__label & {
-            color: $f-common__error-color;
-        }
+    // Error > Label text colours
+    &#{$f-fieldset__modifier-error} #{$b}__label-text {
+        color: $f-common__error-color;
     }
 
     #{$b}__inner {
@@ -70,18 +70,18 @@ $f-fieldset--outlined__border-radius: $f-outlined-border-radius !default;
         padding-left: $f-fieldset--outlined__padding-left;
         padding-right: $f-fieldset--outlined__padding-right;
 
-        // Error > Border colour
-        &#{$f-fieldset__modifier-error} & {
-            border-color: $f-common__border-color-error;
-            box-shadow: inset 0 0 0
-                calc(
-                    #{$f-common__border-width-error} - #{$f-common__border-width}
-                )
-                $f-common__border-color-error;
-        }
+        // column-width: attr(data-columns);
+    }
+
+    // Error > Border colour
+    &#{$f-fieldset__modifier-error} #{$b}__inner {
+        border-color: $f-common__border-color-error;
+        box-shadow: inset 0 0 0
+            calc(#{$f-common__border-width-error} - #{$f-common__border-width})
+            $f-common__border-color-error;
     }
 
     @include f-outlined-message($b) {
-        margin: $f-outlined-message-margin-inset;
+        margin: $f-outlined__message-margin-inset;
     }
 }

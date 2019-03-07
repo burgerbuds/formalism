@@ -6,31 +6,29 @@
 // Imports
 @import './../../common/core/all';
 
-// TODO: Updateto  variable scoped names
 // General
-$f-radio-size: 1.2em !default;
-$f-radio-radius: 50% !default;
-$f-radio-spacing: 0.5em !default;
-$f-radio-transition-duration: 0.35s !default;
+$f-radio__size: 1.2em !default;
+$f-radio__radius: 50% !default;
+$f-radio__spacing: 0.5em !default;
 
 // Dot
-$f-radio-center-color: $f-common__highlight-color !default;
-$f-radio-center-color-checked: $f-radio-center-color !default;
-$f-radio-center-color-hover: $f-radio-center-color !default;
-$f-radio-center-color-focus: $f-radio-center-color !default;
-$f-radio-center-scale-checked: 0.45 !default;
+$f-radio__center-color: $f-common__highlight-color !default;
+$f-radio__center-color-checked: $f-radio__center-color !default;
+$f-radio__center-color-hover: $f-radio__center-color !default;
+$f-radio__center-color-focus: $f-radio__center-color !default;
+$f-radio__center-scale-checked: 0.45 !default;
 
 // Circle
-$f-radio-border-thickness: 2px !default;
-$f-radio-border-scale-active: 0.9 !default;
-$f-radio-border-color: $f-common__border-color !default;
-$f-radio-border-color-checked: $f-common__highlight-color !default;
-$f-radio-border-color-hover: $f-radio-border-color-checked !default;
-$f-radio-border-color-focus: $f-radio-border-color-checked !default;
+$f-radio__border-thickness: 2px !default;
+$f-radio__border-scale-active: 0.9 !default;
+$f-radio__border-color: $f-common__border-color !default;
+$f-radio__border-color-checked: $f-common__highlight-color !default;
+$f-radio__border-color-hover: $f-radio__border-color-checked !default;
+$f-radio__border-color-focus: $f-radio__border-color-checked !default;
 
 // Label
-$f-radio-label-color: $f-common__text-color !default;
-$f-radio-label-hover: $f-radio-label-color !default;
-$f-radio-label-checked: $f-radio-label-color !default;
-$f-radio-label-font-size: 1em !default;
-$f-radio-label-line-height: 1 !default;
+$f-radio__label-color: $f-common__text-color !default;
+$f-radio__label-hover: $f-radio__label-color !default;
+$f-radio__label-checked: $f-radio__label-color !default;
+$f-radio__label-font-size: 1em !default;
+$f-radio__label-line-height: 1 !default;

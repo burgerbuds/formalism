@@ -66,11 +66,10 @@ $f-common__transition-timing: cubic-bezier(0.51, 0.92, 0.24, 1) !default;
 // Selectors
 $f-modifier__filled: '.is-filled' !default;
 $f-modifier__error: '.has-error' !default;
-// $f-modifier__success: '.is-success' !default; // TODO: Add success styles
 
 // Selections
 $f-common__selection-color: white !default;
 $f-common__selection-bg: $f-common__highlight-color !default;
 
-// Other
+// Settings
 $hide-instructions-when-error: true !default;

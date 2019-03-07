@@ -64,11 +64,11 @@ const configureBabelLoader = () => {
                             modules: false,
                             useBuiltIns: 'entry',
                             targets: {
-                                // TODO: Replace this with chosen package.json config
                                 browsers: [
                                     '> 1%',
                                     'last 2 versions',
                                     'Firefox ESR',
+                                    'IE > 9',
                                 ],
                             },
                         },

@@ -6,12 +6,6 @@
     font-size: $f-common__base-size;
     text-align: left;
 
-    *,
-    *:before,
-    *:after {
-        box-sizing: border-box;
-    }
-
     // Disable motion if the user prefers
     @media screen and (prefers-reduced-motion) {
         html & *,
@@ -47,17 +41,13 @@
         font-family: inherit;
 
         &:focus {
-            outline: 0; // Focus indicator is handled $f-common__border-color-focus instead
+            outline: 0; // Focus indicator is handled
         }
 
         // Disabled  > Field color (extra specificity)
         &#{&}[disabled] {
             color: $f-common__disabled-color;
         }
-
-        // &:not(:disabled) {
-        //     cursor: pointer;
-        // }
 
         &:disabled {
             cursor: not-allowed;
@@ -68,29 +58,42 @@
             caret-color: $f-common__error-color;
         }
 
-        // Custom selection colours (important required)
+        // Custom selection colours
         &::-moz-selection {
             color: $f-common__selection-color;
-            background: $f-common__selection-bg !important;
+            background: $f-common__selection-bg;
             text-shadow: none;
         }
 
         &::selection {
-            color: $f-common__selection-color !important;
-            background: $f-common__selection-bg !important;
+            color: $f-common__selection-color;
+            background: $f-common__selection-bg;
             text-shadow: none;
         }
 
-        // Error > Custom selection colours (important required)
+        // Error > Custom selection colours
         #{$f-modifier__error} &::-moz-selection {
             color: $f-common__selection-color;
-            background: $f-common__error-color !important;
+            background: $f-common__error-color;
             text-shadow: none;
         }
 
         #{$f-modifier__error} &::selection {
-            color: $f-common__selection-color !important;
-            background: $f-common__error-color !important;
+            color: $f-common__selection-color;
+            background: $f-common__error-color;
+            text-shadow: none;
+        }
+
+        // Diabled > Custom selection colours
+        &:disabled::-moz-selection {
+            color: $f-common__selection-color;
+            background: $f-common__disabled-color;
+            text-shadow: none;
+        }
+
+        &:disabled::selection {
+            color: $f-common__selection-color;
+            background: $f-common__disabled-color;
             text-shadow: none;
         }
 

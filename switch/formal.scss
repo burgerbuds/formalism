@@ -23,7 +23,7 @@ $f-switch--outlined__switchbox-color-active: $f-switch--outlined__switchbox-colo
 $f-switch--outlined__switchbox-color-switched: $f-common__highlight-color !default;
 
 // Theme
-.f-switch--outlined {
+.f-switch--formal {
     $b: '.f-switch';
     $switch: $b + '__label:after';
     $switchbox: $b + '__label:before';
@@ -65,9 +65,20 @@ $f-switch--outlined__switchbox-color-switched: $f-common__highlight-color !defau
                     infinite;
             }
 
-            // Switch > Switched
+            // Switch > Checked
             &:checked + #{$switch} {
                 color: $f-switch--outlined__switch-color-switched;
+                transform: translateX(0.75em + 0.1em);
+            }
+
+            // Switch > Unchecked > Active
+            &:not(:checked):active + #{$switch} {
+                transform: translateX(-0.2em);
+            }
+
+            // Switch > Checked > Active
+            &:checked:active + #{$switch} {
+                transform: translateX(0.75em + 0.2em);
             }
 
             // Switchbox
@@ -104,6 +115,6 @@ $f-switch--outlined__switchbox-color-switched: $f-common__highlight-color !defau
     }
 
     @include f-outlined-message($b) {
-        margin: $f-outlined-message-margin;
+        margin: $f-outlined__message-margin;
     }
 }

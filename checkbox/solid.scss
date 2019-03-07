@@ -5,7 +5,6 @@
 
 // Imports
 @import './imports/imports';
-@import './../common/solid/all';
 
 // Tick
 $f-checkbox--solid__tick-color: white !default;
@@ -29,74 +28,69 @@ $f-checkbox--solid__tickbox-color-active: $f-checkbox--solid__tickbox-color-chec
 
     &:not(#{$f-modifier__error}) {
         #{$b}__field:not([disabled]) {
-
             // Tick
-            +#{$tick} {
+            + #{$tick} {
                 color: $f-checkbox--solid__tick-color;
             }
 
             // Tick > Checked
-            &:checked+#{$tick} {
+            &:checked + #{$tick} {
                 color: $f-checkbox--solid__tick-color-checked;
             }
 
             // Tick > Focus
-            &:focus+#{$tick} {
+            &:focus + #{$tick} {
                 color: $f-checkbox--solid__tick-color-focus;
             }
 
             // Tick > Hover
-            &:hover+#{$tick} {
+            &:hover + #{$tick} {
                 color: $f-checkbox--solid__tick-color-hover;
             }
 
             // Tick > Active
-            &:active+#{$tick} {
+            &:active + #{$tick} {
                 color: $f-checkbox--solid__tick-color-active;
             }
 
             // Tickbox
-            +#{$tickbox} {
+            + #{$tickbox} {
                 color: $f-checkbox--solid__tickbox-color;
             }
 
             // Tickbox > Checked
-            &:checked+#{$tickbox} {
+            &:checked + #{$tickbox} {
                 color: $f-checkbox--solid__tickbox-color-checked;
                 background-color: currentColor;
             }
 
             // Tickbox > Focus
-            &:focus+#{$tickbox} {
+            &:focus + #{$tickbox} {
                 color: $f-checkbox--solid__tickbox-color-focus;
             }
 
             // Tickbox > Hover
-            &:hover+#{$tickbox} {
+            &:hover + #{$tickbox} {
                 color: $f-checkbox--solid__tickbox-color-hover;
             }
 
             // Tickbox > Active
-            &:active+#{$tickbox} {
+            &:active + #{$tickbox} {
                 color: $f-checkbox--solid__tickbox-color-active;
             }
         }
     }
 
     // Tick > Error
-    &#{$f-modifier__error} #{$b}__field:checked+#{$tick} {
+    &#{$f-modifier__error} #{$b}__field:checked + #{$tick} {
         color: $f-checkbox--solid__tick-color-checked;
     }
 
     // Tickbox > Error
     #{$tickbox} {
-        transition: background-color .2s;
+        transition: background-color 0.2s;
     }
-    &#{$f-modifier__error} #{$b}__field:checked+#{$tickbox} {
+    &#{$f-modifier__error} #{$b}__field:checked + #{$tickbox} {
         background-color: currentColor;
-    }
-
-    #{$b}__message {
-        margin: $f-solid-message-margin;
     }
 }

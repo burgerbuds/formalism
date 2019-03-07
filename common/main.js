@@ -1,53 +1,34 @@
 // Formalism
 
-console.log('==============');
-console.log('Formalism JS loaded');
-console.log('==============');
-
-// Polyfill
-// import 'core-js/modules/es6.array.for-each.js'
-
 /**
  * Add a class to form fields when they aren't empty
  */
 const initFilledClasses = fields => {
-
-    const handleBlurEvent = ({
-        target
-    }) => {
-        if (target.tagName === 'SELECT' && target.options.length > 0) {
-            // Check if selected option has a label, to cater for placeholders
+    const handleBlurEvent = ({ target }) => {
+        let isFilled;
+        if (target.type === 'select-one') {
+            if (target.options.length === 0) isFilled = false;
             const selectedIndex = target.options.selectedIndex;
-            target.classList.toggle(
-                'is-filled',
-                target.options[selectedIndex].label.length > 0
-            );
+            isFilled = target.options[selectedIndex].label.length > 0;
         } else {
-            // Otherwise, check value!
-            target.classList.toggle('is-filled', target.value.length > 0);
+            isFilled = target.value.length > 0;
         }
-        // TODO: Cater for checkboxes and radios
+        target.classList.toggle('is-filled', isFilled);
     };
 
     // Add listeners for blur events on form fields
-    fields.forEach(field => field.addEventListener('blur', handleBlurEvent));
-}
+    Array.from(fields).map(field => {
+        if (['select-one', 'text', 'textarea'].indexOf(field.type) < 0) return;
+        field.addEventListener('blur', handleBlurEvent);
+    });
+};
 
 /**
  * Autoexpand textareas
  */
 const initTextareas = fields => {
-
-    // Add listeners for input events on form fields
-    const handleInputEvent = ({
-        target
-    }) => {
-        if (target.tagName.toLowerCase() !== 'textarea') return;
-        expandTextarea(target);
-    };
-
     // Make a textarea expand to fit the user input
-    const expandTextarea = target => {
+    const handleTextareaInput = ({ target }) => {
         // Reset field height
         target.style.height = 'inherit';
         // Calculate the textarea height
@@ -55,19 +36,21 @@ const initTextareas = fields => {
         // Add the height
         target.style.height = `${target.scrollHeight + offset}px`;
     };
-
-    // Add listeners for input events on form fields
-    fields.forEach(field => field.addEventListener('input', handleInputEvent));
-}
+    Array.from(fields).map(field => {
+        if (field.type !== 'textarea') return;
+        // Add listeners for input events on textareas
+        field.addEventListener('input', handleTextareaInput);
+        // Disable resize
+        field.style.resize = 'none';
+    });
+};
 
 const initFormalism = () => {
     const fields = document.querySelectorAll('[data-field]');
     initFilledClasses(fields);
     initTextareas(fields);
-}
+};
 
 initFormalism();
 
-export {
-    initFormalism
-}
+export { initFormalism };

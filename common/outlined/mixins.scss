@@ -3,9 +3,9 @@
 @mixin f-outlined-field($b) {
     #{$b}__field {
         color: $f-common__text-color;
-        background-color: $f-outlined-bg-color;
+        background-color: $f-outlined__bg-color;
         border: $f-common__border-width solid $f-common__border-color;
-        border-radius: $f-outlined-border-radius;
+        border-radius: $f-outlined__border-radius;
         transition: border-color $f-common__transition-duration
             $f-common__transition-timing;
         will-change: border-color;
@@ -31,7 +31,7 @@
         // Autofill > Default / Hover
         &:-webkit-autofill,
         &:-webkit-autofill:hover {
-            -webkit-box-shadow: 0 0 0 10em $f-outlined-bg-color inset !important;
+            -webkit-box-shadow: 0 0 0 10em $f-outlined__bg-color inset !important;
         }
 
         // Autofill > Focus / Active
@@ -42,7 +42,7 @@
                         #{$f-common__border-width-focus} - #{$f-common__border-width}
                     )
                     $f-common__border-color-focus,
-                inset 0 0 0 10em $f-outlined-bg-color !important;
+                inset 0 0 0 10em $f-outlined__bg-color !important;
         }
 
         @content;
@@ -102,7 +102,7 @@
             left: -0.35em;
             right: -0.35em;
             z-index: -1;
-            background-color: $f-outlined-bg-color;
+            background-color: $f-outlined__bg-color;
             will-change: transform;
         }
 
@@ -116,20 +116,20 @@
 
     // Filled > Label text
     #{$b}__field#{$f-modifier__filled} + #{$b}__label #{$b}__label-text {
-        color: $f-outlined-label-color-filled;
+        color: $f-outlined__label-color-filled;
     }
 
     // Focus + Filled > Label text
     #{$b}__field:focus + #{$b}__label #{$b}__label-text,
     #{$b}__field#{$f-modifier__filled} + #{$b}__label #{$b}__label-text {
-        transform: scale($f-outlined-label-scale) translateY(-50%)
+        transform: scale($f-outlined__label-scale) translateY(-50%)
             translateY(floor(-$f-common__border-width/2));
         color: $f-common__label-color-focus;
     }
 
     // Error > Open the field
     &#{$f-modifier__error} #{$b}__field + #{$b}__label #{$b}__label-text {
-        transform: scale($f-outlined-label-scale) translateY(-50%)
+        transform: scale($f-outlined__label-scale) translateY(-50%)
             translateY(floor(-$f-common__border-width/2));
     }
 
@@ -147,13 +147,13 @@
         will-change: color;
 
         &--optional {
-            top: $f-outlined-indicator-optional-top;
-            right: $f-outlined-indicator-optional-right;
+            top: $f-outlined__indicator-optional-top;
+            right: $f-outlined__indicator-optional-right;
         }
 
         &--required {
-            top: $f-outlined-indicator-required-top;
-            right: $f-outlined-indicator-required-right;
+            top: $f-outlined__indicator-required-top;
+            right: $f-outlined__indicator-required-right;
         }
 
         @content;

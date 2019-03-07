@@ -3,13 +3,3 @@
 
 // Common code / helpers
 @import './mixins';
-
-body {
-    box-sizing: content-box !important;
-}
-
-*,
-*:before,
-*:after {
-    box-sizing: inherit !important;
-}

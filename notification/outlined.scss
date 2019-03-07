@@ -48,7 +48,7 @@ $f-notification__success-modifier: 'success';
     #{$b}__inner {
         border: $f-notification__border-width solid
             $f-notification__border-color;
-        border-radius: $f-outlined-border-radius;
+        border-radius: $f-outlined__border-radius;
         padding: $f-notification__padding-top $f-notification__padding-right
             $f-notification__padding-bottom $f-notification__padding-left;
     }

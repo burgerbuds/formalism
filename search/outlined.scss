@@ -10,14 +10,21 @@
 // non-configurable min width
 $f-search__button-width-base: 3.5em;
 
+// Default icon
+$f-search__default-icon-size: 3em !default;
+$f-search__default-icon-color: inherit !default;
+$f-search__default-icon-color-hover: inherit !default;
+$f-search__default-icon-color-disabled: lightgrey !default;
+$f-search__default-icon-max-height: 50% !default;
+$f-search__default-icon-position: 0em, 0em !default; // translate(x, y) fine tuning
+
 .f-search {
     $b: #{&};
     $button-width: calc(
-        #{$f-search__button-width-base} + #{$f-search__button-extra-width}
+        #{$f-search__button-width-base} + #{$f-search__button-additional-width}
     );
 
     @include f-outlined-field($b) {
-        box-sizing: border-box;
         padding-right: $button-width;
     }
 
@@ -61,6 +68,7 @@ $f-search__button-width-base: 3.5em;
             width: 1em;
             height: 1em;
             pointer-events: none;
+            color: $f-search__default-icon-color;
             max-height: $f-search__default-icon-max-height;
             font-size: $f-search__default-icon-size;
             transform: translate($f-search__default-icon-position);
@@ -78,14 +86,18 @@ $f-search__button-width-base: 3.5em;
         &:focus {
             color: $f-search__label-color-focus;
         }
+
+        &--default-icon:hover svg {
+            color: $f-search__default-icon-color-hover;
+        }
     }
 
-    #{$b}__field:disabled ~ &__button {
-        opacity: 0.5;
+    #{$b}__field:disabled ~ &__button--default-icon svg {
+        color: $f-search__default-icon-color-disabled;
     }
 
     @include f-outlined-indicator($b);
     @include f-outlined-message($b) {
-        margin: $f-outlined-message-margin-inset;
+        margin: $f-outlined__message-margin-inset;
     }
 }
