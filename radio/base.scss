@@ -75,7 +75,7 @@
 
             // Outer > Disabled
             #{$b}__field:disabled + & {
-                color: $f-common__disabled-color;
+                color: $f-radio__border-color-disabled;
             }
         }
 

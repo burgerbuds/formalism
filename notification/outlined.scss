@@ -7,8 +7,6 @@
 @import './imports/imports';
 @import './../common/outlined/all';
 
-// Variables
-
 // Box > Padding
 $f-notification__padding-top: $f-common__padding-top !default;
 $f-notification__padding-right: $f-common__padding-right !default;
@@ -51,6 +49,7 @@ $f-notification__success-modifier: 'success';
         border-radius: $f-outlined__border-radius;
         padding: $f-notification__padding-top $f-notification__padding-right
             $f-notification__padding-bottom $f-notification__padding-left;
+        box-shadow: inset 0 0 0 $f-notification__border-width #fff;
     }
 
     &#{$error-selector} #{$b}__inner {

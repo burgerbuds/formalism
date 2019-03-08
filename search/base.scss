@@ -20,4 +20,18 @@
     &__field:disabled ~ &__button {
         pointer-events: none;
     }
+
+    // Safari > Fix jumping movement with box-shadow animation;
+    &__button {
+        transform: translateZ(0);
+    }
+
+    // Safari > Removes the magifying glass decoration
+    ::-webkit-search-decoration {
+        -webkit-appearance: none;
+    }
+
+    &__field:disabled ~ #{$b}::-webkit-search-cancel-button {
+        opacity: 0.2;
+    }
 }

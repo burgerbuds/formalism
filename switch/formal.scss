@@ -108,6 +108,11 @@ $f-switch--outlined__switchbox-color-switched: $f-common__highlight-color !defau
         }
     }
 
+    // Switch > Checked
+    #{$b}__field:checked + #{$switch} {
+        transform: translateX(0.75em + 0.1em);
+    }
+
     @keyframes tremble {
         to {
             margin-left: 1px;

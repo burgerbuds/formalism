@@ -10,15 +10,18 @@ const initFilledClasses = fields => {
             if (target.options.length === 0) isFilled = false;
             const selectedIndex = target.options.selectedIndex;
             isFilled = target.options[selectedIndex].label.length > 0;
-        } else {
-            isFilled = target.value.length > 0;
         }
-        target.classList.toggle('is-filled', isFilled);
+        target.classList.toggle(
+            'is-filled',
+            isFilled ? isFilled : target.value.length > 0
+        );
     };
-
     // Add listeners for blur events on form fields
     Array.from(fields).map(field => {
-        if (['select-one', 'text', 'textarea'].indexOf(field.type) < 0) return;
+        if (
+            ['select-one', 'text', 'search', 'textarea'].indexOf(field.type) < 0
+        )
+            return;
         field.addEventListener('blur', handleBlurEvent);
     });
 };

@@ -6,6 +6,8 @@
 // Imports
 @import './imports/imports';
 
+$f-switch__switchbox-color-disabled: $f-common__disabled-border-color !default;
+
 // Base
 .f-switch {
     $b: #{&};
@@ -85,7 +87,7 @@
 
             // Switchbox > Disabled
             #{$b}__field:disabled + & {
-                color: $f-common__disabled-color;
+                color: $f-switch__switchbox-color-disabled;
             }
 
             // Switchbox > Error
@@ -110,7 +112,7 @@
 
             // Switch > Disabled
             #{$b}__field:disabled + & {
-                color: $f-common__disabled-color;
+                color: $f-switch__switchbox-color-disabled;
             }
 
             // Switch > Error

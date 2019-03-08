@@ -7,10 +7,26 @@
 @import './imports/imports';
 @import './../common/outlined/all';
 
+// TODO: Make down arrow act like search button so we can specify width
+
+// Arrow
+$f-outlined--select__arrow-type: 'chevron' !default; // chevron / triangle
+$f-outlined--select__arrow-thickness: 2px !default;
+$f-select--outlined__arrow-size: 0.5em !default;
+$f-select--outlined__arrow-color: grey !default;
+$f-select--outlined__arrow-color-hover: $f-common__highlight-color !default;
+$f-select--outlined__arrow-color-focus: $f-select--outlined__arrow-color-hover !default;
+
+// Field
+// This padding stops the input moving underneath the arrow
+$f-select--outlined__field-padding-right: $f-common__padding-horizontal * 3 !default;
+
 // Theme
 .f-select--outlined {
     $b: '.f-select';
-    @include f-outlined-field($b);
+    @include f-outlined-field($b) {
+        padding-right: $f-select--outlined__field-padding-right;
+    }
 
     @include f-outlined-label($b) {
         top: 0;
@@ -22,5 +38,80 @@
     @include f-outlined-indicator($b);
     @include f-outlined-message($b) {
         margin: $f-outlined__message-margin-inset;
+    }
+
+    // Down arrow
+    #{$b}__arrow:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform-origin: center right;
+        pointer-events: none;
+        transition: transition(border-color);
+    }
+
+    // Down arrows
+    @if ($f-outlined--select__arrow-type == 'chevron') {
+        // Open chevron arrow
+        #{$b}__arrow:after {
+            right: $f-common__padding-horizontal * 1.25;
+            transform: translateY(-50%) rotate(45deg);
+            border-style: solid;
+            border-width: 0
+                $f-outlined--select__arrow-thickness
+                $f-outlined--select__arrow-thickness
+                0;
+            width: $f-select--outlined__arrow-size;
+            height: $f-select--outlined__arrow-size;
+            display: block;
+            border-color: $f-select--outlined__arrow-color;
+
+            #{$b}__field:hover ~ & {
+                border-color: red;
+            }
+
+            #{$b}__field:focus ~ & {
+                border-color: $f-select--outlined__arrow-color-focus;
+            }
+
+            #{$b}__field[disabled] ~ & {
+                border-color: $f-common__disabled-color;
+            }
+
+            #{$f-modifier__error} #{$b}__field:hover ~ &,
+            #{$f-modifier__error} #{$b}__field:focus ~ & {
+                border-color: $f-common__border-color-error;
+            }
+        }
+    } @else if ($f-outlined--select__arrow-type == 'triangle') {
+        // Solid triangle arrow
+        #{$b}__arrow:after {
+            right: $f-common__padding-horizontal;
+            width: 0;
+            height: 0;
+            border-left: $f-select--outlined__arrow-size/1.5 solid transparent;
+            border-right: $f-select--outlined__arrow-size/1.5 solid transparent;
+            border-top: $f-select--outlined__arrow-size/1.5
+                solid
+                $f-select--outlined__arrow-color;
+            transform: translateY(-50%);
+
+            #{$b}__field:hover ~ & {
+                border-top-color: $f-select--outlined__arrow-color-hover;
+            }
+
+            #{$b}__field:focus ~ & {
+                border-top-color: $f-select--outlined__arrow-color-focus;
+            }
+
+            #{$b}__field[disabled] ~ & {
+                border-top-color: $f-common__disabled-color;
+            }
+
+            #{$f-modifier__error} #{$b}__field:hover ~ &,
+            #{$f-modifier__error} #{$b}__field:focus ~ & {
+                border-top-color: $f-common__border-color-error;
+            }
+        }
     }
 }

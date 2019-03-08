@@ -39,6 +39,7 @@
         caret-color: $f-common__text-caret-color;
         font-size: $f-common__text-font-size;
         font-family: inherit;
+        display: block;
 
         &:focus {
             outline: 0; // Focus indicator is handled

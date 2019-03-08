@@ -34,7 +34,7 @@ $f-common__padding-bottom: $f-common__padding-vertical !default;
 $f-common__padding-left: $f-common__padding-horizontal !default;
 
 // Field > Border
-$f-common__border-color: silver !default;
+$f-common__border-color: #a4a8ab !default;
 $f-common__border-color-hover: $f-common__highlight-color !default;
 $f-common__border-color-focus: $f-common__border-color-hover !default;
 $f-common__border-color-error: $f-common__error-color !default;
@@ -49,11 +49,11 @@ $f-common__message-color: gray !default;
 $f-common__message-font-size: 0.8em !default;
 
 // Disabled
-$f-common__disabled-color: silver !default;
-$f-common__disabled-border-color: gainsboro !default;
+$f-common__disabled-color: #767676 !default;
+$f-common__disabled-border-color: #ccc !default;
 
 // Indicator
-$f-common__indicator-color: silver !default;
+$f-common__indicator-color: $f-common__border-color !default;
 $f-common__indicator-color-hover: $f-common__highlight-color !default;
 $f-common__indicator-color-focus: $f-common__indicator-color-hover !default;
 $f-common__indicator-required-size: 1em !default;

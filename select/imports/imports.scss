@@ -5,15 +5,3 @@
 
 // Imports
 @import './../../common/core/all';
-
-// Arrow
-$f-select__arrow-type: 'chevron' !default; // chevron / triangle
-$f-select__arrow-thickness: 2px !default;
-$f-select__arrow-size: 0.5em !default;
-$f-select__arrow-color: grey !default;
-$f-select__arrow-color-hover: $f-common__highlight-color !default;
-$f-select__arrow-color-focus: $f-select__arrow-color-hover !default;
-
-// Field
-// This padding stops the input moving underneath the arrow
-$f-select__field-padding-right: $f-common__padding-horizontal * 3 !default;

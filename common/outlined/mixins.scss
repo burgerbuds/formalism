@@ -24,7 +24,6 @@
         }
 
         &[disabled] {
-            // cursor: not-allowed;
             border-color: $f-common__disabled-border-color;
         }
 
@@ -87,11 +86,13 @@
 @mixin f-outlined-label-text($b) {
     #{$b}__label-text {
         display: block;
+        position: relative;
 
         // Interactions
-        transform-origin: top left;
         transition: transition(transform), transition(color);
         will-change: transform, color;
+        transform-origin: center left;
+        transform: scale(1) translateY(0);
 
         // Label background line mask
         &:before {

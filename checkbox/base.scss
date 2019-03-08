@@ -66,7 +66,7 @@
             transform-origin: top left;
             visibility: hidden;
             transition: transition(color);
-            will-change: color;
+            will-change: color, width, height;
 
             // Borders
             border-right: $f-checkbox__border-width solid currentColor;
@@ -84,14 +84,14 @@
 
             // Tick > Checked
             #{$b}__field:checked + & {
+                // TODO: Fix this animation on IE
                 animation: check $f-checkbox__transition-duration forwards;
                 visibility: visible;
-                will-change: width, height;
             }
 
             // Tickbox > Disabled
             #{$b}__field:disabled + & {
-                color: $f-common__disabled-color;
+                color: $f-common__disabled-border-color;
             }
         }
 
@@ -113,7 +113,7 @@
 
             // Tickbox > Disabled
             #{$b}__field:disabled + & {
-                color: $f-common__disabled-color;
+                color: $f-checkbox__border-color-disabled;
             }
         }
 

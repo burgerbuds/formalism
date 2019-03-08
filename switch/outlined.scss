@@ -28,11 +28,6 @@ $f-switch--outlined__switchbox-color-switched: $f-common__highlight-color !defau
     $switch: $b + '__label:after';
     $switchbox: $b + '__label:before';
 
-    #{$switch} {
-        // box-shadow: inset 0 0 0 4px white;
-        // background-color: currentColor;
-    }
-
     // Not error + not disabled fields
     &:not(#{$f-modifier__error}) {
         #{$b}__field:not(:disabled) {
@@ -45,11 +40,6 @@ $f-switch--outlined__switchbox-color-switched: $f-common__highlight-color !defau
                         $f-common__transition-timing,
                     transform 0.1s;
                 will-change: color, transform;
-            }
-
-            // Switch > Hover
-            &:hover + #{$switch} {
-                // background-color: $f-switch--outlined__switch-bg-color-focus;
             }
 
             // Switch > Focus

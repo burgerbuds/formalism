@@ -10,7 +10,9 @@
 // Theme
 .f-file--outlined {
     $b: '.f-file';
-    @include f-outlined-field($b);
+    @include f-outlined-field($b) {
+        appearance: none;
+    }
 
     @include f-outlined-label($b) {
         top: 0;

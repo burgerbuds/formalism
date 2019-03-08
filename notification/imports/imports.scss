@@ -7,8 +7,9 @@
 @import './../../common/core/all';
 
 // Variables
-$f-notification__border-width: 2 * $f-common__border-width !default;
+$f-notification__border-width: $f-common__border-width !default;
 $f-notification__border-color: $f-common__border-color !default;
 
+// Modifiers
 $f-notification__error-modifier: 'alert';
 $f-notification__success-modifier: 'success';

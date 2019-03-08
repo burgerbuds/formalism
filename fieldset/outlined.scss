@@ -8,10 +8,10 @@
 @import './../common/outlined/all';
 
 // Padding
-$f-fieldset--outlined__padding-left: 1em !default;
+$f-fieldset--outlined__padding-left: 2em !default;
 $f-fieldset--outlined__padding-right: $f-fieldset--outlined__padding-left !default;
-$f-fieldset--outlined__padding-top: 1.75em !default;
-$f-fieldset--outlined__padding-bottom: 1.25em !default;
+$f-fieldset--outlined__padding-top: 2.75em !default;
+$f-fieldset--outlined__padding-bottom: 2em !default;
 
 // Borders
 $f-fieldset--outlined__border-width: $f-common__border-width !default;
@@ -21,16 +21,6 @@ $f-fieldset--outlined__border-radius: $f-outlined__border-radius !default;
 // Theme
 .f-fieldset--outlined {
     $b: '.f-fieldset';
-
-    // #{$b}__indicator--optional {
-    //     line-height: 1 /
-    //         ($f-common__indicator-optional-size / $f-fieldset__label-font-size);
-    // }
-
-    // #{$b}__indicator--required {
-    //     line-height: 1 /
-    //         ($f-common__indicator-required-size / $f-fieldset__label-font-size);
-    // }
 
     #{$b}__label {
         position: absolute;
@@ -69,8 +59,6 @@ $f-fieldset--outlined__border-radius: $f-outlined__border-radius !default;
         padding-bottom: $f-fieldset--outlined__padding-bottom;
         padding-left: $f-fieldset--outlined__padding-left;
         padding-right: $f-fieldset--outlined__padding-right;
-
-        // column-width: attr(data-columns);
     }
 
     // Error > Border colour
