@@ -4,21 +4,21 @@
 // ================================
 
 // Imports
-@import './../common/core/all';
+@import './../common/core';
 
 // Base
 .f-file {
-    $b: #{&};
-    @include f-core-base;
-    @include f-core-inner;
-    @include f-core-field {
+    $block: #{&};
+    @include f-base;
+    @include f-inner;
+    @include f-field {
         &:not(:disabled):hover,
         &:not(:disabled):focus {
             cursor: pointer;
         }
     }
-    @include f-core-label($b);
-    @include f-core-label-text($b);
-    @include f-core-indicator($b);
-    @include f-core-message;
+    @include f-label($block);
+    @include f-label-text($block);
+    @include f-indicator($block);
+    @include f-message;
 }

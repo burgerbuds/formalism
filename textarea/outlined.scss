@@ -4,23 +4,20 @@
 // ================================
 
 // Imports
-@import './imports/imports';
-@import './../common/outlined/all';
+@import './../common/core';
+@import './../common/outlined';
 
 // Theme
 .f-textarea--outlined {
-    $b: '.f-textarea';
-    @include f-outlined-field($b);
-
-    @include f-outlined-label($b) {
-        top: $f-common__padding-top;
-        left: $f-common__padding-left;
-        line-height: $f-textarea__line-height;
+    $block: '.f-textarea';
+    @include fo-field($block);
+    @include fo-label($block) {
+        top: $f-field-padding-top;
+        left: $f-field-padding-left;
     }
-
-    @include f-outlined-label-text($b);
-    @include f-outlined-indicator($b);
-    @include f-outlined-message($b) {
-        margin: $f-outlined__message-margin-inset;
+    @include fo-label-text($block);
+    @include fo-indicator($block);
+    @include fo-message($block) {
+        margin: $fo-message-margin-inset;
     }
 }

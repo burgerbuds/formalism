@@ -4,21 +4,23 @@
 // ================================
 
 // Imports
-@import './imports/imports';
+@import './../common/core';
 
 // Base
 .f-search {
-    $b: #{&};
-    @include f-core-base;
-    @include f-core-inner;
-    @include f-core-field;
-    @include f-core-label($b);
-    @include f-core-label-text($b);
-    @include f-core-indicator($b);
-    @include f-core-message;
+    $block: #{&};
+    @include f-base;
+    @include f-inner;
+    @include f-field;
+    @include f-label($block);
+    @include f-label-text($block);
+    @include f-indicator($block);
+    @include f-message;
 
+    // Button > Disabled
     &__field:disabled ~ &__button {
         pointer-events: none;
+        opacity: 0.3;
     }
 
     // Safari > Fix jumping movement with box-shadow animation;
@@ -27,11 +29,14 @@
     }
 
     // Safari > Removes the magifying glass decoration
+    // taking up space in the left of the field
     ::-webkit-search-decoration {
         -webkit-appearance: none;
     }
 
-    &__field:disabled ~ #{$b}::-webkit-search-cancel-button {
+    // Cancel button > Disabled
+    &__field:disabled ~ #{$block}::-webkit-search-cancel-button {
         opacity: 0.2;
+        filter: saturate(0%);
     }
 }

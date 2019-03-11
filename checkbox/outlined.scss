@@ -4,79 +4,68 @@
 // ================================
 
 // Imports
-@import './imports/imports';
-@import './../common/outlined/all';
-
-// Variables
-$f-checkbox--outlined__tick-color: $f-common__highlight-color !default;
-$f-checkbox--outlined__tick-color-hover: $f-common__highlight-color !default;
-$f-checkbox--outlined__tick-color-focus: $f-checkbox--outlined__tick-color !default;
-$f-checkbox--outlined__tick-color-checked: $f-common__highlight-color !default;
-$f-checkbox--outlined__tick-color-active: $f-common__highlight-color !default;
-
-$f-checkbox--outlined__tickbox-color: $f-common__border-color !default;
-$f-checkbox--outlined__tickbox-color-checked: $f-common__highlight-color !default;
-$f-checkbox--outlined__tickbox-color-hover: $f-checkbox--outlined__tickbox-color-checked !default;
-$f-checkbox--outlined__tickbox-color-focus: $f-checkbox--outlined__tickbox-color-checked !default;
-$f-checkbox--outlined__tickbox-color-active: $f-checkbox--outlined__tickbox-color-checked !default;
+@import './../common/core';
+@import './../common/outlined';
 
 // Theme
 .f-checkbox--outlined {
-    $b: '.f-checkbox';
-    $tick: $b + '__label:after';
-    $tickbox: $b + '__label:before';
+    $block: '.f-checkbox';
+    $check: $block + '__label:after';
+    $box: $block + '__label:before';
+
+    #{$block}__label-text {
+        color: $f-text-color;
+    }
 
     // Not error + not disabled fields
-    &:not(#{$f-modifier__error}) {
-        #{$b}__field:not([disabled]) {
-            // Tick
-            + #{$tick} {
-                color: $f-checkbox--outlined__tick-color;
-            }
+    &:not(#{$f-modifier-error}) #{$block}__field:not(:disabled) {
+        // Tick
+        + #{$check} {
+            color: $f-highlight-color;
+        }
 
-            // Tick > Hover
-            &:hover + #{$tick} {
-                color: $f-checkbox--outlined__tick-color-hover;
-            }
+        // Tick > Hover
+        &:hover + #{$check} {
+            color: $f-highlight-color;
+        }
 
-            // Tick > Focus
-            &:focus + #{$tick} {
-                color: $f-checkbox--outlined__tick-color-focus;
-            }
+        // Tick > Focus
+        &:focus + #{$check} {
+            color: $f-highlight-color;
+        }
 
-            // Tick > Active
-            &:active + #{$tick} {
-                color: $f-checkbox--outlined__tick-color-active;
-            }
+        // Tick > Active
+        &:active + #{$check} {
+            color: $f-highlight-color;
+        }
 
-            // Tickbox
-            + #{$tickbox} {
-                color: $f-checkbox--outlined__tickbox-color;
-            }
+        // Box
+        + #{$box} {
+            color: $f-border-color;
+        }
 
-            // Tickbox > Hover
-            &:hover + #{$tickbox} {
-                color: $f-checkbox--outlined__tickbox-color-hover;
-            }
+        // Box > Hover
+        &:hover + #{$box} {
+            color: $f-border-color-hover;
+        }
 
-            // Tickbox > Focus
-            &:focus + #{$tickbox} {
-                color: $f-checkbox--outlined__tickbox-color-focus;
-            }
+        // Box > Focus
+        &:focus + #{$box} {
+            color: $f-border-color-focus;
+        }
 
-            // Tickbox > Checked
-            &:checked + #{$tickbox} {
-                color: $f-checkbox--outlined__tickbox-color-checked;
-            }
+        // Box > Checked
+        &:checked + #{$box} {
+            color: $f-highlight-color;
+        }
 
-            // Tickbox > Active
-            &:active + #{$tickbox} {
-                color: $f-checkbox--outlined__tickbox-color-active;
-            }
+        // Box > Active
+        &:active + #{$box} {
+            color: $f-highlight-color;
         }
     }
 
-    @include f-outlined-message($b) {
-        margin: $f-outlined__message-margin;
+    @include fo-message($block) {
+        margin: $fo-message-margin;
     }
 }

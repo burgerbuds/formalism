@@ -4,27 +4,38 @@
 // ================================
 
 // Imports
-@import './imports/imports';
+@import './../common/core';
 
 // Variables
-$f-fieldset--naked__top-spacing: 1em !default;
-$f-fieldset--naked__bottom-spacing: 1em !default;
+$fn-fieldset--top-spacing: 1.5em !default;
+
+// Messages > Variables
+$fn-fieldset--message-margin: 1.5em 0 0 0 !default;
 
 // Theme
 .f-fieldset--naked {
-    $b: '.f-fieldset';
+    $block: '.f-fieldset';
+    $error: '.has-error-fieldset';
 
-    #{$b}__label {
+    #{$block}__inner {
+        margin-top: $fn-fieldset--top-spacing;
+    }
+
+    #{$block}__label {
         display: block;
     }
 
-    #{$b}__inner {
-        margin-top: $f-fieldset--naked__top-spacing;
-        margin-bottom: $f-fieldset--naked__bottom-spacing;
+    // Label text
+    #{$block}__label-text {
+        color: $f-text-color;
     }
 
-    // Error > Label text colours
-    &#{$f-fieldset__modifier-error} #{$b}__label #{$b}__label-text {
-        color: $f-common__error-color;
+    // Label text > Error
+    &#{$error} #{$block}__label #{$block}__label-text {
+        color: $f-error-color;
+    }
+
+    #{$block}__message {
+        margin: $fn-fieldset--message-margin;
     }
 }

@@ -4,13 +4,30 @@
 // ================================
 
 // Imports
-@import './imports/imports';
+@import './../common/core';
+
+// General > Variables
+$f-checkbox--size: 1em !default;
+$f-checkbox--spacing: 0.75em !default;
+$f-checkbox--transition-duration: $f-transition-duration * 1.5 !default;
+$f-checkbox--has-animation: true !default;
+
+// Check > Variables
+$f-checkbox--tick-position: -0.25em, 0em !default; // translate(x, y) fine tuning
+
+// Checkbox > Variables
+$f-checkbox--border-radius: 0.15em !default;
+$f-checkbox--border-width: $f-border-width * 2 !default;
+
+// Label > Variables
+$f-checkbox--label-font-size: 1em !default;
+$f-checkbox--label-line-height: 1 !default;
 
 // Base
 .f-checkbox {
-    $b: #{&};
+    $block: #{&};
 
-    @include f-core-base;
+    @include f-base;
 
     &__inner {
         display: inline-flex;
@@ -23,9 +40,9 @@
         position: absolute;
     }
 
-    @include f-core-label($b) {
-        $tick: '&:after';
-        $tickbox: '&:before';
+    @include f-label($block) {
+        $check: '&:after';
+        $box: '&:before';
 
         & {
             color: inherit;
@@ -37,31 +54,15 @@
             will-change: color;
         }
 
-        // The label text
-        #{$b}__label-text {
-            color: $f-checkbox__label-color;
-
-            // Checked label colour
-            #{$b}__field:hover + & {
-                color: $f-checkbox__label-hover;
-            }
-
-            // Checked label colour
-            #{$b}__field:checked + & {
-                color: $f-checkbox__label-checked;
-            }
-        }
-
-        #{$tick},
-        #{$tickbox} {
+        #{$check},
+        #{$box} {
             content: '';
             display: block;
-            font-size: $f-checkbox__size;
+            font-size: $f-checkbox--size;
         }
 
-        // Tick
-        #{$tick} {
-            transform: scaleX(-1) translate($f-checkbox__tick-position)
+        #{$check} {
+            transform: scaleX(-1) translate($f-checkbox--tick-position)
                 rotate(135deg);
             transform-origin: top left;
             visibility: hidden;
@@ -69,36 +70,41 @@
             will-change: color, width, height;
 
             // Borders
-            border-right: $f-checkbox__border-width solid currentColor;
-            border-top: $f-checkbox__border-width solid currentColor;
+            border-right: $f-checkbox--border-width solid currentColor;
+            border-top: $f-checkbox--border-width solid currentColor;
 
             // Positioning
             position: absolute;
             left: 0;
             top: 50%;
 
-            // Tick > Error
-            #{$f-modifier__error} #{$b}__field:not([disabled]) + & {
-                color: $f-common__error-color;
+            // Check > Error
+            #{$f-modifier-error} #{$block}__field:not(:disabled) + & {
+                color: $f-error-color;
             }
 
-            // Tick > Checked
-            #{$b}__field:checked + & {
+            // Check > Checked
+            #{$block}__field:checked + & {
                 // TODO: Fix this animation on IE
-                animation: check $f-checkbox__transition-duration forwards;
                 visibility: visible;
+                @if ($f-checkbox--has-animation) {
+                    animation: check $f-checkbox--transition-duration forwards;
+                } @else {
+                    height: 0.7em;
+                    width: 0.35em;
+                }
             }
 
-            // Tickbox > Disabled
-            #{$b}__field:disabled + & {
-                color: $f-common__disabled-border-color;
+            // Checkbox > Disabled
+            #{$block}__field:disabled + & {
+                color: $f-border-color-disabled;
             }
         }
 
-        #{$tickbox} {
-            border: $f-checkbox__border-width solid currentColor;
-            border-radius: $f-checkbox__box-radius;
-            margin-right: $f-checkbox__spacing;
+        #{$box} {
+            border: $f-checkbox--border-width solid currentColor;
+            border-radius: $f-checkbox--border-radius;
+            margin-right: $f-checkbox--spacing;
             width: 1.2em;
             height: 1.2em;
             display: block;
@@ -106,14 +112,14 @@
             will-change: color;
             flex-shrink: 0;
 
-            // Tickbox > Error
-            #{$f-modifier__error} #{$b}__field:not([disabled]) + & {
-                color: $f-common__error-color;
+            // Checkbox > Error
+            #{$f-modifier-error} #{$block}__field:not(:disabled) + & {
+                color: $f-error-color;
             }
 
-            // Tickbox > Disabled
-            #{$b}__field:disabled + & {
-                color: $f-checkbox__border-color-disabled;
+            // Checkbox > Disabled
+            #{$block}__field:disabled + & {
+                color: $f-border-color-disabled;
             }
         }
 
@@ -136,11 +142,11 @@
         }
     }
 
-    @include f-core-label-text($b) {
-        font-size: $f-checkbox__label-font-size;
-        line-height: $f-checkbox__label-line-height;
+    @include f-label-text($block) {
+        font-size: $f-checkbox--label-font-size;
+        line-height: $f-checkbox--label-line-height;
     }
 
-    @include f-core-indicator($b);
-    @include f-core-message;
+    @include f-indicator($block);
+    @include f-message;
 }

@@ -1,0 +1,318 @@
+// ================================
+// Core Variables - Customizable
+// Common variables throughout all theme types
+// Additional variables are available in the theme files
+// ================================
+
+// Base size
+$f-base-size: inherit !default;
+
+// Highlights
+$f-highlight-color: #A42CF9 !default;
+
+// Field
+$f-bg-color: white !default;
+
+// Text
+$f-text-font-size: 1em !default;
+$f-text-color-disabled: red;
+$f-text-color: inherit !default;
+$f-text-caret-color: $f-highlight-color !default;
+
+// Labels
+$f-label-color: gray !default;
+$f-label-color-hover: $f-highlight-color !default;
+$f-label-color-focus: $f-highlight-color !default;
+$f-label-color-filled: $f-text-color;
+
+// States
+$f-error-color: #E91E63 !default;
+$f-success-color: #CDDC39 !default;
+$f-disabled-color: #767676 !default;
+
+// Field > Padding
+$f-field-padding-vertical: 1.1em !default;
+$f-field-padding-horizontal: 0.9em !default;
+
+// Field > Padding > Fine tuning
+$f-field-padding-top: $f-field-padding-vertical !default;
+$f-field-padding-right: $f-field-padding-horizontal !default;
+$f-field-padding-bottom: $f-field-padding-vertical !default;
+$f-field-padding-left: $f-field-padding-horizontal !default;
+
+// Field > Border
+$f-border-color: #A4A8AB !default;
+$f-border-color-hover: $f-highlight-color !default;
+$f-border-color-focus: $f-border-color-hover !default;
+$f-border-color-active: $f-highlight-color !default;
+$f-border-color-error: $f-error-color !default;
+$f-border-color-success: $f-success-color !default;
+$f-border-color-disabled: #DAE0E4 !default;
+$f-border-width: 1px !default;
+$f-border-width-focus: 2px !default;
+// $f-border-width-active: 1px !default; // TODO
+$f-border-width-error: 2px !default;
+$f-border-width-success: 2px !default;
+
+// Messages
+$f-message-color: gray !default;
+$f-message-font-size: 0.9em !default;
+
+// Indicator
+$f-indicator-color: $f-border-color !default;
+$f-indicator-color-hover: $f-highlight-color !default;
+$f-indicator-color-focus: $f-indicator-color-hover !default;
+$f-indicator-required-size: 1em !default;
+$f-indicator-optional-size: 0.5em !default;
+
+// Transitions
+$f-transition-duration: 0.2s !default;
+$f-transition-timing: cubic-bezier(0.51, 0.92, 0.24, 1) !default;
+
+// Selectors
+$f-modifier-filled: '.is-filled' !default;
+$f-modifier-error: '.has-error' !default;
+
+// Selections
+$f-selection-color: white !default;
+$f-selection-bg: $f-highlight-color !default;
+
+// Settings
+$f-hide-instructions-when-error: true !default;
+
+// ================================
+// Core mixins
+// Initial element structure
+// ================================
+
+// Element root
+@mixin f-base {
+    position: relative;
+    font-size: $f-base-size;
+    text-align: left;
+
+    // Prefers reduced motion user setting
+    @media screen and (prefers-reduced-motion) {
+        html & *,
+        html & *:before,
+        html & *:after {
+            transition: none !important;
+            animation: none !important;
+        }
+    }
+
+    @content;
+}
+
+// Inner wrapping element
+@mixin f-inner {
+    &__inner {
+        display: block;
+        position: relative;
+        @content;
+    }
+}
+
+// Form field
+@mixin f-field {
+    &__field {
+        color: $f-text-color;
+        padding: $f-field-padding-top $f-field-padding-right
+            $f-field-padding-bottom $f-field-padding-left;
+        width: 100%;
+        border: 0;
+        caret-color: $f-text-caret-color;
+        font-size: $f-text-font-size;
+        font-family: inherit;
+        display: block;
+
+        // Field > Focus
+        &:focus {
+            outline: 0;
+        }
+
+        // Field > Disabled
+        &:disabled {
+            color: $f-text-color-disabled;
+            cursor: not-allowed;
+        }
+
+        // Caret > Error
+        #{$f-modifier-error} & {
+            caret-color: $f-error-color;
+        }
+
+        // Selection colors
+        &::-moz-selection {
+            color: $f-selection-color;
+            background: $f-selection-bg;
+            text-shadow: none;
+        }
+
+        &::selection {
+            color: $f-selection-color;
+            background: $f-selection-bg;
+            text-shadow: none;
+        }
+
+        // Selection colors > Error
+        #{$f-modifier-error} &::-moz-selection {
+            color: $f-selection-color;
+            background: $f-error-color;
+            text-shadow: none;
+        }
+
+        // Selection colors > Error
+        #{$f-modifier-error} &::selection {
+            color: $f-selection-color;
+            background: $f-error-color;
+            text-shadow: none;
+        }
+
+        // Selection colors > Disabled
+        &:disabled::-moz-selection {
+            color: $f-selection-color;
+            background: $f-disabled-color;
+            text-shadow: none;
+        }
+
+        // Selection colors > Disabled
+        &:disabled::selection {
+            color: $f-selection-color;
+            background: $f-disabled-color;
+            text-shadow: none;
+        }
+
+        // Autofill colors
+        &:-webkit-autofill {
+            -webkit-text-fill-color: $f-text-color !important;
+        }
+
+        @content;
+    }
+}
+
+// Field label (not the label element)
+@mixin f-label($block) {
+    &__label {
+        user-select: none;
+        font-size: $f-text-font-size;
+
+        // Label > Not disabled
+        #{$block}__field:not(:disabled) + & {
+            cursor: pointer;
+        }
+
+        // Label > Disabled
+        #{$block}__field:disabled + & {
+            cursor: not-allowed;
+        }
+
+        @content;
+    }
+}
+
+// Field label text
+@mixin f-label-text($block) {
+    &__label-text {
+        color: $f-label-color;
+
+        // Label text > Disabled
+        #{$block}__field:disabled + #{$block}__label & {
+            color: $f-disabled-color;
+        }
+
+        @content;
+    }
+}
+
+// Required or optional indicator
+@mixin f-indicator($block) {
+    &__indicator {
+        pointer-events: none;
+        user-select: none;
+        color: $f-indicator-color;
+
+        &--optional {
+            font-size: $f-indicator-optional-size;
+        }
+
+        &--required {
+            font-size: $f-indicator-required-size;
+        }
+
+        // Indicator > Error on hover/focus
+        #{$f-modifier-error} #{$block}__field:hover ~ &,
+        #{$f-modifier-error} #{$block}__field:focus ~ & {
+            color: $f-error-color !important;
+        }
+
+        // Indicator > Disabled
+        #{$block}__field:disabled ~ & {
+            color: $f-disabled-color;
+        }
+
+        @content;
+    }
+}
+
+// Message instructions or error
+@mixin f-message {
+    &__message {
+        font-size: $f-message-font-size;
+
+        &--instruction {
+            color: $f-message-color;
+        }
+
+        &--error {
+            color: $f-error-color;
+
+            // Error > Custom selection colors (important required)
+            #{$f-modifier-error} &::-moz-selection {
+                color: $f-selection-color;
+                background: $f-error-color !important;
+                text-shadow: none;
+            }
+
+            #{$f-modifier-error} &::selection {
+                color: $f-selection-color !important;
+                background: $f-error-color !important;
+                text-shadow: none;
+            }
+        }
+
+        // Hide the instructions if there's an error
+        @if ($f-hide-instructions-when-error) {
+            &--error + &--instruction {
+                display: none;
+            }
+        }
+
+        @content;
+    }
+}
+
+// Helpers
+
+// Usage: transition: transition(transform);
+@function transition($property) {
+    @return $property $f-transition-duration
+        $f-transition-timing;
+}
+
+/// Replace `$search` with `$replace` in `$string`
+/// @author Hugo Giraudel
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function str-replace($string, $search, $replace: '') {
+    $index: str-index($string, $search);
+
+    @if $index {
+      @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+
+    @return $string;
+  }

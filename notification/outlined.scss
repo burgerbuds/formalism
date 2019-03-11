@@ -4,63 +4,44 @@
 // ================================
 
 // Imports
-@import './imports/imports';
-@import './../common/outlined/all';
+@import './../common/core';
+@import './../common/outlined';
 
-// Box > Padding
-$f-notification__padding-top: $f-common__padding-top !default;
-$f-notification__padding-right: $f-common__padding-right !default;
-$f-notification__padding-bottom: $f-common__padding-bottom !default;
-$f-notification__padding-left: $f-common__padding-left * 2 !default;
+// Border
+$f-border-width: $f-border-width * 2 !default;
 
-$f-notification__border-width: 2 * $f-common__border-width !default;
-
-// Box > Borders
-$f-notification__border-color-error: $f-common__border-color-error !default;
-$f-notification__border-color-success: $f-common__border-color-success !default;
-
-// Box > Background
-$f-notification__bg-color-error: rgba(
-    $f-notification__border-color-error,
+// Background
+$fo-notification__bg-color-error: rgba(
+    $f-border-color-error,
     0.1
 ) !default;
-$f-notification__bg-color-success: rgba(
-    $f-notification__border-color-success,
+$fo-notification__bg-color-success: rgba(
+    $f-border-color-success,
     0.1
 ) !default;
-
-// Box > Text color
-$f-notification__text-color-success: inherit !default;
-$f-notification__text-color-error: inherit !default;
-
-// Non configurable modifiers
-$f-notification__error-modifier: 'error';
-$f-notification__success-modifier: 'success';
 
 // Outlined
 .f-notification--outlined {
-    $b: '.f-notification';
-    $error-selector: '#{$b}--#{$f-notification__error-modifier}';
-    $success-selector: '#{$b}--#{$f-notification__success-modifier}';
+    $block: '.f-notification';
+    $error: $block + '--error';
+    $success: $block + '--success';
 
-    #{$b}__inner {
-        border: $f-notification__border-width solid
-            $f-notification__border-color;
-        border-radius: $f-outlined__border-radius;
-        padding: $f-notification__padding-top $f-notification__padding-right
-            $f-notification__padding-bottom $f-notification__padding-left;
-        box-shadow: inset 0 0 0 $f-notification__border-width #fff;
+    #{$block}__inner {
+        border: $f-border-width solid
+            $f-border-color;
+        border-radius: $fo-border-radius;
+        padding: $f-field-padding-top $f-field-padding-right
+            $f-field-padding-bottom $f-field-padding-left;
+        box-shadow: inset 0 0 0 $f-border-width #fff;
     }
 
-    &#{$error-selector} #{$b}__inner {
-        border-color: $f-notification__border-color-error;
-        background-color: $f-notification__bg-color-error;
-        color: $f-notification__text-color-error;
+    &#{$error} #{$block}__inner {
+        border-color: $f-border-color-error;
+        background-color: $fo-notification__bg-color-error;
     }
 
-    &#{$success-selector} #{$b}__inner {
-        border-color: $f-notification__border-color-success;
-        background-color: $f-notification__bg-color-success;
-        color: $f-notification__text-color-success;
+    &#{$success} #{$block}__inner {
+        border-color: $f-border-color-success;
+        background-color: $fo-notification__bg-color-success;
     }
 }

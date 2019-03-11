@@ -4,65 +4,57 @@
 // ================================
 
 // Imports
-@import './../common/core/all';
+@import './../common/core';
 
-// Background
-$f-underlined-bg-color: white !default;
+// Indicator > Variables
+$fu-input--optional-top: 0 !default;
+$fu-input--optional-right: 0 !default;
+$fu-input--required-top: 0 !default;
+$fu-input--required-right: 0 !default;
 
-// Labels
-$f-underlined-label-scale: 0.8 !default;
-$f-underlined-label-color-filled: inherit !default;
-
-// Indicator
-$f-underlined-indicator-optional-top: 0 !default;
-$f-underlined-indicator-optional-right: 0 !default;
-$f-underlined-indicator-required-top: 0 !default;
-$f-underlined-indicator-required-right: 0 !default;
-
-// Messages
-$f-underlined-message-margin: 0.5em 0 0 0 !default;
+// Messages > Variables
+$fu-input--message-margin: 0.5em 0 0 0 !default;
 
 // Theme
 .f-input--underlined {
-    $b: '.f-input';
+    $block: '.f-input';
 
-    #{$b}__field {
-        color: $f-common__text-color;
-        background-color: $f-underlined-bg-color;
-        border-bottom: $f-common__border-width solid $f-common__border-color;
-        transition: border-color $f-common__transition-duration
-            $f-common__transition-timing;
+    #{$block}__field {
+        color: $f-text-color;
+        background-color: $f-bg-color;
+        border-bottom: $f-border-width solid $f-border-color;
+        transition: transition(border-color);
         will-change: border-color;
-        padding: $f-common__padding-top 0 $f-common__padding-bottom 0;
+        padding: $f-field-padding-top 0 $f-field-padding-bottom 0;
 
         &:hover {
-            border-color: $f-common__border-color-hover;
+            border-color: $f-border-color-hover;
         }
 
         &:focus {
-            border-color: $f-common__border-color-focus;
+            border-color: $f-border-color-focus;
         }
 
-        &[disabled] {
-            // cursor: not-allowed;
-            border-color: $f-common__disabled-border-color;
+        &:disabled {
+            border-color: $f-border-color-disabled;
         }
 
         // Webkit focus
         &:-webkit-autofill:focus,
         &:-webkit-autofill:active {
-            -webkit-box-shadow: inset 0 0 0 10em $f-underlined-bg-color !important;
+            -webkit-box-shadow: inset 0 0 0 10em $f-bg-color !important;
         }
     }
 
-    // Error colours
-    &#{$f-modifier__error} #{$b}__field,
-    &#{$f-modifier__error} #{$b}__field:hover,
-    &#{$f-modifier__error} #{$b}__field:focus {
-        border-color: $f-common__border-color-error;
+    // Error colors
+    &#{$f-modifier-error} #{$block}__field,
+    &#{$f-modifier-error} #{$block}__field:hover,
+    &#{$f-modifier-error} #{$block}__field:focus {
+        border-color: $f-border-color-error;
     }
 
-    #{$b}__label {
+    // Label
+    #{$block}__label {
         position: absolute;
         display: flex;
         align-items: center;
@@ -73,14 +65,20 @@ $f-underlined-message-margin: 0.5em 0 0 0 !default;
         left: 0;
     }
 
-    // Label > Focus movement
-    #{$b}__field#{$f-modifier__filled} + #{$b}__label {
+    // Label > Focus
+    #{$block}__field:focus + #{$block}__label {
         opacity: 0;
     }
 
-    #{$b}__label-text {
+    // Label > Filled
+    #{$block}__field#{$f-modifier-filled} + #{$block}__label {
+        opacity: 0;
+    }
+
+    // Label text
+    #{$block}__label-text {
         display: block;
-        background-color: $f-underlined-bg-color;
+        background-color: $f-bg-color;
         width: 100%;
 
         // Interactions
@@ -88,44 +86,47 @@ $f-underlined-message-margin: 0.5em 0 0 0 !default;
         will-change: color;
     }
 
-    // Hover > Label text
-    #{$b}__field:hover + #{$b}__label #{$b}__label-text {
-        color: $f-common__label-color-hover;
+    // Selector alias > Not error nor disabled
+    $fieldNormal: '&:not(#{$f-modifier-error}) #{$block}__field:not(:disabled)';
+
+    // Label text > Hover
+    #{$fieldNormal}:hover + #{$block}__label #{$block}__label-text {
+        color: $f-label-color-hover;
     }
 
-    // Error > Label text colours
-    &#{$f-modifier__error} #{$b}__field + #{$b}__label #{$b}__label-text {
-        color: $f-common__error-color;
+    // Label text > Error
+    &#{$f-modifier-error} #{$block}__field + #{$block}__label #{$block}__label-text {
+        color: $f-error-color;
     }
 
     // Indicator
-    #{$b}__indicator {
+    #{$block}__indicator {
         position: absolute;
         transition: transition(color);
         will-change: color;
 
         &--optional {
-            top: $f-underlined-indicator-optional-top;
-            right: $f-underlined-indicator-optional-right;
+            top: $fu-input--optional-top;
+            right: $fu-input--optional-right;
         }
 
         &--required {
-            top: $f-underlined-indicator-required-top;
-            right: $f-underlined-indicator-required-right;
+            top: $fu-input--required-top;
+            right: $fu-input--required-right;
         }
     }
 
     // Indicator > hover
-    #{$b}__field:hover ~ #{$b}__indicator {
-        color: $f-common__indicator-color-hover;
+    #{$block}__field:hover ~ #{$block}__indicator {
+        color: $f-indicator-color-hover;
     }
 
     // Indicator > focus
-    #{$b}__field:focus ~ #{$b}__indicator {
-        color: $f-common__indicator-color-focus;
+    #{$block}__field:focus ~ #{$block}__indicator {
+        color: $f-indicator-color-focus;
     }
 
-    #{$b}__message {
-        margin: $f-underlined-message-margin;
+    #{$block}__message {
+        margin: $fu-input--message-margin;
     }
 }

@@ -29,8 +29,8 @@ const settings = {
         'search/base': './search/base.scss',
         'search/outlined': './search/outlined.scss',
 
-        'switch/switch': './switch/base.scss',
-        'switch/outlined': './switch/outlined.scss',
+        'switcher/switcher': './switcher/base.scss',
+        'switcher/outlined': './switcher/outlined.scss',
 
         'fieldset/fieldset': './fieldset/base.scss',
         'fieldset/outlined': './fieldset/outlined.scss',
@@ -38,9 +38,6 @@ const settings = {
 
         'notification/base': './notification/base.scss',
         'notification/outlined': './notification/outlined.scss',
-
-        'switch/base': './switch/base.scss',
-        'switch/outlined': './switch/outlined.scss',
 
         'file/base': './file/base.scss',
         'file/outlined': './file/outlined.scss',

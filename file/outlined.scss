@@ -4,31 +4,32 @@
 // ================================
 
 // Imports
-@import './../common/core/all';
-@import './../common/outlined/all';
+@import './../common/core';
+@import './../common/outlined';
 
 // Theme
 .f-file--outlined {
-    $b: '.f-file';
-    @include f-outlined-field($b) {
+    $block: '.f-file';
+
+    @include fo-field($block) {
         appearance: none;
     }
-
-    @include f-outlined-label($b) {
+    @include fo-label($block) {
         top: 0;
         bottom: 0;
         left: calc(
-            #{$f-common__border-width} + #{$f-common__padding-horizontal}
+            #{$f-border-width} + #{$f-field-padding-left}
         );
-        transform: translateY(-$f-common__padding-top);
+        transform: translateY(-$f-field-padding-top);
     }
-
-    @include f-outlined-label-text($b) {
-        transform: scale($f-outlined__label-scale) translateY(-50%)
-            translateY(floor(-$f-common__border-width/2));
+    @include fo-label-text($block) {
+        transform: translateY(-50%)
+            translateY(floor(-$f-border-width/2))
+            scale($fo-label-scale);
+        color: $f-text-color;
     }
-    @include f-outlined-indicator($b);
-    @include f-outlined-message($b) {
-        margin: $f-outlined__message-margin-inset;
+    @include fo-indicator($block);
+    @include fo-message($block) {
+        margin: $fo-message-margin-inset;
     }
 }

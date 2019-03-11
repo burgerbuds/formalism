@@ -4,93 +4,74 @@
 // ================================
 
 // Imports
-@import './imports/imports';
-@import './../common/outlined/all';
+@import './../common/core';
+@import './../common/outlined';
 
-// TODO: Fix these variable names
+// Button
+$fo-search--button-width-base: 3.5em; // Non-configurable min width
+$fo-search--button-width-additional: 0em !default;
+$fo-search--button-scale-active: .9 !default;
+$fo-search--button-color: $f-border-color !default;
+$fo-search--button-color-hover: $f-highlight-color !default;
+$fo-search--button-color-focus: $f-highlight-color !default;
+$fo-search--button-color-active: $f-highlight-color !default;
 
-// non-configurable min width
-$f-search__button-width-base: 3.5em;
-
-// Default icon
-$f-search__default-icon-size: 3em !default;
-$f-search__default-icon-color: grey !default;
-$f-search__default-icon-color-hover: inherit !default;
-$f-search__default-icon-color-disabled: lightgrey !default;
-$f-search__default-icon-max-height: 50% !default;
-$f-search__default-icon-position: 0em, 0em !default; // translate(x, y) fine tuning
-
-// General
-$f-search__button-additional-width: 0em !default;
-
-$f-search__border-color: $f-common__border-color !default;
-$f-search__border-width: $f-common__border-width !default;
-
-// Label
-$f-search__label-color: $f-common__label-color !default;
-$f-search__label-color-hover: $f-common__label-color-hover !default;
-$f-search__label-color-focus: $f-common__label-color-focus !default;
-
-// Cancel icon
-$f-search__icon-cancel-color: grey;
+// Icons
+$fo-search--icon-size: 3em !default;
+$fo-search--icon-max-height: 45% !default;
+$fo-search--icon-stroke-width: 3px !default;
+$fo-search--icon-position: 0em, 0em !default; // translate(x, y) fine tuning
+$fo-search--cancel-stroke-width: 4px !default;
 
 .f-search {
-    $b: #{&};
+    $block: #{&};
     $button-width: calc(
-        #{$f-search__button-width-base} + #{$f-search__button-additional-width}
+        #{$fo-search--button-width-base} + #{$fo-search--button-width-additional}
     );
 
-    @include f-outlined-field($b) {
+    @include fo-field($block) {
         padding-right: $button-width;
         -webkit-appearance: none;
         appearance: none;
     }
 
-    @include f-outlined-label($b) {
+    @include fo-label($block) {
         top: 0;
         bottom: 0;
         left: calc(
-            #{$f-common__border-width} + #{$f-common__padding-horizontal}
+            #{$f-border-width} + #{$f-field-padding-left}
         );
     }
 
-    @include f-outlined-label-text($b);
+    @include fo-label-text($block);
 
-    #{$b}__button {
-        // reset
+    #{$block}__button {
+        // Reset
         -webkit-appearance: none;
         appearance: none;
         border: 0;
         outline: 0;
-        font-size: $f-common__text-font-size;
+        font-size: $f-text-font-size;
 
-        // alignment
+        // Alignment
         display: flex;
         align-items: center;
         justify-content: center;
 
-        // positioning
+        // Positioning
         position: absolute;
-        top: $f-common__border-width;
-        bottom: $f-common__border-width;
-        right: $f-common__border-width;
+        top: $f-border-width;
+        bottom: $f-border-width;
+        right: $f-border-width;
         padding: 0;
 
         // Misc
-        color: $f-search__label-color;
+        color: $fo-search--button-color;
         background-color: transparent;
         width: $button-width;
-        transition: transition(background-color);
-
-        &--default-icon svg {
-            width: 1em;
-            height: 1em;
-            pointer-events: none;
-            color: $f-search__default-icon-color;
-            max-height: $f-search__default-icon-max-height;
-            font-size: $f-search__default-icon-size;
-            transform: translate($f-search__default-icon-position);
-        }
+        transition: transition(background-color), transition(transform);
+        will-change: background-color, transform;
+        transform-origin: 50%;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
@@ -98,37 +79,72 @@ $f-search__icon-cancel-color: grey;
         }
 
         &:hover {
-            color: $f-search__label-color-hover;
+            color: $fo-search--button-color-hover;
         }
 
         &:focus {
-            color: $f-search__label-color-focus;
+            color: $fo-search--button-color-focus;
         }
 
-        &--default-icon:hover svg {
-            color: $f-search__default-icon-color-hover;
+        &:active {
+            color: $fo-search--button-color-active;
+            transform: translateZ(0) scale(#{$fo-search--button-scale-active});
+        }
+
+        &:disabled {
+            color: $f-disabled-color;
+            user-select: none;
+        }
+
+        &--search-icon svg {
+            width: 1em;
+            height: 1em;
+            pointer-events: none;
+            max-height: $fo-search--icon-max-height;
+            font-size: $fo-search--icon-size;
+            transform: translate($fo-search--icon-position);
+
+            * {
+                stroke-width: $fo-search--icon-stroke-width;
+            }
         }
     }
 
-    #{$b}__field:disabled ~ &__button--default-icon svg {
-        color: $f-search__default-icon-color-disabled;
-    }
-
-    // Webkit > Customise remove text button
+    // Cancel button
+    $button-color: str-replace(#{inspect($fo-search--button-color)}, '#', '%23');
     ::-webkit-search-cancel-button {
         -webkit-appearance: none;
         transform: translateZ(0);
-        height: 1em;
+        height: 1.5em;
         width: 1em;
         cursor: pointer;
-        margin-left: 1em;
-        background: $f-common__background-color
-            url("data:image/svg+xml,%3Csvg viewBox='0 0 27.707 27.707' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='.854' x2='26.854' y1='.854' y2='26.854' stroke='#{$f-search__icon-cancel-color}' stroke-width='3' stroke-miterlimit='10'/%3E%3Cline x1='.854' x2='26.854' y1='26.854' y2='.854' stroke='#{$f-search__icon-cancel-color}' stroke-width='3' stroke-miterlimit='10'/%3E%3C/svg%3E%0A")
+        margin-left: .75em;
+        transition: transition(background-color), transition(transform);
+        will-change: background-color, transform;
+        transform-origin: 50%;
+        background:
+            url("data:image/svg+xml,%3Csvg viewBox='0 0 27.707 27.707' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='.854' x2='26.854' y1='.854' y2='26.854' stroke='#{$button-color}' stroke-width='#{$fo-search--cancel-stroke-width}'/%3E%3Cline x1='.854' x2='26.854' y1='26.854' y2='.854' stroke='#{$button-color}' stroke-width='#{$fo-search--cancel-stroke-width}'/%3E%3C/svg%3E%0A")
             no-repeat 50%;
+        background-size: 90%;
     }
 
-    @include f-outlined-indicator($b);
-    @include f-outlined-message($b) {
-        margin: $f-outlined__message-margin-inset;
+    // Cancel button > Hover
+    $button-color: str-replace(#{inspect($fo-search--button-color-hover)}, '#', '%23');
+    ::-webkit-search-cancel-button:hover {
+        background:
+            url("data:image/svg+xml,%3Csvg viewBox='0 0 27.707 27.707' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='.854' x2='26.854' y1='.854' y2='26.854' stroke='#{$button-color}' stroke-width='#{$fo-search--cancel-stroke-width}'/%3E%3Cline x1='.854' x2='26.854' y1='26.854' y2='.854' stroke='#{$button-color}' stroke-width='#{$fo-search--cancel-stroke-width}'/%3E%3C/svg%3E%0A")
+            no-repeat 50%;
+            background-size: 90%;
+    }
+
+    // Cancel button > Active
+    ::-webkit-search-cancel-button:active {
+        color: $fo-search--button-color-active;
+        transform: translateZ(0) scale(#{$fo-search--button-scale-active});
+    }
+
+    @include fo-indicator($block);
+    @include fo-message($block) {
+        margin: $fo-message-margin-inset;
     }
 }

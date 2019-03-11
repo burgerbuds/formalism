@@ -4,13 +4,20 @@
 // ================================
 
 // Imports
-@import './imports/imports';
+@import './../common/core';
+
+// General
+$f-radio--spacing: 0.5em !default;
+
+// Label
+$f-radio--label-font-size: 1em !default;
+$f-radio--label-line-height: 1 !default;
 
 // Base
 .f-radio {
-    $b: #{&};
+    $block: #{&};
 
-    @include f-core-base;
+    @include f-base;
 
     &__inner {
         display: inline-flex;
@@ -23,7 +30,7 @@
         position: absolute;
     }
 
-    @include f-core-label($b) {
+    @include f-label($block) {
         $inner: '&:after';
         $outer: '&:before';
 
@@ -37,45 +44,27 @@
             will-change: color;
         }
 
-        #{$b}__label-text {
-            color: $f-radio__label-color;
-
-            // Label > Hover
-            #{$b}__field:hover + & {
-                color: $f-radio__label-hover;
-            }
-
-            // Label > Checked
-            #{$b}__field:checked + & {
-                color: $f-radio__label-checked;
-            }
-        }
-
         #{$outer},
         #{$inner} {
             content: '';
             display: block;
-            font-size: $f-radio__size;
             width: 1em;
             height: 1em;
             flex-shrink: 0;
-            border-radius: $f-radio__radius;
-            border: $f-radio__border-thickness solid currentColor;
         }
 
         #{$outer} {
-            color: $f-radio__border-color;
             display: block;
-            margin-right: $f-radio__spacing;
+            margin-right: $f-radio--spacing;
 
             // Outer > Error
-            #{$f-modifier__error} #{$b}__field:not([disabled]) + & {
-                color: $f-common__error-color;
+            #{$f-modifier-error} #{$block}__field:not(:disabled) + & {
+                color: $f-error-color;
             }
 
             // Outer > Disabled
-            #{$b}__field:disabled + & {
-                color: $f-radio__border-color-disabled;
+            #{$block}__field:disabled + & {
+                color: $f-border-color-disabled;
             }
         }
 
@@ -87,29 +76,28 @@
             position: absolute;
 
             // Inner > Error
-            #{$f-modifier__error} #{$b}__field:not([disabled]) + & {
-                color: $f-common__error-color;
+            #{$f-modifier-error} #{$block}__field:not(:disabled) + & {
+                color: $f-error-color;
             }
 
             // Inner > Checked
-            #{$b}__field:checked + & {
-                transform: scale(#{$f-radio__center-scale-checked});
+            #{$block}__field:checked + & {
                 visibility: visible;
             }
 
             // Inner > Disabled
-            #{$b}__field:disabled + & {
-                color: $f-common__disabled-color;
+            #{$block}__field:disabled + & {
+                color: $f-disabled-color;
             }
         }
     }
 
-    @include f-core-label-text($b) {
-        font-size: $f-radio__label-font-size;
-        line-height: $f-radio__label-line-height;
+    @include f-label-text($block) {
+        font-size: $f-radio--label-font-size;
+        line-height: $f-radio--label-line-height;
     }
 
-    @include f-core-indicator($b);
+    @include f-indicator($block);
 
-    @include f-core-message;
+    @include f-message;
 }

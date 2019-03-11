@@ -4,17 +4,17 @@
 // ================================
 
 // Imports
-@import './../common/core/all';
+@import './../common/core';
 
 // Theme base
 // Base styles to give you a prime starting point
 .f-input {
-    $b: #{&};
-    @include f-core-base;
-    @include f-core-inner;
-    @include f-core-field;
-    @include f-core-label($b);
-    @include f-core-label-text($b);
-    @include f-core-indicator($b);
-    @include f-core-message;
+    $block: #{&};
+    @include f-base;
+    @include f-inner;
+    @include f-field;
+    @include f-label($block);
+    @include f-label-text($block);
+    @include f-indicator($block);
+    @include f-message;
 }

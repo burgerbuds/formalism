@@ -4,10 +4,9 @@
 // ================================
 
 // Imports
-@import './imports/imports';
+@import './../common/core';
 
 // Base
 .f-notification {
-    $b: #{&};
-    @include f-core-base;
+    @include f-base;
 }

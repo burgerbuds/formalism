@@ -4,23 +4,25 @@
 // ================================
 
 // Variables, mixins, and functions
-@import './imports/imports';
+@import './../common/core';
+
+// General
+$f-textarea--line-height: 1.5 !default;
+$f-textarea--max-height: 500px !default;
 
 // Base
 .f-textarea {
-    $b: #{&};
-    @include f-core-base;
-    @include f-core-inner;
-
-    @include f-core-field {
-        line-height: $f-textarea__line-height;
+    $block: #{&};
+    @include f-base;
+    @include f-inner;
+    @include f-field {
         display: block;
         resize: vertical;
-        max-height: $f-textarea__max-height;
+        line-height: $f-textarea--line-height;
+        max-height: $f-textarea--max-height;
     }
-
-    @include f-core-label($b);
-    @include f-core-label-text($b);
-    @include f-core-indicator($b);
-    @include f-core-message;
+    @include f-label($block);
+    @include f-label-text($block);
+    @include f-indicator($block);
+    @include f-message;
 }

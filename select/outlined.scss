@@ -4,114 +4,110 @@
 // ================================
 
 // Imports
-@import './imports/imports';
-@import './../common/outlined/all';
-
-// TODO: Make down arrow act like search button so we can specify width
+@import './../common/core';
+@import './../common/outlined';
 
 // Arrow
-$f-outlined--select__arrow-type: 'chevron' !default; // chevron / triangle
-$f-outlined--select__arrow-thickness: 2px !default;
-$f-select--outlined__arrow-size: 0.5em !default;
-$f-select--outlined__arrow-color: grey !default;
-$f-select--outlined__arrow-color-hover: $f-common__highlight-color !default;
-$f-select--outlined__arrow-color-focus: $f-select--outlined__arrow-color-hover !default;
+$fo-select--arrow-type: 'chevron' !default; // chevron / triangle
+$fo-select--arrow-thickness: .1em !default;
+$fo-select--arrow-size: 0.5em !default;
+$fo-select--arrow-color: grey !default;
+$fo-select--arrow-color-hover: $f-highlight-color !default;
+$fo-select--arrow-color-focus: $fo-select--arrow-color-hover !default;
 
 // Field
-// This padding stops the input moving underneath the arrow
-$f-select--outlined__field-padding-right: $f-common__padding-horizontal * 3 !default;
+$fo-select--field-padding-right: $f-field-padding-right * 3 !default;
 
 // Theme
 .f-select--outlined {
-    $b: '.f-select';
-    @include f-outlined-field($b) {
-        padding-right: $f-select--outlined__field-padding-right;
+    $block: '.f-select';
+    @include fo-field($block) {
+        padding-right: $fo-select--field-padding-right;
     }
 
-    @include f-outlined-label($b) {
+    @include fo-label($block) {
         top: 0;
         bottom: 0;
-        left: $f-common__padding-horizontal;
+        left: $f-field-padding-left;
     }
 
-    @include f-outlined-label-text($b);
-    @include f-outlined-indicator($b);
-    @include f-outlined-message($b) {
-        margin: $f-outlined__message-margin-inset;
+    @include fo-label-text($block);
+    @include fo-indicator($block);
+    @include fo-message($block) {
+        margin: $fo-message-margin-inset;
     }
 
-    // Down arrow
-    #{$b}__arrow:after {
+    // Arrow
+    #{$block}__arrow:after {
         content: '';
         position: absolute;
         top: 50%;
         transform-origin: center right;
         pointer-events: none;
         transition: transition(border-color);
+        right: calc(#{$fo-select--field-padding-right / 2} + #{$fo-select--arrow-size/2});
     }
 
     // Down arrows
-    @if ($f-outlined--select__arrow-type == 'chevron') {
+    @if ($fo-select--arrow-type == 'chevron') {
         // Open chevron arrow
-        #{$b}__arrow:after {
-            right: $f-common__padding-horizontal * 1.25;
+        #{$block}__arrow:after {
             transform: translateY(-50%) rotate(45deg);
+            width: $fo-select--arrow-size;
+            height: $fo-select--arrow-size;
+            display: block;
             border-style: solid;
             border-width: 0
-                $f-outlined--select__arrow-thickness
-                $f-outlined--select__arrow-thickness
+                $fo-select--arrow-thickness
+                $fo-select--arrow-thickness
                 0;
-            width: $f-select--outlined__arrow-size;
-            height: $f-select--outlined__arrow-size;
-            display: block;
-            border-color: $f-select--outlined__arrow-color;
-
-            #{$b}__field:hover ~ & {
-                border-color: red;
-            }
-
-            #{$b}__field:focus ~ & {
-                border-color: $f-select--outlined__arrow-color-focus;
-            }
-
-            #{$b}__field[disabled] ~ & {
-                border-color: $f-common__disabled-color;
-            }
-
-            #{$f-modifier__error} #{$b}__field:hover ~ &,
-            #{$f-modifier__error} #{$b}__field:focus ~ & {
-                border-color: $f-common__border-color-error;
-            }
+            border-color: $fo-select--arrow-color;
         }
-    } @else if ($f-outlined--select__arrow-type == 'triangle') {
+
+        #{$block}__field:hover ~ #{$block}__arrow:after {
+            border-color: $fo-select--arrow-color-hover;
+        }
+
+        #{$block}__field:focus ~ #{$block}__arrow:after {
+            border-color: $fo-select--arrow-color-focus;
+        }
+
+        #{$block}__field:disabled ~ #{$block}__arrow:after {
+            border-color: $f-disabled-color;
+        }
+
+        &#{$f-modifier-error} #{$block}__field:hover ~ #{$block}__arrow:after,
+        &#{$f-modifier-error} #{$block}__field:focus ~ #{$block}__arrow:after {
+            border-color: $f-border-color-error;
+        }
+    } @else if ($fo-select--arrow-type == 'triangle') {
         // Solid triangle arrow
-        #{$b}__arrow:after {
-            right: $f-common__padding-horizontal;
+        #{$block}__arrow:after {
             width: 0;
             height: 0;
-            border-left: $f-select--outlined__arrow-size/1.5 solid transparent;
-            border-right: $f-select--outlined__arrow-size/1.5 solid transparent;
-            border-top: $f-select--outlined__arrow-size/1.5
-                solid
-                $f-select--outlined__arrow-color;
             transform: translateY(-50%);
+            border-left: $fo-select--arrow-size/1.5 solid transparent;
+            border-right: $fo-select--arrow-size/1.5 solid transparent;
+            border-top: $fo-select--arrow-size/1.5
+                solid
+                $fo-select--arrow-color;
+        }
 
-            #{$b}__field:hover ~ & {
-                border-top-color: $f-select--outlined__arrow-color-hover;
-            }
+        #{$block}__field:hover ~ #{$block}__arrow:after {
+            border-top-color: $fo-select--arrow-color-hover;
+        }
 
-            #{$b}__field:focus ~ & {
-                border-top-color: $f-select--outlined__arrow-color-focus;
-            }
+        #{$block}__field:focus ~ #{$block}__arrow:after {
+            border-top-color: $fo-select--arrow-color-focus;
+        }
 
-            #{$b}__field[disabled] ~ & {
-                border-top-color: $f-common__disabled-color;
-            }
+        #{$block}__field:disabled ~ #{$block}__arrow:after {
+            border-top-color: $f-disabled-color;
+        }
 
-            #{$f-modifier__error} #{$b}__field:hover ~ &,
-            #{$f-modifier__error} #{$b}__field:focus ~ & {
-                border-top-color: $f-common__border-color-error;
-            }
+        &#{$f-modifier-error} #{$block}__field:hover ~ #{$block}__arrow:after,
+        &#{$f-modifier-error} #{$block}__field:focus ~ #{$block}__arrow:after {
+            border-top-color: $f-border-color-error;
         }
     }
 }
