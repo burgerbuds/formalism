@@ -56,4 +56,4 @@ const initFormalism = () => {
 
 initFormalism();
 
-export { initFormalism };
+module.exports = { initFormalism };
