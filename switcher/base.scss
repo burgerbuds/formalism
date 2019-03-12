@@ -7,11 +7,7 @@
 @import './../common/core';
 
 // General
-$f-switch--thickness: .1em !default;
-$f-switch--size: 1.15em !default;
 $f-switch--spacing: 0.75em !default;
-$f-switch--field-radius: 10vh !default;
-$f-switch--label-font-size: 1em !default;
 $f-switch--label-line-height: 1 !default;
 
 // Base
@@ -55,15 +51,12 @@ $f-switch--label-line-height: 1 !default;
         #{$switch} {
             content: '';
             display: block;
-            font-size: $f-switch--size;
             color: $f-border-color;
             flex-shrink: 0;
             flex-grow: 0;
         }
 
         #{$switchbox} {
-            border: $f-switch--thickness solid currentColor;
-            border-radius: $f-switch--field-radius;
             margin-right: $f-switch--spacing;
             width: 2em;
             height: 1em;
@@ -85,10 +78,6 @@ $f-switch--label-line-height: 1 !default;
         #{$switch} {
             position: absolute;
             left: 0;
-            width: 1.2em;
-            height: 1.2em;
-            border-radius: 50%;
-            border: $f-switch--thickness solid currentColor;
             transition: transition(color),
                 transform 0.1s;
             will-change: color, transform;
@@ -107,7 +96,6 @@ $f-switch--label-line-height: 1 !default;
     }
 
     @include f-label-text($block) {
-        font-size: $f-switch--label-font-size;
         line-height: $f-switch--label-line-height;
     }
 

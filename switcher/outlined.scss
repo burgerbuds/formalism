@@ -7,14 +7,48 @@
 @import './../common/core';
 @import './../common/outlined';
 
+// General
+$fo-switch--border-width: .1em !default;
+$fo-switch--size: 1.15em !default;
+$fo-switch--field-radius: 10vh !default;
+
 // Theme
 .f-switcher--outlined {
     $block: '.f-switcher';
     $switch: $block + '__label:after';
     $switchbox: $block + '__label:before';
 
+    #{$switch},
+    #{$switchbox} {
+        font-size: $fo-switch--size;
+    }
+
     #{$switch} {
-        box-shadow: inset 0 0 0 4px white;
+        background-color: $f-bg-color;
+        width: 1.2em;
+        height: 1.2em;
+        border-radius: 50%;
+        border: $fo-switch--border-width solid currentColor;
+    }
+
+    #{$switchbox} {
+        border: $fo-switch--border-width solid currentColor;
+        border-radius: $fo-switch--field-radius;
+    }
+
+    // Switch > Unchecked > Active
+    #{$block}__field:not(:checked):active + #{$switch} {
+        transform: translateX(-0.2em);
+    }
+
+    // Switch > Checked > Active
+    #{$block}__field:checked:active + #{$switch} {
+        transform: translateX(0.75em + 0.2em);
+    }
+
+    // Switch > Checked
+    #{$block}__field:checked + #{$switch} {
+        transform: translateX(0.75em + 0.1em);
     }
 
     // Not error + not disabled fields
@@ -22,8 +56,7 @@
         // Switch
         & + #{$switch} {
             color: $f-border-color;
-            transition: transition(background-color),
-                transition(color),
+            transition: transition(color),
                 transition(border-color),
                 transform 0.1s;
             will-change: color, transform;
@@ -50,16 +83,6 @@
             transform: translateX(0.75em + 0.1em);
         }
 
-        // Switch > Unchecked > Active
-        &:not(:checked):active + #{$switch} {
-            transform: translateX(-0.2em);
-        }
-
-        // Switch > Checked > Active
-        &:checked:active + #{$switch} {
-            transform: translateX(0.75em + 0.2em);
-        }
-
         // Switchbox
         & + #{$switchbox} {
             color: $f-border-color;
@@ -84,11 +107,6 @@
         &:checked + #{$switchbox} {
             color: $f-highlight-color;
         }
-    }
-
-    // Switch > Checked
-    #{$block}__field:checked + #{$switch} {
-        transform: translateX(0.75em + 0.1em);
     }
 
     @include fo-message($block) {
