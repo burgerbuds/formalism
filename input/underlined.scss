@@ -95,7 +95,10 @@ $fu-input--message-margin: 0.5em 0 0 0 !default;
     }
 
     // Label text > Error
-    &#{$f-modifier-error} #{$block}__field + #{$block}__label #{$block}__label-text {
+    &#{$f-modifier-error}
+        #{$block}__field
+        + #{$block}__label
+        #{$block}__label-text {
         color: $f-error-color;
     }
 

@@ -11,7 +11,9 @@
     $block: #{&};
     @include f-base;
     @include f-inner;
-    @include f-field;
+    @include f-field {
+        box-sizing: border-box;
+    }
     @include f-label($block);
     @include f-label-text($block);
     @include f-indicator($block);

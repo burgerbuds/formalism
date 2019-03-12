@@ -8,7 +8,7 @@
 $f-base-size: inherit !default;
 
 // Highlights
-$f-highlight-color: #A42CF9 !default;
+$f-highlight-color: #a42cf9 !default;
 
 // Field
 $f-bg-color: white !default;
@@ -26,8 +26,8 @@ $f-label-color-focus: $f-highlight-color !default;
 $f-label-color-filled: $f-text-color;
 
 // States
-$f-error-color: #E91E63 !default;
-$f-success-color: #CDDC39 !default;
+$f-error-color: #e91e63 !default;
+$f-success-color: #cddc39 !default;
 $f-disabled-color: #767676 !default;
 
 // Field > Padding
@@ -41,13 +41,13 @@ $f-field-padding-bottom: $f-field-padding-vertical !default;
 $f-field-padding-left: $f-field-padding-horizontal !default;
 
 // Field > Border
-$f-border-color: #A4A8AB !default;
+$f-border-color: #a4a8ab !default;
 $f-border-color-hover: $f-highlight-color !default;
 $f-border-color-focus: $f-border-color-hover !default;
 $f-border-color-active: $f-highlight-color !default;
 $f-border-color-error: $f-error-color !default;
 $f-border-color-success: $f-success-color !default;
-$f-border-color-disabled: #DAE0E4 !default;
+$f-border-color-disabled: #dae0e4 !default;
 $f-border-width: 1px !default;
 $f-border-width-focus: 2px !default;
 // $f-border-width-active: 1px !default; // TODO
@@ -297,8 +297,7 @@ $f-hide-instructions-when-error: true !default;
 
 // Usage: transition: transition(transform);
 @function transition($property) {
-    @return $property $f-transition-duration
-        $f-transition-timing;
+    @return $property $f-transition-duration $f-transition-timing;
 }
 
 /// Replace `$search` with `$replace` in `$string`
@@ -311,8 +310,13 @@ $f-hide-instructions-when-error: true !default;
     $index: str-index($string, $search);
 
     @if $index {
-      @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+        @return str-slice($string, 1, $index - 1) + $replace +
+            str-replace(
+                str-slice($string, $index + str-length($search)),
+                $search,
+                $replace
+            );
     }
 
     @return $string;
-  }
+}
