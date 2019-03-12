@@ -8,9 +8,6 @@
 
 // General
 $f-radio--spacing: 0.5em !default;
-
-// Label
-$f-radio--label-font-size: 1em !default;
 $f-radio--label-line-height: 1 !default;
 
 // Base
@@ -93,7 +90,6 @@ $f-radio--label-line-height: 1 !default;
     }
 
     @include f-label-text($block) {
-        font-size: $f-radio--label-font-size;
         line-height: $f-radio--label-line-height;
     }
 

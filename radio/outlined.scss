@@ -8,11 +8,11 @@
 @import './../common/outlined';
 
 // General
-$f-radio--size: 1.2em !default;
-$f-radio--radius: 50% !default;
-$f-radio--center-scale-checked: 0.45 !default;
-$f-radio--border-scale-active: 0.9 !default;
-$f-radio--border-width: $f-border-width * 2 !default;
+$fo-radio--size: 1.2em !default;
+$fo-radio--radius: 50% !default;
+$fo-radio--center-scale-checked: 0.45 !default;
+$fo-radio--border-scale-active: 0.9 !default;
+$fo-radio--border-width: $f-border-width * 2 !default;
 
 // Theme
 .f-radio--outlined {
@@ -22,14 +22,14 @@ $f-radio--border-width: $f-border-width * 2 !default;
 
     #{$outer},
     #{$inner} {
-        font-size: $f-radio--size;
-        border-radius: $f-radio--radius;
-        border: $f-radio--border-width solid currentColor;
+        font-size: $fo-radio--size;
+        border-radius: $fo-radio--radius;
+        border: $fo-radio--border-width solid currentColor;
     }
 
     // Inner > Checked
     #{$block}__field:checked + #{$inner} {
-        transform: scale(#{$f-radio--center-scale-checked});
+        transform: scale(#{$fo-radio--center-scale-checked});
     }
 
     // Outer
@@ -42,7 +42,7 @@ $f-radio--border-width: $f-border-width * 2 !default;
 
     // Outer > Active
     #{$block}__field:not(:disabled):active + #{$outer} {
-        transform: translateZ(0) scale(#{$f-radio--border-scale-active});
+        transform: translateZ(0) scale(#{$fo-radio--border-scale-active});
     }
 
     #{$block}__label-text {
