@@ -9,6 +9,9 @@
 // Check > Variables
 $fs-checkbox--check-color: white !default;
 
+// Messages > Variables
+$fs-message-margin: 0.5em 0 0 0 !default;
+
 // Theme
 .f-checkbox--solid {
     $block: '.f-checkbox';
@@ -63,7 +66,7 @@ $fs-checkbox--check-color: white !default;
         background-color: currentColor;
     }
 
-    @include fo-message($block) {
-        margin: $fo-message-margin;
+    #{$block}__message {
+        margin: $fs-message-margin;
     }
 }
