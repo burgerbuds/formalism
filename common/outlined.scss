@@ -202,16 +202,6 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         @content;
     }
 
-    // Indicator > Hover
-    #{$block}__field:hover ~ #{$block}__indicator {
-        color: $f-indicator-color-hover;
-    }
-
-    // Indicator > Focus
-    #{$block}__field:focus ~ #{$block}__indicator {
-        color: $f-indicator-color-focus;
-    }
-
     // Indicator > Error
     &#{$f-modifier-error} #{$block}__field ~ #{$block}__indicator {
         color: $f-error-color;

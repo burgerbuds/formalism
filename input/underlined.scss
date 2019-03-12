@@ -119,16 +119,6 @@ $fu-input--message-margin: 0.5em 0 0 0 !default;
         }
     }
 
-    // Indicator > hover
-    #{$block}__field:hover ~ #{$block}__indicator {
-        color: $f-indicator-color-hover;
-    }
-
-    // Indicator > focus
-    #{$block}__field:focus ~ #{$block}__indicator {
-        color: $f-indicator-color-focus;
-    }
-
     #{$block}__message {
         margin: $fu-input--message-margin;
     }

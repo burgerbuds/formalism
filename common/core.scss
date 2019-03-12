@@ -59,9 +59,8 @@ $f-message-color: gray !default;
 $f-message-font-size: 0.9em !default;
 
 // Indicator
-$f-indicator-color: $f-border-color !default;
-$f-indicator-color-hover: $f-highlight-color !default;
-$f-indicator-color-focus: $f-indicator-color-hover !default;
+$f-indicator-required-color: $f-error-color !default;
+$f-indicator-optional-color: $f-border-color !default;
 $f-indicator-required-size: 1em !default;
 $f-indicator-optional-size: 0.5em !default;
 
@@ -235,13 +234,14 @@ $f-hide-instructions-when-error: true !default;
     &__indicator {
         pointer-events: none;
         user-select: none;
-        color: $f-indicator-color;
 
         &--optional {
+            color: $f-indicator-optional-color;
             font-size: $f-indicator-optional-size;
         }
 
         &--required {
+            color: $f-indicator-required-color;
             font-size: $f-indicator-required-size;
         }
 
