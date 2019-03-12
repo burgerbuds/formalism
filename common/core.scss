@@ -142,44 +142,48 @@ $f-hide-instructions-when-error: true !default;
             caret-color: $f-error-color;
         }
 
+        // The following selection styles require
+        // !important as predefined selections
+        // interfered during testing
+
         // Selection colors
         &::-moz-selection {
-            color: $f-selection-color;
-            background: $f-selection-bg;
+            color: $f-selection-color !important;
+            background: $f-selection-bg !important;
             text-shadow: none;
         }
 
         &::selection {
-            color: $f-selection-color;
-            background: $f-selection-bg;
+            color: $f-selection-color !important;
+            background: $f-selection-bg !important;
             text-shadow: none;
         }
 
         // Selection colors > Error
         #{$f-modifier-error} &::-moz-selection {
-            color: $f-selection-color;
-            background: $f-error-color;
+            color: $f-selection-color !important;
+            background: $f-error-color !important;
             text-shadow: none;
         }
 
         // Selection colors > Error
         #{$f-modifier-error} &::selection {
-            color: $f-selection-color;
-            background: $f-error-color;
+            color: $f-selection-color !important;
+            background: $f-error-color !important;
             text-shadow: none;
         }
 
         // Selection colors > Disabled
         &:disabled::-moz-selection {
-            color: $f-selection-color;
-            background: $f-disabled-color;
+            color: $f-selection-color !important;
+            background: $f-disabled-color !important;
             text-shadow: none;
         }
 
         // Selection colors > Disabled
         &:disabled::selection {
-            color: $f-selection-color;
-            background: $f-disabled-color;
+            color: $f-selection-color !important;
+            background: $f-disabled-color !important;
             text-shadow: none;
         }
 
