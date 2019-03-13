@@ -24,4 +24,19 @@ $fo-webkit-styles: true !default;
     @include fo-message($block) {
         margin: $fo-message-margin-inset;
     }
+    @if ($fo-webkit-styles) {
+        // Custom scrollbar styles
+        ::-webkit-scrollbar {
+            width: #{$f-border-width * 2};
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+        }
+        // Custom resizing styles
+        ::-webkit-resizer {
+            background-color: $f-border-color;
+            border: #{$f-border-width / 2} solid #{$f-bg-color};
+            border-left: none;
+        }
+    }
 }
