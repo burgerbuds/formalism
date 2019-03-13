@@ -7,7 +7,7 @@
 @import './../common/core';
 @import './../common/outlined';
 
-// Button
+// Variables > Button
 $fo-search--button-width-base: 3.5em; // Non-configurable min width
 $fo-search--button-width-additional: 0em !default;
 $fo-search--button-scale-active: 0.9 !default;
@@ -16,14 +16,15 @@ $fo-search--button-color-hover: $f-highlight-color !default;
 $fo-search--button-color-focus: $f-highlight-color !default;
 $fo-search--button-color-active: $f-highlight-color !default;
 
-// Icons
+// Variables > Icons
 $fo-search--icon-size: 3em !default;
 $fo-search--icon-max-height: 45% !default;
 $fo-search--icon-stroke-width: 3px !default;
 $fo-search--icon-position: 0em, 0em !default; // translate(x, y) fine tuning
 $fo-search--cancel-stroke-width: 4px !default;
 
-.f-search {
+// Theme
+.f-search--outlined {
     $block: #{&};
     $button-width: calc(
         #{$fo-search--button-width-base} + #{$fo-search--button-width-additional}

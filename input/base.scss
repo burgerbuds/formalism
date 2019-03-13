@@ -6,8 +6,7 @@
 // Imports
 @import './../common/core';
 
-// Theme base
-// Base styles to give you a prime starting point
+// Base
 .f-input {
     $block: #{&};
     @include f-base;

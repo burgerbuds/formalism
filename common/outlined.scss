@@ -1,29 +1,28 @@
 @import './core';
 
 // ================================
-// Outlined Variables - Customizable
-// Additional variables available in ./core.scss
+// Outlined Variables
 // ================================
 
-// Labels > Variables
+// Variables > Labels
 $fo-label-scale: 0.9 !default;
 
-// Field > Variables
+// Variables > Field
 $fo-field-padding-top: $f-field-padding-top * 1.25 !default;
 $fo-field-padding-right: $f-field-padding-right !default;
 $fo-field-padding-bottom: $f-field-padding-bottom !default;
 $fo-field-padding-left: $f-field-padding-left !default;
 
-// Border > Variables
+// Variables > Border
 $fo-border-radius: 0.25em !default;
 
-// Indicator > Variables
+// Variables > Indicator
 $fo-indicator-required-top: 0.4em !default;
 $fo-indicator-required-right: 0.4em !default;
 $fo-indicator-optional-top: 1em !default;
 $fo-indicator-optional-right: 1em !default;
 
-// Messages > Variables
+// Variables > Messages
 $fo-message-margin: 0.5em 0 0 0 !default;
 $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
 

@@ -7,9 +7,13 @@
 @import './../common/core';
 @import './../common/outlined';
 
+// Variables
+$fo-webkit-styles: true !default;
+
 // Theme
 .f-textarea--outlined {
     $block: '.f-textarea';
+
     @include fo-field($block);
     @include fo-label($block) {
         top: $f-field-padding-top;

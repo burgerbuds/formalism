@@ -7,10 +7,10 @@
 @import './../common/core';
 @import './../common/outlined';
 
-// Border
+// Variables > Border
 $fo-border-width: $f-border-width * 2 !default;
 
-// Background
+// Variables > Background
 $fo-notification__bg-color-error: rgba(
     $f-border-color-error,
     0.1
@@ -20,7 +20,7 @@ $fo-notification__bg-color-success: rgba(
     0.1
 ) !default;
 
-// Outlined
+// Theme
 .f-notification--outlined {
     $block: '.f-notification';
     $error: $block + '--error';

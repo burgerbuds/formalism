@@ -7,7 +7,7 @@
 @import './../common/core';
 @import './../common/outlined';
 
-// Arrow
+// Variables > Arrow
 $fo-select--arrow-type: 'chevron' !default; // chevron / triangle
 $fo-select--arrow-thickness: .1em !default;
 $fo-select--arrow-size: 0.5em !default;
@@ -15,7 +15,7 @@ $fo-select--arrow-color: grey !default;
 $fo-select--arrow-color-hover: $f-highlight-color !default;
 $fo-select--arrow-color-focus: $fo-select--arrow-color-hover !default;
 
-// Field
+// Variables > Field
 $fo-select--field-padding-right: $f-field-padding-right * 3 !default;
 
 // Theme

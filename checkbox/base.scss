@@ -6,20 +6,20 @@
 // Imports
 @import './../common/core';
 
-// General > Variables
+// Variables > General
 $f-checkbox--size: 1em !default;
 $f-checkbox--spacing: 0.75em !default;
 $f-checkbox--transition-duration: $f-transition-duration * 1.5 !default;
 $f-checkbox--has-animation: true !default;
 
-// Check > Variables
+// Variables > Check
 $f-checkbox--tick-position: -0.25em, 0em !default; // translate(x, y) fine tuning
 
-// Checkbox > Variables
+// Variables > Checkbox
 $f-checkbox--border-radius: 0.15em !default;
 $f-checkbox--border-width: $f-border-width * 2 !default;
 
-// Label > Variables
+// Variables > Label
 $f-checkbox--label-font-size: 1em !default;
 $f-checkbox--label-line-height: 1 !default;
 
