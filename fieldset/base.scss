@@ -29,16 +29,19 @@ $f-fieldset--content-spacing: 1.25em !default;
         position: relative;
         width: 100%;
         padding: 0;
+        float: left; // https://stackoverflow.com/a/30513633
     }
 
     &__inner {
+        // Display nicely again after the legend float
+        float: left;
+        width: 100%;
+
         &--stacked {
+            margin-top: -$f-fieldset--content-spacing;
             & > * {
                 width: 100%;
-
-                &:not(:first-child) {
-                    margin-top: $f-fieldset--content-spacing;
-                }
+                padding-top: $f-fieldset--content-spacing;
             }
         }
 

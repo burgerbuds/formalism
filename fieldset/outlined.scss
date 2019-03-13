@@ -10,13 +10,18 @@
 // Variables > Padding
 $fo-fieldset--padding-left: 2em !default;
 $fo-fieldset--padding-right: $fo-fieldset--padding-left !default;
-$fo-fieldset--padding-top: 2.75em !default;
-$fo-fieldset--padding-bottom: 2em !default;
+$fo-fieldset--padding-top: 2.5em !default;
+$fo-fieldset--padding-bottom: 1.75em !default;
 
 // Theme
 .f-fieldset--outlined {
     $block: '.f-fieldset';
     $error: '.has-error-fieldset';
+
+    & {
+        border: $f-border-width solid $f-border-color;
+        border-radius: $fo-border-radius;
+    }
 
     #{$block}__label {
         position: absolute;
@@ -50,9 +55,6 @@ $fo-fieldset--padding-bottom: 2em !default;
     }
 
     #{$block}__inner {
-        border: $f-border-width solid
-            $f-border-color;
-        border-radius: $fo-border-radius;
         padding-top: $fo-fieldset--padding-top;
         padding-bottom: $fo-fieldset--padding-bottom;
         padding-left: $fo-fieldset--padding-left;
