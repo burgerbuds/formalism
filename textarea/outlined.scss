@@ -8,7 +8,7 @@
 @import './../common/outlined';
 
 // Variables
-$fo-webkit-styles: true !default;
+$fo-textarea-webkit-styles: true !default;
 
 // Theme
 .f-textarea--outlined {
@@ -24,7 +24,7 @@ $fo-webkit-styles: true !default;
     @include fo-message($block) {
         margin: $fo-message-margin-inset;
     }
-    @if ($fo-webkit-styles) {
+    @if ($fo-textarea-webkit-styles) {
         // Custom scrollbar styles
         ::-webkit-scrollbar {
             width: #{$f-border-width * 2};
