@@ -15,12 +15,7 @@ $f-checkbox--has-animation: true !default;
 // Variables > Check
 $f-checkbox--tick-position: -0.25em, 0em !default; // translate(x, y) fine tuning
 
-// Variables > Checkbox
-$f-checkbox--border-radius: 0.15em !default;
-$f-checkbox--border-width: $f-border-width * 2 !default;
-
 // Variables > Label
-$f-checkbox--label-font-size: 1em !default;
 $f-checkbox--label-line-height: 1 !default;
 
 // Base
@@ -69,10 +64,6 @@ $f-checkbox--label-line-height: 1 !default;
             transition: transition(color);
             will-change: color, width, height;
 
-            // Borders
-            border-right: $f-checkbox--border-width solid currentColor;
-            border-top: $f-checkbox--border-width solid currentColor;
-
             // Positioning
             position: absolute;
             left: 0;
@@ -102,8 +93,6 @@ $f-checkbox--label-line-height: 1 !default;
         }
 
         #{$box} {
-            border: $f-checkbox--border-width solid currentColor;
-            border-radius: $f-checkbox--border-radius;
             margin-right: $f-checkbox--spacing;
             width: 1.2em;
             height: 1.2em;
@@ -143,7 +132,6 @@ $f-checkbox--label-line-height: 1 !default;
     }
 
     @include f-label-text($block) {
-        font-size: $f-checkbox--label-font-size;
         line-height: $f-checkbox--label-line-height;
     }
 

@@ -6,17 +6,29 @@
 // Imports
 @import './../common/core';
 
-// Variables > Chec
+// Variables > Check
 $fs-checkbox--check-color: white !default;
-
-// Variables > Messages
-$fs-message-margin: 0.5em 0 0 0 !default;
+$fs-checkbox--message-margin: 0.5em 0 0 0 !default;
+$fs-checkbox--bg-color: transparent !default;
+$fs-checkbox--border-radius: 0.15em !default;
+$fs-checkbox--border-width: $f-border-width * 2 !default;
 
 // Theme
 .f-checkbox--solid {
     $block: '.f-checkbox';
     $check: $block + '__label:after';
     $box: $block + '__label:before';
+
+    #{$check} {
+        border-right: $fs-checkbox--border-width solid currentColor;
+        border-top: $fs-checkbox--border-width solid currentColor;
+    }
+
+    #{$box} {
+        background-color: $fs-checkbox--bg-color;
+        border: $fs-checkbox--border-width solid currentColor;
+        border-radius: $fs-checkbox--border-radius;
+    }
 
     &:not(#{$f-modifier-error}) {
         #{$block}__field:not(:disabled) {
@@ -67,6 +79,6 @@ $fs-message-margin: 0.5em 0 0 0 !default;
     }
 
     #{$block}__message {
-        margin: $fs-message-margin;
+        margin: $fs-checkbox--message-margin;
     }
 }
