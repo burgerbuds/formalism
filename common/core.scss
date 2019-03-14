@@ -90,7 +90,6 @@ $f-hide-instructions-when-error: true !default;
     font-size: $f-base-size;
     text-align: left;
 
-    // Prefers reduced motion user setting
     @media screen and (prefers-reduced-motion) {
         html & *,
         html & *:before,
@@ -136,21 +135,17 @@ $f-hide-instructions-when-error: true !default;
             cursor: not-allowed;
         }
 
-        // Caret > Error
+        // Field > Error
         #{$f-modifier-error} & {
             caret-color: $f-error-color;
         }
 
-        // The following selection styles require
-        // !important as predefined selections
-        // interfered during testing
-
         // Selection colors
-        &::-moz-selection {
-            color: $f-selection-color !important;
-            background: $f-selection-bg !important;
-            text-shadow: none;
-        }
+        // &::-moz-selection {
+        //     color: $f-selection-color !important;
+        //     background: $f-selection-bg !important;
+        //     text-shadow: none;
+        // }
 
         &::selection {
             color: $f-selection-color !important;
@@ -159,11 +154,11 @@ $f-hide-instructions-when-error: true !default;
         }
 
         // Selection colors > Error
-        #{$f-modifier-error} &::-moz-selection {
-            color: $f-selection-color !important;
-            background: $f-error-color !important;
-            text-shadow: none;
-        }
+        // #{$f-modifier-error} &::-moz-selection {
+        //     color: $f-selection-color !important;
+        //     background: $f-error-color !important;
+        //     text-shadow: none;
+        // }
 
         // Selection colors > Error
         #{$f-modifier-error} &::selection {
@@ -173,11 +168,11 @@ $f-hide-instructions-when-error: true !default;
         }
 
         // Selection colors > Disabled
-        &:disabled::-moz-selection {
-            color: $f-selection-color !important;
-            background: $f-disabled-color !important;
-            text-shadow: none;
-        }
+        // &:disabled::-moz-selection {
+        //     color: $f-selection-color !important;
+        //     background: $f-disabled-color !important;
+        //     text-shadow: none;
+        // }
 
         // Selection colors > Disabled
         &:disabled::selection {
@@ -186,7 +181,7 @@ $f-hide-instructions-when-error: true !default;
             text-shadow: none;
         }
 
-        // Autofill colors
+        // Autofill color
         &:-webkit-autofill {
             -webkit-text-fill-color: $f-text-color !important;
         }
@@ -273,11 +268,11 @@ $f-hide-instructions-when-error: true !default;
             color: $f-error-color;
 
             // Error > Custom selection colors (important required)
-            #{$f-modifier-error} &::-moz-selection {
-                color: $f-selection-color;
-                background: $f-error-color !important;
-                text-shadow: none;
-            }
+            // #{$f-modifier-error} &::-moz-selection {
+            //     color: $f-selection-color;
+            //     background: $f-error-color !important;
+            //     text-shadow: none;
+            // }
 
             #{$f-modifier-error} &::selection {
                 color: $f-selection-color !important;
@@ -304,15 +299,14 @@ $f-hide-instructions-when-error: true !default;
     @return $property $f-transition-duration $f-transition-timing;
 }
 
-/// Replace `$search` with `$replace` in `$string`
-/// @author Hugo Giraudel
-/// @param {String} $string - Initial string
-/// @param {String} $search - Substring to replace
-/// @param {String} $replace ('') - New value
-/// @return {String} - Updated string
+// Replace `$search` with `$replace` in `$string`
+// @author Hugo Giraudel
+// @param {String} $string - Initial string
+// @param {String} $search - Substring to replace
+// @param {String} $replace ('') - New value
+// @return {String} - Updated string
 @function str-replace($string, $search, $replace: '') {
     $index: str-index($string, $search);
-
     @if $index {
         @return str-slice($string, 1, $index - 1) + $replace +
             str-replace(
@@ -321,6 +315,5 @@ $f-hide-instructions-when-error: true !default;
                 $replace
             );
     }
-
     @return $string;
 }
