@@ -8,32 +8,28 @@
 @import './../common/outlined';
 
 // Variables
-$fo-switch--border-width: .1em !default;
-$fo-switch--size: 1.15em !default;
-$fo-switch--field-radius: 10vh !default;
+$fo-switcher--border-width: $f-border-width * 2 !default;
+$fo-switcher--size: 1.15em !default;
+$fo-switcher--field-radius: 10vh !default;
 
-// Theme
 .f-switcher--outlined {
     $block: '.f-switcher';
     $switch: $block + '__label:after';
     $switchbox: $block + '__label:before';
 
-    #{$switch},
-    #{$switchbox} {
-        font-size: $fo-switch--size;
-    }
-
     #{$switch} {
+        font-size: $fo-switcher--size;
         background-color: $f-bg-color;
         width: 1.2em;
         height: 1.2em;
         border-radius: 50%;
-        border: $fo-switch--border-width solid currentColor;
+        border: $fo-switcher--border-width solid currentColor;
     }
 
     #{$switchbox} {
-        border: $fo-switch--border-width solid currentColor;
-        border-radius: $fo-switch--field-radius;
+        font-size: $fo-switcher--size;
+        border: $fo-switcher--border-width solid currentColor;
+        border-radius: $fo-switcher--field-radius;
     }
 
     // Switch > Unchecked > Active
@@ -80,7 +76,6 @@ $fo-switch--field-radius: 10vh !default;
         // Switch > Checked
         &:checked + #{$switch} {
             color: $f-highlight-color;
-            transform: translateX(0.75em + 0.1em);
         }
 
         // Switchbox

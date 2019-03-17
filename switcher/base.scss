@@ -7,8 +7,8 @@
 @import './../common/core';
 
 // Variables
-$f-switch--spacing: 0.75em !default;
-$f-switch--label-line-height: 1 !default;
+$f-switcher--spacing: 0.75em !default;
+$f-switcher--label-line-height: 1 !default;
 
 // Base
 .f-switcher {
@@ -57,7 +57,7 @@ $f-switch--label-line-height: 1 !default;
         }
 
         #{$switchbox} {
-            margin-right: $f-switch--spacing;
+            margin-right: $f-switcher--spacing;
             width: 2em;
             height: 1em;
             display: block;
@@ -96,7 +96,7 @@ $f-switch--label-line-height: 1 !default;
     }
 
     @include f-label-text($block) {
-        line-height: $f-switch--label-line-height;
+        line-height: $f-switcher--label-line-height;
     }
 
     @include f-indicator($block);

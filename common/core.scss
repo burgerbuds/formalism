@@ -9,6 +9,7 @@ $f-base-size: inherit !default;
 
 // Highlights
 $f-highlight-color: #a42cf9 !default;
+$f-highlight-color: #6d00f0;
 
 // Field
 $f-bg-color: white !default;
@@ -23,22 +24,24 @@ $f-text-caret-color: $f-highlight-color !default;
 $f-label-color: gray !default;
 $f-label-color-hover: $f-highlight-color !default;
 $f-label-color-focus: $f-highlight-color !default;
-$f-label-color-filled: $f-text-color;
+$f-label-color-filled: $f-text-color !default;
 
 // States
 $f-error-color: #e91e63 !default;
 $f-success-color: #cddc39 !default;
 $f-disabled-color: #767676 !default;
 
-// Field > Padding
-$f-field-padding-vertical: 1.1em !default;
-$f-field-padding-horizontal: 0.9em !default;
+$f-label-color: red;
+$f-label-color-hover: orange;
+$f-label-color-focus: yellow;
+$f-label-color-filled: orange;
 
-// Field > Padding > Fine tuning
-$f-field-padding-top: $f-field-padding-vertical !default;
-$f-field-padding-right: $f-field-padding-horizontal !default;
-$f-field-padding-bottom: $f-field-padding-vertical !default;
-$f-field-padding-left: $f-field-padding-horizontal !default;
+$f-error-color: hotpink;
+$f-border-color: red;
+$f-border-color-hover: orange;
+$f-border-color-focus: yellow;
+$f-border-color-active: green;
+$f-border-color-error: blue;
 
 // Field > Border
 $f-border-color: #a4a8ab !default;
@@ -48,9 +51,8 @@ $f-border-color-active: $f-highlight-color !default;
 $f-border-color-error: $f-error-color !default;
 $f-border-color-success: $f-success-color !default;
 $f-border-color-disabled: #dae0e4 !default;
-$f-border-width: 1px !default;
+$f-border-width: 1px !default; // px only
 $f-border-width-focus: 2px !default;
-// $f-border-width-active: 1px !default; // TODO
 $f-border-width-error: 2px !default;
 $f-border-width-success: 2px !default;
 
@@ -59,10 +61,10 @@ $f-message-color: gray !default;
 $f-message-font-size: 0.9em !default;
 
 // Indicator
-$f-indicator-required-color: $f-error-color !default;
+$f-indicator-required-color: $f-border-color !default;
 $f-indicator-optional-color: $f-border-color !default;
 $f-indicator-required-size: 1em !default;
-$f-indicator-optional-size: 0.5em !default;
+$f-indicator-optional-size: 0.65em !default;
 
 // Transitions
 $f-transition-duration: 0.2s !default;
@@ -90,6 +92,11 @@ $f-hide-instructions-when-error: true !default;
     font-size: $f-base-size;
     text-align: left;
 
+    // Disable mobile tap color
+    & * {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
     @media screen and (prefers-reduced-motion) {
         html & *,
         html & *:before,
@@ -115,8 +122,6 @@ $f-hide-instructions-when-error: true !default;
 @mixin f-field {
     &__field {
         color: $f-text-color;
-        padding: $f-field-padding-top $f-field-padding-right
-            $f-field-padding-bottom $f-field-padding-left;
         width: 100%;
         border: 0;
         caret-color: $f-text-caret-color;
@@ -140,13 +145,6 @@ $f-hide-instructions-when-error: true !default;
             caret-color: $f-error-color;
         }
 
-        // Selection colors
-        // &::-moz-selection {
-        //     color: $f-selection-color !important;
-        //     background: $f-selection-bg !important;
-        //     text-shadow: none;
-        // }
-
         &::selection {
             color: $f-selection-color !important;
             background: $f-selection-bg !important;
@@ -154,25 +152,11 @@ $f-hide-instructions-when-error: true !default;
         }
 
         // Selection colors > Error
-        // #{$f-modifier-error} &::-moz-selection {
-        //     color: $f-selection-color !important;
-        //     background: $f-error-color !important;
-        //     text-shadow: none;
-        // }
-
-        // Selection colors > Error
         #{$f-modifier-error} &::selection {
             color: $f-selection-color !important;
             background: $f-error-color !important;
             text-shadow: none;
         }
-
-        // Selection colors > Disabled
-        // &:disabled::-moz-selection {
-        //     color: $f-selection-color !important;
-        //     background: $f-disabled-color !important;
-        //     text-shadow: none;
-        // }
 
         // Selection colors > Disabled
         &:disabled::selection {
@@ -241,9 +225,9 @@ $f-hide-instructions-when-error: true !default;
         }
 
         // Indicator > Error on hover/focus
-        #{$f-modifier-error} #{$block}__field:hover ~ &,
-        #{$f-modifier-error} #{$block}__field:focus ~ & {
-            color: $f-error-color !important;
+        #{$f-modifier-error} #{$block}__field:hover:not(:disabled) ~ &,
+        #{$f-modifier-error} #{$block}__field:focus:not(:disabled) ~ & {
+            color: $f-border-color-error;
         }
 
         // Indicator > Disabled
@@ -266,13 +250,6 @@ $f-hide-instructions-when-error: true !default;
 
         &--error {
             color: $f-error-color;
-
-            // Error > Custom selection colors (important required)
-            // #{$f-modifier-error} &::-moz-selection {
-            //     color: $f-selection-color;
-            //     background: $f-error-color !important;
-            //     text-shadow: none;
-            // }
 
             #{$f-modifier-error} &::selection {
                 color: $f-selection-color !important;

@@ -84,7 +84,7 @@ $f-radio--label-line-height: 1 !default;
 
             // Inner > Disabled
             #{$block}__field:disabled + & {
-                color: $f-disabled-color;
+                color: $f-border-color-disabled;
             }
         }
     }

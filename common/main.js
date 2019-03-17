@@ -2,6 +2,7 @@
 
 /**
  * Add a class to form fields when they aren't empty
+ * Required for select/input/textarea
  */
 const initFilledClasses = fields => {
     const handleBlurEvent = ({ target }) => {

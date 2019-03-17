@@ -17,7 +17,7 @@ $fo-search--button-color-focus: $f-highlight-color !default;
 $fo-search--button-color-active: $f-highlight-color !default;
 
 // Variables > Icons
-$fo-search--icon-size: 3em !default;
+$fo-search--icon-size: 1.5em !default;
 $fo-search--icon-max-height: 45% !default;
 $fo-search--icon-stroke-width: 3px !default;
 $fo-search--icon-position: 0em, 0em !default; // translate(x, y) fine tuning
@@ -25,7 +25,7 @@ $fo-search--cancel-stroke-width: 4px !default;
 
 // Theme
 .f-search--outlined {
-    $block: #{&};
+    $block: '.f-search';
     $button-width: calc(
         #{$fo-search--button-width-base} + #{$fo-search--button-width-additional}
     );
@@ -39,7 +39,7 @@ $fo-search--cancel-stroke-width: 4px !default;
     @include fo-label($block) {
         top: 0;
         bottom: 0;
-        left: calc(#{$f-border-width} + #{$f-field-padding-left});
+        left: calc(#{$f-border-width} + #{$fo-field-padding-left});
     }
 
     @include fo-label-text($block);
@@ -49,27 +49,27 @@ $fo-search--cancel-stroke-width: 4px !default;
         -webkit-appearance: none;
         appearance: none;
         border: 0;
+        padding: 0;
         outline: 0;
         font-size: $f-text-font-size;
+        background-color: transparent;
 
         // Alignment
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: -.15em; // Visual realignment
 
         // Positioning
         position: absolute;
-        top: $f-border-width;
-        bottom: $f-border-width;
+        top: calc(#{$fo-field-padding-top} + #{$f-border-width});
         right: $f-border-width;
-        padding: 0;
 
         // Misc
         color: $fo-search--button-color;
-        background-color: transparent;
         width: $button-width;
-        transition: transition(background-color), transition(transform);
-        will-change: background-color, transform;
+        transition: transition(background-color), transition(transform), transition(color);
+        will-change: background-color, transform, color;
         transform-origin: 50%;
 
         &:not(:disabled):hover,
@@ -107,6 +107,10 @@ $fo-search--cancel-stroke-width: 4px !default;
                 stroke-width: $fo-search--icon-stroke-width;
             }
         }
+    }
+
+    &#{$f-modifier-error} #{$block}__button:focus {
+        color: $f-border-color-error;
     }
 
     // Cancel button

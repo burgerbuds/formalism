@@ -7,20 +7,25 @@
 // Variables > Labels
 $fo-label-scale: 0.9 !default;
 
-// Variables > Field
-$fo-field-padding-top: $f-field-padding-top * 1.25 !default;
-$fo-field-padding-right: $f-field-padding-right !default;
-$fo-field-padding-bottom: $f-field-padding-bottom !default;
-$fo-field-padding-left: $f-field-padding-left !default;
+// Variables > Field padding
+$fo-field-padding-vertical: 1.1em !default;
+$fo-field-padding-horizontal: 0.9em !default;
+
+// Variables > Field padding fine tuning
+$fo-field-padding-top: $fo-field-padding-vertical * 1.1 !default;
+$fo-field-padding-bottom: $fo-field-padding-vertical !default;
+$fo-field-padding-left: $fo-field-padding-horizontal !default;
+$fo-field-padding-right: $fo-field-padding-horizontal !default;
 
 // Variables > Border
 $fo-border-radius: 0.25em !default;
 
 // Variables > Indicator
-$fo-indicator-required-top: 0.4em !default;
+$fo-indicator-required-top: 0.2em !default;
 $fo-indicator-required-right: 0.4em !default;
-$fo-indicator-optional-top: 1em !default;
-$fo-indicator-optional-right: 1em !default;
+$fo-indicator-optional-top: .5em !default;
+$fo-indicator-optional-right: .5em !default;
+$fo-indicator-optional-letter-spacing: .02em !default;
 
 // Variables > Messages
 $fo-message-margin: 0.5em 0 0 0 !default;
@@ -28,7 +33,6 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
 
 // ================================
 // Outlined mixins
-// Initial element structure
 // ================================
 
 @mixin fo-field($block) {
@@ -37,8 +41,13 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         background-color: $f-bg-color;
         border: $f-border-width solid $f-border-color;
         border-radius: $fo-border-radius;
-        transition: transition(border-color);
-        will-change: border-color;
+        transition: transition(border-color), transition(box-shadow);
+        will-change: border-color, box-shadow;
+        padding: $fo-field-padding-top $fo-field-padding-right
+            $fo-field-padding-bottom $fo-field-padding-left;
+        box-shadow: inset 0 0 0
+            calc(#{$f-border-width-focus} - #{$f-border-width})
+            $f-bg-color;
 
         &:hover {
             border-color: $f-border-color-hover;
@@ -80,6 +89,14 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         box-shadow: inset 0 0 0
             calc(#{$f-border-width-error} - #{$f-border-width})
             $f-border-color-error;
+
+            &:-webkit-autofill:focus,
+            &:-webkit-autofill:active {
+                -webkit-box-shadow: inset 0 0 0
+                        calc(#{$f-border-width-focus} - #{$f-border-width})
+                        $f-border-color-error,
+                    inset 0 0 0 10em $f-bg-color !important;
+            }
     }
 }
 
@@ -89,6 +106,9 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         display: flex;
         align-items: center;
         pointer-events: none;
+        padding-top: $fo-field-padding-top;
+        padding-bottom: $fo-field-padding-bottom;
+        z-index: 1; // Place above field icons
 
         // Interactions
         transition: transition(transform);
@@ -104,7 +124,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     #{$block}__field:focus + #{$block}__label,
     // Label > Filled
     #{$block}__field#{$f-modifier-filled} + #{$block}__label {
-        transform: translateY(-$f-field-padding-top);
+        transform: translateY(-$fo-field-padding-top);
     }
 }
 
@@ -116,7 +136,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         // Interactions
         transition: transition(transform), transition(color),
             transition(letter-spacing);
-        will-change: transform, color, letter-spacing;
+        will-change: transform, color;
         transform-origin: center left;
         transform: translateY(0) scale(1);
 
@@ -137,22 +157,22 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     }
 
     // Selector alias > Not error nor disabled
-    $fieldNormal: '&:not(#{$f-modifier-error}) #{$block}__field:not(:disabled)';
+    $field-normal: '&:not(#{$f-modifier-error}) #{$block}__field:not(:disabled)';
 
-    // Label text > Hover
-    #{$fieldNormal}:hover + #{$block}__label #{$block}__label-text {
-        color: $f-label-color-hover;
-    }
-
-    // Label text > Filled
-    #{$fieldNormal}#{$block}__field#{$f-modifier-filled}:not(:focus)
+    // Label text > Filled (not hover/focus)
+    #{$field-normal}#{$f-modifier-filled}:not(:focus):not(:hover)
         + #{$block}__label
         #{$block}__label-text {
         color: $f-label-color-filled;
     }
 
+    // Label text > Hover
+    #{$field-normal}:hover + #{$block}__label #{$block}__label-text {
+        color: $f-label-color-hover;
+    }
+
     // Label text > Focus
-    #{$fieldNormal}:focus + #{$block}__label #{$block}__label-text {
+    #{$field-normal}:focus + #{$block}__label #{$block}__label-text {
         color: $f-label-color-focus;
     }
 
@@ -164,15 +184,12 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         color: $f-error-color;
     }
 
-    // Label text > Error / Focus / Filled
-    &#{$f-modifier-error}
-        #{$block}__field
-        + #{$block}__label
-        #{$block}__label-text,
+    // Label text > Error
+    &#{$f-modifier-error} #{$block}__field + #{$block}__label #{$block}__label-text,
+    // Label text > Focus
     #{$block}__field:focus + #{$block}__label #{$block}__label-text,
-    #{$block}__field#{$f-modifier-filled}
-        + #{$block}__label
-        #{$block}__label-text {
+    // Label text > Filled
+    #{$block}__field#{$f-modifier-filled} + #{$block}__label #{$block}__label-text {
         transform: translateY(-50%) translateY(floor(-$f-border-width/2))
             scale($fo-label-scale);
     }
@@ -188,6 +205,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         &--optional {
             top: $fo-indicator-optional-top;
             right: $fo-indicator-optional-right;
+            letter-spacing: $fo-indicator-optional-letter-spacing;
         }
 
         &--required {
@@ -198,9 +216,29 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         @content;
     }
 
+    // Selector alias > Not error nor disabled
+    $field-normal: '&:not(#{$f-modifier-error}) #{$block}__field:not(:disabled)';
+
+    // Label text > Filled (not hover/focus)
+    #{$field-normal}#{$block}__field#{$f-modifier-filled}:not(:focus):not(:hover)
+    ~ #{$block}__indicator {
+        color: $f-border-color;
+    }
+
+    // Label text > Hover
+    #{$field-normal}:hover ~ #{$block}__indicator {
+        color: $f-border-color-hover;
+    }
+
+    // Label text > Focus
+    #{$field-normal}:focus ~ #{$block}__indicator {
+        color: $f-border-color-focus;
+    }
+
     // Indicator > Error
-    &#{$f-modifier-error} #{$block}__field ~ #{$block}__indicator {
-        color: $f-error-color;
+    &#{$f-modifier-error} #{$block}__field ~ #{$block}__indicator,
+    &#{$f-modifier-error} #{$block}__field:hover ~ #{$block}__indicator {
+        color: $f-border-color-error;
     }
 }
 

@@ -8,9 +8,9 @@
 @import './../common/outlined';
 
 // Variables
-$ff-switch--border-width: .1em !default;
-$ff-switch--size: 1.15em !default;
-$ff-switch--field-radius: 10vh !default;
+$ff-switcher--border-width: $f-border-width * 2 !default;
+$ff-switcher--size: 1.15em !default;
+$ff-switcher--field-radius: 10vh !default;
 
 // Theme
 .f-switcher--formal {
@@ -20,7 +20,7 @@ $ff-switch--field-radius: 10vh !default;
 
     #{$switch},
     #{$switchbox} {
-        font-size: $ff-switch--size;
+        font-size: $ff-switcher--size;
     }
 
     #{$switch} {
@@ -29,12 +29,12 @@ $ff-switch--field-radius: 10vh !default;
         width: 1.2em;
         height: 1.2em;
         border-radius: 50%;
-        border: $ff-switch--border-width solid currentColor;
+        border: $ff-switcher--border-width solid currentColor;
     }
 
     #{$switchbox} {
-        border: $ff-switch--border-width solid currentColor;
-        border-radius: $ff-switch--field-radius;
+        border: $ff-switcher--border-width solid currentColor;
+        border-radius: $ff-switcher--field-radius;
     }
 
     // Switch > Unchecked > Active
@@ -50,6 +50,11 @@ $ff-switch--field-radius: 10vh !default;
     // Switch > Checked
     #{$block}__field:checked + #{$switch} {
         transform: translateX(0.75em + 0.1em);
+    }
+
+    // Switch > Disabled
+    #{$block}__field:disabled + #{$switch} {
+        background-color: $f-border-color-disabled;
     }
 
     // Switch > Error
@@ -93,7 +98,6 @@ $ff-switch--field-radius: 10vh !default;
         &:checked + #{$switch} {
             color: $f-highlight-color;
             background-color: currentColor;
-            transform: translateX(0.75em + 0.1em);
         }
 
         // Switchbox

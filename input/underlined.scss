@@ -5,15 +5,7 @@
 
 // Imports
 @import './../common/core';
-
-// Variables > Indicator
-$fu-input--optional-top: 0 !default;
-$fu-input--optional-right: 0 !default;
-$fu-input--required-top: 0 !default;
-$fu-input--required-right: 0 !default;
-
-// Variables > Messages
-$fu-input--message-margin: 0.5em 0 0 0 !default;
+@import './../common/underlined';
 
 // Theme
 .f-input--underlined {
@@ -25,7 +17,7 @@ $fu-input--message-margin: 0.5em 0 0 0 !default;
         border-bottom: $f-border-width solid $f-border-color;
         transition: transition(border-color);
         will-change: border-color;
-        padding: $f-field-padding-top 0 $f-field-padding-bottom 0;
+        padding: $fu-field-padding-top 0 $fu-field-padding-bottom 0;
 
         &:hover {
             border-color: $f-border-color-hover;
@@ -63,6 +55,8 @@ $fu-input--message-margin: 0.5em 0 0 0 !default;
         right: 0;
         bottom: 0;
         left: 0;
+        padding-top: $fu-field-padding-top;
+        padding-bottom: $fu-field-padding-bottom;
     }
 
     // Label > Focus
@@ -109,17 +103,18 @@ $fu-input--message-margin: 0.5em 0 0 0 !default;
         will-change: color;
 
         &--optional {
-            top: $fu-input--optional-top;
-            right: $fu-input--optional-right;
+            top: $fu-indicator-optional-top;
+            right: $fu-indicator-optional-right;
+            letter-spacing: $fu-indicator-optional-letter-spacing;
         }
 
         &--required {
-            top: $fu-input--required-top;
-            right: $fu-input--required-right;
+            top: $fu-indicator-required-top;
+            right: $fu-indicator-required-right;
         }
     }
 
     #{$block}__message {
-        margin: $fu-input--message-margin;
+        margin: $fu-message-margin;
     }
 }

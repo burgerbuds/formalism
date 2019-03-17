@@ -6,10 +6,9 @@
 // Imports
 @import './../common/core';
 
-// Variables > Check
+// Variables > Checkbox
 $fs-checkbox--check-color: white !default;
 $fs-checkbox--message-margin: 0.5em 0 0 0 !default;
-$fs-checkbox--bg-color: transparent !default;
 $fs-checkbox--border-radius: 0.15em !default;
 $fs-checkbox--border-width: $f-border-width * 2 !default;
 
@@ -25,7 +24,7 @@ $fs-checkbox--border-width: $f-border-width * 2 !default;
     }
 
     #{$box} {
-        background-color: $fs-checkbox--bg-color;
+        background-color: $f-bg-color;
         border: $fs-checkbox--border-width solid currentColor;
         border-radius: $fs-checkbox--border-radius;
     }

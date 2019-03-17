@@ -7,8 +7,11 @@
 @import './../common/core';
 
 // Variables
-$fn-fieldset--top-spacing: 1.5em !default;
-$fn-fieldset--message-margin: 1.5em 0 0 0 !default;
+$fn-fieldset--top-spacing: 2em !default;
+$fn-fieldset--border-width: $f-border-width * 2 !default;
+$fn-fieldset--error-spacing: 1.5em !default;
+$fn-fieldset--message-margin: 1.75em 0 0 0 !default;
+$fn-fieldset--content-spacing: 1.25em !default;
 
 // Theme
 .f-fieldset--naked {
@@ -16,7 +19,25 @@ $fn-fieldset--message-margin: 1.5em 0 0 0 !default;
     $error: '.has-error-fieldset';
 
     #{$block}__inner {
-        margin-top: $fn-fieldset--top-spacing;
+        padding-top: $fn-fieldset--top-spacing;
+
+        &--stacked {
+            margin-top: -$fn-fieldset--content-spacing;
+            & > * {
+                padding-top: $fn-fieldset--content-spacing;
+            }
+        }
+
+        &--one-line {
+            display: flex;
+            flex-wrap: wrap;
+
+            & > * {
+                &:not(:last-child) {
+                    margin-right: $fn-fieldset--content-spacing;
+                }
+            }
+        }
     }
 
     #{$block}__label {
@@ -31,6 +52,12 @@ $fn-fieldset--message-margin: 1.5em 0 0 0 !default;
     // Label text > Error
     &#{$error} #{$block}__label #{$block}__label-text {
         color: $f-error-color;
+    }
+
+    // Inner > Error
+    &#{$error} {
+        border-left: $fn-fieldset--border-width solid $f-error-color;
+        padding-left: $fn-fieldset--error-spacing;
     }
 
     #{$block}__message {

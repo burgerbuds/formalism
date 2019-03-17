@@ -8,7 +8,7 @@
 
 // Variables
 $f-textarea--line-height: 1.5 !default;
-$f-textarea--max-height: 500px !default;
+$f-textarea--max-height: 19em !default;
 
 // Base
 .f-textarea {
@@ -16,12 +16,13 @@ $f-textarea--max-height: 500px !default;
     @include f-base;
     @include f-inner;
     @include f-field {
-        display: block;
         resize: vertical;
         line-height: $f-textarea--line-height;
         max-height: $f-textarea--max-height;
     }
-    @include f-label($block);
+    @include f-label($block) {
+        line-height: $f-textarea--line-height;
+    };
     @include f-label-text($block);
     @include f-indicator($block);
     @include f-message;

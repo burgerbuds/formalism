@@ -1,0 +1,31 @@
+@import './core';
+
+// ================================
+// Underlined Variables
+// ================================
+
+// Variables > Field padding
+$fu-field-padding-horizontal: 0.9em !default;
+
+// Variables > Field padding fine tuning
+$fu-field-padding-top: 0 !default;
+$fu-field-padding-bottom: 1.1em !default;
+$fu-field-padding-left: $fu-field-padding-horizontal !default;
+$fu-field-padding-right: $fu-field-padding-horizontal !default;
+
+// Variables > Indicator
+$fu-indicator-required-top: 0 !default;
+$fu-indicator-required-right: 0 !default;
+$fu-indicator-optional-top: 0 !default;
+$fu-indicator-optional-right: 0 !default;
+$fu-indicator-optional-letter-spacing: .02em !default;
+
+// Variables > Messages
+$fu-message-margin: 0.5em 0 0 0 !default;
+
+
+// ================================
+// Underlined mixins
+// ================================
+
+// ...

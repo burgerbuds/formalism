@@ -6,9 +6,6 @@
 // Imports
 @import './../common/core';
 
-// Variables
-$f-fieldset--content-spacing: 1.25em !default;
-
 // Base
 .f-fieldset {
     $block: #{&};
@@ -38,23 +35,16 @@ $f-fieldset--content-spacing: 1.25em !default;
         width: 100%;
 
         &--stacked {
-            margin-top: -$f-fieldset--content-spacing;
             & > * {
                 width: 100%;
-                padding-top: $f-fieldset--content-spacing;
             }
         }
 
         &--one-line {
             display: flex;
             flex-wrap: wrap;
-
             & > * {
                 width: auto;
-
-                &:not(:last-child) {
-                    margin-right: $f-fieldset--content-spacing;
-                }
             }
         }
 
