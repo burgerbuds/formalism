@@ -15,81 +15,112 @@ $fo-fieldset--padding-right: $fo-fieldset--padding-left !default;
 $fo-fieldset--message-margin: 1.5em 0 -.75em $fo-fieldset--padding-left !default;
 $fo-fieldset--content-spacing: 1.25em !default;
 
-// Theme
-.f-fieldset--outlined {
-    $block: '.f-fieldset';
-    $error: '.has-error-fieldset';
+@include f-base(
+    $block: '.f-fieldset',
+    $theme: 'outlined',
+) {
+    border: $f-border-width solid $f-border-color;
+    border-radius: $fo-border-radius;
+}
 
-    & {
-        border: $f-border-width solid $f-border-color;
-        border-radius: $fo-border-radius;
+// Base > Error
+// Custom error modifier so we can't accidentally trigger errors fields inside
+@include f-base(
+    $block: '.f-fieldset',
+    $theme: 'outlined',
+    $modifier-error: '.has-error-fieldset',
+    $error: true,
+) {
+    border-color: $f-border-color-error;
+    box-shadow: inset 0 0 0
+        calc(#{$f-border-width-error} - #{$f-border-width})
+        $f-border-color-error;
+}
+
+@include f-inner(
+    $block: '.f-fieldset',
+    $theme: 'outlined',
+) {
+    padding-top: $fo-fieldset--padding-top;
+    padding-bottom: $fo-fieldset--padding-bottom;
+    padding-left: $fo-fieldset--padding-left;
+    padding-right: $fo-fieldset--padding-right;
+
+    &--stacked {
+        margin-top: -$fo-fieldset--content-spacing;
+        & > * {
+            padding-top: $fo-fieldset--content-spacing;
+        }
     }
 
-    #{$block}__inner {
-        padding-top: $fo-fieldset--padding-top;
-        padding-bottom: $fo-fieldset--padding-bottom;
-        padding-left: $fo-fieldset--padding-left;
-        padding-right: $fo-fieldset--padding-right;
-
-        &--stacked {
-            margin-top: -$fo-fieldset--content-spacing;
-            & > * {
-                padding-top: $fo-fieldset--content-spacing;
-            }
-        }
-
-        &--one-line {
-            display: flex;
-            flex-wrap: wrap;
-
-            & > * {
-                &:not(:last-child) {
-                    margin-right: $fo-fieldset--content-spacing;
-                }
-            }
-        }
-    }
-
-    #{$block}__label {
-        position: absolute;
-        z-index: 1;
+    &--one-line {
         display: flex;
-        align-items: center;
-        line-height: 1;
-        top: 0;
-        left: $fo-fieldset--padding-left;
-        transform: translateY(-50%);
-    }
+        flex-wrap: wrap;
 
-    #{$block}__label-text {
-        color: $f-text-color;
-
-        &:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: -0.35em;
-            right: -0.35em;
-            z-index: -1;
-            background-color: $f-bg-color;
+        & > * {
+            &:not(:last-child) {
+                margin-right: $fo-fieldset--content-spacing;
+            }
         }
     }
+}
 
-    // Error > Label text colors
-    &#{$error} #{$block}__label-text {
-        color: $f-error-color;
-    }
+@include f-legend(
+    $block: '.f-fieldset',
+    $theme: 'outlined',
+) {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    top: 0;
+    left: $fo-fieldset--padding-left;
+    transform: translateY(-50%);
 
-    // Error > Border color
-    &#{$error} {
-        border-color: $f-border-color-error;
-        box-shadow: inset 0 0 0
-            calc(#{$f-border-width-error} - #{$f-border-width})
-            $f-border-color-error;
-    }
+    padding: 0;
+    float: left; // https://stackoverflow.com/a/30513633
+};
 
-    @include fo-message($block) {
-        margin: $fo-fieldset--message-margin;
+@include f-legend-text(
+    $block: '.f-fieldset',
+    $theme: 'outlined',
+) {
+    color: $f-text-color;
+    display: block;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -0.35em;
+        right: -0.35em;
+        z-index: -1;
+        background-color: $f-bg-color;
     }
+}
+
+// Legend text > Error
+// Custom error modifier so we can't accidentally trigger errors fields inside
+@include f-legend-text(
+    $block: '.f-fieldset',
+    $theme: 'outlined',
+    $modifier-error: '.has-error-fieldset',
+    $error: true,
+) {
+    color: $f-label-color-error;
+}
+
+@include f-inner(
+    $block: '.f-fieldset',
+    $theme: 'outlined',
+) {
+    // Display nicely again after the legend float
+    float: left;
+    width: 100%;
+}
+
+@include fo-message('.f-fieldset') {
+    margin: $fo-fieldset--message-margin;
 }

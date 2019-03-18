@@ -10,20 +10,36 @@
 $f-textarea--line-height: 1.5 !default;
 $f-textarea--max-height: 19em !default;
 
-// Base
-.f-textarea {
-    $block: #{&};
-    @include f-base;
-    @include f-inner;
-    @include f-field {
-        resize: vertical;
-        line-height: $f-textarea--line-height;
-        max-height: $f-textarea--max-height;
-    }
-    @include f-label($block) {
-        line-height: $f-textarea--line-height;
-    };
-    @include f-label-text($block);
-    @include f-indicator($block);
-    @include f-message;
-}
+@include f-base(
+    $block: '.f-textarea',
+);
+
+@include f-inner(
+    $block: '.f-textarea',
+);
+
+@include f-field(
+    $block: '.f-textarea',
+) {
+    resize: vertical;
+    line-height: $f-textarea--line-height;
+    max-height: $f-textarea--max-height;
+};
+
+@include f-label(
+    $block: '.f-textarea',
+) {
+    line-height: $f-textarea--line-height;
+};
+
+@include f-label-text(
+    $block: '.f-textarea',
+);
+
+@include f-indicator(
+    $block: '.f-textarea',
+);
+
+@include f-message(
+    $block: '.f-textarea',
+);

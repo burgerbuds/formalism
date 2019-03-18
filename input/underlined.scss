@@ -38,13 +38,6 @@
         }
     }
 
-    // Error colors
-    &#{$f-modifier-error} #{$block}__field,
-    &#{$f-modifier-error} #{$block}__field:hover,
-    &#{$f-modifier-error} #{$block}__field:focus {
-        border-color: $f-border-color-error;
-    }
-
     // Label
     #{$block}__label {
         position: absolute;

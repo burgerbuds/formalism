@@ -23,24 +23,33 @@ $fo-search--icon-stroke-width: 3px !default;
 $fo-search--icon-position: 0em, 0em !default; // translate(x, y) fine tuning
 $fo-search--cancel-stroke-width: 4px !default;
 
+// Variables > Protected
+$fo-button-width: calc(
+    #{$fo-search--button-width-base} + #{$fo-search--button-width-additional}
+);
+
+// Mixins
+
+@include fo-field('.f-search');
+
+@include f-field(
+    $block: '.f-search',
+    $theme: 'outlined',
+) {
+    padding-right: $fo-button-width;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+@include fo-label('.f-search') {
+    top: 0;
+    bottom: 0;
+    left: calc(#{$f-border-width} + #{$fo-field-padding-left});
+}
+
 // Theme
 .f-search--outlined {
     $block: '.f-search';
-    $button-width: calc(
-        #{$fo-search--button-width-base} + #{$fo-search--button-width-additional}
-    );
-
-    @include fo-field($block) {
-        padding-right: $button-width;
-        -webkit-appearance: none;
-        appearance: none;
-    }
-
-    @include fo-label($block) {
-        top: 0;
-        bottom: 0;
-        left: calc(#{$f-border-width} + #{$fo-field-padding-left});
-    }
 
     @include fo-label-text($block);
 
@@ -50,7 +59,7 @@ $fo-search--cancel-stroke-width: 4px !default;
         appearance: none;
         border: 0;
         padding: 0;
-        outline: 0;
+        // outline: 0;
         font-size: $f-text-font-size;
         background-color: transparent;
 
@@ -67,7 +76,7 @@ $fo-search--cancel-stroke-width: 4px !default;
 
         // Misc
         color: $fo-search--button-color;
-        width: $button-width;
+        width: $fo-button-width;
         transition: transition(background-color), transition(transform), transition(color);
         will-change: background-color, transform, color;
         transform-origin: 50%;
@@ -82,6 +91,7 @@ $fo-search--cancel-stroke-width: 4px !default;
         }
 
         &:focus {
+            outline: 0;
             color: $fo-search--button-color-focus;
         }
 

@@ -6,39 +6,51 @@
 // Imports
 @import './../common/core';
 
-// Base
-.f-search {
-    $block: #{&};
-    @include f-base;
-    @include f-inner;
-    @include f-field {
-        box-sizing: border-box;
-    }
-    @include f-label($block);
-    @include f-label-text($block);
-    @include f-indicator($block);
-    @include f-message;
-
-    // Button > Disabled
-    &__field:disabled ~ &__button {
-        pointer-events: none;
-        opacity: 0.3;
-    }
-
-    // Safari > Fix jumping movement with box-shadow animation;
-    &__button {
-        transform: translateZ(0);
-    }
-
-    // Safari > Removes the magifying glass decoration
+@include f-base(
+    $block: '.f-search',
+) {
+    // Safari > Removes the magnifying glass decoration
     // taking up space in the left of the field
     ::-webkit-search-decoration {
         -webkit-appearance: none;
     }
+};
 
-    // Cancel button > Disabled
-    &__field:disabled ~ #{$block}::-webkit-search-cancel-button {
-        opacity: 0.2;
-        filter: saturate(0%);
-    }
+@include f-inner(
+    $block: '.f-search',
+);
+
+@include f-field(
+    $block: '.f-search',
+) {
+    box-sizing: border-box;
+};
+
+@include f-label(
+    $block: '.f-search',
+);
+
+@include f-label-text(
+    $block: '.f-search',
+);
+
+@include f-indicator(
+    $block: '.f-search',
+);
+
+@include f-message(
+    $block: '.f-search',
+);
+
+// TODO: Create a button mixin
+
+// Base
+.f-search__field:disabled ~ .f-search__button {
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+// Safari > Fix jumping movement with box-shadow animation
+.f-search__button {
+    transform: translateZ(0);
 }

@@ -15,82 +15,147 @@ $fo-radio--border-scale-active: 0.9 !default;
 $fo-radio--border-width: $f-border-width * 2 !default;
 $fo-radio--bg-color: transparent !default;
 
-// Theme
-.f-radio--outlined {
-    $block: '.f-radio';
-    $inner: $block + '__label:after';
-    $outer: $block + '__label:before';
-
-    #{$outer},
-    #{$inner} {
-        font-size: $fo-radio--size;
+// Inside
+@include f-inside(
+    $block: '.f-radio',
+    $theme: 'outlined',
+) {
+    font-size: $fo-radio--size;
         border-radius: $fo-radio--radius;
         border: $fo-radio--border-width solid currentColor;
-    }
+}
 
-    // Inner > Checked
-    #{$block}__field:checked + #{$inner} {
-        transform: scale(#{$fo-radio--center-scale-checked});
-    }
+// Inside > Checked
+@include f-inside(
+    $block: '.f-radio',
+    $state: ':checked',
+    $theme: 'outlined',
+) {
+    transform: scale(#{$fo-radio--center-scale-checked});
+}
 
-    // Outer
-    #{$outer} {
-        color: $f-border-color;
-        background-color: $fo-radio--bg-color;
-        transition: transition(color),
-            transform 0.1s;
-        will-change: color, transform;
-    }
+// Outer > Active + Not disabled + No error
+@include f-inside(
+    $block: '.f-radio',
+    $state: ':active:not(:disabled)',
+    $error: false,
+) {
+    color: $f-border-color-active;
+}
 
-    // Outer > Active
-    #{$block}__field:not(:disabled):active + #{$outer} {
-        transform: translateZ(0) scale(#{$fo-radio--border-scale-active});
-    }
+// Inside > Not error + Not disabled + No error
+// scale(0) by default
+@include f-inside(
+    $block: '.f-radio',
+    $state: ':not(:disabled)',
+    $error: false,
+    $theme: 'outlined',
+) {
+    color: $f-border-color;
+}
 
-    #{$block}__label-text {
-        color: $f-text-color;
-    }
+// Inner > Hover + Not disabled + No error
+@include f-inside(
+    $block: '.f-radio',
+    $state: ':hover:not(:disabled)',
+    $error: false,
+    $theme: 'outlined',
+) {
+    color: $f-border-color-hover;
+}
 
-    // Not error + not disabled fields
-    &:not(#{$f-modifier-error}) #{$block}__field:not(:disabled) {
+// Inner > Focus + Not disabled + No error
+@include f-inside(
+    $block: '.f-radio',
+    $state: ':focus:not(:disabled)',
+    $error: false,
+    $theme: 'outlined',
+) {
+    color: $f-border-color-focus;
+}
 
-        // Inner (scale(0) by default)
-        + #{$inner} {
-            color: $f-highlight-color;
-        }
+// Inner > Checked + Not disabled + No error
+@include f-inside(
+    $block: '.f-radio',
+    $state: ':checked:not(:disabled)',
+    $error: false,
+    $theme: 'outlined',
+) {
+    color: $f-border-color-filled;
+}
 
-        // Inner > Hover
-        &:hover + #{$inner} {
-            color: $f-highlight-color;
-        }
+@include f-outside(
+    $block: '.f-radio',
+    $theme: 'outlined',
+) {
+    font-size: $fo-radio--size;
+        border-radius: $fo-radio--radius;
+        border: $fo-radio--border-width solid currentColor;
+    color: $f-border-color;
+    background-color: $fo-radio--bg-color;
+    transition: transition(color),
+        transform 0.1s;
+    will-change: color, transform;
+}
 
-        // Inner > Focus
-        &:focus + #{$inner} {
-            color: $f-highlight-color;
-        }
+// Outer > Active
+@include f-outside(
+    $block: '.f-radio',
+    $state: ':active:not(:disabled)',
+    $theme: 'outlined',
+) {
+    transform: translateZ(0) scale(#{$fo-radio--border-scale-active});
+}
 
-        // Inner > Checked
-        &:checked + #{$inner} {
-            color: $f-highlight-color;
-        }
+// Inner > Hover + Not disabled + No error
+@include f-outside(
+    $block: '.f-radio',
+    $state: ':hover:not(:disabled)',
+    $error: false,
+    $theme: 'outlined',
+) {
+    color: $f-border-color-hover;
+}
 
-        // Outer > Hover
-        &:hover + #{$outer} {
-            color: $f-highlight-color;
-        }
+// Inner > Focus + Not disabled + No error
+@include f-outside(
+    $block: '.f-radio',
+    $state: ':focus:not(:disabled)',
+    $error: false,
+    $theme: 'outlined',
+) {
+    color: $f-border-color-focus;
+}
 
-        // Outer > Focus
-        &:focus + #{$outer} {
-            color: $f-highlight-color;
-        }
+// Inner > Checked + Not disabled + No error
+@include f-outside(
+    $block: '.f-radio',
+    $state: ':checked:not(:disabled)',
+    $error: false,
+    $theme: 'outlined',
+) {
+    color: $f-border-color-filled;
+}
 
-        // Outer > Checked
-        &:checked + #{$outer} {
-            color: $f-highlight-color;
-        }
-    }
+// Inner > Disabled + No error
+@include f-outside(
+    $block: '.f-radio',
+    $state: ':disabled',
+    $error: false,
+    $theme: 'outlined',
+) {
+    color: $f-border-color-disabled;
+}
 
-    @include fo-message($block) {
-        margin: $fo-message-margin;
-    }
+// Label text > Active + Not disabled
+@include f-label-text(
+    $block: '.f-radio',
+    $state: ':not(:disabled)',
+    $theme: 'outlined',
+) {
+    color: $f-text-color;
+}
+
+@include fo-message('.f-radio') {
+    margin: $fo-message-margin;
 }

@@ -6,51 +6,44 @@
 // Imports
 @import './../common/core';
 
-// Base
-.f-fieldset {
-    $block: #{&};
-    @include f-base;
-    @include f-label($block);
-    @include f-label-text($block);
-    @include f-indicator($block);
-    @include f-message;
+@include f-base(
+    $block: '.f-fieldset',
+) {
+    // Reset
+    border: 0;
+    margin: 0;
+    padding: 0;
+};
 
-    & {
-        // Reset
-        border: 0;
-        margin: 0;
-        padding: 0;
-    }
-
-    &__legend {
-        position: relative;
-        width: 100%;
-        padding: 0;
-        float: left; // https://stackoverflow.com/a/30513633
-    }
-
-    &__inner {
-        // Display nicely again after the legend float
-        float: left;
-        width: 100%;
-
-        &--stacked {
-            & > * {
-                width: 100%;
-            }
-        }
-
-        &--one-line {
-            display: flex;
-            flex-wrap: wrap;
-            & > * {
-                width: auto;
-            }
-        }
-
-        // Columns > Make them break appropriately
-        > * {
-            break-inside: avoid;
+@include f-inner(
+    $block: '.f-fieldset',
+) {
+    &--stacked {
+        & > * {
+            width: 100%;
         }
     }
+
+    &--one-line {
+        display: flex;
+        flex-wrap: wrap;
+        & > * {
+            width: auto;
+        }
+    }
+
+    // Columns > Make them break appropriately
+    > * {
+        break-inside: avoid;
+    }
+};
+
+@include f-legend-label(
+    $block: '.f-fieldset',
+) {
+    display: flex;
 }
+
+@include f-message(
+    $block: '.f-fieldset',
+);

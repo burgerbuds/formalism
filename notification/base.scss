@@ -6,7 +6,6 @@
 // Imports
 @import './../common/core';
 
-// Base
-.f-notification {
-    @include f-base;
-}
+@include f-base(
+    $block: '.f-notification',
+);

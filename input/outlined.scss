@@ -7,20 +7,22 @@
 @import './../common/core';
 @import './../common/outlined';
 
-// Theme
-.f-input--outlined {
-    $block: '.f-input';
-    @include fo-field($block);
-    @include fo-label($block) {
-        top: 0;
-        bottom: 0;
-        left: calc(
-            #{$f-border-width} + #{$fo-field-padding-left}
-        );
-    }
-    @include fo-label-text($block);
-    @include fo-indicator($block);
-    @include fo-message($block) {
-        margin: $fo-message-margin-inset;
-    }
+// Mixins
+
+@include fo-field('.f-input');
+
+@include fo-label('.f-input') {
+    top: 0;
+    bottom: 0;
+    left: calc(
+        #{$f-border-width} + #{$fo-field-padding-left}
+    );
+};
+
+@include fo-label-text('.f-input');
+
+@include fo-indicator('.f-input');
+
+@include fo-message('.f-input') {
+    margin: $fo-message-margin-inset;
 }

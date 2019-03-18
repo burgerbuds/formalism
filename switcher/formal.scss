@@ -12,30 +12,35 @@ $ff-switcher--border-width: $f-border-width * 2 !default;
 $ff-switcher--size: 1.15em !default;
 $ff-switcher--field-radius: 10vh !default;
 
+// Switch
+@include f-switch(
+    $block: '.switcher',
+    $theme: 'formal',
+) {
+    font-size: $ff-switcher--size;
+    box-shadow: inset 0 0 0 4px $f-bg-color;
+    background-color: $f-border-color;
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    border: $ff-switcher--border-width solid currentColor;
+}
+
+// Switchbox
+@include f-switchbox(
+    $block: '.switcher',
+    $theme: 'formal',
+) {
+    font-size: $ff-switcher--size;
+    border: $ff-switcher--border-width solid currentColor;
+    border-radius: $ff-switcher--field-radius;
+}
+
 // Theme
 .f-switcher--formal {
     $block: '.f-switcher';
     $switch: $block + '__label:after';
     $switchbox: $block + '__label:before';
-
-    #{$switch},
-    #{$switchbox} {
-        font-size: $ff-switcher--size;
-    }
-
-    #{$switch} {
-        box-shadow: inset 0 0 0 4px $f-bg-color;
-        background-color: $f-border-color;
-        width: 1.2em;
-        height: 1.2em;
-        border-radius: 50%;
-        border: $ff-switcher--border-width solid currentColor;
-    }
-
-    #{$switchbox} {
-        border: $ff-switcher--border-width solid currentColor;
-        border-radius: $ff-switcher--field-radius;
-    }
 
     // Switch > Unchecked > Active
     #{$block}__field:not(:checked):active + #{$switch} {
@@ -132,7 +137,13 @@ $ff-switcher--field-radius: 10vh !default;
         }
     }
 
-    @include fo-message($block) {
-        margin: $fo-message-margin;
-    }
+}
+
+
+// Message
+@include f-message(
+    $block: '.switcher',
+    $theme: 'formal',
+) {
+    margin: $fo-message-margin;
 }

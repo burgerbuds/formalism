@@ -1,4 +1,4 @@
-@import './core';
+@import './../common/core';
 
 // ================================
 // Outlined Variables
@@ -36,7 +36,10 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
 // ================================
 
 @mixin fo-field($block) {
-    #{$block}__field {
+    @include f-field(
+        $block: $block,
+        $theme: 'outlined',
+    ) {
         color: $f-text-color;
         background-color: $f-bg-color;
         border: $f-border-width solid $f-border-color;
@@ -49,7 +52,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
             calc(#{$f-border-width-focus} - #{$f-border-width})
             $f-bg-color;
 
-        &:hover {
+        &:hover:not(:disabled) {
             border-color: $f-border-color-hover;
         }
 
@@ -81,15 +84,21 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         }
 
         @content;
-    }
+    };
 
     // Field > Error
-    &#{$f-modifier-error} #{$block}__field {
-        border-color: $f-border-color-error;
-        box-shadow: inset 0 0 0
-            calc(#{$f-border-width-error} - #{$f-border-width})
-            $f-border-color-error;
-
+    @include f-field(
+        $block: $block,
+        $theme: 'outlined',
+        $error: true,
+    ) {
+        &,
+        &:hover {
+            border-color: $f-border-color-error;
+            box-shadow: inset 0 0 0
+                calc(#{$f-border-width-error} - #{$f-border-width})
+                $f-border-color-error;
+            // Autofill > Focus / Active
             &:-webkit-autofill:focus,
             &:-webkit-autofill:active {
                 -webkit-box-shadow: inset 0 0 0
@@ -97,11 +106,36 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
                         $f-border-color-error,
                     inset 0 0 0 10em $f-bg-color !important;
             }
+        }
+    }
+
+    // Field > Filled + Error
+    @include f-field(
+        $block: $block,
+        $theme: 'outlined',
+        $state: $f-modifier-filled,
+        $error: true,
+    ) {
+        border-color: $f-border-color-error;
+        box-shadow: inset 0 0 0
+            calc(#{$f-border-width-error} - #{$f-border-width})
+            $f-border-color-error;
+        // Autofill > Focus / Active
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+            -webkit-box-shadow: inset 0 0 0
+                    calc(#{$f-border-width-focus} - #{$f-border-width})
+                    $f-border-color-error,
+                inset 0 0 0 10em $f-bg-color !important;
+        }
     }
 }
 
 @mixin fo-label($block) {
-    #{$block}__label {
+    @include f-label(
+        $block: $block,
+        $theme: 'outlined',
+    ) {
         position: absolute;
         display: flex;
         align-items: center;
@@ -119,21 +153,41 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     }
 
     // Label > Error
-    &#{$f-modifier-error} #{$block}__field + #{$block}__label,
+    @include f-label(
+        $block: $block,
+        $error: true,
+        $theme: 'outlined',
+    ) {
+        transform: translateY(-$fo-field-padding-top);
+    }
+
     // Label > Focus
-    #{$block}__field:focus + #{$block}__label,
+    @include f-label(
+        $block: $block,
+        $state: ':focus',
+        $theme: 'outlined',
+    ) {
+        transform: translateY(-$fo-field-padding-top);
+    }
+
     // Label > Filled
-    #{$block}__field#{$f-modifier-filled} + #{$block}__label {
+    @include f-label(
+        $block: $block,
+        $state: $f-modifier-filled,
+        $theme: 'outlined',
+    ) {
         transform: translateY(-$fo-field-padding-top);
     }
 }
 
+// Label text
 @mixin fo-label-text($block) {
-    #{$block}__label-text {
+    @include f-label-text(
+        $block: $block,
+        $theme: 'outlined',
+    ) {
         display: block;
         position: relative;
-
-        // Interactions
         transition: transition(transform), transition(color),
             transition(letter-spacing);
         will-change: transform, color;
@@ -156,48 +210,75 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         @content;
     }
 
-    // Selector alias > Not error nor disabled
-    $field-normal: '&:not(#{$f-modifier-error}) #{$block}__field:not(:disabled)';
-
-    // Label text > Filled (not hover/focus)
-    #{$field-normal}#{$f-modifier-filled}:not(:focus):not(:hover)
-        + #{$block}__label
-        #{$block}__label-text {
+    // Label text > Filled + Not error/hover/focus/disabled)
+    @include f-label-text(
+        $block: $block,
+        $state: '#{$f-modifier-filled}:not(:hover):not(:focus):not(:disabled)',
+        $error: false,
+        $theme: 'outlined',
+    ) {
         color: $f-label-color-filled;
     }
 
-    // Label text > Hover
-    #{$field-normal}:hover + #{$block}__label #{$block}__label-text {
+    // Label text > Hover + Not error/disabled)
+    @include f-label-text(
+        $block: $block,
+        $state: ':hover:not(:disabled)',
+        $error: false,
+        $theme: 'outlined',
+    ) {
         color: $f-label-color-hover;
     }
 
-    // Label text > Focus
-    #{$field-normal}:focus + #{$block}__label #{$block}__label-text {
+    // Label text > Focus + Not error/disabled)
+    @include f-label-text(
+        $block: $block,
+        $state: ':focus:not(:disabled)',
+        $error: false,
+        $theme: 'outlined',
+    ) {
         color: $f-label-color-focus;
     }
 
     // Label text > Error
-    &#{$f-modifier-error}
-        #{$block}__field
-        + #{$block}__label
-        #{$block}__label-text {
-        color: $f-error-color;
+    @include f-label-text(
+        $block: $block,
+        $error: true,
+        $theme: 'outlined',
+    ) {
+        color: $f-label-color-error;
+        transform: translateY(-50%) translateY(floor(-$f-border-width/2))
+        scale($fo-label-scale);
     }
 
-    // Label text > Error
-    &#{$f-modifier-error} #{$block}__field + #{$block}__label #{$block}__label-text,
     // Label text > Focus
-    #{$block}__field:focus + #{$block}__label #{$block}__label-text,
-    // Label text > Filled
-    #{$block}__field#{$f-modifier-filled} + #{$block}__label #{$block}__label-text {
+    @include f-label-text(
+        $block: $block,
+        $state: ':focus',
+        $theme: 'outlined',
+    ) {
         transform: translateY(-50%) translateY(floor(-$f-border-width/2))
-            scale($fo-label-scale);
+        scale($fo-label-scale);
+    }
+
+    // Label text > Filled
+    @include f-label-text(
+        $block: $block,
+        $state: $f-modifier-filled,
+        $theme: 'outlined',
+    ) {
+        transform: translateY(-50%) translateY(floor(-$f-border-width/2))
+        scale($fo-label-scale);
     }
 }
 
 @mixin fo-indicator($block) {
+
     // Indicator
-    #{$block}__indicator {
+    @include f-indicator(
+        $block: $block,
+        $theme: 'outlined',
+    ) {
         position: absolute;
         transition: transition(color);
         will-change: color;
@@ -216,34 +297,61 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         @content;
     }
 
-    // Selector alias > Not error nor disabled
-    $field-normal: '&:not(#{$f-modifier-error}) #{$block}__field:not(:disabled)';
-
-    // Label text > Filled (not hover/focus)
-    #{$field-normal}#{$block}__field#{$f-modifier-filled}:not(:focus):not(:hover)
-    ~ #{$block}__indicator {
+    // Indicator > Filled (not disabled/hover/focus/error)
+    @include f-indicator(
+        $block: $block,
+        $state: '#{$f-modifier-filled}:not(:disabled):not(:hover):not(:focus)',
+        $theme: 'outlined',
+        $error: false,
+    ) {
         color: $f-border-color;
     }
 
-    // Label text > Hover
-    #{$field-normal}:hover ~ #{$block}__indicator {
+    // Indicator > Hover (not disabled/error)
+    @include f-indicator(
+        $block: $block,
+        $state: ':hover:not(:disabled)',
+        $theme: 'outlined',
+        $error: false,
+    ) {
         color: $f-border-color-hover;
     }
 
-    // Label text > Focus
-    #{$field-normal}:focus ~ #{$block}__indicator {
+    // Indicator > Focus (not disabled/error)
+    @include f-indicator(
+        $block: $block,
+        $state: ':focus:not(:disabled)',
+        $theme: 'outlined',
+        $error: false,
+    ) {
         color: $f-border-color-focus;
     }
 
     // Indicator > Error
-    &#{$f-modifier-error} #{$block}__field ~ #{$block}__indicator,
-    &#{$f-modifier-error} #{$block}__field:hover ~ #{$block}__indicator {
+    @include f-indicator(
+        $block: $block,
+        $theme: 'outlined',
+        $error: true,
+    ) {
+        color: $f-border-color-error;
+    }
+
+    // Indicator > Error + Hover
+    @include f-indicator(
+        $block: $block,
+        $state: ':hover',
+        $theme: 'outlined',
+        $error: true,
+    ) {
         color: $f-border-color-error;
     }
 }
 
 @mixin fo-message($block) {
-    #{$block}__message {
+    @include f-message(
+        $block: $block,
+        $theme: 'outlined',
+    ) {
         @content;
     }
 }

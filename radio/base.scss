@@ -10,90 +10,112 @@
 $f-radio--spacing: 0.5em !default;
 $f-radio--label-line-height: 1 !default;
 
-// Base
-.f-radio {
-    $block: #{&};
+@include f-base(
+    $block: '.f-radio',
+);
 
-    @include f-base;
+@include f-inner(
+    $block: '.f-radio',
+) {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
+};
 
-    &__inner {
-        display: inline-flex;
-        flex-wrap: nowrap;
-        align-items: center;
-    }
+@include f-field(
+    $block: '.f-radio',
+) {
+    clip: rect(1px, 1px, 1px, 1px); // Allows tabbing still
+    position: absolute;
+};
 
-    &__field {
-        clip: rect(1px, 1px, 1px, 1px); // Allows tabbing still
-        position: absolute;
-    }
-
-    @include f-label($block) {
-        $inner: '&:after';
-        $outer: '&:before';
-
-        & {
-            color: inherit;
-            position: relative;
-            display: flex;
-            align-items: center;
-            flex-wrap: nowrap;
-            transition: transition(color);
-            will-change: color;
-        }
-
-        #{$outer},
-        #{$inner} {
-            content: '';
-            display: block;
-            width: 1em;
-            height: 1em;
-            flex-shrink: 0;
-        }
-
-        #{$outer} {
-            display: block;
-            margin-right: $f-radio--spacing;
-
-            // Outer > Error
-            #{$f-modifier-error} #{$block}__field:not(:disabled) + & {
-                color: $f-error-color;
-            }
-
-            // Outer > Disabled
-            #{$block}__field:disabled + & {
-                color: $f-border-color-disabled;
-            }
-        }
-
-        #{$inner} {
-            background-color: currentColor;
-            transform: scale(0);
-            transition: transition(transform);
-            will-change: transform;
-            position: absolute;
-
-            // Inner > Error
-            #{$f-modifier-error} #{$block}__field:not(:disabled) + & {
-                color: $f-error-color;
-            }
-
-            // Inner > Checked
-            #{$block}__field:checked + & {
-                visibility: visible;
-            }
-
-            // Inner > Disabled
-            #{$block}__field:disabled + & {
-                color: $f-border-color-disabled;
-            }
-        }
-    }
-
-    @include f-label-text($block) {
-        line-height: $f-radio--label-line-height;
-    }
-
-    @include f-indicator($block);
-
-    @include f-message;
+@include f-inside(
+    $block: '.f-radio',
+) {
+    content: '';
+    display: block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    background-color: currentColor;
+    transform: scale(0);
+    transition: transition(transform);
+    will-change: transform;
+    position: absolute;
 }
+
+// Inside > Error
+@include f-inside(
+    $block: '.f-radio',
+    $state: ':not(:disabled)'
+) {
+    color: $f-error-color;
+}
+
+// Inside > Checked
+@include f-inside(
+    $block: '.f-radio',
+    $state: ':checked'
+) {
+    visibility: visible;
+}
+
+// Inside > Disabled
+@include f-inside(
+    $block: '.f-radio',
+    $state: ':disabled'
+) {
+    color: $f-border-color-disabled;
+}
+
+@include f-outside(
+    $block: '.f-radio',
+) {
+    content: '';
+    display: block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    margin-right: $f-radio--spacing;
+}
+
+// Outside > Error
+@include f-outside(
+    $block: '.f-radio',
+    $error: true,
+) {
+    color: $f-error-color;
+}
+
+// Outside > Disabled
+@include f-outside(
+    $block: '.f-radio',
+) {
+    color: $f-border-color-disabled;
+}
+
+@include f-label(
+    $block: '.f-radio',
+) {
+    color: inherit;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    transition: transition(color);
+    will-change: color;
+};
+
+@include f-label-text(
+    $block: '.f-radio',
+) {
+    line-height: $f-radio--label-line-height;
+};
+
+@include f-indicator(
+    $block: '.f-radio',
+);
+
+@include f-message(
+    $block: '.f-radio',
+);

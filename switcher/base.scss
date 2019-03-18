@@ -10,95 +10,118 @@
 $f-switcher--spacing: 0.75em !default;
 $f-switcher--label-line-height: 1 !default;
 
-// Base
-.f-switcher {
-    $block: #{&};
+// Mixins
 
-    @include f-base;
+@include f-base(
+    $block: '.f-switcher',
+);
 
-    &__inner {
-        display: inline-flex;
-        flex-wrap: nowrap;
-        align-items: center;
-    }
+@include f-inner(
+    $block: '.f-switcher',
+) {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
+};
 
-    &__field {
-        clip: rect(1px, 1px, 1px, 1px); // Allows tabbing still
-        position: absolute;
-    }
+@include f-label(
+    $block: '.f-switcher',
+) {
+    color: inherit;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    transition: transition(color);
+    will-change: color;
+};
 
-    @include f-label($block) {
-        $switch: '&:after';
-        $switchbox: '&:before';
-
-        & {
-            color: inherit;
-            position: relative;
-            display: flex;
-            align-items: center;
-            flex-wrap: nowrap;
-            transition: transition(color);
-            will-change: color;
-        }
-
-        // The label text
-        #{$block}__label-text {
-            color: $f-text-color;
-        }
-
-        // Switchbox + Switch
-        #{$switchbox},
-        #{$switch} {
-            content: '';
-            display: block;
-            color: $f-border-color;
-            flex-shrink: 0;
-            flex-grow: 0;
-        }
-
-        #{$switchbox} {
-            margin-right: $f-switcher--spacing;
-            width: 2em;
-            height: 1em;
-            display: block;
-            transition: transition(color);
-            will-change: color;
-
-            // Switchbox > Disabled
-            #{$block}__field:disabled + & {
-                color: $f-border-color-disabled;
-            }
-
-            // Switchbox > Error
-            #{$f-modifier-error} #{$block}__field:not(:disabled) + & {
-                color: $f-error-color;
-            }
-        }
-
-        #{$switch} {
-            position: absolute;
-            left: 0;
-            transition: transition(color),
-                transform 0.1s;
-            will-change: color, transform;
-            transform: translateX(-0.1em);
-
-            // Switch > Disabled
-            #{$block}__field:disabled + & {
-                color: $f-border-color-disabled;
-            }
-
-            // Switch > Error
-            #{$f-modifier-error} #{$block}__field:not(:disabled) + & {
-                color: $f-error-color;
-            }
-        }
-    }
-
-    @include f-label-text($block) {
-        line-height: $f-switcher--label-line-height;
-    }
-
-    @include f-indicator($block);
-    @include f-message;
+// Switch
+@include f-switch(
+    $block: '.f-switcher',
+) {
+    content: '';
+    display: block;
+    color: $f-border-color;
+    flex-shrink: 0;
+    flex-grow: 0;
+    position: absolute;
+    left: 0;
+    transition: transition(color),
+        transform 0.1s;
+    will-change: color, transform;
+    transform: translateX(-0.1em);
 }
+
+// Switch > Disabled
+@include f-switch(
+    $block: '.f-switcher',
+    $state: ':disabled',
+) {
+    color: $f-border-color-disabled;
+}
+
+// Switch > Not disabled + Error
+@include f-switch(
+    $block: '.f-switcher',
+    $state: ':not(:disabled)',
+    $error: true,
+) {
+    color: $f-error-color;
+}
+
+// Switchbox
+@include f-switchbox(
+    $block: '.f-switcher',
+) {
+    content: '';
+    display: block;
+    color: $f-border-color;
+    flex-shrink: 0;
+    flex-grow: 0;
+    margin-right: $f-switcher--spacing;
+    width: 2em;
+    height: 1em;
+    display: block;
+    transition: transition(color);
+    will-change: color;
+}
+
+// Switchbox > Disabled
+@include f-switchbox(
+    $block: '.f-switcher',
+    $state: ':disabled',
+) {
+    color: $f-border-color-disabled;
+}
+
+// Switchbox > Not disabled + Error
+@include f-switchbox(
+    $block: '.f-switcher',
+    $state: ':not(:disabled)',
+    $error: true,
+) {
+    color: $f-error-color;
+}
+
+@include f-field(
+    $block: '.f-switcher',
+) {
+    clip: rect(1px, 1px, 1px, 1px); // Allows tabbing still
+    position: absolute;
+};
+
+@include f-label-text(
+    $block: '.f-switcher',
+) {
+    color: $f-text-color;
+    line-height: $f-switcher--label-line-height;
+};
+
+@include f-indicator(
+    $block: '.f-switcher',
+);
+
+@include f-message(
+    $block: '.f-switcher',
+);

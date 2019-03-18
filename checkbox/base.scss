@@ -18,103 +18,65 @@ $f-checkbox--tick-position: -0.25em, 0em !default; // translate(x, y) fine tunin
 // Variables > Label
 $f-checkbox--label-line-height: 1 !default;
 
-// Base
-.f-checkbox {
-    $block: #{&};
+@include f-base(
+    $block: '.f-checkbox',
+);
 
-    @include f-base;
+@include f-inner(
+    $block: '.f-checkbox',
+) {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
+};
 
-    &__inner {
-        display: inline-flex;
-        flex-wrap: nowrap;
-        align-items: center;
-    }
+// Inside
+@include f-inside(
+    $block: '.f-checkbox',
+) {
+    content: '';
+    display: block;
+    font-size: $f-checkbox--size;
+    transform: scaleX(-1) translate($f-checkbox--tick-position)
+        rotate(135deg);
+    transform-origin: top left;
+    visibility: hidden;
+    transition: transition(color);
+    will-change: color, width, height;
+    position: absolute;
+    left: 0;
+    top: 50%;
+};
 
-    &__field {
-        clip: rect(1px, 1px, 1px, 1px); // Allows tabbing still
-        position: absolute;
-    }
+// Inside > Not disabled + Error
+@include f-inside(
+    $block: '.f-checkbox',
+    $state: ':not(:disabled)',
+    $error: true,
+) {
+    color: $f-border-color-error;
+};
 
-    @include f-label($block) {
-        $check: '&:after';
-        $box: '&:before';
+// Inside > Disabled
+@include f-inside(
+    $block: '.f-checkbox',
+    $state: ':disabled',
+) {
+    color: $f-border-color-disabled;
+};
 
-        & {
-            color: inherit;
-            position: relative;
-            display: flex;
-            align-items: center;
-            flex-wrap: nowrap;
-            transition: transition(color);
-            will-change: color;
-        }
+// Inside > Checked
+@include f-inside(
+    $block: '.f-checkbox',
+    $state: ':checked'
+) {
+    visibility: visible;
 
-        #{$check},
-        #{$box} {
-            content: '';
-            display: block;
-            font-size: $f-checkbox--size;
-        }
-
-        #{$check} {
-            transform: scaleX(-1) translate($f-checkbox--tick-position)
-                rotate(135deg);
-            transform-origin: top left;
-            visibility: hidden;
-            transition: transition(color);
-            will-change: color, width, height;
-
-            // Positioning
-            position: absolute;
-            left: 0;
-            top: 50%;
-
-            // Check > Error
-            #{$f-modifier-error} #{$block}__field:not(:disabled) + & {
-                color: $f-error-color;
-            }
-
-            // Check > Checked
-            #{$block}__field:checked + & {
-                // TODO: Fix this animation on IE
-                visibility: visible;
-                @if ($f-checkbox--has-animation) {
-                    animation: check $f-checkbox--transition-duration forwards;
-                } @else {
-                    height: 0.7em;
-                    width: 0.35em;
-                }
-            }
-
-            // Checkbox > Disabled
-            #{$block}__field:disabled + & {
-                color: $f-border-color-disabled;
-            }
-        }
-
-        #{$box} {
-            margin-right: $f-checkbox--spacing;
-            width: 1.2em;
-            height: 1.2em;
-            display: block;
-            transition: transition(color);
-            will-change: color;
-            flex-shrink: 0;
-
-            // Checkbox > Error
-            #{$f-modifier-error} #{$block}__field:not(:disabled) + & {
-                color: $f-error-color;
-            }
-
-            // Checkbox > Disabled
-            #{$block}__field:disabled + & {
-                color: $f-border-color-disabled;
-            }
-        }
-
-        // The checkbox animation
-        // Not quite hitting 60fps but unavoidable given we're animating the width and height
-        @keyframes check {
+    @if ($f-checkbox--has-animation) {
+        // TODO: Fix broken animation in IE
+        animation: f-checkbox $f-checkbox--transition-duration forwards;
+        // Not 60fps but unavoidable as we need to animate the width and height
+        @keyframes f-checkbox {
             0% {
                 height: 0;
                 width: 0;
@@ -129,12 +91,91 @@ $f-checkbox--label-line-height: 1 !default;
                 width: 0.35em;
             }
         }
+    } @else {
+        height: 0.7em;
+        width: 0.35em;
     }
+};
 
-    @include f-label-text($block) {
-        line-height: $f-checkbox--label-line-height;
-    }
+// Outside
+@include f-outside(
+    $block: '.f-checkbox',
+) {
+    content: '';
+    display: block;
+    font-size: $f-checkbox--size;
+    margin-right: $f-checkbox--spacing;
+    width: 1.2em;
+    height: 1.2em;
+    display: block;
+    transition: transition(color);
+    will-change: color;
+    flex-shrink: 0;
+};
 
-    @include f-indicator($block);
-    @include f-message;
+// Outside > Not disabled + Error
+@include f-outside(
+    $block: '.f-checkbox',
+    $state: ':not(:disabled)',
+    $error: true,
+) {
+    color: $f-border-color-error;
+};
+
+// Outside > Disabled
+@include f-outside(
+    $block: '.f-checkbox',
+    $state: ':disabled',
+) {
+    color: $f-border-color-disabled;
+};
+
+// Label
+@include f-label(
+    $block: '.f-checkbox',
+) {
+    color: inherit;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+};
+
+// Label > Not disabled
+// @include f-label(
+//     $block: '.f-checkbox',
+//     $state: ':not(:disabled)'
+// ) {
+//     cursor: pointer;
+// };
+
+// Label text
+@include f-label-text(
+    $block: '.f-checkbox',
+) {
+    line-height: $f-checkbox--label-line-height;
+};
+
+@include f-field(
+    $block: '.f-checkbox',
+) {
+    clip: rect(1px, 1px, 1px, 1px); // Allows tabbing still
+    position: absolute;
+};
+
+@include f-indicator(
+    $block: '.f-checkbox',
+);
+
+// Indicator > Disabled
+@include f-indicator(
+    $block: '.f-checkbox',
+    $state: ':disabled',
+) {
+    // color: $f-text-color-disabled !important;
+    color: red !important;
 }
+
+@include f-message(
+    $block: '.f-checkbox',
+);

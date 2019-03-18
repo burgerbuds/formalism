@@ -6,82 +6,144 @@
 // Imports
 @import './../common/core';
 @import './../common/outlined';
+@import './../common/core';
 
 // Variables
 $fo-checkbox--bg-color: transparent !default;
 $fo-checkbox--border-radius: 0.15em !default;
 $fo-checkbox--border-width: $f-border-width * 2 !default;
 
-// Theme
-.f-checkbox--outlined {
-    $block: '.f-checkbox';
-    $check: $block + '__label:after';
-    $box: $block + '__label:before';
+@include f-inside(
+    $block: '.f-checkbox',
+    $theme: 'outlined',
+) {
+    border-right: $fo-checkbox--border-width solid currentColor;
+    border-top: $fo-checkbox--border-width solid currentColor;
+}
 
-    #{$block}__label-text {
-        color: $f-text-color;
-    }
+// Tick > Not disabled + No error
+@include f-inside(
+    $block: '.f-checkbox',
+    $theme: 'outlined',
+    $state: ':not(:disabled)',
+    $error: false,
+) {
+    color: $f-border-color;
+}
 
-    #{$check} {
-        border-right: $fo-checkbox--border-width solid currentColor;
-        border-top: $fo-checkbox--border-width solid currentColor;
-    }
+// Tick > Hover + Not disabled + No error
+@include f-inside(
+    $block: '.f-checkbox',
+    $theme: 'outlined',
+    $state: ':hover:not(:disabled)',
+    $error: false,
+) {
+    color: $f-border-color-hover;
+}
 
-    #{$box} {
-        background-color: $fo-checkbox--bg-color;
-        border: $fo-checkbox--border-width solid currentColor;
-        border-radius: $fo-checkbox--border-radius;
-    }
+// Tick > Focus + Not disabled + No error
+@include f-inside(
+    $block: '.f-checkbox',
+    $theme: 'outlined',
+    $state: ':focus:not(:disabled)',
+    $error: false,
+) {
+    color: $f-border-color-focus;
+}
 
-    // Not error + not disabled fields
-    &:not(#{$f-modifier-error}) #{$block}__field:not(:disabled) {
-        // Tick
-        + #{$check} {
-            color: $f-highlight-color;
-        }
+// Tick > Active + Not disabled + No error
+@include f-inside(
+    $block: '.f-checkbox',
+    $theme: 'outlined',
+    $state: ':active:not(:disabled)',
+    $error: false,
+) {
+    color: $f-border-color-active;
+}
 
-        // Tick > Hover
-        &:hover + #{$check} {
-            color: $f-highlight-color;
-        }
+// Tick > Checked + Not disabled + No error
+@include f-inside(
+    $block: '.f-checkbox',
+    $theme: 'outlined',
+    $state: ':checked:not(:disabled)',
+    $error: false,
+) {
+    color: $f-border-color-filled;
+}
 
-        // Tick > Focus
-        &:focus + #{$check} {
-            color: $f-highlight-color;
-        }
+// Tickbox
+@include f-outside(
+    $block: '.f-checkbox',
+    $theme: 'outlined',
+) {
+    background-color: $fo-checkbox--bg-color;
+    border: $fo-checkbox--border-width solid currentColor;
+    border-radius: $fo-checkbox--border-radius;
+}
 
-        // Tick > Active
-        &:active + #{$check} {
-            color: $f-highlight-color;
-        }
+// Tickbox > Not disabled + No error
+@include f-outside(
+    $block: '.f-checkbox',
+    $theme: 'outlined',
+    $state: ':not(:disabled)',
+    $error: false,
+) {
+    color: $f-border-color;
+}
 
-        // Box
-        + #{$box} {
-            color: $f-border-color;
-        }
+// Tickbox > Hover + Not disabled + No error
+@include f-outside(
+    $block: '.f-checkbox',
+    $theme: 'outlined',
+    $state: ':hover:not(:disabled)',
+    $error: false,
+) {
+    color: $f-border-color-hover;
+}
 
-        // Box > Hover
-        &:hover + #{$box} {
-            color: $f-border-color-hover;
-        }
+// Tickbox > Focus + Not disabled + No error
+@include f-outside(
+    $block: '.f-checkbox',
+    $theme: 'outlined',
+    $state: ':focus:not(:disabled)',
+    $error: false,
+) {
+    color: $f-border-color-focus;
+}
 
-        // Box > Focus
-        &:focus + #{$box} {
-            color: $f-border-color-focus;
-        }
+// Tickbox > Checked + Not disabled + No error
+@include f-outside(
+    $block: '.f-checkbox',
+    $theme: 'outlined',
+    $state: ':checked:not(:disabled)',
+    $error: false,
+) {
+    color: $f-border-color-filled;
+}
 
-        // Box > Checked
-        &:checked + #{$box} {
-            color: $f-highlight-color;
-        }
+// Tickbox > Active + Not disabled + No error
+@include f-outside(
+    $block: '.f-checkbox',
+    $theme: 'outlined',
+    $state: ':active:not(:disabled)',
+    $error: false,
+) {
+    color: $f-border-color-active;
+}
 
-        // Box > Active
-        &:active + #{$box} {
-            color: $f-highlight-color;
-        }
-    }
+// Label text
+@include f-label-text(
+    $block: '.f-checkbox',
+    $state: ':not(:disabled)',
+    $theme: 'outlined',
+) {
+    color: $f-text-color;
+}
 
-    @include fo-message($block) {
-        margin: $fo-message-margin;
-    }
+// Message
+@include f-message(
+    $block: '.f-checkbox',
+    $theme: 'outlined',
+) {
+    margin: $fo-message-margin;
 }

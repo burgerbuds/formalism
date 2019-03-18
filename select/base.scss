@@ -6,22 +6,48 @@
 // Imports
 @import './../common/core';
 
-// Base
-.f-select {
-    $block: #{&};
-    @include f-base;
-    @include f-inner;
-    @include f-field {
-        line-height: initial; // Reset height
-        -webkit-appearance: none;
-        appearance: none;
-        &:not(:disabled):hover,
-        &:not(:disabled):focus {
-            cursor: pointer;
-        }
-    }
-    @include f-label($block);
-    @include f-label-text($block);
-    @include f-indicator($block);
-    @include f-message;
-}
+@include f-base(
+    $block: '.f-select',
+);
+
+@include f-inner(
+    $block: '.f-select',
+);
+
+@include f-field(
+    $block: '.f-select',
+) {
+    line-height: initial; // Reset height
+    -webkit-appearance: none;
+    appearance: none;
+};
+
+@include f-field(
+    $block: '.f-select',
+    $state: ':not(:disabled):hover',
+) {
+    cursor: pointer;
+};
+
+@include f-field(
+    $block: '.f-select',
+    $state: ':not(:disabled):focus',
+) {
+    cursor: pointer;
+};
+
+@include f-label(
+    $block: '.f-select',
+);
+
+@include f-label-text(
+    $block: '.f-select',
+);
+
+@include f-indicator(
+    $block: '.f-select',
+);
+
+@include f-message(
+    $block: '.f-select',
+);

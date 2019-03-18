@@ -1,4 +1,4 @@
-@import './core';
+@import './../common/core';
 
 // ================================
 // Underlined Variables
@@ -22,10 +22,3 @@ $fu-indicator-optional-letter-spacing: .02em !default;
 
 // Variables > Messages
 $fu-message-margin: 0.5em 0 0 0 !default;
-
-
-// ================================
-// Underlined mixins
-// ================================
-
-// ...
