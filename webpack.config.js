@@ -29,7 +29,8 @@ const settings = {
         'search/base': './search/base.scss',
         'search/outlined': './search/outlined.scss',
 
-        'switcher/switcher': './switcher/base.scss',
+        'switcher/base': './switcher/base.scss',
+        'switcher/formal': './switcher/formal.scss',
         'switcher/outlined': './switcher/outlined.scss',
 
         'fieldset/fieldset': './fieldset/base.scss',
