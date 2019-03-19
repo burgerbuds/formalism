@@ -4,8 +4,8 @@
 // ================================
 
 // Imports
-@import './../common/core';
-@import './../common/outlined';
+@import './../core/core';
+@import './../core/outlined';
 
 // Variables > Padding
 $fo-fieldset--padding-top: 2.25em !default;
@@ -64,9 +64,6 @@ $fo-fieldset--message-margin: 1.5em 0 -0.75em calc(#{$fo-fieldset--padding-left}
 }
 
 @include f-legend-text($block: '.f-fieldset', $theme: 'outlined') {
-    color: $f-text-color;
-    display: block;
-
     &:before {
         content: '';
         position: absolute;
@@ -77,16 +74,6 @@ $fo-fieldset--message-margin: 1.5em 0 -0.75em calc(#{$fo-fieldset--padding-left}
         z-index: -1;
         background-color: $f-bg-color;
     }
-}
-
-// Legend text > Error
-// Custom error modifier so we can't accidentally trigger errors fields inside
-@include f-legend-text(
-    $block: '.f-fieldset',
-    $theme: 'outlined',
-    $hasError: true
-) {
-    color: $f-label-color-error;
 }
 
 @include f-inner($block: '.f-fieldset', $theme: 'outlined') {

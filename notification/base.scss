@@ -4,7 +4,8 @@
 // ================================
 
 // Imports
-@import './../common/core';
+@import './../core/core';
+@import './../core/common';
 
 // Mixins
 @include f-common-base($block: '.f-notification');

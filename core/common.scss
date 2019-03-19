@@ -1,0 +1,242 @@
+// ================================
+// Common Mixins
+// Initial styles applied to formalism elements
+// Requires: common/core.scss
+// ================================
+
+// Element root
+@mixin f-common-base($block: null) {
+    @include f-base($block) {
+        position: relative;
+        font-size: $f-base-size;
+        text-align: left;
+
+        // Disable mobile tap color
+        & * {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        @media screen and (prefers-reduced-motion) {
+            html & *,
+            html & *:before,
+            html & *:after {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+    }
+}
+
+// Inner wrapping element
+@mixin f-common-inner($block: null) {
+    @include f-inner($block) {
+        display: block;
+        position: relative;
+    }
+}
+
+// Form field
+@mixin f-common-field($block: null) {
+    @include f-field($block) {
+        color: $f-text-color;
+        width: 100%;
+        border: 0;
+        caret-color: $f-text-caret-color;
+        font-size: $f-text-font-size;
+        font-family: inherit;
+        display: block;
+        outline: 0;
+
+        // Field > Disabled
+        &:disabled {
+            color: $f-text-color-disabled;
+            cursor: not-allowed;
+        }
+
+        &::selection {
+            color: $f-selection-color !important;
+            background: $f-selection-bg !important;
+            text-shadow: none;
+        }
+
+        // Selection colors > Disabled
+        &:disabled::selection {
+            color: $f-selection-color !important;
+            background: $f-disabled-color !important;
+            text-shadow: none;
+        }
+
+        // Autofill color
+        &:-webkit-autofill {
+            -webkit-text-fill-color: $f-text-color !important;
+        }
+    }
+
+    // Field > Error
+    @include f-field($block, $hasError: true) {
+        caret-color: $f-error-color;
+
+        &::selection {
+            color: $f-selection-color !important;
+            background: $f-error-color !important;
+            text-shadow: none;
+        }
+    }
+}
+
+// Field label (not the label element)
+@mixin f-common-label($block: null) {
+    @include f-label($block) {
+        user-select: none;
+        font-size: $f-text-font-size;
+    }
+    // Label > Not disabled
+    @include f-label($block, $state: ':not(:disabled)') {
+        cursor: pointer;
+    }
+    // Label > Disabled
+    @include f-label($block, $state: ':disabled') {
+        cursor: not-allowed;
+    }
+}
+
+// Field label text
+@mixin f-common-label-text(
+    $block: null,
+    $state: null,
+    $theme: null,
+    $hasError: null
+) {
+    @include f-label-text($block) {
+        color: $f-label-color;
+    }
+}
+
+// Required or optional indicator
+// Use when the indicator is outside the label
+@mixin f-common-indicator($block: null) {
+    @include f-indicator($block) {
+        pointer-events: none;
+        user-select: none;
+
+        &--optional {
+            color: $f-indicator-optional-color;
+            font-size: $f-indicator-optional-size;
+        }
+
+        &--required {
+            color: $f-indicator-required-color;
+            font-size: $f-indicator-required-size;
+        }
+    }
+    // Indicator > Error
+    @include f-indicator($block, $hasError: true) {
+        color: $f-border-color-error;
+    }
+    // Indicator > Disabled
+    @include f-indicator($block, $state: ':disabled') {
+        color: $f-border-color-disabled;
+    }
+}
+
+// Required or optional indicator
+// Use when the indicator is inside the label
+@mixin f-common-label-indicator($block: null) {
+    @include f-label-indicator($block) {
+        pointer-events: none;
+        user-select: none;
+
+        &--optional {
+            color: $f-indicator-optional-color;
+            font-size: $f-indicator-optional-size;
+        }
+
+        &--required {
+            color: $f-indicator-required-color;
+            font-size: $f-indicator-required-size;
+        }
+    }
+    // Indicator > Error
+    @include f-label-indicator($block, $hasError: true) {
+        color: $f-border-color-error;
+    }
+    // Indicator > Disabled
+    @include f-label-indicator($block, $state: ':disabled') {
+        color: $f-border-color-disabled;
+    }
+}
+
+// Required or optional indicator
+// Use when indicator is within the legend
+// - Used within Fieldset base
+@mixin f-common-legend-indicator($block: null) {
+    @include f-legend-indicator($block) {
+        pointer-events: none;
+        user-select: none;
+
+        &--optional {
+            color: $f-indicator-optional-color;
+            font-size: $f-indicator-optional-size;
+        }
+
+        &--required {
+            color: $f-indicator-required-color;
+            font-size: $f-indicator-required-size;
+        }
+    }
+    // Indicator > Error
+    @include f-legend-indicator($block, $hasError: true) {
+        color: $f-border-color-error;
+    }
+}
+
+// Message instructions or error
+@mixin f-common-message($block: null) {
+    @include f-message($block) {
+        font-size: $f-message-font-size;
+
+        &--instruction {
+            color: $f-message-color;
+        }
+
+        &--error {
+            color: $f-error-color;
+        }
+
+        // Hide the instructions if there's an error
+        @if ($f-hide-instructions-when-error) {
+            &--error + #{$block}__message--instruction {
+                display: none;
+            }
+        }
+    }
+    // Message > Error
+    @include f-message($block, $hasError: true) {
+        &--error::selection {
+            color: $f-selection-color !important;
+            background: $f-error-color !important;
+            text-shadow: none;
+        }
+    }
+}
+
+@mixin f-common-button($block: null) {
+    @include f-button($block) {
+        cursor: pointer;
+    }
+}
+
+// Label text within a legend
+@mixin f-common-legend-text($block: null) {
+    @include f-legend-text($block) {
+        color: $f-text-color;
+        display: block;
+    }
+    // Legend text > Error
+    @include f-legend-text(
+        $block,
+        $hasError: true
+    ) {
+        color: $f-label-color-error;
+    }
+}

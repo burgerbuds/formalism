@@ -4,7 +4,8 @@
 // ================================
 
 // Imports
-@import './../common/core';
+@import './../core/core';
+@import './../core/common';
 
 $block: '.f-search';
 
@@ -15,6 +16,7 @@ $block: '.f-search';
 @include f-common-label-text($block);
 @include f-common-indicator($block);
 @include f-common-message($block);
+@include f-common-button($block);
 
 @include f-base($block) {
     // Removes Safari magnifying glass decoration
@@ -42,6 +44,7 @@ $block: '.f-search';
     transform: translateZ(0);
 }
 
+// Button > Disabled
 @include f-button($block, $state: ':disabled') {
     pointer-events: none;
     opacity: 0.3;

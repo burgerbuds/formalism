@@ -4,7 +4,8 @@
 // ================================
 
 // Imports
-@import './../common/core';
+@import './../core/core';
+@import './../core/common';
 
 // Variables
 $block: '.f-fieldset';
@@ -14,6 +15,7 @@ $block: '.f-fieldset';
 @include f-common-inner($block);
 @include f-common-message($block);
 @include f-common-legend-indicator($block);
+@include f-common-legend-text($block);
 
 @include f-base($block) {
     border: 0;

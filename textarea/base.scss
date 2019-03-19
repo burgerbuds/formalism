@@ -4,7 +4,8 @@
 // ================================
 
 // Variables, mixins, and functions
-@import './../common/core';
+@import './../core/core';
+@import './../core/common';
 
 // Variables
 $f-textarea--line-height: 1.5 !default;

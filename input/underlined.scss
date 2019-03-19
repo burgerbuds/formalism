@@ -4,8 +4,8 @@
 // ================================
 
 // Imports
-@import './../common/core';
-@import './../common/underlined';
+@import './../core/core';
+@import './../core/underlined';
 
 @include f-field($block: '.f-input', $theme: 'underlined') {
     color: $f-text-color;

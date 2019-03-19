@@ -1,0 +1,309 @@
+// ================================
+// Core Variables
+// Common variables throughout all theme types
+// Additional variables are available in the theme files
+// ================================
+
+// Base size
+$f-base-size: inherit !default;
+
+// Highlights
+$f-highlight-color: #a42cf9 !default;
+$f-highlight-color: #6d00f0;
+
+// States
+$f-error-color: #e91e63 !default;
+$f-success-color: #cddc39 !default;
+$f-disabled-color: #767676 !default;
+
+// Field
+$f-bg-color: white !default;
+
+// Text
+$f-text-font-size: 1em !default;
+$f-text-color: inherit !default;
+$f-text-color-disabled: $f-disabled-color !default;
+$f-text-caret-color: $f-highlight-color !default;
+
+// Labels
+$f-label-color: #6f7171 !default;
+$f-label-color-hover: $f-highlight-color !default;
+$f-label-color-focus: $f-highlight-color !default;
+$f-label-color-filled: $f-text-color !default;
+$f-label-color-error: $f-error-color !default; // TODO: Roll this out
+$f-label-color-disabled: $f-disabled-color !default;
+
+// Field > Border
+$f-border-color: #a4a8a8 !default;
+$f-border-color-hover: $f-highlight-color !default;
+$f-border-color-focus: $f-border-color-hover !default;
+$f-border-color-active: $f-highlight-color !default;
+$f-border-color-filled: $f-highlight-color !default; // TODO: Roll this out
+$f-border-color-error: $f-error-color !default;
+$f-border-color-success: $f-success-color !default;
+$f-border-color-disabled: #dae0e4 !default;
+$f-border-width: 1px !default; // px only
+$f-border-width-focus: 2px !default;
+$f-border-width-error: 2px !default;
+$f-border-width-success: 2px !default;
+
+// Messages
+$f-message-color: #666 !default;
+$f-message-font-size: 0.9em !default;
+
+// Indicator
+$f-indicator-required-color: $f-border-color !default;
+$f-indicator-required-size: 1em !default;
+$f-indicator-optional-color: $f-border-color !default;
+$f-indicator-optional-size: 0.65em !default;
+
+// Transitions
+$f-transition-duration: 0.2s !default;
+$f-transition-timing: cubic-bezier(0.51, 0.92, 0.24, 1) !default;
+
+// Selectors
+$f-modifier-filled: '.is-filled' !default;
+$f-modifier-error: '.has-error' !default;
+
+// Selections
+$f-selection-color: white !default;
+$f-selection-bg: $f-highlight-color !default;
+
+// Settings
+$f-hide-instructions-when-error: true !default;
+
+
+// ================================
+// Core Mixins
+// Mixins to help you target and style formalism elements
+// ================================
+
+// Element root
+@mixin f-base($block: null, $theme: null, $hasError: null) {
+    $error-modifier: error-modifier($hasError);
+    $block-modifier: block-modifier($block, $theme);
+    #{$block}#{$block-modifier}#{$error-modifier} {
+        @content;
+    }
+}
+
+// Inner wrapping element
+@mixin f-inner($block: null, $theme: null, $hasError: null) {
+    $error-modifier: error-modifier($hasError);
+    $block-modifier: block-modifier($block, $theme);
+    #{$block}#{$block-modifier}#{$error-modifier} #{$block}__inner {
+        @content;
+    }
+}
+
+// Form field (has state)
+@mixin f-field($block: null, $theme: null, $hasError: null, $state: null) {
+    $error-modifier: error-modifier($hasError);
+    $block-modifier: block-modifier($block, $theme);
+    #{$block}#{$block-modifier}#{$error-modifier} #{$block}__field#{$state} {
+        @content;
+    }
+}
+
+// Field label (not the label element)
+@mixin f-label($block: null, $theme: null, $state: null, $hasError: null) {
+    $error-modifier: error-modifier($hasError);
+    $block-modifier: block-modifier($block, $theme);
+    #{$block}#{$block-modifier}#{$error-modifier}
+        #{$block}__field#{$state} ~ #{$block}__label {
+        @content;
+    }
+}
+
+// Field label text
+@mixin f-label-text($block: null, $theme: null, $state: null, $hasError: null) {
+    $error-modifier: error-modifier($hasError);
+    $block-modifier: block-modifier($block, $theme);
+    #{$block}#{$block-modifier}#{$error-modifier}
+        #{$block}__field#{$state} ~ #{$block}__label #{$block}__label-text {
+        @content;
+    }
+}
+
+// Required or optional indicator
+// Use when the indicator is outside the label
+@mixin f-indicator($block: null, $theme: null, $state: null, $hasError: null) {
+    $error-modifier: error-modifier($hasError);
+    $block-modifier: block-modifier($block, $theme);
+    #{$block}#{$block-modifier}#{$error-modifier}
+        #{$block}__field#{$state} ~ #{$block}__indicator {
+        @content;
+    }
+}
+
+// Required or optional indicator
+// Use when the indicator is inside the label
+@mixin f-label-indicator($block: null, $theme: null, $state: null, $hasError: null) {
+    $error-modifier: error-modifier($hasError);
+    $block-modifier: block-modifier($block, $theme);
+    #{$block}#{$block-modifier}#{$error-modifier}
+        #{$block}__field#{$state} ~ #{$block}__label #{$block}__indicator {
+        @content;
+    }
+}
+
+// Required or optional indicator
+// Use when indicator is within the legend
+// - Used within Fieldset base
+@mixin f-legend-indicator($block: null, $theme: null, $hasError: null) {
+    $error-modifier: error-modifier($hasError);
+    $block-modifier: block-modifier($block, $theme);
+    #{$block}#{$block-modifier}#{$error-modifier} #{$block}__label #{$block}__indicator {
+        @content;
+    }
+}
+
+// Message instructions or error
+@mixin f-message($block: null, $theme: null, $hasError: null) {
+    $error-modifier: error-modifier($hasError);
+    $block-modifier: block-modifier($block, $theme);
+    #{$block}#{$block-modifier}#{$error-modifier} #{$block}__message {
+        @content;
+    }
+}
+
+// Fieldset legend
+@mixin f-legend($block: null, $theme: null, $hasError: null) {
+    $error-modifier: error-modifier($hasError);
+    $block-modifier: block-modifier($block, $theme);
+    #{$block}#{$block-modifier}#{$error-modifier} #{$block}__legend {
+        @content;
+    }
+}
+
+// Fieldset legend - inside label
+@mixin f-legend-label($block: null, $theme: null, $hasError: null) {
+    $error-modifier: error-modifier($hasError);
+    $block-modifier: block-modifier($block, $theme);
+    #{$block}#{$block-modifier}#{$error-modifier} #{$block}__legend #{$block}__label {
+        @content;
+    }
+}
+
+// Fieldset legend - label-text inside legend
+@mixin f-legend-text($block: null, $theme: null, $hasError: null) {
+    $error-modifier: error-modifier($hasError);
+    $block-modifier: block-modifier($block, $theme);
+    #{$block}#{$block-modifier}#{$error-modifier} #{$block}__legend
+        #{$block}__label-text {
+        @content;
+    }
+}
+
+@mixin f-button($block: null, $theme: null, $state: null, $hasError: null) {
+    $error-modifier: error-modifier($hasError);
+    $block-modifier: block-modifier($block, $theme);
+    #{$block}#{$block-modifier}#{$error-modifier}
+        #{$block}__field#{$state} ~ #{$block}__button {
+        @content;
+    }
+}
+
+@mixin f-arrow($block: null, $theme: null, $state: null, $hasError: null) {
+    $error-modifier: error-modifier($hasError);
+    $block-modifier: block-modifier($block, $theme);
+    #{$block}#{$block-modifier}#{$error-modifier}
+        #{$block}__field#{$state} ~ #{$block}__arrow {
+        @content;
+    }
+}
+
+@mixin f-label-before(
+    $block: null,
+    $theme: null,
+    $state: null,
+    $hasError: null
+) {
+    $error-modifier: error-modifier($hasError);
+    $block-modifier: block-modifier($block, $theme);
+    #{$block}#{$block-modifier}#{$error-modifier}
+        #{$block}__field#{$state} ~ #{$block}__label:before {
+        @content;
+    }
+}
+
+@mixin f-label-after(
+    $block: null,
+    $theme: null,
+    $state: null,
+    $hasError: null
+) {
+    $error-modifier: error-modifier($hasError);
+    $block-modifier: block-modifier($block, $theme);
+    #{$block}#{$block-modifier}#{$error-modifier}
+        #{$block}__field#{$state} ~ #{$block}__label:after {
+        @content;
+    }
+}
+
+// Alias
+@mixin f-outside($block: null, $theme: null, $state: null, $hasError: null) {
+    @include f-label-before($block, $theme, $state, $hasError) {
+        @content;
+    }
+}
+
+// Alias
+@mixin f-inside($block: null, $theme: null, $state: null, $hasError: null) {
+    @include f-label-after($block, $theme, $state, $hasError) {
+        @content;
+    }
+}
+
+// Alias
+@mixin f-switchbox($block: null, $theme: null, $state: null, $hasError: null) {
+    @include f-label-before($block, $theme, $state, $hasError) {
+        @content;
+    }
+}
+
+// Alias
+@mixin f-switch($block: null, $theme: null, $state: null, $hasError: null) {
+    @include f-label-after($block, $theme, $state, $hasError) {
+        @content;
+    }
+}
+
+
+// ================================
+// Helper functions
+// ================================
+
+// Create the block theme modifier (the 'M' in BEM)
+@function block-modifier($block, $theme: null) {
+    @return if($block and $theme, '--#{$theme}', '');
+}
+
+// Create the error modifier
+@function error-modifier($hasError: null, $modifier-error: $f-modifier-error) {
+    @return if(
+        $hasError == true,
+        $f-modifier-error,
+        if($hasError == false, ':not(#{$f-modifier-error})', null)
+    );
+}
+
+// Transition shortened
+// Usage: transition: transition(transform), transition(color);
+@function transition($property) {
+    @return $property $f-transition-duration $f-transition-timing;
+}
+
+// Replace `$search` with `$replace` in `$string`
+@function str-replace($string, $search, $replace: '') {
+    $index: str-index($string, $search);
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace +
+            str-replace(
+                str-slice($string, $index + str-length($search)),
+                $search,
+                $replace
+            );
+    }
+    @return $string;
+}
