@@ -4,17 +4,17 @@ Coming soon.
 
 ## Features
 
+👍 Less JavaScript, more CSS<br>
+👍 Custom theme friendly<br>
+👍 Small file size<br>
 👍 Honors the [reduced motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) system feature<br>
-👍 Supports custom themes<br>
-👍 Small footprint<br>
-👍 Touch screen friendly
+👍 Touch screen friendly<br>
 
 ## Browser support
 
-Formalism works flawlessly in IE10+ and all modern browsers.
+Formalism supports IE10+ and all modern browsers.
 
 ## What's not included
 
-❎ No included rows or columns<br>
-To avoid unnecessary code duplication we don't include form layout styles.<br>
-So you can use the same layout techniques as the rest of your site/app.
+❎ No grid framework included<br>
+To avoid unnecessary code duplication there are no form layout grid styles included.
