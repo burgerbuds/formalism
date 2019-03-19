@@ -7,7 +7,7 @@
 @import './../common/core';
 @import './../common/underlined';
 
-@include f-field('.f-input', $theme: 'underlined') {
+@include f-field($block: '.f-input', $theme: 'underlined') {
     color: $f-text-color;
     background-color: $f-bg-color;
     border-bottom: $f-border-width solid $f-border-color;
@@ -35,7 +35,7 @@
 }
 
 // Field > Error
-@include f-field('.f-input', $theme: 'underlined', $error: true) {
+@include f-field($block: '.f-input', $theme: 'underlined', $hasError: true) {
     border-color: $f-border-color-error;
 }
 
@@ -81,13 +81,17 @@
     $block: '.f-input',
     $state: ':hover:not(:disabled)',
     $theme: 'underlined',
-    $error: false
+    $hasError: false
 ) {
     color: $f-label-color-hover;
 }
 
 // Label text > Error
-@include f-label-text($block: '.f-input', $theme: 'underlined', $error: true) {
+@include f-label-text(
+    $block: '.f-input',
+    $theme: 'underlined',
+    $hasError: true
+) {
     color: $f-error-color;
 }
 

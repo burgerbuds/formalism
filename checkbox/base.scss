@@ -45,7 +45,7 @@ $f-checkbox--label-line-height: 1 !default;
 @include f-inside(
     $block: '.f-checkbox',
     $state: ':not(:disabled)',
-    $error: true
+    $hasError: true
 ) {
     color: $f-border-color-error;
 }
@@ -101,7 +101,7 @@ $f-checkbox--label-line-height: 1 !default;
 @include f-outside(
     $block: '.f-checkbox',
     $state: ':not(:disabled)',
-    $error: true
+    $hasError: true
 ) {
     color: $f-border-color-error;
 }

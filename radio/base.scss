@@ -64,7 +64,7 @@ $f-radio--label-line-height: 1 !default;
 }
 
 // Outside > Error
-@include f-outside($block: '.f-radio', $error: true) {
+@include f-outside($block: '.f-radio', $hasError: true) {
     color: $f-error-color;
 }
 

@@ -31,7 +31,7 @@ $fo-radio--bg-color: transparent !default;
 @include f-inside(
     $block: '.f-radio',
     $state: ':active:not(:disabled)',
-    $error: false
+    $hasError: false
 ) {
     color: $f-border-color-active;
 }
@@ -41,7 +41,7 @@ $fo-radio--bg-color: transparent !default;
 @include f-inside(
     $block: '.f-radio',
     $state: ':not(:disabled)',
-    $error: false,
+    $hasError: false,
     $theme: 'outlined'
 ) {
     color: $f-border-color;
@@ -51,7 +51,7 @@ $fo-radio--bg-color: transparent !default;
 @include f-inside(
     $block: '.f-radio',
     $state: ':hover:not(:disabled)',
-    $error: false,
+    $hasError: false,
     $theme: 'outlined'
 ) {
     color: $f-border-color-hover;
@@ -61,7 +61,7 @@ $fo-radio--bg-color: transparent !default;
 @include f-inside(
     $block: '.f-radio',
     $state: ':focus:not(:disabled)',
-    $error: false,
+    $hasError: false,
     $theme: 'outlined'
 ) {
     color: $f-border-color-focus;
@@ -71,7 +71,7 @@ $fo-radio--bg-color: transparent !default;
 @include f-inside(
     $block: '.f-radio',
     $state: ':checked:not(:disabled)',
-    $error: false,
+    $hasError: false,
     $theme: 'outlined'
 ) {
     color: $f-border-color-filled;
@@ -100,7 +100,7 @@ $fo-radio--bg-color: transparent !default;
 @include f-outside(
     $block: '.f-radio',
     $state: ':hover:not(:disabled)',
-    $error: false,
+    $hasError: false,
     $theme: 'outlined'
 ) {
     color: $f-border-color-hover;
@@ -110,7 +110,7 @@ $fo-radio--bg-color: transparent !default;
 @include f-outside(
     $block: '.f-radio',
     $state: ':focus:not(:disabled)',
-    $error: false,
+    $hasError: false,
     $theme: 'outlined'
 ) {
     color: $f-border-color-focus;
@@ -120,7 +120,7 @@ $fo-radio--bg-color: transparent !default;
 @include f-outside(
     $block: '.f-radio',
     $state: ':checked:not(:disabled)',
-    $error: false,
+    $hasError: false,
     $theme: 'outlined'
 ) {
     color: $f-border-color-filled;
@@ -130,7 +130,7 @@ $fo-radio--bg-color: transparent !default;
 @include f-outside(
     $block: '.f-radio',
     $state: ':disabled',
-    $error: false,
+    $hasError: false,
     $theme: 'outlined'
 ) {
     color: $f-border-color-disabled;

@@ -26,7 +26,7 @@ $fo-switcher--field-radius: 10vh !default;
 @include f-switch(
     $block: '.f-switcher',
     $state: ':not(:disabled)',
-    $error: false,
+    $hasError: false,
     $theme: 'outlined'
 ) {
     color: $f-border-color;
@@ -38,7 +38,7 @@ $fo-switcher--field-radius: 10vh !default;
 @include f-switch(
     $block: '.f-switcher',
     $state: ':hover:not(:disabled)',
-    $error: false,
+    $hasError: false,
     $theme: 'outlined'
 ) {
     color: $f-border-color-hover;
@@ -48,7 +48,7 @@ $fo-switcher--field-radius: 10vh !default;
 @include f-switch(
     $block: '.f-switcher',
     $state: ':focus:not(:active)',
-    $error: false,
+    $hasError: false,
     $theme: 'outlined'
 ) {
     color: $f-border-color-focus;
@@ -58,7 +58,7 @@ $fo-switcher--field-radius: 10vh !default;
 @include f-switch(
     $block: '.f-switcher',
     $state: ':active:not(:disabled)',
-    $error: false,
+    $hasError: false,
     $theme: 'outlined'
 ) {
     color: $f-border-color-active;
@@ -68,7 +68,7 @@ $fo-switcher--field-radius: 10vh !default;
 @include f-switch(
     $block: '.f-switcher',
     $state: ':checked:not(:disabled)',
-    $error: false,
+    $hasError: false,
     $theme: 'outlined'
 ) {
     color: $f-border-color-filled;
@@ -112,7 +112,7 @@ $fo-switcher--field-radius: 10vh !default;
 @include f-switchbox(
     $block: '.f-switcher',
     $state: ':not(:disabled)',
-    $error: false,
+    $hasError: false,
     $theme: 'outlined'
 ) {
     color: $f-border-color;
@@ -122,7 +122,7 @@ $fo-switcher--field-radius: 10vh !default;
 @include f-switchbox(
     $block: '.f-switcher',
     $state: ':checked:not(:disabled)',
-    $error: false,
+    $hasError: false,
     $theme: 'outlined'
 ) {
     color: $f-highlight-color;

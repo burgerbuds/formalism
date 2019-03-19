@@ -30,7 +30,11 @@ $fo-textarea-webkit-styles: true !default;
     }
 
     // Field > Error
-    @include f-field($block: '.f-textarea', $theme: 'outlined', $error: true) {
+    @include f-field(
+        $block: '.f-textarea',
+        $theme: 'outlined',
+        $hasError: true
+    ) {
         // Custom scrollbar styles
         &::-webkit-scrollbar-thumb {
             background: $f-border-color-error;
@@ -42,7 +46,7 @@ $fo-textarea-webkit-styles: true !default;
         $block: '.f-textarea',
         $state: ':focus',
         $theme: 'outlined',
-        $error: true
+        $hasError: true
     ) {
         // Custom scrollbar styles
         &::-webkit-scrollbar-thumb {

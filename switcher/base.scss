@@ -53,7 +53,7 @@ $f-switcher--label-line-height: 1 !default;
 @include f-switch(
     $block: '.f-switcher',
     $state: ':not(:disabled)',
-    $error: true
+    $hasError: true
 ) {
     color: $f-error-color;
 }
@@ -82,7 +82,7 @@ $f-switcher--label-line-height: 1 !default;
 @include f-switchbox(
     $block: '.f-switcher',
     $state: ':not(:disabled)',
-    $error: true
+    $hasError: true
 ) {
     color: $f-error-color;
 }

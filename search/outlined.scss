@@ -31,7 +31,9 @@ $fo-button-width: calc(
 
 // Mixins
 
-@include f-base($block: '.f-search', $theme: 'outlined') {
+$block: '.f-search';
+
+@include f-base($block, $theme: 'outlined') {
     // Cancel button
     $button-color: str-replace(
         #{inspect($fo-search--button-color)},
@@ -72,19 +74,19 @@ $fo-button-width: calc(
     }
 }
 
-@include fo-field('.f-search') {
+@include fo-field($block) {
     padding-right: $fo-button-width;
     -webkit-appearance: none;
     appearance: none;
 }
 
-@include fo-label('.f-search') {
+@include fo-label($block) {
     top: 0;
     bottom: 0;
     left: calc(#{$f-border-width} + #{$fo-field-padding-left});
 }
 
-@include f-button($block: '.f-search', $theme: 'outlined') {
+@include f-button($block, $theme: 'outlined') {
     margin-top: -0.15em; // Visual realignment
     position: absolute;
     top: calc(#{$fo-field-padding-top} + #{$f-border-width});
@@ -129,20 +131,20 @@ $fo-button-width: calc(
     }
 }
 
-@include f-button($block: '.f-search', $theme: 'outlined', $error: true) {
+@include f-button($block, $theme: 'outlined', $hasError: true) {
     color: $fo-search--button-color-error;
 }
 
 @include f-button(
-    $block: '.f-search',
+    $block,
     $state: ':focus',
     $theme: 'outlined',
-    $error: true
+    $hasError: true
 ) {
     color: $f-border-color-error;
 }
 
-@include fo-label-text($block: '.f-search');
+@include fo-label-text($block);
 
 @include fo-indicator('.f-search');
 @include fo-message('.f-search') {

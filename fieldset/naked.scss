@@ -16,7 +16,7 @@ $fn-fieldset--content-spacing: 1.25em !default;
 // Theme
 .f-fieldset--naked {
     $block: '.f-fieldset';
-    $error: '.has-error-fieldset';
+    $error: $f-modifier-error;
 
     #{$block}__inner {
         padding-top: $fn-fieldset--top-spacing;

@@ -6,16 +6,12 @@
 // Imports
 @import './../common/core';
 
-@include f-base($block: '.f-input');
+$block: '.f-input';
 
-@include f-inner($block: '.f-input');
-
-@include f-field($block: '.f-input');
-
-@include f-label($block: '.f-input');
-
-@include f-label-text($block: '.f-input');
-
-@include f-indicator($block: '.f-input');
-
-@include f-message($block: '.f-input');
+@include f-common-base($block);
+@include f-common-inner($block);
+@include f-common-field($block);
+@include f-common-label($block);
+@include f-common-label-text($block);
+@include f-common-indicator($block);
+@include f-common-message($block);

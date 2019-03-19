@@ -23,7 +23,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':not(:disabled)',
-    $error: false
+    $hasError: false
 ) {
     color: $f-border-color;
 }
@@ -33,7 +33,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':hover:not(:disabled)',
-    $error: false
+    $hasError: false
 ) {
     color: $f-border-color-hover;
 }
@@ -43,7 +43,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':focus:not(:disabled)',
-    $error: false
+    $hasError: false
 ) {
     color: $f-border-color-focus;
 }
@@ -53,7 +53,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':active:not(:disabled)',
-    $error: false
+    $hasError: false
 ) {
     color: $f-border-color-active;
 }
@@ -63,7 +63,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':checked:not(:disabled)',
-    $error: false
+    $hasError: false
 ) {
     color: $f-border-color-filled;
 }
@@ -80,7 +80,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':not(:disabled)',
-    $error: false
+    $hasError: false
 ) {
     color: $f-border-color;
 }
@@ -90,7 +90,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':hover:not(:disabled)',
-    $error: false
+    $hasError: false
 ) {
     color: $f-border-color-hover;
 }
@@ -100,7 +100,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':focus:not(:disabled)',
-    $error: false
+    $hasError: false
 ) {
     color: $f-border-color-focus;
 }
@@ -110,7 +110,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':checked:not(:disabled)',
-    $error: false
+    $hasError: false
 ) {
     color: $f-border-color-filled;
 }
@@ -120,7 +120,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':active:not(:disabled)',
-    $error: false
+    $hasError: false
 ) {
     color: $f-border-color-active;
 }

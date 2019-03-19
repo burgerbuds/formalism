@@ -22,12 +22,7 @@ $fo-fieldset--content-spacing: 1.25em !default;
 
 // Base > Error
 // Custom error modifier so we can't accidentally trigger errors fields inside
-@include f-base(
-    $block: '.f-fieldset',
-    $theme: 'outlined',
-    $modifier-error: '.has-error-fieldset',
-    $error: true
-) {
+@include f-base($block: '.f-fieldset', $theme: 'outlined', $hasError: true) {
     border-color: $f-border-color-error;
     box-shadow: inset 0 0 0 calc(#{$f-border-width-error} - #{$f-border-width})
         $f-border-color-error;
@@ -89,20 +84,12 @@ $fo-fieldset--content-spacing: 1.25em !default;
 @include f-legend-text(
     $block: '.f-fieldset',
     $theme: 'outlined',
-    $modifier-error: '.has-error-fieldset',
-    $error: true
+    $hasError: true
 ) {
     color: $f-label-color-error;
 }
 
-@include f-label-indicator(
-    $block: '.f-fieldset',
-    $modifier-error: '.has-error-fieldset',
-    $error: true
-) {
-    @debug (&);
-    // color: green !important;
-}
+@include f-label-indicator($block: '.f-fieldset', $hasError: true);
 
 @include f-inner($block: '.f-fieldset', $theme: 'outlined') {
     // Display nicely again after the legend float

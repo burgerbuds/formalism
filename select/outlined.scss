@@ -74,7 +74,7 @@ $fo-select--field-padding-right: $fo-field-padding-right * 3 !default;
         $block: '.f-select',
         $state: ':hover',
         $theme: 'outlined',
-        $error: true
+        $hasError: true
     ) {
         border-color: $f-border-color-error;
     }
@@ -84,7 +84,7 @@ $fo-select--field-padding-right: $fo-field-padding-right * 3 !default;
         $block: '.f-select',
         $state: ':focus',
         $theme: 'outlined',
-        $error: true
+        $hasError: true
     ) {
         border-color: $f-border-color-error;
     }
@@ -123,7 +123,7 @@ $fo-select--field-padding-right: $fo-field-padding-right * 3 !default;
         $block: '.f-select',
         $state: ':hover',
         $theme: 'outlined',
-        $error: true
+        $hasError: true
     ) {
         border-top-color: $f-border-color-error;
     }
@@ -133,7 +133,7 @@ $fo-select--field-padding-right: $fo-field-padding-right * 3 !default;
         $block: '.f-select',
         $state: ':focus',
         $theme: 'outlined',
-        $error: true
+        $hasError: true
     ) {
         border-top-color: $f-border-color-error;
     }

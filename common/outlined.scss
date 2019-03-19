@@ -83,7 +83,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     }
 
     // Field > Error
-    @include f-field($block: $block, $theme: 'outlined', $error: true) {
+    @include f-field($block: $block, $theme: 'outlined', $hasError: true) {
         &,
         &:hover {
             border-color: $f-border-color-error;
@@ -106,7 +106,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $block: $block,
         $theme: 'outlined',
         $state: $f-modifier-filled,
-        $error: true
+        $hasError: true
     ) {
         border-color: $f-border-color-error;
         box-shadow: inset 0 0 0
@@ -140,7 +140,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     }
 
     // Label > Error
-    @include f-label($block: $block, $error: true, $theme: 'outlined') {
+    @include f-label($block: $block, $hasError: true, $theme: 'outlined') {
         transform: translateY(-$fo-field-padding-top);
     }
 
@@ -190,7 +190,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     @include f-label-text(
         $block: $block,
         $state: '#{$f-modifier-filled}:not(:hover):not(:focus):not(:disabled)',
-        $error: false,
+        $hasError: false,
         $theme: 'outlined'
     ) {
         color: $f-label-color-filled;
@@ -200,7 +200,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     @include f-label-text(
         $block: $block,
         $state: ':hover:not(:disabled)',
-        $error: false,
+        $hasError: false,
         $theme: 'outlined'
     ) {
         color: $f-label-color-hover;
@@ -210,14 +210,14 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     @include f-label-text(
         $block: $block,
         $state: ':focus:not(:disabled)',
-        $error: false,
+        $hasError: false,
         $theme: 'outlined'
     ) {
         color: $f-label-color-focus;
     }
 
     // Label text > Error
-    @include f-label-text($block: $block, $error: true, $theme: 'outlined') {
+    @include f-label-text($block: $block, $hasError: true, $theme: 'outlined') {
         color: $f-label-color-error;
         transform: translateY(-50%) translateY(floor(-$f-border-width/2))
             scale($fo-label-scale);
@@ -279,7 +279,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $block: $block,
         $state: '#{$f-modifier-filled}:not(:disabled):not(:hover):not(:focus)',
         $theme: 'outlined',
-        $error: false
+        $hasError: false
     ) {
         color: $f-border-color;
     }
@@ -289,7 +289,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $block: $block,
         $state: ':hover:not(:disabled)',
         $theme: 'outlined',
-        $error: false
+        $hasError: false
     ) {
         color: $f-border-color-hover;
     }
@@ -299,13 +299,13 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $block: $block,
         $state: ':focus:not(:disabled)',
         $theme: 'outlined',
-        $error: false
+        $hasError: false
     ) {
         color: $f-border-color-focus;
     }
 
     // Indicator > Error
-    @include f-indicator($block: $block, $theme: 'outlined', $error: true) {
+    @include f-indicator($block: $block, $theme: 'outlined', $hasError: true) {
         color: $f-border-color-error;
     }
 
@@ -314,7 +314,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $block: $block,
         $state: ':hover',
         $theme: 'outlined',
-        $error: true
+        $hasError: true
     ) {
         color: $f-border-color-error;
     }
