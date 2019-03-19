@@ -19,13 +19,20 @@ $fo-select--arrow-color-disabled: $f-border-color-disabled !default;
 // Variables > Field
 $fo-select--field-padding-right: $fo-field-padding-right * 3 !default;
 
-// Mixins
+$block: '.f-select';
+$theme: 'outlined';
 
-@include fo-field('.f-select') {
+// Mixins
+@include fo-common-field($block);
+@include fo-common-label($block);
+@include fo-common-label-text($block);
+@include fo-common-indicator($block);
+
+@include f-field($block, $theme) {
     padding-right: $fo-select--field-padding-right;
 }
 
-@include f-arrow($block: '.f-select', $theme: 'outlined') {
+@include f-arrow($block, $theme) {
     position: absolute;
     transform-origin: center right;
     pointer-events: none;
@@ -38,7 +45,7 @@ $fo-select--field-padding-right: $fo-field-padding-right * 3 !default;
 
 // Chevron down arrow
 @if ($fo-select--arrow-type == 'chevron') {
-    @include f-arrow($block: '.f-select', $theme: 'outlined') {
+    @include f-arrow($block, $theme) {
         // Open chevron arrow ᐯ
         transform: translateY(50%) rotate(45deg);
         margin-top: 0.05em; // Visual realignment
@@ -53,27 +60,36 @@ $fo-select--field-padding-right: $fo-field-padding-right * 3 !default;
 
     // Arrow > Hover
     @include f-arrow(
-        $block: '.f-select',
-        $state: ':hover',
-        $theme: 'outlined'
+        $block,
+        $theme,
+        $state: ':hover'
     ) {
         border-color: $fo-select--arrow-color-hover;
     }
 
     // Arrow > Focus
     @include f-arrow(
-        $block: '.f-select',
-        $state: ':focus',
-        $theme: 'outlined'
+        $block,
+        $theme,
+        $state: ':focus'
     ) {
         border-color: $fo-select--arrow-color-focus;
     }
 
+    // Arrow > Error
+    @include f-arrow(
+        $block,
+        $theme,
+        $hasError: true
+    ) {
+        border-color: $f-border-color-error;
+    }
+
     // Arrow > Hover + Error
     @include f-arrow(
-        $block: '.f-select',
+        $block,
+        $theme,
         $state: ':hover',
-        $theme: 'outlined',
         $hasError: true
     ) {
         border-color: $f-border-color-error;
@@ -81,16 +97,16 @@ $fo-select--field-padding-right: $fo-field-padding-right * 3 !default;
 
     // Arrow > Focus + Error
     @include f-arrow(
-        $block: '.f-select',
+        $block,
+        $theme,
         $state: ':focus',
-        $theme: 'outlined',
         $hasError: true
     ) {
         border-color: $f-border-color-error;
     }
 } @else if ($fo-select--arrow-type == 'triangle') {
     // Solid triangle arrow ▼
-    @include f-arrow($block: '.f-select', $theme: 'outlined') {
+    @include f-arrow($block, $theme) {
         transform: translateY(50%);
         margin-top: 0.35em; // Visual realignment
         width: 0;
@@ -102,27 +118,36 @@ $fo-select--field-padding-right: $fo-field-padding-right * 3 !default;
 
     // Arrow > Hover
     @include f-arrow(
-        $block: '.f-select',
+        $block,
+        $theme,
         $state: ':hover',
-        $theme: 'outlined'
     ) {
         border-top-color: $fo-select--arrow-color-hover;
     }
 
     // Arrow > Focus
     @include f-arrow(
-        $block: '.f-select',
+        $block,
+        $theme,
         $state: ':focus',
-        $theme: 'outlined'
     ) {
         border-top-color: $fo-select--arrow-color-focus;
     }
 
+    // Arrow > Error
+    @include f-arrow(
+        $block,
+        $theme,
+        $hasError: true
+    ) {
+        border-top-color: $f-border-color-error;
+    }
+
     // Arrow > Hover + Error
     @include f-arrow(
-        $block: '.f-select',
+        $block,
+        $theme,
         $state: ':hover',
-        $theme: 'outlined',
         $hasError: true
     ) {
         border-top-color: $f-border-color-error;
@@ -130,9 +155,9 @@ $fo-select--field-padding-right: $fo-field-padding-right * 3 !default;
 
     // Arrow > Focus + Error
     @include f-arrow(
-        $block: '.f-select',
+        $block,
+        $theme,
         $state: ':focus',
-        $theme: 'outlined',
         $hasError: true
     ) {
         border-top-color: $f-border-color-error;
@@ -140,18 +165,23 @@ $fo-select--field-padding-right: $fo-field-padding-right * 3 !default;
 }
 
 // Arrow > Disabled
-@include f-arrow($block: '.f-select', $state: ':disabled', $theme: 'outlined') {
+@include f-arrow($block, $theme, $state: ':disabled') {
     border-color: $fo-select--arrow-color-disabled;
 }
 
-@include fo-label('.f-select') {
+@include f-label($block, $theme) {
     top: 0;
     bottom: 0;
     left: calc(#{$f-border-width} + #{$fo-field-padding-left});
 }
 
-@include fo-label-text('.f-select');
-@include fo-indicator('.f-select');
-@include fo-message('.f-select') {
+@include f-label-text($block, $theme) {
+    transition: transition(transform), transition(color), transition(letter-spacing);
+    will-change: transform, color;
+    transform-origin: center left;
+    transform: translateY(0) scale(1);
+}
+
+@include f-message($block, $theme) {
     margin: $fo-message-margin-inset;
 }

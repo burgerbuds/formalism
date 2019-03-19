@@ -128,8 +128,8 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
 // Label text
 @include f-label-text(
     $block: '.f-checkbox',
-    $state: ':not(:disabled)',
-    $theme: 'outlined'
+    $theme: 'outlined',
+    $state: ':not(:disabled)'
 ) {
     color: $f-text-color;
 }

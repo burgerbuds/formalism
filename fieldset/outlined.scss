@@ -12,8 +12,8 @@ $fo-fieldset--padding-top: 2.25em !default;
 $fo-fieldset--padding-bottom: 1.5em !default;
 $fo-fieldset--padding-left: 1.75em !default;
 $fo-fieldset--padding-right: $fo-fieldset--padding-left !default;
-$fo-fieldset--message-margin: 1.5em 0 -0.75em $fo-fieldset--padding-left !default;
 $fo-fieldset--content-spacing: 1.25em !default;
+$fo-fieldset--message-margin: 1.5em 0 -0.75em calc(#{$fo-fieldset--padding-left} + #{$f-border-width}) !default;
 
 @include f-base($block: '.f-fieldset', $theme: 'outlined') {
     border: $f-border-width solid $f-border-color;
@@ -89,14 +89,12 @@ $fo-fieldset--content-spacing: 1.25em !default;
     color: $f-label-color-error;
 }
 
-@include f-label-indicator($block: '.f-fieldset', $hasError: true);
-
 @include f-inner($block: '.f-fieldset', $theme: 'outlined') {
     // Display nicely again after the legend float
     float: left;
     width: 100%;
 }
 
-@include fo-message('.f-fieldset') {
+@include f-message($block: '.f-fieldset', $theme: 'outlined') {
     margin: $fo-fieldset--message-margin;
 }

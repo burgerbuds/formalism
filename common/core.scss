@@ -26,7 +26,7 @@ $f-text-color-disabled: $f-disabled-color !default;
 $f-text-caret-color: $f-highlight-color !default;
 
 // Labels
-$f-label-color: #a4a8a8 !default;
+$f-label-color: #6f7171 !default;
 $f-label-color-hover: $f-highlight-color !default;
 $f-label-color-focus: $f-highlight-color !default;
 $f-label-color-filled: $f-text-color !default;
@@ -104,7 +104,7 @@ $f-hide-instructions-when-error: true !default;
 }
 
 // Field label (not the label element)
-@mixin f-label($block: null, $state: null, $theme: null, $hasError: null) {
+@mixin f-label($block: null, $theme: null, $state: null, $hasError: null) {
     $block-suffix: block-suffix($hasError);
     #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
         #{$block}__field#{$state}
@@ -114,7 +114,7 @@ $f-hide-instructions-when-error: true !default;
 }
 
 // Field label text
-@mixin f-label-text($block: null, $state: null, $theme: null, $hasError: null) {
+@mixin f-label-text($block: null, $theme: null, $state: null, $hasError: null) {
     $block-suffix: block-suffix($hasError);
     #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
         #{$block}__field#{$state}
@@ -126,12 +126,19 @@ $f-hide-instructions-when-error: true !default;
 
 // Required or optional indicator
 // Use when the indicator is outside the label
-// TODO: Split this into two mixins perhaps
-@mixin f-indicator($block: null, $state: null, $theme: null, $hasError: null) {
+@mixin f-indicator($block: null, $theme: null, $state: null, $hasError: null) {
     $block-suffix: block-suffix($hasError);
     #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
         #{$block}__field#{$state}
-        ~ #{$block}__indicator,
+        ~ #{$block}__indicator {
+        @content;
+    }
+}
+
+// Required or optional indicator
+// Use when the indicator is inside the label
+@mixin f-label-indicator($block: null, $theme: null, $state: null, $hasError: null) {
+    $block-suffix: block-suffix($hasError);
     #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
         #{$block}__field#{$state}
         ~ #{$block}__label
@@ -141,12 +148,11 @@ $f-hide-instructions-when-error: true !default;
 }
 
 // Required or optional indicator
-// Use when the indicator is within the label
-// Eg: within Fieldset
-@mixin f-label-indicator($block: null, $theme: null, $hasError: null) {
+// Use when indicator is within the legend
+// - Used within Fieldset base
+@mixin f-legend-indicator($block: null, $theme: null, $hasError: null) {
     $block-suffix: block-suffix($hasError);
-    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
-        #{$block}__indicator {
+    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix} #{$block}__label #{$block}__indicator {
         @content;
     }
 }
@@ -218,8 +224,8 @@ $f-hide-instructions-when-error: true !default;
 
 @mixin f-label-after(
     $block: null,
-    $state: null,
     $theme: null,
+    $state: null,
     $hasError: null
 ) {
     $block-suffix: if(
@@ -236,8 +242,8 @@ $f-hide-instructions-when-error: true !default;
 
 @mixin f-label-before(
     $block: null,
-    $state: null,
     $theme: null,
+    $state: null,
     $hasError: null
 ) {
     $block-suffix: if(
@@ -252,7 +258,7 @@ $f-hide-instructions-when-error: true !default;
     }
 }
 
-@mixin f-button($block: null, $state: null, $theme: null, $hasError: null) {
+@mixin f-button($block: null, $theme: null, $state: null, $hasError: null) {
     $block-suffix: if(
         $hasError == true,
         $f-modifier-error,
@@ -268,7 +274,7 @@ $f-hide-instructions-when-error: true !default;
     }
 }
 
-@mixin f-arrow($block: null, $state: null, $theme: null, $hasError: null) {
+@mixin f-arrow($block: null, $theme: null, $state: null, $hasError: null) {
     $block-suffix: if(
         $hasError == true,
         $f-modifier-error,
@@ -282,32 +288,33 @@ $f-hide-instructions-when-error: true !default;
 }
 
 // Alias
-@mixin f-inside($block: null, $state: null, $theme: null, $hasError: null) {
-    @include f-label-after($block, $state, $theme, $hasError) {
+@mixin f-inside($block: null, $theme: null, $state: null, $hasError: null) {
+    @include f-label-after($block, $theme, $state, $hasError) {
         @content;
     }
 }
 
 // Alias
-@mixin f-outside($block: null, $state: null, $theme: null, $hasError: null) {
-    @include f-label-before($block, $state, $theme, $hasError) {
+@mixin f-outside($block: null, $theme: null, $state: null, $hasError: null) {
+    @include f-label-before($block, $theme, $state, $hasError) {
         @content;
     }
 }
 
 // Alias
-@mixin f-switch($block: null, $state: null, $theme: null, $hasError: null) {
-    @include f-label-after($block, $state, $theme, $hasError) {
+@mixin f-switch($block: null, $theme: null, $state: null, $hasError: null) {
+    @include f-label-after($block, $theme, $state, $hasError) {
         @content;
     }
 }
 
 // Alias
-@mixin f-switchbox($block: null, $state: null, $theme: null, $hasError: null) {
-    @include f-label-before($block, $state, $theme, $hasError) {
+@mixin f-switchbox($block: null, $theme: null, $state: null, $hasError: null) {
+    @include f-label-before($block, $theme, $state, $hasError) {
         @content;
     }
 }
+
 
 // ================================
 // Helpers
@@ -340,9 +347,10 @@ $f-hide-instructions-when-error: true !default;
     @return $string;
 }
 
+
 // ================================
-// Mixins
-// Initial element structures
+// Common Mixins
+// Initial styles applied to formalism elements
 // ================================
 
 // Element root
@@ -436,7 +444,7 @@ $f-hide-instructions-when-error: true !default;
         cursor: pointer;
     }
     // Label > Disabled
-    @include f-label($block, $state: 'disabled') {
+    @include f-label($block, $state: ':disabled') {
         cursor: not-allowed;
     }
 }
@@ -475,52 +483,13 @@ $f-hide-instructions-when-error: true !default;
         color: $f-border-color-error;
     }
     // Indicator > Disabled
-    @include f-indicator($block, $state: ':disabled', $hasError: true) {
+    @include f-indicator($block, $state: ':disabled') {
         color: $f-border-color-disabled;
     }
 }
 
 // Required or optional indicator
-// Use when the indicator is within the label
-// Eg: within Fieldset
-@mixin f-common-label-indicator($block: null, $theme: null, $hasError: null) {
-    @if ($block == null) {
-        @error "Add a block name. Eg: @mixin f-indicator( $block: '.f-input' )";
-    }
-    $block-suffix: if(
-        $hasError == true,
-        $f-modifier-error,
-        if($hasError == false, ':not(#{$f-modifier-error})', null)
-    );
-    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
-        #{$block}__indicator {
-        @if ($theme == null) {
-            pointer-events: none;
-            user-select: none;
-
-            &--optional {
-                color: $f-indicator-optional-color;
-                font-size: $f-indicator-optional-size;
-            }
-
-            &--required {
-                color: $f-indicator-required-color;
-                font-size: $f-indicator-required-size;
-            }
-        }
-        @content;
-    }
-    @if ($theme == null) {
-        // Indicator > Error on hover/focus
-        #{$block}#{$f-modifier-error} #{$block}__indicator {
-            color: $f-border-color-error;
-        }
-    }
-}
-
-// Required or optional indicator
-// Use when the indicator is within the label
-// Eg: within Fieldset
+// Use when the indicator is inside the label
 @mixin f-common-label-indicator($block: null) {
     @include f-label-indicator($block) {
         pointer-events: none;
@@ -536,8 +505,36 @@ $f-hide-instructions-when-error: true !default;
             font-size: $f-indicator-required-size;
         }
     }
-    // Indicator > Error on hover/focus
-    @include f-label-indicator($block, $error: true) {
+    // Indicator > Error
+    @include f-label-indicator($block, $hasError: true) {
+        color: $f-border-color-error;
+    }
+    // Indicator > Disabled
+    @include f-label-indicator($block, $state: ':disabled') {
+        color: $f-border-color-disabled;
+    }
+}
+
+// Required or optional indicator
+// Use when indicator is within the legend
+// - Used within Fieldset base
+@mixin f-common-legend-indicator($block: null) {
+    @include f-legend-indicator($block) {
+        pointer-events: none;
+        user-select: none;
+
+        &--optional {
+            color: $f-indicator-optional-color;
+            font-size: $f-indicator-optional-size;
+        }
+
+        &--required {
+            color: $f-indicator-required-color;
+            font-size: $f-indicator-required-size;
+        }
+    }
+    // Indicator > Error
+    @include f-legend-indicator($block, $hasError: true) {
         color: $f-border-color-error;
     }
 }
@@ -562,8 +559,9 @@ $f-hide-instructions-when-error: true !default;
             }
         }
     }
+    // Message > Error
     @include f-message($block, $hasError: true) {
-        &__message--error::selection {
+        &--error::selection {
             color: $f-selection-color !important;
             background: $f-error-color !important;
             text-shadow: none;

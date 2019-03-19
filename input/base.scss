@@ -6,8 +6,10 @@
 // Imports
 @import './../common/core';
 
+// Variables
 $block: '.f-input';
 
+// Mixins
 @include f-common-base($block);
 @include f-common-inner($block);
 @include f-common-field($block);

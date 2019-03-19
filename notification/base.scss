@@ -6,4 +6,5 @@
 // Imports
 @import './../common/core';
 
-@include f-base($block: '.f-notification');
+// Mixins
+@include f-common-base($block: '.f-notification');

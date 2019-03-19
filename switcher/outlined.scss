@@ -12,8 +12,11 @@ $fo-switcher--border-width: $f-border-width * 2 !default;
 $fo-switcher--size: 1.15em !default;
 $fo-switcher--field-radius: 10vh !default;
 
+$block: '.f-switcher';
+$theme: 'outlined';
+
 // Switch
-@include f-switch($block: '.f-switcher', $theme: 'outlined') {
+@include f-switch($block, $theme) {
     font-size: $fo-switcher--size;
     background-color: $f-bg-color;
     width: 1.2em;
@@ -24,10 +27,10 @@ $fo-switcher--field-radius: 10vh !default;
 
 // Switch > Not disabled + Not error
 @include f-switch(
-    $block: '.f-switcher',
+    $block,
+    $theme,
     $state: ':not(:disabled)',
-    $hasError: false,
-    $theme: 'outlined'
+    $hasError: false
 ) {
     color: $f-border-color;
     transition: transition(color), transition(border-color), transform 0.1s;
@@ -36,73 +39,73 @@ $fo-switcher--field-radius: 10vh !default;
 
 // Switch > Hover + Not disabled + Not error
 @include f-switch(
-    $block: '.f-switcher',
+    $block,
+    $theme,
     $state: ':hover:not(:disabled)',
-    $hasError: false,
-    $theme: 'outlined'
+    $hasError: false
 ) {
     color: $f-border-color-hover;
 }
 
 // Switch > Focus + Not error
 @include f-switch(
-    $block: '.f-switcher',
+    $block,
+    $theme,
     $state: ':focus:not(:active)',
-    $hasError: false,
-    $theme: 'outlined'
+    $hasError: false
 ) {
     color: $f-border-color-focus;
 }
 
 // Switch > Active + Not disabled + Not error
 @include f-switch(
-    $block: '.f-switcher',
+    $block,
+    $theme,
     $state: ':active:not(:disabled)',
-    $hasError: false,
-    $theme: 'outlined'
+    $hasError: false
 ) {
     color: $f-border-color-active;
 }
 
 // Switch > Checked + Not disabled + Not error
 @include f-switch(
-    $block: '.f-switcher',
+    $block,
+    $theme,
     $state: ':checked:not(:disabled)',
-    $hasError: false,
-    $theme: 'outlined'
+    $hasError: false
 ) {
     color: $f-border-color-filled;
 }
 
 // Switch > Checked
 @include f-switch(
-    $block: '.f-switcher',
-    $state: ':checked',
-    $theme: 'outlined'
+    $block,
+    $theme,
+    $state: ':checked'
 ) {
     transform: translateX(0.75em + 0.1em);
 }
 
 // Switch > Checked + Active
 @include f-switch(
-    $block: '.f-switcher',
-    $state: ':checked:active',
-    $theme: 'outlined'
+    $block,
+    $theme,
+    $state: ':checked:active'
 ) {
     transform: translateX(0.75em + 0.2em);
 }
 
 // Switch > Active + Not checked
 @include f-switch(
-    $block: '.f-switcher',
-    $state: ':active:not(:checked)',
-    $theme: 'outlined'
+    $block,
+    $theme,
+    $state: ':active:not(:checked)'
 ) {
     transform: translateX(-0.2em);
 }
 
 // Switchbox
-@include f-switchbox($block: '.f-switcher', $theme: 'outlined') {
+@include f-switchbox($block, $theme) {
     font-size: $fo-switcher--size;
     border: $fo-switcher--border-width solid currentColor;
     border-radius: $fo-switcher--field-radius;
@@ -110,25 +113,24 @@ $fo-switcher--field-radius: 10vh !default;
 
 // Switchbox > Not disabled + Not error
 @include f-switchbox(
-    $block: '.f-switcher',
+    $block,
+    $theme,
     $state: ':not(:disabled)',
     $hasError: false,
-    $theme: 'outlined'
 ) {
     color: $f-border-color;
 }
 
 // Switchbox > Checked + Not disabled + Not error
 @include f-switchbox(
-    $block: '.f-switcher',
+    $block,
+    $theme,
     $state: ':checked:not(:disabled)',
     $hasError: false,
-    $theme: 'outlined'
 ) {
     color: $f-border-color-filled;
 }
 
-// Message
-@include f-message($block: '.f-switcher', $theme: 'outlined') {
+@include f-message($block, $theme) {
     margin: $fo-message-margin;
 }

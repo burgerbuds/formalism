@@ -15,27 +15,26 @@ $fo-inner-box-shadow-width: $f-border-width * 2 !default;
 $fo-notification__bg-color-error: rgba($f-border-color-error, 0.1) !default;
 $fo-notification__bg-color-success: rgba($f-border-color-success, 0.1) !default;
 
-// Theme
-.f-notification--outlined {
-    $block: '.f-notification';
-    $error: $block + '--error';
-    $success: $block + '--success';
+$block: '.f-notification';
+$theme: 'outlined';
 
-    #{$block}__inner {
-        border: $fo-border-width solid $f-border-color;
-        border-radius: $fo-border-radius;
-        padding: $fo-field-padding-top $fo-field-padding-right
-            $fo-field-padding-bottom $fo-field-padding-left;
-        box-shadow: inset 0 0 0 $fo-inner-box-shadow-width $f-bg-color;
-    }
+// Inside
+@include f-inner($block, $theme) {
+    border: $fo-border-width solid $f-border-color;
+    border-radius: $fo-border-radius;
+    padding: $fo-field-padding-top $fo-field-padding-right
+        $fo-field-padding-bottom $fo-field-padding-left;
+    box-shadow: inset 0 0 0 $fo-inner-box-shadow-width $f-bg-color;
+}
 
-    &#{$error} #{$block}__inner {
-        border-color: $f-border-color-error;
-        background-color: $fo-notification__bg-color-error;
-    }
+// Notification > Error
+.f-notification--outlined#{$block}--error #{$block}__inner {
+    border-color: $f-border-color-error;
+    background-color: $fo-notification__bg-color-error;
+}
 
-    &#{$success} #{$block}__inner {
-        border-color: $f-border-color-success;
-        background-color: $fo-notification__bg-color-success;
-    }
+// Notification > Success
+.f-notification--outlined#{$block}--success #{$block}__inner {
+    border-color: $f-border-color-success;
+    background-color: $fo-notification__bg-color-success;
 }

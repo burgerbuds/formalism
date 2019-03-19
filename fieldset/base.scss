@@ -6,14 +6,22 @@
 // Imports
 @import './../common/core';
 
-@include f-base($block: '.f-fieldset') {
-    // Reset
+// Variables
+$block: '.f-fieldset';
+
+// Mixins
+@include f-common-base($block);
+@include f-common-inner($block);
+@include f-common-message($block);
+@include f-common-legend-indicator($block);
+
+@include f-base($block) {
     border: 0;
     margin: 0;
     padding: 0;
 }
 
-@include f-inner($block: '.f-fieldset') {
+@include f-inner($block) {
     &--stacked {
         & > * {
             width: 100%;
@@ -34,8 +42,6 @@
     }
 }
 
-@include f-legend-label($block: '.f-fieldset') {
+@include f-legend-label($block) {
     display: flex;
 }
-
-@include f-message($block: '.f-fieldset');

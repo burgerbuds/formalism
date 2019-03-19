@@ -6,28 +6,31 @@
 // Imports
 @import './../common/core';
 
-// Variables > General
+// Variables
 $f-checkbox--size: 1em !default;
 $f-checkbox--spacing: 0.75em !default;
 $f-checkbox--transition-duration: $f-transition-duration * 1.5 !default;
 $f-checkbox--has-animation: true !default;
-
-// Variables > Check
 $f-checkbox--tick-position: -0.25em, 0em !default; // translate(x, y) fine tuning
-
-// Variables > Label
 $f-checkbox--label-line-height: 1 !default;
 
-@include f-base($block: '.f-checkbox');
+$block: '.f-checkbox';
 
-@include f-inner($block: '.f-checkbox') {
+@include f-common-base($block);
+@include f-common-inner($block);
+@include f-common-label($block);
+@include f-common-label-text($block);
+@include f-common-field($block);
+@include f-common-label-indicator($block);
+@include f-common-message($block);
+
+@include f-inner($block) {
     display: inline-flex;
     flex-wrap: nowrap;
     align-items: center;
 }
 
-// Inside
-@include f-inside($block: '.f-checkbox') {
+@include f-inside($block) {
     content: '';
     display: block;
     font-size: $f-checkbox--size;
@@ -43,7 +46,7 @@ $f-checkbox--label-line-height: 1 !default;
 
 // Inside > Not disabled + Error
 @include f-inside(
-    $block: '.f-checkbox',
+    $block,
     $state: ':not(:disabled)',
     $hasError: true
 ) {
@@ -51,12 +54,12 @@ $f-checkbox--label-line-height: 1 !default;
 }
 
 // Inside > Disabled
-@include f-inside($block: '.f-checkbox', $state: ':disabled') {
+@include f-inside($block, $state: ':disabled') {
     color: $f-border-color-disabled;
 }
 
 // Inside > Checked
-@include f-inside($block: '.f-checkbox', $state: ':checked') {
+@include f-inside($block, $state: ':checked') {
     visibility: visible;
 
     @if ($f-checkbox--has-animation) {
@@ -84,7 +87,7 @@ $f-checkbox--label-line-height: 1 !default;
 }
 
 // Outside
-@include f-outside($block: '.f-checkbox') {
+@include f-outside($block) {
     content: '';
     display: block;
     font-size: $f-checkbox--size;
@@ -99,7 +102,7 @@ $f-checkbox--label-line-height: 1 !default;
 
 // Outside > Not disabled + Error
 @include f-outside(
-    $block: '.f-checkbox',
+    $block,
     $state: ':not(:disabled)',
     $hasError: true
 ) {
@@ -107,12 +110,11 @@ $f-checkbox--label-line-height: 1 !default;
 }
 
 // Outside > Disabled
-@include f-outside($block: '.f-checkbox', $state: ':disabled') {
+@include f-outside($block, $state: ':disabled') {
     color: $f-border-color-disabled;
 }
 
-// Label
-@include f-label($block: '.f-checkbox') {
+@include f-label($block) {
     color: inherit;
     position: relative;
     display: flex;
@@ -120,21 +122,11 @@ $f-checkbox--label-line-height: 1 !default;
     flex-wrap: nowrap;
 }
 
-// Label text
-@include f-label-text($block: '.f-checkbox') {
+@include f-label-text($block) {
     line-height: $f-checkbox--label-line-height;
 }
 
-@include f-field($block: '.f-checkbox') {
+@include f-field($block) {
     clip: rect(1px, 1px, 1px, 1px); // Allows tabbing still
     position: absolute;
 }
-
-@include f-indicator($block: '.f-checkbox');
-
-// Indicator > Disabled
-@include f-indicator($block: '.f-checkbox', $state: ':disabled') {
-    color: $f-text-color-disabled;
-}
-
-@include f-message($block: '.f-checkbox');
