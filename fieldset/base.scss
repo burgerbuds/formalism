@@ -6,18 +6,14 @@
 // Imports
 @import './../common/core';
 
-@include f-base(
-    $block: '.f-fieldset',
-) {
+@include f-base($block: '.f-fieldset') {
     // Reset
     border: 0;
     margin: 0;
     padding: 0;
-};
+}
 
-@include f-inner(
-    $block: '.f-fieldset',
-) {
+@include f-inner($block: '.f-fieldset') {
     &--stacked {
         & > * {
             width: 100%;
@@ -36,14 +32,10 @@
     > * {
         break-inside: avoid;
     }
-};
+}
 
-@include f-legend-label(
-    $block: '.f-fieldset',
-) {
+@include f-legend-label($block: '.f-fieldset') {
     display: flex;
 }
 
-@include f-message(
-    $block: '.f-fieldset',
-);
+@include f-message($block: '.f-fieldset');

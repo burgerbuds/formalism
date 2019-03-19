@@ -10,28 +10,20 @@
 $f-radio--spacing: 0.5em !default;
 $f-radio--label-line-height: 1 !default;
 
-@include f-base(
-    $block: '.f-radio',
-);
+@include f-base($block: '.f-radio');
 
-@include f-inner(
-    $block: '.f-radio',
-) {
+@include f-inner($block: '.f-radio') {
     display: inline-flex;
     flex-wrap: nowrap;
     align-items: center;
-};
+}
 
-@include f-field(
-    $block: '.f-radio',
-) {
+@include f-field($block: '.f-radio') {
     clip: rect(1px, 1px, 1px, 1px); // Allows tabbing still
     position: absolute;
-};
+}
 
-@include f-inside(
-    $block: '.f-radio',
-) {
+@include f-inside($block: '.f-radio') {
     content: '';
     display: block;
     width: 1em;
@@ -42,35 +34,27 @@ $f-radio--label-line-height: 1 !default;
     transition: transition(transform);
     will-change: transform;
     position: absolute;
+    // <=IE11 positioning fix
+    top: 0;
+    left: 0;
 }
 
 // Inside > Error
-@include f-inside(
-    $block: '.f-radio',
-    $state: ':not(:disabled)'
-) {
+@include f-inside($block: '.f-radio', $state: ':not(:disabled)') {
     color: $f-error-color;
 }
 
 // Inside > Checked
-@include f-inside(
-    $block: '.f-radio',
-    $state: ':checked'
-) {
+@include f-inside($block: '.f-radio', $state: ':checked') {
     visibility: visible;
 }
 
 // Inside > Disabled
-@include f-inside(
-    $block: '.f-radio',
-    $state: ':disabled'
-) {
+@include f-inside($block: '.f-radio', $state: ':disabled') {
     color: $f-border-color-disabled;
 }
 
-@include f-outside(
-    $block: '.f-radio',
-) {
+@include f-outside($block: '.f-radio') {
     content: '';
     display: block;
     width: 1em;
@@ -80,23 +64,16 @@ $f-radio--label-line-height: 1 !default;
 }
 
 // Outside > Error
-@include f-outside(
-    $block: '.f-radio',
-    $error: true,
-) {
+@include f-outside($block: '.f-radio', $error: true) {
     color: $f-error-color;
 }
 
 // Outside > Disabled
-@include f-outside(
-    $block: '.f-radio',
-) {
+@include f-outside($block: '.f-radio') {
     color: $f-border-color-disabled;
 }
 
-@include f-label(
-    $block: '.f-radio',
-) {
+@include f-label($block: '.f-radio') {
     color: inherit;
     position: relative;
     display: flex;
@@ -104,18 +81,12 @@ $f-radio--label-line-height: 1 !default;
     flex-wrap: nowrap;
     transition: transition(color);
     will-change: color;
-};
+}
 
-@include f-label-text(
-    $block: '.f-radio',
-) {
+@include f-label-text($block: '.f-radio') {
     line-height: $f-radio--label-line-height;
-};
+}
 
-@include f-indicator(
-    $block: '.f-radio',
-);
+@include f-indicator($block: '.f-radio');
 
-@include f-message(
-    $block: '.f-radio',
-);
+@include f-message($block: '.f-radio');

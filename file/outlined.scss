@@ -9,10 +9,7 @@
 
 @include fo-field('.f-file');
 
-@include f-field(
-    $block: '.f-file',
-    $theme: 'outlined',
-) {
+@include f-field($block: '.f-file', $theme: 'outlined') {
     -webkit-appearance: none;
     appearance: none;
 }
@@ -20,15 +17,12 @@
 @include fo-label('.f-file') {
     top: 0;
     bottom: 0;
-    left: calc(
-        #{$f-border-width} + #{$fo-field-padding-left}
-    );
+    left: calc(#{$f-border-width} + #{$fo-field-padding-left});
     transform: translateY(-$fo-field-padding-top);
 }
 
 @include fo-label-text('.f-file') {
-    transform: translateY(-50%)
-        translateY(floor(-$f-border-width/2))
+    transform: translateY(-50%) translateY(floor(-$f-border-width/2))
         scale($fo-label-scale);
     color: $f-text-color;
 }

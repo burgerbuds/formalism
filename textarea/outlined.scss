@@ -10,17 +10,11 @@
 // Variables
 $fo-textarea-webkit-styles: true !default;
 
-// Mixins
-
 @if ($fo-textarea-webkit-styles) {
-
-    @include f-base(
-        $block: '.f-textarea',
-        $theme: 'outlined',
-    ) {
+    @include f-base($block: '.f-textarea', $theme: 'outlined') {
         // Custom scrollbar styles
         ::-webkit-scrollbar {
-            width: .5em;
+            width: 0.5em;
             max-width: 10px;
         }
         ::-webkit-scrollbar-thumb {
@@ -35,11 +29,20 @@ $fo-textarea-webkit-styles: true !default;
         }
     }
 
-    // Field
+    // Field > Error
+    @include f-field($block: '.f-textarea', $theme: 'outlined', $error: true) {
+        // Custom scrollbar styles
+        &::-webkit-scrollbar-thumb {
+            background: $f-border-color-error;
+        }
+    }
+
+    // Field > Focus + Error
     @include f-field(
         $block: '.f-textarea',
+        $state: ':focus',
         $theme: 'outlined',
-        $error: true,
+        $error: true
     ) {
         // Custom scrollbar styles
         &::-webkit-scrollbar-thumb {
@@ -51,7 +54,7 @@ $fo-textarea-webkit-styles: true !default;
     @include f-field(
         $block: '.f-textarea',
         $theme: 'outlined',
-        $state: ':hover',
+        $state: ':hover'
     ) {
         &::-webkit-scrollbar-thumb {
             background: $f-border-color-hover;
@@ -62,7 +65,7 @@ $fo-textarea-webkit-styles: true !default;
     @include f-field(
         $block: '.f-textarea',
         $theme: 'outlined',
-        $state: ':focus',
+        $state: ':focus'
     ) {
         &::-webkit-scrollbar-thumb {
             background: $f-border-color-focus;
@@ -70,25 +73,19 @@ $fo-textarea-webkit-styles: true !default;
     }
 }
 
-@include fo-field(
-    $block: '.f-textarea',
-);
+@include fo-field($block: '.f-textarea');
 
 @include fo-label('.f-textarea') {
     top: $f-border-width;
-    left: calc(
-        #{$f-border-width} + #{$fo-field-padding-left}
-    );
+    left: calc(#{$f-border-width} + #{$fo-field-padding-left});
 }
 
 @include fo-label-text('.f-textarea');
 
 @include fo-indicator('.f-textarea') {
     // Avoid scrollbar clashing
-    text-shadow: 1px 1px 0 white,
-    1px 0 0 white,
-    1px -1px 0 white;
-};
+    text-shadow: 1px 1px 0 white, 1px 0 0 white, 1px -1px 0 white;
+}
 
 @include fo-message('.f-textarea') {
     margin: $fo-message-margin-inset;

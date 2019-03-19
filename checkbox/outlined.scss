@@ -13,10 +13,7 @@ $fo-checkbox--bg-color: transparent !default;
 $fo-checkbox--border-radius: 0.15em !default;
 $fo-checkbox--border-width: $f-border-width * 2 !default;
 
-@include f-inside(
-    $block: '.f-checkbox',
-    $theme: 'outlined',
-) {
+@include f-inside($block: '.f-checkbox', $theme: 'outlined') {
     border-right: $fo-checkbox--border-width solid currentColor;
     border-top: $fo-checkbox--border-width solid currentColor;
 }
@@ -26,7 +23,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':not(:disabled)',
-    $error: false,
+    $error: false
 ) {
     color: $f-border-color;
 }
@@ -36,7 +33,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':hover:not(:disabled)',
-    $error: false,
+    $error: false
 ) {
     color: $f-border-color-hover;
 }
@@ -46,7 +43,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':focus:not(:disabled)',
-    $error: false,
+    $error: false
 ) {
     color: $f-border-color-focus;
 }
@@ -56,7 +53,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':active:not(:disabled)',
-    $error: false,
+    $error: false
 ) {
     color: $f-border-color-active;
 }
@@ -66,16 +63,13 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':checked:not(:disabled)',
-    $error: false,
+    $error: false
 ) {
     color: $f-border-color-filled;
 }
 
 // Tickbox
-@include f-outside(
-    $block: '.f-checkbox',
-    $theme: 'outlined',
-) {
+@include f-outside($block: '.f-checkbox', $theme: 'outlined') {
     background-color: $fo-checkbox--bg-color;
     border: $fo-checkbox--border-width solid currentColor;
     border-radius: $fo-checkbox--border-radius;
@@ -86,7 +80,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':not(:disabled)',
-    $error: false,
+    $error: false
 ) {
     color: $f-border-color;
 }
@@ -96,7 +90,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':hover:not(:disabled)',
-    $error: false,
+    $error: false
 ) {
     color: $f-border-color-hover;
 }
@@ -106,7 +100,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':focus:not(:disabled)',
-    $error: false,
+    $error: false
 ) {
     color: $f-border-color-focus;
 }
@@ -116,7 +110,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':checked:not(:disabled)',
-    $error: false,
+    $error: false
 ) {
     color: $f-border-color-filled;
 }
@@ -126,7 +120,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     $block: '.f-checkbox',
     $theme: 'outlined',
     $state: ':active:not(:disabled)',
-    $error: false,
+    $error: false
 ) {
     color: $f-border-color-active;
 }
@@ -135,15 +129,12 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
 @include f-label-text(
     $block: '.f-checkbox',
     $state: ':not(:disabled)',
-    $theme: 'outlined',
+    $theme: 'outlined'
 ) {
     color: $f-text-color;
 }
 
 // Message
-@include f-message(
-    $block: '.f-checkbox',
-    $theme: 'outlined',
-) {
+@include f-message($block: '.f-checkbox', $theme: 'outlined') {
     margin: $fo-message-margin;
 }

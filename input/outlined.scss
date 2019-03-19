@@ -14,10 +14,8 @@
 @include fo-label('.f-input') {
     top: 0;
     bottom: 0;
-    left: calc(
-        #{$f-border-width} + #{$fo-field-padding-left}
-    );
-};
+    left: calc(#{$f-border-width} + #{$fo-field-padding-left});
+}
 
 @include fo-label-text('.f-input');
 

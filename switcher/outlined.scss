@@ -13,10 +13,7 @@ $fo-switcher--size: 1.15em !default;
 $fo-switcher--field-radius: 10vh !default;
 
 // Switch
-@include f-switch(
-    $block: '.f-switcher',
-    $theme: 'outlined',
-) {
+@include f-switch($block: '.f-switcher', $theme: 'outlined') {
     font-size: $fo-switcher--size;
     background-color: $f-bg-color;
     width: 1.2em;
@@ -30,12 +27,10 @@ $fo-switcher--field-radius: 10vh !default;
     $block: '.f-switcher',
     $state: ':not(:disabled)',
     $error: false,
-    $theme: 'outlined',
+    $theme: 'outlined'
 ) {
     color: $f-border-color;
-    transition: transition(color),
-        transition(border-color),
-        transform 0.1s;
+    transition: transition(color), transition(border-color), transform 0.1s;
     will-change: color, transform;
 }
 
@@ -44,7 +39,7 @@ $fo-switcher--field-radius: 10vh !default;
     $block: '.f-switcher',
     $state: ':hover:not(:disabled)',
     $error: false,
-    $theme: 'outlined',
+    $theme: 'outlined'
 ) {
     color: $f-border-color-hover;
 }
@@ -54,7 +49,7 @@ $fo-switcher--field-radius: 10vh !default;
     $block: '.f-switcher',
     $state: ':focus:not(:active)',
     $error: false,
-    $theme: 'outlined',
+    $theme: 'outlined'
 ) {
     color: $f-border-color-focus;
 }
@@ -64,7 +59,7 @@ $fo-switcher--field-radius: 10vh !default;
     $block: '.f-switcher',
     $state: ':active:not(:disabled)',
     $error: false,
-    $theme: 'outlined',
+    $theme: 'outlined'
 ) {
     color: $f-border-color-active;
 }
@@ -74,7 +69,7 @@ $fo-switcher--field-radius: 10vh !default;
     $block: '.f-switcher',
     $state: ':checked:not(:disabled)',
     $error: false,
-    $theme: 'outlined',
+    $theme: 'outlined'
 ) {
     color: $f-border-color-filled;
 }
@@ -83,7 +78,7 @@ $fo-switcher--field-radius: 10vh !default;
 @include f-switch(
     $block: '.f-switcher',
     $state: ':checked',
-    $theme: 'outlined',
+    $theme: 'outlined'
 ) {
     transform: translateX(0.75em + 0.1em);
 }
@@ -92,7 +87,7 @@ $fo-switcher--field-radius: 10vh !default;
 @include f-switch(
     $block: '.f-switcher',
     $state: ':checked:active',
-    $theme: 'outlined',
+    $theme: 'outlined'
 ) {
     transform: translateX(0.75em + 0.2em);
 }
@@ -101,16 +96,13 @@ $fo-switcher--field-radius: 10vh !default;
 @include f-switch(
     $block: '.f-switcher',
     $state: ':active:not(:checked)',
-    $theme: 'outlined',
+    $theme: 'outlined'
 ) {
     transform: translateX(-0.2em);
 }
 
 // Switchbox
-@include f-switchbox(
-    $block: '.f-switcher',
-    $theme: 'outlined'
-) {
+@include f-switchbox($block: '.f-switcher', $theme: 'outlined') {
     font-size: $fo-switcher--size;
     border: $fo-switcher--border-width solid currentColor;
     border-radius: $fo-switcher--field-radius;
@@ -121,7 +113,7 @@ $fo-switcher--field-radius: 10vh !default;
     $block: '.f-switcher',
     $state: ':not(:disabled)',
     $error: false,
-    $theme: 'outlined',
+    $theme: 'outlined'
 ) {
     color: $f-border-color;
 }
@@ -131,15 +123,12 @@ $fo-switcher--field-radius: 10vh !default;
     $block: '.f-switcher',
     $state: ':checked:not(:disabled)',
     $error: false,
-    $theme: 'outlined',
+    $theme: 'outlined'
 ) {
     color: $f-highlight-color;
 }
 
 // Message
-@include f-message(
-    $block: '.f-switcher',
-    $theme: 'outlined',
-) {
+@include f-message($block: '.f-switcher', $theme: 'outlined') {
     margin: $fo-message-margin;
 }

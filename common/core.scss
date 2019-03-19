@@ -26,14 +26,15 @@ $f-text-color-disabled: $f-disabled-color !default;
 $f-text-caret-color: $f-highlight-color !default;
 
 // Labels
-$f-label-color: gray !default;
+$f-label-color: #a4a8a8 !default;
 $f-label-color-hover: $f-highlight-color !default;
 $f-label-color-focus: $f-highlight-color !default;
 $f-label-color-filled: $f-text-color !default;
 $f-label-color-error: $f-error-color !default; // TODO: Roll this out
+$f-label-color-disabled: $f-disabled-color !default;
 
 // Field > Border
-$f-border-color: #a4a8ab !default;
+$f-border-color: #a4a8a8 !default;
 $f-border-color-hover: $f-highlight-color !default;
 $f-border-color-focus: $f-border-color-hover !default;
 $f-border-color-active: $f-highlight-color !default;
@@ -47,7 +48,7 @@ $f-border-width-error: 2px !default;
 $f-border-width-success: 2px !default;
 
 // Messages
-$f-message-color: gray !default;
+$f-message-color: #666 !default;
 $f-message-font-size: 0.9em !default;
 
 // Indicator
@@ -71,7 +72,6 @@ $f-selection-bg: $f-highlight-color !default;
 // Settings
 $f-hide-instructions-when-error: true !default;
 
-
 // ================================
 // Mixins
 // Initial element structures
@@ -82,10 +82,16 @@ $f-hide-instructions-when-error: true !default;
     $block: null,
     $theme: null,
     $error: null,
-    $modifier-error: $f-modifier-error,
+    $modifier-error: $f-modifier-error
 ) {
-    @if ($block == null) { @error "Add a block name. Eg: @mixin f-base( $block: '.f-input' )"; }
-    $block-suffix: if($error == true, $modifier-error, if($error == false, ':not(#{$modifier-error})', null));
+    @if ($block == null) {
+        @error "Add a block name. Eg: @mixin f-base( $block: '.f-input' )";
+    }
+    $block-suffix: if(
+        $error == true,
+        $modifier-error,
+        if($error == false, ':not(#{$modifier-error})', null)
+    );
     #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix} {
         @if ($theme) {
             position: relative;
@@ -111,13 +117,15 @@ $f-hide-instructions-when-error: true !default;
 }
 
 // Inner wrapping element
-@mixin f-inner(
-    $block: null,
-    $theme: null,
-    $error: null,
-) {
-    @if ($block == null) { @error "Add a block name. Eg: @mixin f-inner( $block: '.f-input' )"; }
-    $block-suffix: if($error == true, $f-modifier-error, if($error == false, ':not(#{$f-modifier-error})', null));
+@mixin f-inner($block: null, $theme: null, $error: null) {
+    @if ($block == null) {
+        @error "Add a block name. Eg: @mixin f-inner( $block: '.f-input' )";
+    }
+    $block-suffix: if(
+        $error == true,
+        $f-modifier-error,
+        if($error == false, ':not(#{$f-modifier-error})', null)
+    );
     #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix} #{$block}__inner {
         @if ($theme == null) {
             display: block;
@@ -128,15 +136,17 @@ $f-hide-instructions-when-error: true !default;
 }
 
 // Form field
-@mixin f-field(
-    $block: null,
-    $state: null,
-    $theme: null,
-    $error: null,
-) {
-    @if ($block == null) { @error "Add a block name. Eg: @mixin f-field( $block: '.f-input' )"; }
-    $block-suffix: if($error == true, $f-modifier-error, if($error == false, ':not(#{$f-modifier-error})', null));
-    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix} #{$block}__field#{$state} {
+@mixin f-field($block: null, $state: null, $theme: null, $error: null) {
+    @if ($block == null) {
+        @error "Add a block name. Eg: @mixin f-field( $block: '.f-input' )";
+    }
+    $block-suffix: if(
+        $error == true,
+        $f-modifier-error,
+        if($error == false, ':not(#{$f-modifier-error})', null)
+    );
+    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
+        #{$block}__field#{$state} {
         @if ($theme == null and $state == null) {
             color: $f-text-color;
             width: 100%;
@@ -193,15 +203,18 @@ $f-hide-instructions-when-error: true !default;
 }
 
 // Field label (not the label element)
-@mixin f-label(
-    $block: null,
-    $state: null,
-    $theme: null,
-    $error: null,
-) {
-    @if ($block == null) { @error "Add a block name. Eg: @mixin f-label( $block: '.f-input' )"; }
-    $block-suffix: if($error == true, $f-modifier-error, if($error == false, ':not(#{$f-modifier-error})', null));
-    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix} #{$block}__field#{$state} ~ #{$block}__label {
+@mixin f-label($block: null, $state: null, $theme: null, $error: null) {
+    @if ($block == null) {
+        @error "Add a block name. Eg: @mixin f-label( $block: '.f-input' )";
+    }
+    $block-suffix: if(
+        $error == true,
+        $f-modifier-error,
+        if($error == false, ':not(#{$f-modifier-error})', null)
+    );
+    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
+        #{$block}__field#{$state}
+        ~ #{$block}__label {
         @if ($theme == null and $state == null) {
             user-select: none;
             font-size: $f-text-font-size;
@@ -211,7 +224,9 @@ $f-hide-instructions-when-error: true !default;
 
     @if ($theme == null and $state == null) {
         // Label > Not disabled
-        #{$block}#{$block-suffix} #{$block}__field:not(:disabled) ~ #{$block}__label {
+        #{$block}#{$block-suffix}
+            #{$block}__field:not(:disabled)
+            ~ #{$block}__label {
             cursor: pointer;
         }
         // Label > Disabled
@@ -227,12 +242,25 @@ $f-hide-instructions-when-error: true !default;
     $state: null,
     $theme: null,
     $error: null,
-    $modifier-error: $f-modifier-error,
+    $modifier-error: $f-modifier-error
 ) {
-    @if ($block == null) { @error "Add a block name. Eg: @mixin f-label-text( $block: '.f-input' )"; }
-    $block-suffix: if($error == true, $modifier-error, if($error == false, ':not(#{$modifier-error})', null));
-    $block-suffix: if($error == true, $modifier-error, if($error == false, ':not(#{$modifier-error})', null));
-    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix} #{$block}__field#{$state} ~ #{$block}__label #{$block}__label-text {
+    @if ($block == null) {
+        @error "Add a block name. Eg: @mixin f-label-text( $block: '.f-input' )";
+    }
+    $block-suffix: if(
+        $error == true,
+        $modifier-error,
+        if($error == false, ':not(#{$modifier-error})', null)
+    );
+    $block-suffix: if(
+        $error == true,
+        $modifier-error,
+        if($error == false, ':not(#{$modifier-error})', null)
+    );
+    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
+        #{$block}__field#{$state}
+        ~ #{$block}__label
+        #{$block}__label-text {
         @if ($theme == null and $state == null) {
             color: $f-label-color;
 
@@ -246,16 +274,29 @@ $f-hide-instructions-when-error: true !default;
 }
 
 // Required or optional indicator
+// Use when the indicator is outside the label
 @mixin f-indicator(
     $block: null,
     $state: null,
     $theme: null,
     $error: null,
+    $modifier-error: $f-modifier-error
 ) {
-    @if ($block == null) { @error "Add a block name. Eg: @mixin f-indicator( $block: '.f-input' )"; }
-    $block-suffix: if($error == true, $f-modifier-error, if($error == false, ':not(#{$f-modifier-error})', null));
-    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix} #{$block}__field#{$state} ~ #{$block}__indicator,
-    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix} #{$block}__field#{$state} ~ #{$block}__label #{$block}__indicator {
+    @if ($block == null) {
+        @error "Add a block name. Eg: @mixin f-indicator( $block: '.f-input' )";
+    }
+    $block-suffix: if(
+        $error == true,
+        $modifier-error,
+        if($error == false, ':not(#{$modifier-error})', null)
+    );
+    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
+        #{$block}__field#{$state}
+        ~ #{$block}__indicator,
+    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
+        #{$block}__field#{$state}
+        ~ #{$block}__label
+        #{$block}__indicator {
         @if ($theme == null and $state == null) {
             pointer-events: none;
             user-select: none;
@@ -274,27 +315,79 @@ $f-hide-instructions-when-error: true !default;
     }
     @if ($theme == null and $state == null) {
         // Indicator > Error on hover/focus
-        #{$block}#{$f-modifier-error} #{$block}__field ~ #{$block}__indicator,
-        #{$block}#{$f-modifier-error} #{$block}__field ~ #{$block}__label #{$block}__indicator {
+        #{$block}#{$modifier-error} #{$block}__field ~ #{$block}__indicator,
+        #{$block}#{$modifier-error}
+            #{$block}__field
+            ~ #{$block}__label
+            #{$block}__indicator {
             color: $f-border-color-error;
         }
         // Indicator > Disabled
         #{$block} #{$block}__field:disabled ~ #{$block}__indicator,
-        #{$block} #{$block}__field:disabled ~ #{$block}__label #{$block}__indicator {
+        #{$block}
+            #{$block}__field:disabled
+            ~ #{$block}__label
+            #{$block}__indicator {
             color: $f-border-color-disabled;
         }
     }
 }
 
-// Message instructions or error
-@mixin f-message(
+// Required or optional indicator
+// Use when the indicator is within the label
+// Eg: within Fieldset
+@mixin f-label-indicator(
     $block: null,
     $theme: null,
     $error: null,
+    $modifier-error: $f-modifier-error
 ) {
-    @if ($block == null) { @error "Add a block name. Eg: @mixin f-message( $block: '.f-input' )"; }
-    $block-suffix: if($error == true, $f-modifier-error, if($error == false, ':not(#{$f-modifier-error})', null));
-    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix} #{$block}__message {
+    @if ($block == null) {
+        @error "Add a block name. Eg: @mixin f-indicator( $block: '.f-input' )";
+    }
+    $block-suffix: if(
+        $error == true,
+        $modifier-error,
+        if($error == false, ':not(#{$modifier-error})', null)
+    );
+    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
+        #{$block}__indicator {
+        @if ($theme == null) {
+            pointer-events: none;
+            user-select: none;
+
+            &--optional {
+                color: $f-indicator-optional-color;
+                font-size: $f-indicator-optional-size;
+            }
+
+            &--required {
+                color: $f-indicator-required-color;
+                font-size: $f-indicator-required-size;
+            }
+        }
+        @content;
+    }
+    @if ($theme == null) {
+        // Indicator > Error on hover/focus
+        #{$block}#{$modifier-error} #{$block}__indicator {
+            color: $f-border-color-error;
+        }
+    }
+}
+
+// Message instructions or error
+@mixin f-message($block: null, $theme: null, $error: null) {
+    @if ($block == null) {
+        @error "Add a block name. Eg: @mixin f-message( $block: '.f-input' )";
+    }
+    $block-suffix: if(
+        $error == true,
+        $f-modifier-error,
+        if($error == false, ':not(#{$f-modifier-error})', null)
+    );
+    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
+        #{$block}__message {
         @if ($theme == null) {
             font-size: $f-message-font-size;
 
@@ -325,41 +418,46 @@ $f-hide-instructions-when-error: true !default;
     }
 }
 
-
-@mixin f-inside(
-    $block: null,
-    $state: null,
-    $theme: null,
-    $error: null,
-) {
-    $block-suffix: if($error == true, $f-modifier-error, if($error == false, ':not(#{$f-modifier-error})', null));
-    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix} #{$block}__field#{$state} ~ #{$block}__label:after {
+@mixin f-inside($block: null, $state: null, $theme: null, $error: null) {
+    $block-suffix: if(
+        $error == true,
+        $f-modifier-error,
+        if($error == false, ':not(#{$f-modifier-error})', null)
+    );
+    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
+        #{$block}__field#{$state}
+        ~ #{$block}__label:after {
         @content;
     }
 }
 
-@mixin f-outside(
-    $block: null,
-    $state: null,
-    $theme: null,
-    $error: null,
-) {
-    $block-suffix: if($error == true, $f-modifier-error, if($error == false, ':not(#{$f-modifier-error})', null));
-    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix} #{$block}__field#{$state} ~ #{$block}__label:before {
+@mixin f-outside($block: null, $state: null, $theme: null, $error: null) {
+    $block-suffix: if(
+        $error == true,
+        $f-modifier-error,
+        if($error == false, ':not(#{$f-modifier-error})', null)
+    );
+    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
+        #{$block}__field#{$state}
+        ~ #{$block}__label:before {
         @content;
     }
 }
-
 
 // Fieldset legend
 @mixin f-legend(
     $block: null,
     $theme: null,
     $error: null,
-    $modifier-error: $f-modifier-error,
+    $modifier-error: $f-modifier-error
 ) {
-    $block-suffix: if($error == true, $modifier-error, if($error == false, ':not(#{$modifier-error})', null));
-    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix} #{$block}__legend {
+    $block-suffix: if(
+        $error == true,
+        $modifier-error,
+        if($error == false, ':not(#{$modifier-error})', null)
+    );
+    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
+        #{$block}__legend {
         @content;
     }
 }
@@ -368,10 +466,16 @@ $f-hide-instructions-when-error: true !default;
     $block: null,
     $theme: null,
     $error: null,
-    $modifier-error: $f-modifier-error,
+    $modifier-error: $f-modifier-error
 ) {
-    $block-suffix: if($error == true, $modifier-error, if($error == false, ':not(#{$modifier-error})', null));
-    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix} #{$block}__legend #{$block}__label {
+    $block-suffix: if(
+        $error == true,
+        $modifier-error,
+        if($error == false, ':not(#{$modifier-error})', null)
+    );
+    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
+        #{$block}__legend
+        #{$block}__label {
         @content;
     }
 }
@@ -380,16 +484,22 @@ $f-hide-instructions-when-error: true !default;
     $block: null,
     $theme: null,
     $error: null,
-    $modifier-error: $f-modifier-error,
+    $modifier-error: $f-modifier-error
 ) {
-    $block-suffix: if($error == true, $modifier-error, if($error == false, ':not(#{$modifier-error})', null));
-    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix} #{$block}__legend #{$block}__label-text {
+    $block-suffix: if(
+        $error == true,
+        $modifier-error,
+        if($error == false, ':not(#{$modifier-error})', null)
+    );
+    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
+        #{$block}__legend
+        #{$block}__label-text {
         @if ($theme == null) {
             color: $f-text-color;
             display: block;
 
             &:before {
-                @debug(&);
+                @debug (&);
                 content: '';
                 position: absolute;
                 top: 0;
@@ -405,50 +515,46 @@ $f-hide-instructions-when-error: true !default;
     }
 }
 
-@mixin f-arrow(
-    $block: null,
-    $state: null,
-    $theme: null,
-    $error: null,
-) {
-    $block-suffix: if($error == true, $f-modifier-error, if($error == false, ':not(#{$f-modifier-error})', null));
-    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix} #{$block}__field#{$state} ~ #{$block}__arrow {
+@mixin f-button($block: null, $state: null, $theme: null, $error: null) {
+    $block-suffix: if(
+        $error == true,
+        $f-modifier-error,
+        if($error == false, ':not(#{$f-modifier-error})', null)
+    );
+    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
+        #{$block}__field#{$state}
+        ~ #{$block}__button {
+        @if ($theme == null and $state == null) {
+            cursor: pointer;
+        }
         @content;
     }
 }
 
-@mixin f-switch(
-    $block: null,
-    $state: null,
-    $theme: null,
-    $error: null,
-) {
-    @include f-inside(
-        $block,
-        $state,
-        $theme,
-        $error,
-    ) {
+@mixin f-arrow($block: null, $state: null, $theme: null, $error: null) {
+    $block-suffix: if(
+        $error == true,
+        $f-modifier-error,
+        if($error == false, ':not(#{$f-modifier-error})', null)
+    );
+    #{$block}#{if($theme, '--#{$theme}', '')}#{$block-suffix}
+        #{$block}__field#{$state}
+        ~ #{$block}__arrow {
         @content;
-    };
+    }
 }
 
-@mixin f-switchbox(
-    $block: null,
-    $state: null,
-    $theme: null,
-    $error: null,
-) {
-    @include f-outside(
-        $block,
-        $state,
-        $theme,
-        $error,
-    ) {
+@mixin f-switch($block: null, $state: null, $theme: null, $error: null) {
+    @include f-inside($block, $state, $theme, $error) {
         @content;
-    };
+    }
 }
 
+@mixin f-switchbox($block: null, $state: null, $theme: null, $error: null) {
+    @include f-outside($block, $state, $theme, $error) {
+        @content;
+    }
+}
 
 // ================================
 // Helpers

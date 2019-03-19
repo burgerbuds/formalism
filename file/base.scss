@@ -6,35 +6,21 @@
 // Imports
 @import './../common/core';
 
-@include f-base(
-    $block: '.f-file',
-);
+@include f-base($block: '.f-file');
 
-@include f-inner(
-    $block: '.f-file',
-);
+@include f-inner($block: '.f-file');
 
-@include f-field(
-    $block: '.f-file',
-) {
+@include f-field($block: '.f-file') {
     &:not(:disabled):hover,
     &:not(:disabled):focus {
         cursor: pointer;
     }
-};
+}
 
-@include f-label(
-    $block: '.f-file',
-);
+@include f-label($block: '.f-file');
 
-@include f-label-text(
-    $block: '.f-file',
-);
+@include f-label-text($block: '.f-file');
 
-@include f-indicator(
-    $block: '.f-file',
-);
+@include f-indicator($block: '.f-file');
 
-@include f-message(
-    $block: '.f-file',
-);
+@include f-message($block: '.f-file');

@@ -13,10 +13,7 @@ $ff-switcher--size: 1.15em !default;
 $ff-switcher--field-radius: 10vh !default;
 
 // Switch
-@include f-switch(
-    $block: '.switcher',
-    $theme: 'formal',
-) {
+@include f-switch($block: '.switcher', $theme: 'formal') {
     font-size: $ff-switcher--size;
     box-shadow: inset 0 0 0 4px $f-bg-color;
     background-color: $f-border-color;
@@ -27,10 +24,7 @@ $ff-switcher--field-radius: 10vh !default;
 }
 
 // Switchbox
-@include f-switchbox(
-    $block: '.switcher',
-    $theme: 'formal',
-) {
+@include f-switchbox($block: '.switcher', $theme: 'formal') {
     font-size: $ff-switcher--size;
     border: $ff-switcher--border-width solid currentColor;
     border-radius: $ff-switcher--field-radius;
@@ -72,10 +66,8 @@ $ff-switcher--field-radius: 10vh !default;
         // Switch
         & + #{$switch} {
             color: $f-border-color;
-            transition: transition(background-color),
-                transition(color),
-                transition(border-color),
-                transform 0.1s;
+            transition: transition(background-color), transition(color),
+                transition(border-color), transform 0.1s;
             will-change: color, transform;
             background-color: $f-border-color;
         }
@@ -95,8 +87,7 @@ $ff-switcher--field-radius: 10vh !default;
         // Switch > Active
         &:active + #{$switch} {
             color: $f-border-color;
-            animation: tremble $f-transition-duration/1.5 forwards
-                infinite;
+            animation: tremble $f-transition-duration/1.5 forwards infinite;
         }
 
         // Switch > Checked
@@ -136,14 +127,9 @@ $ff-switcher--field-radius: 10vh !default;
             margin-left: 1px;
         }
     }
-
 }
 
-
 // Message
-@include f-message(
-    $block: '.switcher',
-    $theme: 'formal',
-) {
+@include f-message($block: '.switcher', $theme: 'formal') {
     margin: $fo-message-margin;
 }
