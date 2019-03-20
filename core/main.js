@@ -4,25 +4,28 @@
  * Add a class to form fields when they aren't empty
  * Required for select/input/textarea
  */
-const initFilledClasses = fields => {
+const initFilledClasses = (
+    fields,
+    targetFields = ['select-one', 'select-multiple', 'text', 'search', 'textarea']
+) => {
+    const isSelectOneFilled = ({ options }) => (
+        (options.length === 0)
+        ? false
+        : options[options.selectedIndex].label.length > 0
+    );
     const handleBlurEvent = ({ target }) => {
         let isFilled;
-        if (target.type === 'select-one') {
-            if (target.options.length === 0) isFilled = false;
-            const selectedIndex = target.options.selectedIndex;
-            isFilled = target.options[selectedIndex].label.length > 0;
-        }
+        if (target.type === 'select-one') isFilled = isSelectOneFilled(target)
+        // TODO: Toggle class on data-container parents
         target.classList.toggle(
             'is-filled',
             isFilled ? isFilled : target.value.length > 0
         );
     };
     // Add listeners for blur events on form fields
-    Array.from(fields).map(field => {
-        if (
-            ['select-one', 'text', 'search', 'textarea'].indexOf(field.type) < 0
-        )
-            return;
+    Array.from(fields)
+    .filter(field => targetFields.indexOf(field.type) >= 0)
+    .map(field => {
         field.addEventListener('blur', handleBlurEvent);
     });
 };
@@ -40,8 +43,9 @@ const initTextareas = fields => {
         // Add the height
         target.style.height = `${target.scrollHeight + offset}px`;
     };
-    Array.from(fields).map(field => {
-        if (field.type !== 'textarea') return;
+    Array.from(fields)
+        .filter(field => field.type === 'textarea')
+        .map(field => {
         // Add listeners for input events on textareas
         field.addEventListener('input', handleTextareaInput);
         // Disable resize
