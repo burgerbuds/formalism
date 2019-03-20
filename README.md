@@ -11,6 +11,7 @@ Coming soon.
 👍 Honors the [reduced motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) system feature<br>
 👍 Removes off-brand autofill colors<br>
 👍 High performance animations (where possible)<br>
+👍 Removes mobile tap colors<br>
 
 ## Browser support
 
