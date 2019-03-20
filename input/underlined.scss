@@ -7,111 +7,16 @@
 @import './../core/core';
 @import './../core/underlined';
 
-@include f-field($block: '.f-input', $theme: 'underlined') {
-    color: $f-text-color;
-    background-color: $f-bg-color;
-    border-bottom: $f-border-width solid $f-border-color;
-    transition: transition(border-color);
-    will-change: border-color;
-    padding: $fu-field-padding-top 0 $fu-field-padding-bottom 0;
+// Variables
+$block: '.f-input';
+$theme: 'underlined';
 
-    &:hover {
-        border-color: $f-border-color-hover;
-    }
+// Mixins
+@include fu-common-field($block);
+@include fu-common-label($block);
+@include fu-common-label-text($block);
+@include fu-common-indicator($block);
 
-    &:focus {
-        border-color: $f-border-color-focus;
-    }
-
-    &:disabled {
-        border-color: $f-border-color-disabled;
-    }
-
-    // Webkit focus
-    &:-webkit-autofill:focus,
-    &:-webkit-autofill:active {
-        -webkit-box-shadow: inset 0 0 0 10em $f-bg-color !important;
-    }
-}
-
-// Field > Error
-@include f-field($block: '.f-input', $theme: 'underlined', $hasError: true) {
-    border-color: $f-border-color-error;
-}
-
-// Label
-@include f-label($block: '.f-input', $theme: 'underlined') {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    pointer-events: none;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding-top: $fu-field-padding-top;
-    padding-bottom: $fu-field-padding-bottom;
-}
-
-// Label > Focus
-@include f-label($block: '.f-input', $state: ':focus', $theme: 'underlined') {
-    opacity: 0;
-}
-
-// Label > Filled
-@include f-label(
-    $block: '.f-input',
-    $state: $f-modifier-filled,
-    $theme: 'underlined'
-) {
-    opacity: 0;
-}
-
-// Label text
-@include f-label-text($block: '.f-input', $theme: 'underlined') {
-    display: block;
-    background-color: $f-bg-color;
-    width: 100%;
-    transition: transition(color);
-    will-change: color;
-}
-
-// Label text > Hover + Not Disabled/Error
-@include f-label-text(
-    $block: '.f-input',
-    $state: ':hover:not(:disabled)',
-    $theme: 'underlined',
-    $hasError: false
-) {
-    color: $f-label-color-hover;
-}
-
-// Label text > Error
-@include f-label-text(
-    $block: '.f-input',
-    $theme: 'underlined',
-    $hasError: true
-) {
-    color: $f-error-color;
-}
-
-@include f-indicator($block: '.f-input', $theme: 'underlined') {
-    position: absolute;
-    transition: transition(color);
-    will-change: color;
-
-    &--optional {
-        top: $fu-indicator-optional-top;
-        right: $fu-indicator-optional-right;
-        letter-spacing: $fu-indicator-optional-letter-spacing;
-    }
-
-    &--required {
-        top: $fu-indicator-required-top;
-        right: $fu-indicator-required-right;
-    }
-}
-
-@include f-message($block: '.f-input', $theme: 'underlined') {
+@include f-message($block, $theme) {
     margin: $fu-message-margin;
 }
