@@ -46,11 +46,7 @@ $block: '.f-checkbox';
 }
 
 // Inside > Not disabled + Error
-@include f-inside(
-    $block,
-    $state: ':not(:disabled)',
-    $hasError: true
-) {
+@include f-inside($block, $state: ':not(:disabled)', $has-error: true) {
     color: $f-border-color-error;
 }
 
@@ -81,6 +77,11 @@ $block: '.f-checkbox';
                 width: 0.35em;
             }
         }
+        // Set the end frame if no motion
+        @media screen and (prefers-reduced-motion) {
+            height: 0.7em;
+            width: 0.35em;
+        }
     } @else {
         height: 0.7em;
         width: 0.35em;
@@ -102,11 +103,7 @@ $block: '.f-checkbox';
 }
 
 // Outside > Not disabled + Error
-@include f-outside(
-    $block,
-    $state: ':not(:disabled)',
-    $hasError: true
-) {
+@include f-outside($block, $state: ':not(:disabled)', $has-error: true) {
     color: $f-border-color-error;
 }
 

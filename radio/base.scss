@@ -73,7 +73,7 @@ $block: '.f-radio';
 }
 
 // Outside > Error
-@include f-outside($block, $hasError: true) {
+@include f-outside($block, $has-error: true) {
     color: $f-error-color;
 }
 

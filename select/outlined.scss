@@ -59,49 +59,27 @@ $theme: 'outlined';
     }
 
     // Arrow > Hover
-    @include f-arrow(
-        $block,
-        $theme,
-        $state: ':hover'
-    ) {
+    @include f-arrow($block, $theme, $state: ':hover') {
         border-color: $fo-select--arrow-color-hover;
     }
 
     // Arrow > Focus
-    @include f-arrow(
-        $block,
-        $theme,
-        $state: ':focus'
-    ) {
+    @include f-arrow($block, $theme, $state: ':focus') {
         border-color: $fo-select--arrow-color-focus;
     }
 
     // Arrow > Error
-    @include f-arrow(
-        $block,
-        $theme,
-        $hasError: true
-    ) {
+    @include f-arrow($block, $theme, $has-error: true) {
         border-color: $f-border-color-error;
     }
 
     // Arrow > Hover + Error
-    @include f-arrow(
-        $block,
-        $theme,
-        $state: ':hover',
-        $hasError: true
-    ) {
+    @include f-arrow($block, $theme, $state: ':hover', $has-error: true) {
         border-color: $f-border-color-error;
     }
 
     // Arrow > Focus + Error
-    @include f-arrow(
-        $block,
-        $theme,
-        $state: ':focus',
-        $hasError: true
-    ) {
+    @include f-arrow($block, $theme, $state: ':focus', $has-error: true) {
         border-color: $f-border-color-error;
     }
 } @else if ($fo-select--arrow-type == 'triangle') {
@@ -117,49 +95,27 @@ $theme: 'outlined';
     }
 
     // Arrow > Hover
-    @include f-arrow(
-        $block,
-        $theme,
-        $state: ':hover',
-    ) {
+    @include f-arrow($block, $theme, $state: ':hover') {
         border-top-color: $fo-select--arrow-color-hover;
     }
 
     // Arrow > Focus
-    @include f-arrow(
-        $block,
-        $theme,
-        $state: ':focus',
-    ) {
+    @include f-arrow($block, $theme, $state: ':focus') {
         border-top-color: $fo-select--arrow-color-focus;
     }
 
     // Arrow > Error
-    @include f-arrow(
-        $block,
-        $theme,
-        $hasError: true
-    ) {
+    @include f-arrow($block, $theme, $has-error: true) {
         border-top-color: $f-border-color-error;
     }
 
     // Arrow > Hover + Error
-    @include f-arrow(
-        $block,
-        $theme,
-        $state: ':hover',
-        $hasError: true
-    ) {
+    @include f-arrow($block, $theme, $state: ':hover', $has-error: true) {
         border-top-color: $f-border-color-error;
     }
 
     // Arrow > Focus + Error
-    @include f-arrow(
-        $block,
-        $theme,
-        $state: ':focus',
-        $hasError: true
-    ) {
+    @include f-arrow($block, $theme, $state: ':focus', $has-error: true) {
         border-top-color: $f-border-color-error;
     }
 }
@@ -176,7 +132,8 @@ $theme: 'outlined';
 }
 
 @include f-label-text($block, $theme) {
-    transition: transition(transform), transition(color), transition(letter-spacing);
+    transition: transition(transform), transition(color),
+        transition(letter-spacing);
     will-change: transform, color;
     transform-origin: center left;
     transform: translateY(0) scale(1);

@@ -6,9 +6,11 @@ Coming soon.
 
 👍 Less JavaScript, more CSS<br>
 👍 Custom theme friendly<br>
+👍 Touch screen friendly<br>
 👍 Small file size<br>
 👍 Honors the [reduced motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) system feature<br>
-👍 Touch screen friendly<br>
+👍 Removes off-brand autofill colors<br>
+👍 High performance animations (where possible)<br>
 
 ## Browser support
 

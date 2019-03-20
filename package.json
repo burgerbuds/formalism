@@ -34,6 +34,7 @@
         "webpack-cli": "^3.2.3",
         "webpack-dev-server": "^3.2.1"
     },
+    "browserify-shim": {},
     "prettier": {
         "trailingComma": "es5",
         "useTabs": false,

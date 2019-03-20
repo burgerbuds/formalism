@@ -30,11 +30,7 @@ $theme: 'outlined';
 }
 
 // Outer > Active + Not disabled + No error
-@include f-inside(
-    $block,
-    $state: ':active:not(:disabled)',
-    $hasError: false
-) {
+@include f-inside($block, $state: ':active:not(:disabled)', $has-error: false) {
     color: $f-border-color-active;
 }
 
@@ -44,7 +40,7 @@ $theme: 'outlined';
     $block,
     $theme,
     $state: ':not(:disabled)',
-    $hasError: false,
+    $has-error: false
 ) {
     color: $f-border-color;
 }
@@ -54,7 +50,7 @@ $theme: 'outlined';
     $block,
     $theme,
     $state: ':hover:not(:disabled)',
-    $hasError: false
+    $has-error: false
 ) {
     color: $f-border-color-hover;
 }
@@ -64,7 +60,7 @@ $theme: 'outlined';
     $block,
     $theme,
     $state: ':focus:not(:disabled)',
-    $hasError: false
+    $has-error: false
 ) {
     color: $f-border-color-focus;
 }
@@ -74,7 +70,7 @@ $theme: 'outlined';
     $block,
     $theme,
     $state: ':checked:not(:disabled)',
-    $hasError: false
+    $has-error: false
 ) {
     color: $f-border-color-filled;
 }
@@ -90,11 +86,7 @@ $theme: 'outlined';
 }
 
 // Outer > Active + Not disabled
-@include f-outside(
-    $block,
-    $theme,
-    $state: ':active:not(:disabled)',
-) {
+@include f-outside($block, $theme, $state: ':active:not(:disabled)') {
     transform: translateZ(0) scale(#{$fo-radio--border-scale-active});
 }
 
@@ -103,7 +95,7 @@ $theme: 'outlined';
     $block,
     $theme,
     $state: ':hover:not(:disabled)',
-    $hasError: false
+    $has-error: false
 ) {
     color: $f-border-color-hover;
 }
@@ -113,7 +105,7 @@ $theme: 'outlined';
     $block,
     $theme,
     $state: ':focus:not(:disabled)',
-    $hasError: false
+    $has-error: false
 ) {
     color: $f-border-color-focus;
 }
@@ -123,27 +115,18 @@ $theme: 'outlined';
     $block,
     $theme,
     $state: ':checked:not(:disabled)',
-    $hasError: false
+    $has-error: false
 ) {
     color: $f-border-color-filled;
 }
 
 // Inner > Disabled + No error
-@include f-outside(
-    $block,
-    $theme,
-    $state: ':disabled',
-    $hasError: false
-) {
+@include f-outside($block, $theme, $state: ':disabled', $has-error: false) {
     color: $f-border-color-disabled;
 }
 
 // Label text > Active + Not disabled
-@include f-label-text(
-    $block,
-    $theme,
-    $state: ':not(:disabled)'
-) {
+@include f-label-text($block, $theme, $state: ':not(:disabled)') {
     color: $f-text-color;
 }
 

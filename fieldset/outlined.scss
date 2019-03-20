@@ -13,7 +13,8 @@ $fo-fieldset--padding-bottom: 1.5em !default;
 $fo-fieldset--padding-left: 1.75em !default;
 $fo-fieldset--padding-right: $fo-fieldset--padding-left !default;
 $fo-fieldset--content-spacing: 1.25em !default;
-$fo-fieldset--message-margin: 1.5em 0 -0.75em calc(#{$fo-fieldset--padding-left} + #{$f-border-width}) !default;
+$fo-fieldset--message-margin: 1.5em 0 -0.75em calc(#{$fo-fieldset--padding-left} +
+            #{$f-border-width}) !default;
 
 @include f-base($block: '.f-fieldset', $theme: 'outlined') {
     border: $f-border-width solid $f-border-color;
@@ -22,7 +23,7 @@ $fo-fieldset--message-margin: 1.5em 0 -0.75em calc(#{$fo-fieldset--padding-left}
 
 // Base > Error
 // Custom error modifier so we can't accidentally trigger errors fields inside
-@include f-base($block: '.f-fieldset', $theme: 'outlined', $hasError: true) {
+@include f-base($block: '.f-fieldset', $theme: 'outlined', $has-error: true) {
     border-color: $f-border-color-error;
     box-shadow: inset 0 0 0 calc(#{$f-border-width-error} - #{$f-border-width})
         $f-border-color-error;

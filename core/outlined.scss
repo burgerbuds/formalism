@@ -30,7 +30,6 @@ $fo-indicator-optional-letter-spacing: 0.02em !default;
 $fo-message-margin: 0.5em 0 0 0 !default;
 $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
 
-
 // ================================
 // Outlined mixins
 // ================================
@@ -81,7 +80,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     }
 
     // Field > Error
-    @include f-field($block, $theme: 'outlined', $hasError: true) {
+    @include f-field($block, $theme: 'outlined', $has-error: true) {
         &,
         &:hover {
             border-color: $f-border-color-error;
@@ -104,7 +103,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $block,
         $theme: 'outlined',
         $state: $f-modifier-filled,
-        $hasError: true
+        $has-error: true
     ) {
         border-color: $f-border-color-error;
         box-shadow: inset 0 0 0
@@ -136,7 +135,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     }
 
     // Label > Error
-    @include f-label($block, $theme: 'outlined', $hasError: true) {
+    @include f-label($block, $theme: 'outlined', $has-error: true) {
         transform: translateY(-$fo-field-padding-top);
     }
 
@@ -146,20 +145,16 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     }
 
     // Label > Filled
-    @include f-label(
-        $block,
-        $theme: 'outlined',
-        $state: $f-modifier-filled
-    ) {
+    @include f-label($block, $theme: 'outlined', $state: $f-modifier-filled) {
         transform: translateY(-$fo-field-padding-top);
     }
 }
 
-// Label text
 @mixin fo-common-label-text($block) {
     @include f-label-text($block, $theme: 'outlined') {
         display: block;
         position: relative;
+        transform-origin: center left;
 
         // Label background line mask
         &:before {
@@ -180,7 +175,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $block,
         $theme: 'outlined',
         $state: '#{$f-modifier-filled}:not(:hover):not(:focus):not(:disabled)',
-        $hasError: false
+        $has-error: false
     ) {
         color: $f-label-color-filled;
     }
@@ -190,7 +185,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $block,
         $theme: 'outlined',
         $state: ':hover:not(:disabled)',
-        $hasError: false
+        $has-error: false
     ) {
         color: $f-label-color-hover;
     }
@@ -200,13 +195,13 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $block,
         $theme: 'outlined',
         $state: ':focus:not(:disabled)',
-        $hasError: false
+        $has-error: false
     ) {
         color: $f-label-color-focus;
     }
 
     // Label text > Error
-    @include f-label-text($block, $theme: 'outlined', $hasError: true) {
+    @include f-label-text($block, $theme: 'outlined', $has-error: true) {
         color: $f-label-color-error;
         transform: translateY(-50%) translateY(floor(-$f-border-width/2))
             scale($fo-label-scale);
@@ -265,7 +260,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $block,
         $theme: 'outlined',
         $state: '#{$f-modifier-filled}:not(:disabled):not(:hover):not(:focus)',
-        $hasError: false
+        $has-error: false
     ) {
         color: $f-border-color;
     }
@@ -275,7 +270,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $block,
         $theme: 'outlined',
         $state: ':hover:not(:disabled)',
-        $hasError: false
+        $has-error: false
     ) {
         color: $f-border-color-hover;
     }
@@ -285,7 +280,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $block: $block,
         $theme: 'outlined',
         $state: ':focus:not(:disabled)',
-        $hasError: false
+        $has-error: false
     ) {
         color: $f-border-color-focus;
     }
@@ -295,7 +290,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $block: $block,
         $theme: 'outlined',
         $state: ':active:not(:disabled)',
-        $hasError: false
+        $has-error: false
     ) {
         color: $f-border-color-active;
     }

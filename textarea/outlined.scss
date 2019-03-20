@@ -40,11 +40,7 @@ $theme: 'outlined';
     }
 
     // Field > Error
-    @include f-field(
-        $block,
-        $theme,
-        $hasError: true
-    ) {
+    @include f-field($block, $theme, $has-error: true) {
         // Custom scrollbar styles
         &::-webkit-scrollbar-thumb {
             background: $f-border-color-error;
@@ -52,12 +48,7 @@ $theme: 'outlined';
     }
 
     // Field > Focus + Error
-    @include f-field(
-        $block,
-        $theme,
-        $state: ':focus',
-        $hasError: true
-    ) {
+    @include f-field($block, $theme, $state: ':focus', $has-error: true) {
         // Custom scrollbar styles
         &::-webkit-scrollbar-thumb {
             background: $f-border-color-error;
@@ -65,22 +56,14 @@ $theme: 'outlined';
     }
 
     // Field > Hover
-    @include f-field(
-        $block,
-        $theme,
-        $state: ':hover'
-    ) {
+    @include f-field($block, $theme, $state: ':hover') {
         &::-webkit-scrollbar-thumb {
             background: $f-border-color-hover;
         }
     }
 
     // Field > Focus
-    @include f-field(
-        $block,
-        $theme,
-        $state: ':focus'
-    ) {
+    @include f-field($block, $theme, $state: ':focus') {
         &::-webkit-scrollbar-thumb {
             background: $f-border-color-focus;
         }
@@ -93,7 +76,8 @@ $theme: 'outlined';
 }
 
 @include f-label-text($block, $theme) {
-    transition: transition(transform), transition(color), transition(letter-spacing);
+    transition: transition(transform), transition(color),
+        transition(letter-spacing);
     will-change: transform, color;
     transform-origin: center left;
     transform: translateY(0) scale(1);

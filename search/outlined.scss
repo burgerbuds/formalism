@@ -93,7 +93,8 @@ $theme: 'outlined';
 }
 
 @include f-label-text($block, $theme) {
-    transition: transition(transform), transition(color), transition(letter-spacing);
+    transition: transition(transform), transition(color),
+        transition(letter-spacing);
     will-change: transform, color;
     transform-origin: center left;
     transform: translateY(0) scale(1);
@@ -144,16 +145,13 @@ $theme: 'outlined';
     }
 }
 
-@include f-button($block, $theme, $hasError: true) {
+// Button > Error
+@include f-button($block, $theme, $has-error: true) {
     color: $fo-search--button-color-error;
 }
 
-@include f-button(
-    $block,
-    $theme,
-    $state: ':focus',
-    $hasError: true
-) {
+// Button > Focus + Error
+@include f-button($block, $theme, $state: ':focus', $has-error: true) {
     color: $f-border-color-error;
 }
 

@@ -73,7 +73,7 @@
     }
 
     // Field > Error
-    @include f-field($block, $hasError: true) {
+    @include f-field($block, $has-error: true) {
         caret-color: $f-error-color;
 
         &::selection {
@@ -105,7 +105,7 @@
     $block: null,
     $state: null,
     $theme: null,
-    $hasError: null
+    $has-error: null
 ) {
     @include f-label-text($block) {
         color: $f-label-color;
@@ -130,7 +130,7 @@
         }
     }
     // Indicator > Error
-    @include f-indicator($block, $hasError: true) {
+    @include f-indicator($block, $has-error: true) {
         color: $f-border-color-error;
     }
     // Indicator > Disabled
@@ -157,7 +157,7 @@
         }
     }
     // Indicator > Error
-    @include f-label-indicator($block, $hasError: true) {
+    @include f-label-indicator($block, $has-error: true) {
         color: $f-border-color-error;
     }
     // Indicator > Disabled
@@ -185,7 +185,7 @@
         }
     }
     // Indicator > Error
-    @include f-legend-indicator($block, $hasError: true) {
+    @include f-legend-indicator($block, $has-error: true) {
         color: $f-border-color-error;
     }
 }
@@ -211,7 +211,7 @@
         }
     }
     // Message > Error
-    @include f-message($block, $hasError: true) {
+    @include f-message($block, $has-error: true) {
         &--error::selection {
             color: $f-selection-color !important;
             background: $f-error-color !important;
@@ -233,10 +233,7 @@
         display: block;
     }
     // Legend text > Error
-    @include f-legend-text(
-        $block,
-        $hasError: true
-    ) {
+    @include f-legend-text($block, $has-error: true) {
         color: $f-label-color-error;
     }
 }

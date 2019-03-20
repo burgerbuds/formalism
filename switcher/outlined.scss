@@ -30,7 +30,7 @@ $theme: 'outlined';
     $block,
     $theme,
     $state: ':not(:disabled)',
-    $hasError: false
+    $has-error: false
 ) {
     color: $f-border-color;
     transition: transition(color), transition(border-color), transform 0.1s;
@@ -42,7 +42,7 @@ $theme: 'outlined';
     $block,
     $theme,
     $state: ':hover:not(:disabled)',
-    $hasError: false
+    $has-error: false
 ) {
     color: $f-border-color-hover;
 }
@@ -52,7 +52,7 @@ $theme: 'outlined';
     $block,
     $theme,
     $state: ':focus:not(:active)',
-    $hasError: false
+    $has-error: false
 ) {
     color: $f-border-color-focus;
 }
@@ -62,7 +62,7 @@ $theme: 'outlined';
     $block,
     $theme,
     $state: ':active:not(:disabled)',
-    $hasError: false
+    $has-error: false
 ) {
     color: $f-border-color-active;
 }
@@ -72,35 +72,23 @@ $theme: 'outlined';
     $block,
     $theme,
     $state: ':checked:not(:disabled)',
-    $hasError: false
+    $has-error: false
 ) {
     color: $f-border-color-filled;
 }
 
 // Switch > Checked
-@include f-switch(
-    $block,
-    $theme,
-    $state: ':checked'
-) {
+@include f-switch($block, $theme, $state: ':checked') {
     transform: translateX(0.75em + 0.1em);
 }
 
 // Switch > Checked + Active
-@include f-switch(
-    $block,
-    $theme,
-    $state: ':checked:active'
-) {
+@include f-switch($block, $theme, $state: ':checked:active') {
     transform: translateX(0.75em + 0.2em);
 }
 
 // Switch > Active + Not checked
-@include f-switch(
-    $block,
-    $theme,
-    $state: ':active:not(:checked)'
-) {
+@include f-switch($block, $theme, $state: ':active:not(:checked)') {
     transform: translateX(-0.2em);
 }
 
@@ -116,7 +104,7 @@ $theme: 'outlined';
     $block,
     $theme,
     $state: ':not(:disabled)',
-    $hasError: false,
+    $has-error: false
 ) {
     color: $f-border-color;
 }
@@ -126,7 +114,7 @@ $theme: 'outlined';
     $block,
     $theme,
     $state: ':checked:not(:disabled)',
-    $hasError: false,
+    $has-error: false
 ) {
     color: $f-border-color-filled;
 }
