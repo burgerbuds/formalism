@@ -8,8 +8,7 @@
 $f-base-size: inherit !default;
 
 // Highlights
-$f-highlight-color: #a42cf9 !default;
-$f-highlight-color: #6d00f0;
+$f-highlight-color: #6d00f0 !default;
 
 // States
 $f-error-color: #e91e63 !default;
@@ -36,7 +35,7 @@ $f-label-color-disabled: $f-disabled-color !default;
 // Field > Border
 $f-border-color: #a4a8a8 !default;
 $f-border-color-hover: $f-highlight-color !default;
-$f-border-color-focus: $f-border-color-hover !default;
+$f-border-color-focus: $f-highlight-color !default;
 $f-border-color-active: $f-highlight-color !default;
 $f-border-color-filled: $f-highlight-color !default; // TODO: Roll this out
 $f-border-color-error: $f-error-color !default;
@@ -267,31 +266,29 @@ $f-hide-instructions-when-error: true !default;
 }
 
 // Alias
-@mixin f-outside($block: null, $theme: null, $state: null, $has-error: null) {
-    @include f-label-before($block, $theme, $state, $has-error) {
+@mixin f-outside($args...) {
+    @include f-label-before($args...) {
         @content;
     }
 }
 
 // Alias
-@mixin f-inside($block: null, $theme: null, $state: null, $has-error: null) {
-    @include f-label-after($block, $theme, $state, $has-error) {
+@mixin f-inside($args...) {
+    @include f-label-after($args...) {
         @content;
     }
 }
 
 // Alias
-// TODO: Switchgroove?
-@mixin f-switchbox($block: null, $theme: null, $state: null, $has-error: null) {
-    @include f-label-before($block, $theme, $state, $has-error) {
+@mixin f-switch-groove($args...) {
+    @include f-label-before($args...) {
         @content;
     }
 }
 
 // Alias
-// TODO: Find another name that isnt switch - knob?
-@mixin f-switch($block: null, $theme: null, $state: null, $has-error: null) {
-    @include f-label-after($block, $theme, $state, $has-error) {
+@mixin f-switch-knob($args...) {
+    @include f-label-after($args...) {
         @content;
     }
 }

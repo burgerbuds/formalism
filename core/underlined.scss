@@ -115,8 +115,8 @@ $fu-message-margin: 0.5em 0 0 0 !default;
 @mixin fu-common-label-text($block) {
     @include f-label-text($block, $theme: 'underlined') {
         transform-origin: center left;
-        transition: transition(transform);
-        will-change: transform;
+        transition: transition(transform), transition(color);
+        will-change: transform, color;
     }
 
     // Label text > Filled + Not error/hover/focus/disabled)

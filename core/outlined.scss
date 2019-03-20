@@ -155,6 +155,8 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         display: block;
         position: relative;
         transform-origin: center left;
+        transition: transition(color);
+        will-change: transform;
 
         // Label background line mask
         &:before {
@@ -180,7 +182,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         color: $f-label-color-filled;
     }
 
-    // Label text > Hover + Not error/disabled)
+    // Label text > Hover + Not disabled/error)
     @include f-label-text(
         $block,
         $theme: 'outlined',
@@ -190,7 +192,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         color: $f-label-color-hover;
     }
 
-    // Label text > Focus + Not error/disabled)
+    // Label text > Focus + Not disabled/error)
     @include f-label-text(
         $block,
         $theme: 'outlined',

@@ -37,7 +37,7 @@ $block: '.f-switcher';
     will-change: color;
 }
 
-@include f-switch($block) {
+@include f-switch-knob($block) {
     content: '';
     display: block;
     color: $f-border-color;
@@ -50,17 +50,17 @@ $block: '.f-switcher';
     transform: translateX(-0.1em);
 }
 
-// Switch > Disabled
-@include f-switch($block, $state: ':disabled') {
+// Switch knob > Disabled
+@include f-switch-knob($block, $state: ':disabled') {
     color: $f-border-color-disabled;
 }
 
-// Switch > Not disabled + Error
-@include f-switch($block, $state: ':not(:disabled)', $has-error: true) {
+// Switch knob > Not disabled + Error
+@include f-switch-knob($block, $state: ':not(:disabled)', $has-error: true) {
     color: $f-error-color;
 }
 
-@include f-switchbox($block) {
+@include f-switch-groove($block) {
     content: '';
     display: block;
     color: $f-border-color;
@@ -74,13 +74,13 @@ $block: '.f-switcher';
     will-change: color;
 }
 
-// Switchbox > Disabled
-@include f-switchbox($block, $state: ':disabled') {
+// Switch groove > Disabled
+@include f-switch-groove($block, $state: ':disabled') {
     color: $f-border-color-disabled;
 }
 
-// Switchbox > Not disabled + Error
-@include f-switchbox($block, $state: ':not(:disabled)', $has-error: true) {
+// Switch groove > Not disabled + Error
+@include f-switch-groove($block, $state: ':not(:disabled)', $has-error: true) {
     color: $f-error-color;
 }
 

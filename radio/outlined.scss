@@ -13,7 +13,6 @@ $fo-radio--radius: 50% !default;
 $fo-radio--center-scale-checked: 0.45 !default;
 $fo-radio--border-scale-active: 0.9 !default;
 $fo-radio--border-width: $f-border-width * 2 !default;
-$fo-radio--bg-color: transparent !default;
 
 $block: '.f-radio';
 $theme: 'outlined';
@@ -80,7 +79,7 @@ $theme: 'outlined';
     border-radius: $fo-radio--radius;
     border: $fo-radio--border-width solid currentColor;
     color: $f-border-color;
-    background-color: $fo-radio--bg-color;
+    background-color: $f-bg-color;
     transition: transition(color), transform 0.1s;
     will-change: color, transform;
 }

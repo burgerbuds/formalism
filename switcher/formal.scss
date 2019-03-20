@@ -17,7 +17,7 @@ $theme: 'formal';
 
 // Mixins
 
-@include f-switch($block, $theme) {
+@include f-switch-knob($block, $theme) {
     font-size: $ff-switcher--size;
     box-shadow: inset 0 0 0 4px $f-bg-color;
     background-color: $f-border-color;
@@ -27,7 +27,7 @@ $theme: 'formal';
     border: $ff-switcher--border-width solid currentColor;
 }
 
-@include f-switchbox($block, $theme) {
+@include f-switch-groove($block, $theme) {
     font-size: $ff-switcher--size;
     border: $ff-switcher--border-width solid currentColor;
     border-radius: $ff-switcher--field-radius;

@@ -9,7 +9,6 @@
 @import './../core/core';
 
 // Variables
-$fo-checkbox--bg-color: transparent !default;
 $fo-checkbox--border-radius: 0.15em !default;
 $fo-checkbox--border-width: $f-border-width * 2 !default;
 
@@ -70,7 +69,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
 
 // Tickbox
 @include f-outside($block: '.f-checkbox', $theme: 'outlined') {
-    background-color: $fo-checkbox--bg-color;
+    background-color: $f-bg-color;
     border: $fo-checkbox--border-width solid currentColor;
     border-radius: $fo-checkbox--border-radius;
 }
