@@ -6,16 +6,26 @@
  */
 const initFilledClasses = (
     fields,
-    targetFields = ['select-one', 'select-multiple', 'text', 'search', 'textarea']
+    targetFields = ['INPUT', 'SELECT', 'TEXTAREA'],
+    blacklistedTypes = [
+        'button',
+        'checkbox',
+        'color',
+        'hidden',
+        'image',
+        'radio',
+        'range',
+        'reset',
+        'submit',
+    ]
 ) => {
-    const isSelectOneFilled = ({ options }) => (
-        (options.length === 0)
-        ? false
-        : options[options.selectedIndex].label.length > 0
-    );
+    const isSelectOneFilled = ({ options }) =>
+        options.length === 0
+            ? false
+            : options[options.selectedIndex].label.length > 0;
     const handleBlurEvent = ({ target }) => {
         let isFilled;
-        if (target.type === 'select-one') isFilled = isSelectOneFilled(target)
+        if (target.nodeName === 'SELECT') isFilled = isSelectOneFilled(target);
         // TODO: Toggle class on data-container parents
         target.classList.toggle(
             'is-filled',
@@ -24,10 +34,11 @@ const initFilledClasses = (
     };
     // Add listeners for blur events on form fields
     Array.from(fields)
-    .filter(field => targetFields.indexOf(field.type) >= 0)
-    .map(field => {
-        field.addEventListener('blur', handleBlurEvent);
-    });
+        .filter(field => targetFields.indexOf(field.nodeName) >= 0)
+        .filter(field => blacklistedTypes.indexOf(field.type) < 0)
+        .map(field => {
+            field.addEventListener('blur', handleBlurEvent);
+        });
 };
 
 /**
@@ -44,13 +55,13 @@ const initTextareas = fields => {
         target.style.height = `${target.scrollHeight + offset}px`;
     };
     Array.from(fields)
-        .filter(field => field.type === 'textarea')
+        .filter(field => field.nodeName === 'TEXTAREA')
         .map(field => {
-        // Add listeners for input events on textareas
-        field.addEventListener('input', handleTextareaInput);
-        // Disable resize
-        field.style.resize = 'none';
-    });
+            // Add listeners for input events on textareas
+            field.addEventListener('input', handleTextareaInput);
+            // Disable resize
+            field.style.resize = 'none';
+        });
 };
 
 const initFormalism = () => {
