@@ -4,7 +4,7 @@
  * Add a class to form fields when they aren't empty
  * Required for select/input/textarea
  */
-const initFilledClasses = (
+const initFieldFilledListeners = (
     fields,
     targetFields = ['INPUT', 'SELECT', 'TEXTAREA'],
     blacklistedTypes = [
@@ -25,9 +25,11 @@ const initFilledClasses = (
             : options[options.selectedIndex].label.length > 0;
     const handleBlurEvent = ({ target }) => {
         let isFilled;
-        if (target.nodeName === 'SELECT') isFilled = isSelectOneFilled(target);
-        // TODO: Toggle class on data-container parents
-        target.classList.toggle(
+        // Treat select fields differently
+        if (target.type === 'select-one') isFilled = isSelectOneFilled(target);
+        // Get the closest container ancestor
+        const container = target.closest('[data-container]');
+        container.classList.toggle(
             'is-filled',
             isFilled ? isFilled : target.value.length > 0
         );
@@ -44,7 +46,7 @@ const initFilledClasses = (
 /**
  * Autoexpand textareas
  */
-const initTextareas = fields => {
+const initTextareaAutoResizer = fields => {
     // Make a textarea expand to fit the user input
     const handleTextareaInput = ({ target }) => {
         // Reset field height
@@ -66,9 +68,26 @@ const initTextareas = fields => {
 
 const initFormalism = () => {
     const fields = document.querySelectorAll('[data-field]');
-    initFilledClasses(fields);
-    initTextareas(fields);
+    initFieldFilledListeners(fields);
+    initTextareaAutoResizer(fields);
 };
+
+// Element.closest() Polyfill for IE9+
+// https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Polyfill
+if (!Element.prototype.matches) {
+    Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+}
+
+if (!Element.prototype.closest) {
+    Element.prototype.closest = function(s) {
+        var el = this;
+        do {
+            if (el.matches(s)) return el;
+            el = el.parentElement || el.parentNode;
+        } while (el !== null && el.nodeType === 1);
+        return null;
+    };
+}
 
 initFormalism();
 
