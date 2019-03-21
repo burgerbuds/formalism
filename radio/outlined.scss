@@ -124,9 +124,9 @@ $theme: 'outlined';
     color: $f-border-color-disabled;
 }
 
-// Label text > Active + Not disabled
-@include f-label-text($block, $theme, $state: ':not(:disabled)') {
-    color: $f-text-color;
+// Label text > Filled + Not disabled
+@include f-label-text($block, $theme, $state: '#{$f-modifier-filled}:not(:disabled)') {
+    color: $f-label-color-filled;
 }
 
 @include f-message($block, $theme) {

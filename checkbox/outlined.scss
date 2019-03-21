@@ -124,13 +124,13 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
     color: $f-border-color-active;
 }
 
-// Label text
+// Label text > Filled + Not disabled
 @include f-label-text(
     $block: '.f-checkbox',
     $theme: 'outlined',
-    $state: ':not(:disabled)'
+    $state: '#{$f-modifier-filled}:not(:disabled)'
 ) {
-    color: $f-text-color;
+    color: $f-label-color-filled;
 }
 
 // Message
