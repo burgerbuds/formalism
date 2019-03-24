@@ -15,11 +15,12 @@ $fo-inner-box-shadow-width: $f-border-width * 2 !default;
 $fo-notification__bg-color-error: rgba($f-border-color-error, 0.1) !default;
 $fo-notification__bg-color-success: rgba($f-border-color-success, 0.1) !default;
 
-$block: '.f-notification';
+$field: 'notification';
 $theme: 'outlined';
+$common-args: ($field, $theme);
 
 // Inside
-@include f-inner($block, $theme) {
+@include f-inner($common-args...) {
     border: $fo-border-width solid $f-border-color;
     border-radius: $fo-border-radius;
     padding: $fo-field-padding-top $fo-field-padding-right
@@ -28,13 +29,13 @@ $theme: 'outlined';
 }
 
 // Notification > Error
-.f-notification--outlined#{$block}--error #{$block}__inner {
+.f-notification--outlined#{$field}--error #{$field}__inner {
     border-color: $f-border-color-error;
     background-color: $fo-notification__bg-color-error;
 }
 
 // Notification > Success
-.f-notification--outlined#{$block}--success #{$block}__inner {
+.f-notification--outlined#{$field}--success #{$field}__inner {
     border-color: $f-border-color-success;
     background-color: $fo-notification__bg-color-success;
 }

@@ -8,22 +8,22 @@
 @import './../core/common';
 
 // Variables
-$block: '.f-fieldset';
+$field: 'fieldset';
 
 // Mixins
-@include f-common-base($block);
-@include f-common-inner($block);
-@include f-common-message($block);
-@include f-common-legend-indicator($block);
-@include f-common-legend-text($block);
+@include f-common-base($field);
+@include f-common-inner($field);
+@include f-common-message($field);
+@include f-common-legend-indicator($field);
+@include f-common-legend-text($field);
 
-@include f-base($block) {
+@include f-base($field) {
     border: 0;
     margin: 0;
     padding: 0;
 }
 
-@include f-inner($block) {
+@include f-inner($field) {
     &--stacked {
         & > * {
             width: 100%;
@@ -44,6 +44,6 @@ $block: '.f-fieldset';
     }
 }
 
-@include f-legend-label($block) {
+@include f-legend-label($field) {
     display: flex;
 }

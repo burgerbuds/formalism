@@ -8,13 +8,13 @@
 @import './../core/common';
 
 // Variables
-$block: '.f-input';
+$field: 'input';
 
 // Mixins
-@include f-common-base($block);
-@include f-common-inner($block);
-@include f-common-field($block);
-@include f-common-label($block);
-@include f-common-label-text($block);
-@include f-common-indicator($block);
-@include f-common-message($block);
+@include f-common-base($field);
+@include f-common-inner($field);
+@include f-common-field($field);
+@include f-common-label($field);
+@include f-common-label-text($field);
+@include f-common-indicator($field);
+@include f-common-message($field);

@@ -12,12 +12,12 @@ $ff-switcher--border-width: $f-border-width * 2 !default;
 $ff-switcher--size: 1.15em !default;
 $ff-switcher--field-radius: 10vh !default;
 
-$block: '.f-switcher';
+$field: 'switcher';
 $theme: 'formal';
+$common-args: ($field, $theme);
 
 // Mixins
-
-@include f-switch-knob($block, $theme) {
+@include f-switcher-knob($common-args...) {
     font-size: $ff-switcher--size;
     box-shadow: inset 0 0 0 4px $f-bg-color;
     background-color: $f-border-color;
@@ -27,7 +27,7 @@ $theme: 'formal';
     border: $ff-switcher--border-width solid currentColor;
 }
 
-@include f-switch-groove($block, $theme) {
+@include f-switcher-groove($common-args...) {
     font-size: $ff-switcher--size;
     border: $ff-switcher--border-width solid currentColor;
     border-radius: $ff-switcher--field-radius;
@@ -35,37 +35,37 @@ $theme: 'formal';
 
 // Theme
 .f-switcher--formal {
-    $block: '.f-switcher';
-    $switch: $block + '__label:after';
-    $switchbox: $block + '__label:before';
+    $field: '.f-switcher';
+    $switch: $field + '__label:after';
+    $switchbox: $field + '__label:before';
 
     // Switch > Unchecked > Active
-    #{$block}__field:not(:checked):active + #{$switch} {
+    #{$field}__field:not(:checked):active + #{$switch} {
         transform: translateX(-0.2em);
     }
 
     // Switch > Checked > Active
-    #{$block}__field:checked:active + #{$switch} {
+    #{$field}__field:checked:active + #{$switch} {
         transform: translateX(0.75em + 0.2em);
     }
 
     // Switch > Checked
-    #{$block}__field:checked + #{$switch} {
+    #{$field}__field:checked + #{$switch} {
         transform: translateX(0.75em + 0.1em);
     }
 
     // Switch > Disabled
-    #{$block}__field:disabled + #{$switch} {
+    #{$field}__field:disabled + #{$switch} {
         background-color: $f-border-color-disabled;
     }
 
     // Switch > Error
-    &#{$f-modifier-error} #{$switch} {
+    &#{$f-selector-error} #{$switch} {
         background-color: $f-error-color;
     }
 
     // Not error + not disabled fields
-    &:not(#{$f-modifier-error}) #{$block}__field:not(:disabled) {
+    &:not(#{$f-selector-error}) #{$field}__field:not(:disabled) {
         // Switch
         & + #{$switch} {
             color: $f-border-color;
@@ -132,6 +132,6 @@ $theme: 'formal';
     }
 }
 
-@include f-message($block, $theme) {
+@include f-message($common-args...) {
     margin: $fo-message-margin;
 }

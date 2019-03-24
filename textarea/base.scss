@@ -11,22 +11,22 @@
 $f-textarea--line-height: 1.5 !default;
 $f-textarea--max-height: 19em !default;
 
-$block: '.f-textarea';
+$field: 'textarea';
 
-@include f-common-base($block);
-@include f-common-inner($block);
-@include f-common-field($block);
-@include f-common-label($block);
-@include f-common-label-text($block);
-@include f-common-indicator($block);
-@include f-common-message($block);
+@include f-common-base($field);
+@include f-common-inner($field);
+@include f-common-field($field);
+@include f-common-label($field);
+@include f-common-label-text($field);
+@include f-common-indicator($field);
+@include f-common-message($field);
 
-@include f-field($block) {
+@include f-field($field) {
     resize: vertical;
     line-height: $f-textarea--line-height;
     max-height: $f-textarea--max-height;
 }
 
-@include f-label($block) {
+@include f-label($field) {
     line-height: $f-textarea--line-height;
 }

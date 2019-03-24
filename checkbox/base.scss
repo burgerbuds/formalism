@@ -15,23 +15,23 @@ $f-checkbox--has-animation: true !default;
 $f-checkbox--tick-position: -0.25em, 0em !default; // translate(x, y) fine tuning
 $f-checkbox--label-line-height: 1 !default;
 
-$block: '.f-checkbox';
+$field: 'checkbox';
 
-@include f-common-base($block);
-@include f-common-inner($block);
-@include f-common-label($block);
-@include f-common-label-text($block);
-@include f-common-field($block);
-@include f-common-label-indicator($block);
-@include f-common-message($block);
+@include f-common-base($field);
+@include f-common-inner($field);
+@include f-common-label($field);
+@include f-common-label-text($field);
+@include f-common-field($field);
+@include f-common-label-indicator($field);
+@include f-common-message($field);
 
-@include f-inner($block) {
+@include f-inner($field) {
     display: inline-flex;
     flex-wrap: nowrap;
     align-items: center;
 }
 
-@include f-inside($block) {
+@include f-inside($field) {
     content: '';
     display: block;
     font-size: $f-checkbox--size;
@@ -46,17 +46,17 @@ $block: '.f-checkbox';
 }
 
 // Inside > Not disabled + Error
-@include f-inside($block, $state: ':not(:disabled)', $has-error: true) {
+@include f-inside($field, $state: ':not(:disabled)', $has-error: true) {
     color: $f-border-color-error;
 }
 
 // Inside > Disabled
-@include f-inside($block, $state: ':disabled') {
+@include f-inside($field, $state: ':disabled') {
     color: $f-border-color-disabled;
 }
 
 // Inside > Checked
-@include f-inside($block, $state: ':checked') {
+@include f-inside($field, $state: ':checked') {
     visibility: visible;
 
     @if ($f-checkbox--has-animation) {
@@ -89,7 +89,7 @@ $block: '.f-checkbox';
 }
 
 // Outside
-@include f-outside($block) {
+@include f-outside($field) {
     content: '';
     display: block;
     font-size: $f-checkbox--size;
@@ -103,16 +103,16 @@ $block: '.f-checkbox';
 }
 
 // Outside > Not disabled + Error
-@include f-outside($block, $state: ':not(:disabled)', $has-error: true) {
+@include f-outside($field, $state: ':not(:disabled)', $has-error: true) {
     color: $f-border-color-error;
 }
 
 // Outside > Disabled
-@include f-outside($block, $state: ':disabled') {
+@include f-outside($field, $state: ':disabled') {
     color: $f-border-color-disabled;
 }
 
-@include f-label($block) {
+@include f-label($field) {
     color: inherit;
     position: relative;
     display: flex;
@@ -120,11 +120,11 @@ $block: '.f-checkbox';
     flex-wrap: nowrap;
 }
 
-@include f-label-text($block) {
+@include f-label-text($field) {
     line-height: $f-checkbox--label-line-height;
 }
 
-@include f-field($block) {
+@include f-field($field) {
     clip: rect(1px, 1px, 1px, 1px); // Allows tabbing still
     position: absolute;
 }

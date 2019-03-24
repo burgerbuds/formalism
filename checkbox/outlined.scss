@@ -12,15 +12,18 @@
 $fo-checkbox--border-radius: 0.15em !default;
 $fo-checkbox--border-width: $f-border-width * 2 !default;
 
-@include f-inside($block: '.f-checkbox', $theme: 'outlined') {
+$field: 'checkbox';
+$theme: 'outlined';
+$common-args: ($field, $theme);
+
+@include f-inside($common-args...) {
     border-right: $fo-checkbox--border-width solid currentColor;
     border-top: $fo-checkbox--border-width solid currentColor;
 }
 
 // Tick > Not disabled + No error
 @include f-inside(
-    $block: '.f-checkbox',
-    $theme: 'outlined',
+    $common-args...,
     $state: ':not(:disabled)',
     $has-error: false
 ) {
@@ -29,8 +32,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
 
 // Tick > Hover + Not disabled + No error
 @include f-inside(
-    $block: '.f-checkbox',
-    $theme: 'outlined',
+    $common-args...,
     $state: ':hover:not(:disabled)',
     $has-error: false
 ) {
@@ -39,8 +41,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
 
 // Tick > Focus + Not disabled + No error
 @include f-inside(
-    $block: '.f-checkbox',
-    $theme: 'outlined',
+    $common-args...,
     $state: ':focus:not(:disabled)',
     $has-error: false
 ) {
@@ -49,8 +50,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
 
 // Tick > Active + Not disabled + No error
 @include f-inside(
-    $block: '.f-checkbox',
-    $theme: 'outlined',
+    $common-args...,
     $state: ':active:not(:disabled)',
     $has-error: false
 ) {
@@ -59,8 +59,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
 
 // Tick > Checked + Not disabled + No error
 @include f-inside(
-    $block: '.f-checkbox',
-    $theme: 'outlined',
+    $common-args...,
     $state: ':checked:not(:disabled)',
     $has-error: false
 ) {
@@ -68,7 +67,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
 }
 
 // Tickbox
-@include f-outside($block: '.f-checkbox', $theme: 'outlined') {
+@include f-outside($common-args...) {
     background-color: $f-bg-color;
     border: $fo-checkbox--border-width solid currentColor;
     border-radius: $fo-checkbox--border-radius;
@@ -76,8 +75,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
 
 // Tickbox > Not disabled + No error
 @include f-outside(
-    $block: '.f-checkbox',
-    $theme: 'outlined',
+    $common-args...,
     $state: ':not(:disabled)',
     $has-error: false
 ) {
@@ -86,8 +84,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
 
 // Tickbox > Hover + Not disabled + No error
 @include f-outside(
-    $block: '.f-checkbox',
-    $theme: 'outlined',
+    $common-args...,
     $state: ':hover:not(:disabled)',
     $has-error: false
 ) {
@@ -96,8 +93,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
 
 // Tickbox > Focus + Not disabled + No error
 @include f-outside(
-    $block: '.f-checkbox',
-    $theme: 'outlined',
+    $common-args...,
     $state: ':focus:not(:disabled)',
     $has-error: false
 ) {
@@ -106,8 +102,7 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
 
 // Tickbox > Checked + Not disabled + No error
 @include f-outside(
-    $block: '.f-checkbox',
-    $theme: 'outlined',
+    $common-args...,
     $state: ':checked:not(:disabled)',
     $has-error: false
 ) {
@@ -116,24 +111,23 @@ $fo-checkbox--border-width: $f-border-width * 2 !default;
 
 // Tickbox > Active + Not disabled + No error
 @include f-outside(
-    $block: '.f-checkbox',
-    $theme: 'outlined',
+    $common-args...,
     $state: ':active:not(:disabled)',
     $has-error: false
 ) {
     color: $f-border-color-active;
 }
 
-// Label text > Filled + Not disabled
+// Label text > Checked + Not disabled + No error
 @include f-label-text(
-    $block: '.f-checkbox',
-    $theme: 'outlined',
-    $state: '#{$f-modifier-filled}:not(:disabled)'
+    $common-args...,
+    $state: ':checked:not(:disabled)',
+    $has-error: false,
 ) {
     color: $f-label-color-filled;
 }
 
 // Message
-@include f-message($block: '.f-checkbox', $theme: 'outlined') {
+@include f-message($common-args...) {
     margin: $fo-message-margin;
 }

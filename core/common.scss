@@ -5,10 +5,10 @@
 // ================================
 
 // Element root
-@mixin f-common-base($block: null) {
-    @include f-base($block) {
+@mixin f-common-base($field: null) {
+    @include f-base($field) {
         position: relative;
-        font-size: $f-base-size;
+        font-size: $f-field-size;
         text-align: left;
 
         // Disable mobile tap color
@@ -28,16 +28,16 @@
 }
 
 // Inner wrapping element
-@mixin f-common-inner($block: null) {
-    @include f-inner($block) {
+@mixin f-common-inner($field: null) {
+    @include f-inner($field) {
         display: block;
         position: relative;
     }
 }
 
 // Form field
-@mixin f-common-field($block: null) {
-    @include f-field($block) {
+@mixin f-common-field($field: null) {
+    @include f-field($field) {
         color: $f-text-color;
         width: 100%;
         border: 0;
@@ -73,7 +73,7 @@
     }
 
     // Field > Error
-    @include f-field($block, $has-error: true) {
+    @include f-field($field, $has-error: true) {
         caret-color: $f-error-color;
 
         &::selection {
@@ -85,37 +85,37 @@
 }
 
 // Field label (not the label element)
-@mixin f-common-label($block: null) {
-    @include f-label($block) {
+@mixin f-common-label($field: null) {
+    @include f-label($field) {
         user-select: none;
         font-size: $f-text-font-size;
     }
     // Label > Not disabled
-    @include f-label($block, $state: ':not(:disabled)') {
+    @include f-label($field, $state: ':not(:disabled)') {
         cursor: pointer;
     }
     // Label > Disabled
-    @include f-label($block, $state: ':disabled') {
+    @include f-label($field, $state: ':disabled') {
         cursor: not-allowed;
     }
 }
 
 // Field label text
 @mixin f-common-label-text(
-    $block: null,
+    $field: null,
     $state: null,
     $theme: null,
     $has-error: null
 ) {
-    @include f-label-text($block) {
+    @include f-label-text($field) {
         color: $f-label-color;
     }
 }
 
 // Required or optional indicator
 // Use when the indicator is outside the label
-@mixin f-common-indicator($block: null) {
-    @include f-indicator($block) {
+@mixin f-common-indicator($field: null) {
+    @include f-indicator($field) {
         pointer-events: none;
         user-select: none;
 
@@ -130,19 +130,19 @@
         }
     }
     // Indicator > Error
-    @include f-indicator($block, $has-error: true) {
+    @include f-indicator($field, $has-error: true) {
         color: $f-border-color-error;
     }
     // Indicator > Disabled
-    @include f-indicator($block, $state: ':disabled') {
+    @include f-indicator($field, $state: ':disabled') {
         color: $f-border-color-disabled;
     }
 }
 
 // Required or optional indicator
 // Use when the indicator is inside the label
-@mixin f-common-label-indicator($block: null) {
-    @include f-label-indicator($block) {
+@mixin f-common-label-indicator($field: null) {
+    @include f-label-indicator($field) {
         pointer-events: none;
         user-select: none;
 
@@ -157,11 +157,11 @@
         }
     }
     // Indicator > Error
-    @include f-label-indicator($block, $has-error: true) {
+    @include f-label-indicator($field, $has-error: true) {
         color: $f-border-color-error;
     }
     // Indicator > Disabled
-    @include f-label-indicator($block, $state: ':disabled') {
+    @include f-label-indicator($field, $state: ':disabled') {
         color: $f-border-color-disabled;
     }
 }
@@ -169,8 +169,8 @@
 // Required or optional indicator
 // Use when indicator is within the legend
 // - Used within Fieldset base
-@mixin f-common-legend-indicator($block: null) {
-    @include f-legend-indicator($block) {
+@mixin f-common-legend-indicator($field: null) {
+    @include f-legend-indicator($field) {
         pointer-events: none;
         user-select: none;
 
@@ -185,14 +185,14 @@
         }
     }
     // Indicator > Error
-    @include f-legend-indicator($block, $has-error: true) {
+    @include f-legend-indicator($field, $has-error: true) {
         color: $f-border-color-error;
     }
 }
 
 // Message instructions or error
-@mixin f-common-message($block: null) {
-    @include f-message($block) {
+@mixin f-common-message($field: null) {
+    @include f-message($field) {
         font-size: $f-message-font-size;
 
         &--instruction {
@@ -205,13 +205,13 @@
 
         // Hide the instructions if there's an error
         @if ($f-hide-instructions-when-error) {
-            &--error + #{$block}__message--instruction {
+            &--error + #{$field}__message--instruction {
                 display: none;
             }
         }
     }
     // Message > Error
-    @include f-message($block, $has-error: true) {
+    @include f-message($field, $has-error: true) {
         &--error::selection {
             color: $f-selection-color !important;
             background: $f-error-color !important;
@@ -220,20 +220,20 @@
     }
 }
 
-@mixin f-common-button($block: null) {
-    @include f-button($block) {
+@mixin f-common-button($field: null) {
+    @include f-button($field) {
         cursor: pointer;
     }
 }
 
 // Label text within a legend
-@mixin f-common-legend-text($block: null) {
-    @include f-legend-text($block) {
+@mixin f-common-legend-text($field: null) {
+    @include f-legend-text($field) {
         color: $f-text-color;
         display: block;
     }
     // Legend text > Error
-    @include f-legend-text($block, $has-error: true) {
+    @include f-legend-text($field, $has-error: true) {
         color: $f-label-color-error;
     }
 }

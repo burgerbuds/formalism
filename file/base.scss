@@ -8,16 +8,16 @@
 @import './../core/common';
 
 // Variables
-$block: '.f-file';
+$field: 'file';
 
 // Mixins
-@include f-common-base($block);
-@include f-common-inner($block);
-@include f-common-field($block);
-@include f-common-indicator($block);
-@include f-common-message($block);
+@include f-common-base($field);
+@include f-common-inner($field);
+@include f-common-field($field);
+@include f-common-indicator($field);
+@include f-common-message($field);
 
-@include f-field($block) {
+@include f-field($field) {
     &:not(:disabled):hover,
     &:not(:disabled):focus {
         cursor: pointer;

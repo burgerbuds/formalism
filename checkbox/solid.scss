@@ -12,6 +12,10 @@ $fs-checkbox--message-margin: 0.5em 0 0 0 !default;
 $fs-checkbox--border-radius: 0.15em !default;
 $fs-checkbox--border-width: $f-border-width * 2 !default;
 
+$field: 'checkbox';
+$theme: 'solid';
+$common-args: ($field, $theme);
+
 // Theme
 .f-checkbox--solid {
     $block: '.f-checkbox';
@@ -29,7 +33,7 @@ $fs-checkbox--border-width: $f-border-width * 2 !default;
         border-radius: $fs-checkbox--border-radius;
     }
 
-    &:not(#{$f-modifier-error}) {
+    &:not(#{$f-selector-error}) {
         #{$block}__field:not(:disabled) {
             // Tick
             + #{$check} {
@@ -65,7 +69,7 @@ $fs-checkbox--border-width: $f-border-width * 2 !default;
     }
 
     // Tick > Error
-    &#{$f-modifier-error} #{$block}__field:checked + #{$check} {
+    &#{$f-selector-error} #{$block}__field:checked + #{$check} {
         color: $fs-checkbox--check-color;
     }
 
@@ -73,11 +77,21 @@ $fs-checkbox--border-width: $f-border-width * 2 !default;
     #{$box} {
         transition: background-color 0.2s;
     }
-    &#{$f-modifier-error} #{$block}__field:checked + #{$box} {
+    &#{$f-selector-error} #{$block}__field:checked + #{$box} {
         background-color: currentColor;
     }
 
     #{$block}__message {
         margin: $fs-checkbox--message-margin;
     }
+}
+
+
+// Label text > Checked + Not disabled + No error
+@include f-label-text(
+    $common-args...,
+    $state: ':checked:not(:disabled)',
+    $has-error: false,
+) {
+    color: $f-label-color-filled;
 }

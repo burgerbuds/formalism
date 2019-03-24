@@ -30,16 +30,17 @@ $fo-button-width: calc(
 );
 
 // Variables
-$block: '.f-search';
+$field: 'search';
 $theme: 'outlined';
+$common-args: ($field, $theme);
 
 // Mixins
-@include fo-common-field($block);
-@include fo-common-label($block);
-@include fo-common-label-text($block);
-@include fo-common-indicator($block);
+@include fo-common-field($field);
+@include fo-common-label($field);
+@include fo-common-label-text($field);
+@include fo-common-indicator($field);
 
-@include f-base($block, $theme) {
+@include f-base($common-args...) {
     // Cancel button
     $button-color: str-replace(
         #{inspect($fo-search--button-color)},
@@ -80,19 +81,19 @@ $theme: 'outlined';
     }
 }
 
-@include f-field($block, $theme) {
+@include f-field($common-args...) {
     padding-right: $fo-button-width;
     -webkit-appearance: none;
     appearance: none;
 }
 
-@include f-label($block, $theme) {
+@include f-label($common-args...) {
     top: 0;
     bottom: 0;
     left: calc(#{$f-border-width} + #{$fo-field-padding-left});
 }
 
-@include f-label-text($block, $theme) {
+@include f-label-text($common-args...) {
     transition: transition(transform), transition(color),
         transition(letter-spacing);
     will-change: transform, color;
@@ -100,7 +101,7 @@ $theme: 'outlined';
     transform: translateY(0) scale(1);
 }
 
-@include f-button($block, $theme) {
+@include f-button($common-args...) {
     margin-top: -0.15em; // Visual realignment
     position: absolute;
     top: calc(#{$fo-field-padding-top} + #{$f-border-width});
@@ -131,7 +132,7 @@ $theme: 'outlined';
         user-select: none;
     }
 
-    &--search-icon svg {
+    &--icon svg {
         width: 1em;
         height: 1em;
         pointer-events: none;
@@ -146,15 +147,15 @@ $theme: 'outlined';
 }
 
 // Button > Error
-@include f-button($block, $theme, $has-error: true) {
+@include f-button($common-args..., $has-error: true) {
     color: $fo-search--button-color-error;
 }
 
 // Button > Focus + Error
-@include f-button($block, $theme, $state: ':focus', $has-error: true) {
+@include f-button($common-args..., $state: ':focus', $has-error: true) {
     color: $f-border-color-error;
 }
 
-@include f-message($block, $theme) {
+@include f-message($common-args...) {
     margin: $fo-message-margin-inset;
 }

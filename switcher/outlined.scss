@@ -12,10 +12,11 @@ $fo-switcher--border-width: $f-border-width * 2 !default;
 $fo-switcher--size: 1.15em !default;
 $fo-switcher--field-radius: 10vh !default;
 
-$block: '.f-switcher';
+$field: 'switcher';
 $theme: 'outlined';
+$common-args: ($field, $theme);
 
-@include f-switch-knob($block, $theme) {
+@include f-switcher-knob($common-args...) {
     font-size: $fo-switcher--size;
     background-color: $f-bg-color;
     width: 1.2em;
@@ -25,9 +26,8 @@ $theme: 'outlined';
 }
 
 // Switch knob > Not disabled + Not error
-@include f-switch-knob(
-    $block,
-    $theme,
+@include f-switcher-knob(
+    $common-args...,
     $state: ':not(:disabled)',
     $has-error: false
 ) {
@@ -37,9 +37,8 @@ $theme: 'outlined';
 }
 
 // Switch knob > Hover + Not disabled + Not error
-@include f-switch-knob(
-    $block,
-    $theme,
+@include f-switcher-knob(
+    $common-args...,
     $state: ':hover:not(:disabled)',
     $has-error: false
 ) {
@@ -47,9 +46,8 @@ $theme: 'outlined';
 }
 
 // Switch knob > Focus + Not error
-@include f-switch-knob(
-    $block,
-    $theme,
+@include f-switcher-knob(
+    $common-args...,
     $state: ':focus:not(:active)',
     $has-error: false
 ) {
@@ -57,9 +55,8 @@ $theme: 'outlined';
 }
 
 // Switch knob > Active + Not disabled + Not error
-@include f-switch-knob(
-    $block,
-    $theme,
+@include f-switcher-knob(
+    $common-args...,
     $state: ':active:not(:disabled)',
     $has-error: false
 ) {
@@ -67,9 +64,8 @@ $theme: 'outlined';
 }
 
 // Switch knob > Checked + Not disabled + Not error
-@include f-switch-knob(
-    $block,
-    $theme,
+@include f-switcher-knob(
+    $common-args...,
     $state: ':checked:not(:disabled)',
     $has-error: false
 ) {
@@ -77,30 +73,29 @@ $theme: 'outlined';
 }
 
 // Switch knob > Checked
-@include f-switch-knob($block, $theme, $state: ':checked') {
+@include f-switcher-knob($common-args..., $state: ':checked') {
     transform: translateX(0.75em + 0.1em);
 }
 
 // Switch knob > Checked + Active
-@include f-switch-knob($block, $theme, $state: ':checked:active') {
+@include f-switcher-knob($common-args..., $state: ':checked:active') {
     transform: translateX(0.75em + 0.2em);
 }
 
 // Switch knob > Active + Not checked
-@include f-switch-knob($block, $theme, $state: ':active:not(:checked)') {
+@include f-switcher-knob($common-args..., $state: ':active:not(:checked)') {
     transform: translateX(-0.2em);
 }
 
-@include f-switch-groove($block, $theme) {
+@include f-switcher-groove($common-args...) {
     font-size: $fo-switcher--size;
     border: $fo-switcher--border-width solid currentColor;
     border-radius: $fo-switcher--field-radius;
 }
 
 // Switch groove > Not disabled + Not error
-@include f-switch-groove(
-    $block,
-    $theme,
+@include f-switcher-groove(
+    $common-args...,
     $state: ':not(:disabled)',
     $has-error: false
 ) {
@@ -108,30 +103,28 @@ $theme: 'outlined';
 }
 
 // Switch groove > Checked + Not disabled + Not error
-@include f-switch-groove(
-    $block,
-    $theme,
+@include f-switcher-groove(
+    $common-args...,
     $state: ':checked:not(:disabled)',
     $has-error: false
 ) {
     color: $f-border-color-filled;
 }
 
-@include f-label-text($block, $theme) {
+@include f-label-text($common-args...) {
     transition: transition(color);
     will-change: transform;
 }
 
 // Label text > Checked + Not error/disabled
 @include f-label-text(
-    $block,
-    $theme,
+    $common-args...,
     $state: ':checked:not(:disabled)',
     $has-error: false
 ) {
     color: $f-label-color-filled;
 }
 
-@include f-message($block, $theme) {
+@include f-message($common-args...) {
     margin: $fo-message-margin;
 }

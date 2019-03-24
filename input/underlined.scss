@@ -8,15 +8,16 @@
 @import './../core/underlined';
 
 // Variables
-$block: '.f-input';
+$field: 'input';
 $theme: 'underlined';
+$common-args: ($field, $theme);
 
 // Mixins
-@include fu-common-field($block);
-@include fu-common-label($block);
-@include fu-common-label-text($block);
-@include fu-common-indicator($block);
+@include fu-common-field($field);
+@include fu-common-label($field);
+@include fu-common-label-text($field);
+@include fu-common-indicator($field);
 
-@include f-message($block, $theme) {
+@include f-message($common-args...) {
     margin: $fu-message-margin;
 }

@@ -7,28 +7,28 @@
 @import './../core/core';
 @import './../core/common';
 
-$block: '.f-select';
+$field: 'select';
 
-@include f-common-base($block);
-@include f-common-inner($block);
-@include f-common-field($block);
-@include f-common-label($block);
-@include f-common-label-text($block);
-@include f-common-indicator($block);
-@include f-common-message($block);
+@include f-common-base($field);
+@include f-common-inner($field);
+@include f-common-field($field);
+@include f-common-label($field);
+@include f-common-label-text($field);
+@include f-common-indicator($field);
+@include f-common-message($field);
 
-@include f-field($block) {
+@include f-field($field) {
     line-height: initial; // Reset height
     -webkit-appearance: none;
     appearance: none;
 }
 
 // Field > Hover + Not disabled
-@include f-field($block, $state: ':not(:disabled):hover') {
+@include f-field($field, $state: ':not(:disabled):hover') {
     cursor: pointer;
 }
 
 // Field > Focus + Not disabled
-@include f-field($block, $state: ':not(:disabled):focus') {
+@include f-field($field, $state: ':not(:disabled):focus') {
     cursor: pointer;
 }

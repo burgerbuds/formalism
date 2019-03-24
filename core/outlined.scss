@@ -34,8 +34,8 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
 // Outlined mixins
 // ================================
 
-@mixin fo-common-field($block) {
-    @include f-field($block, $theme: 'outlined') {
+@mixin fo-common-field($field) {
+    @include f-field($field, $theme: 'outlined') {
         color: $f-text-color;
         background-color: $f-bg-color;
         border: $f-border-width solid $f-border-color;
@@ -80,7 +80,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     }
 
     // Field > Error
-    @include f-field($block, $theme: 'outlined', $has-error: true) {
+    @include f-field($field, $theme: 'outlined', $has-error: true) {
         &,
         &:hover {
             border-color: $f-border-color-error;
@@ -100,10 +100,10 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
 
     // Field > Filled + Error
     @include f-field(
-        $block,
+        $field,
         $theme: 'outlined',
-        $state: $f-modifier-filled,
-        $has-error: true
+        $has-error: true,
+        $is-filled: true
     ) {
         border-color: $f-border-color-error;
         box-shadow: inset 0 0 0
@@ -120,8 +120,8 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     }
 }
 
-@mixin fo-common-label($block) {
-    @include f-label($block, $theme: 'outlined') {
+@mixin fo-common-label($field) {
+    @include f-label($field, $theme: 'outlined') {
         position: absolute;
         display: flex;
         align-items: center;
@@ -135,23 +135,27 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     }
 
     // Label > Error
-    @include f-label($block, $theme: 'outlined', $has-error: true) {
+    @include f-label($field, $theme: 'outlined', $has-error: true) {
         transform: translateY(-$fo-field-padding-top);
     }
 
     // Label > Focus
-    @include f-label($block, $theme: 'outlined', $state: ':focus') {
+    @include f-label($field, $theme: 'outlined', $state: ':focus') {
         transform: translateY(-$fo-field-padding-top);
     }
 
     // Label > Filled
-    @include f-label($block, $theme: 'outlined', $state: $f-modifier-filled) {
+    @include f-label(
+        $field,
+        $theme: 'outlined',
+        $is-filled: true
+    ) {
         transform: translateY(-$fo-field-padding-top);
     }
 }
 
-@mixin fo-common-label-text($block) {
-    @include f-label-text($block, $theme: 'outlined') {
+@mixin fo-common-label-text($field) {
+    @include f-label-text($field, $theme: 'outlined') {
         display: block;
         position: relative;
         transform-origin: center left;
@@ -174,17 +178,18 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
 
     // Label text > Filled + Not error/hover/focus/disabled)
     @include f-label-text(
-        $block,
+        $field,
         $theme: 'outlined',
-        $state: '#{$f-modifier-filled}:not(:hover):not(:focus):not(:disabled)',
-        $has-error: false
+        $state: ':not(:hover):not(:focus):not(:disabled)',
+        $has-error: false,
+        $is-filled: true
     ) {
         color: $f-label-color-filled;
     }
 
     // Label text > Hover + Not disabled/error)
     @include f-label-text(
-        $block,
+        $field,
         $theme: 'outlined',
         $state: ':hover:not(:disabled)',
         $has-error: false
@@ -194,7 +199,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
 
     // Label text > Focus + Not disabled/error)
     @include f-label-text(
-        $block,
+        $field,
         $theme: 'outlined',
         $state: ':focus:not(:disabled)',
         $has-error: false
@@ -203,7 +208,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     }
 
     // Label text > Error
-    @include f-label-text($block, $theme: 'outlined', $has-error: true) {
+    @include f-label-text($field, $theme: 'outlined', $has-error: true) {
         color: $f-label-color-error;
         transform: translateY(-50%) translateY(floor(-$f-border-width/2))
             scale($fo-label-scale);
@@ -211,7 +216,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
 
     // Label text > Focus
     @include f-label-text(
-        $block: $block,
+        $field: $field,
         $theme: 'outlined',
         $state: ':focus'
     ) {
@@ -221,9 +226,9 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
 
     // Label text > Filled
     @include f-label-text(
-        $block: $block,
+        $field: $field,
         $theme: 'outlined',
-        $state: $f-modifier-filled
+        $is-filled: true
     ) {
         transform: translateY(-50%) translateY(floor(-$f-border-width/2))
             scale($fo-label-scale);
@@ -231,7 +236,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
 
     // Label text > Disabled
     @include f-label-text(
-        $block: $block,
+        $field: $field,
         $theme: 'outlined',
         $state: ':disabled'
     ) {
@@ -239,8 +244,8 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     }
 }
 
-@mixin fo-common-indicator($block) {
-    @include f-indicator($block, $theme: 'outlined') {
+@mixin fo-common-indicator($field) {
+    @include f-indicator($field, $theme: 'outlined') {
         position: absolute;
         transition: transition(color);
         will-change: color;
@@ -259,17 +264,18 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
 
     // Indicator > Filled (not disabled/hover/focus/error)
     @include f-indicator(
-        $block,
+        $field,
         $theme: 'outlined',
-        $state: '#{$f-modifier-filled}:not(:disabled):not(:hover):not(:focus)',
-        $has-error: false
+        $state: ':not(:disabled):not(:hover):not(:focus)',
+        $has-error: false,
+        $is-filled: true
     ) {
         color: $f-border-color;
     }
 
     // Indicator > Hover (not disabled/error)
     @include f-indicator(
-        $block,
+        $field,
         $theme: 'outlined',
         $state: ':hover:not(:disabled)',
         $has-error: false
@@ -279,7 +285,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
 
     // Indicator > Focus (not disabled/error)
     @include f-indicator(
-        $block: $block,
+        $field: $field,
         $theme: 'outlined',
         $state: ':focus:not(:disabled)',
         $has-error: false
@@ -289,7 +295,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
 
     // Indicator > Active (not disabled/error)
     @include f-indicator(
-        $block: $block,
+        $field: $field,
         $theme: 'outlined',
         $state: ':active:not(:disabled)',
         $has-error: false

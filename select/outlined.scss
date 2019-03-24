@@ -19,20 +19,21 @@ $fo-select--arrow-color-disabled: $f-border-color-disabled !default;
 // Variables > Field
 $fo-select--field-padding-right: $fo-field-padding-right * 3 !default;
 
-$block: '.f-select';
+$field: 'select';
 $theme: 'outlined';
+$common-args: ($field, $theme);
 
 // Mixins
-@include fo-common-field($block);
-@include fo-common-label($block);
-@include fo-common-label-text($block);
-@include fo-common-indicator($block);
+@include fo-common-field($field);
+@include fo-common-label($field);
+@include fo-common-label-text($field);
+@include fo-common-indicator($field);
 
-@include f-field($block, $theme) {
+@include f-field($common-args...) {
     padding-right: $fo-select--field-padding-right;
 }
 
-@include f-arrow($block, $theme) {
+@include f-icon($common-args...) {
     position: absolute;
     transform-origin: center right;
     pointer-events: none;
@@ -45,7 +46,7 @@ $theme: 'outlined';
 
 // Chevron down arrow
 @if ($fo-select--arrow-type == 'chevron') {
-    @include f-arrow($block, $theme) {
+    @include f-icon($common-args...) {
         // Open chevron arrow ᐯ
         transform: translateY(50%) rotate(45deg);
         margin-top: 0.05em; // Visual realignment
@@ -59,32 +60,32 @@ $theme: 'outlined';
     }
 
     // Arrow > Hover
-    @include f-arrow($block, $theme, $state: ':hover') {
+    @include f-icon($common-args..., $state: ':hover') {
         border-color: $fo-select--arrow-color-hover;
     }
 
     // Arrow > Focus
-    @include f-arrow($block, $theme, $state: ':focus') {
+    @include f-icon($common-args..., $state: ':focus') {
         border-color: $fo-select--arrow-color-focus;
     }
 
     // Arrow > Error
-    @include f-arrow($block, $theme, $has-error: true) {
+    @include f-icon($common-args..., $has-error: true) {
         border-color: $f-border-color-error;
     }
 
     // Arrow > Hover + Error
-    @include f-arrow($block, $theme, $state: ':hover', $has-error: true) {
+    @include f-icon($common-args..., $state: ':hover', $has-error: true) {
         border-color: $f-border-color-error;
     }
 
     // Arrow > Focus + Error
-    @include f-arrow($block, $theme, $state: ':focus', $has-error: true) {
+    @include f-icon($common-args..., $state: ':focus', $has-error: true) {
         border-color: $f-border-color-error;
     }
 } @else if ($fo-select--arrow-type == 'triangle') {
     // Solid triangle arrow ▼
-    @include f-arrow($block, $theme) {
+    @include f-icon($common-args...) {
         transform: translateY(50%);
         margin-top: 0.35em; // Visual realignment
         width: 0;
@@ -95,43 +96,43 @@ $theme: 'outlined';
     }
 
     // Arrow > Hover
-    @include f-arrow($block, $theme, $state: ':hover') {
+    @include f-icon($common-args..., $state: ':hover') {
         border-top-color: $fo-select--arrow-color-hover;
     }
 
     // Arrow > Focus
-    @include f-arrow($block, $theme, $state: ':focus') {
+    @include f-icon($common-args..., $state: ':focus') {
         border-top-color: $fo-select--arrow-color-focus;
     }
 
     // Arrow > Error
-    @include f-arrow($block, $theme, $has-error: true) {
+    @include f-icon($common-args..., $has-error: true) {
         border-top-color: $f-border-color-error;
     }
 
     // Arrow > Hover + Error
-    @include f-arrow($block, $theme, $state: ':hover', $has-error: true) {
+    @include f-icon($common-args..., $state: ':hover', $has-error: true) {
         border-top-color: $f-border-color-error;
     }
 
     // Arrow > Focus + Error
-    @include f-arrow($block, $theme, $state: ':focus', $has-error: true) {
+    @include f-icon($common-args..., $state: ':focus', $has-error: true) {
         border-top-color: $f-border-color-error;
     }
 }
 
 // Arrow > Disabled
-@include f-arrow($block, $theme, $state: ':disabled') {
+@include f-icon($common-args..., $state: ':disabled') {
     border-color: $fo-select--arrow-color-disabled;
 }
 
-@include f-label($block, $theme) {
+@include f-label($common-args...) {
     top: 0;
     bottom: 0;
     left: calc(#{$f-border-width} + #{$fo-field-padding-left});
 }
 
-@include f-label-text($block, $theme) {
+@include f-label-text($common-args...) {
     transition: transition(transform), transition(color),
         transition(letter-spacing);
     will-change: transform, color;
@@ -139,6 +140,6 @@ $theme: 'outlined';
     transform: translateY(0) scale(1);
 }
 
-@include f-message($block, $theme) {
+@include f-message($common-args...) {
     margin: $fo-message-margin-inset;
 }

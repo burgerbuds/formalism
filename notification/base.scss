@@ -8,4 +8,4 @@
 @import './../core/common';
 
 // Mixins
-@include f-common-base($block: '.f-notification');
+@include f-common-base($field: 'notification');

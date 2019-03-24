@@ -26,8 +26,8 @@ $fu-indicator-optional-letter-spacing: 0.02em !default;
 // Variables > Messages
 $fu-message-margin: 0.5em 0 0 0 !default;
 
-@mixin fu-common-field($block) {
-    @include f-field($block, $theme: 'underlined') {
+@mixin fu-common-field($field) {
+    @include f-field($field, $theme: 'underlined') {
         color: $f-text-color;
         background-color: $f-bg-color;
         border-bottom: $f-border-width solid $f-border-color;
@@ -62,7 +62,7 @@ $fu-message-margin: 0.5em 0 0 0 !default;
     }
 
     // Field > Error
-    @include f-field($block, $theme: 'underlined', $has-error: true) {
+    @include f-field($field, $theme: 'underlined', $has-error: true) {
         &,
         &:hover {
             border-color: $f-border-color-error;
@@ -71,17 +71,17 @@ $fu-message-margin: 0.5em 0 0 0 !default;
 
     // Field > Filled + Error
     @include f-field(
-        $block,
+        $field,
         $theme: 'underlined',
-        $state: $f-modifier-filled,
-        $has-error: true
+        $has-error: true,
+        $is-filled: true
     ) {
         border-color: $f-border-color-error;
     }
 }
 
-@mixin fu-common-label($block) {
-    @include f-label($block, $theme: 'underlined') {
+@mixin fu-common-label($field) {
+    @include f-label($field, $theme: 'underlined') {
         position: absolute;
         display: flex;
         align-items: center;
@@ -97,23 +97,23 @@ $fu-message-margin: 0.5em 0 0 0 !default;
     }
 
     // Label > Error
-    @include f-label($block, $theme: 'underlined', $has-error: true) {
+    @include f-label($field, $theme: 'underlined', $has-error: true) {
         transform: translateY(-$fu-field-padding-top) scale($fu-label-scale);
     }
 
     // Label > Focus
-    @include f-label($block, $theme: 'underlined', $state: ':focus') {
+    @include f-label($field, $theme: 'underlined', $state: ':focus') {
         transform: translateY(-$fu-field-padding-top) scale($fu-label-scale);
     }
 
     // Label > Filled
-    @include f-label($block, $theme: 'underlined', $state: $f-modifier-filled) {
+    @include f-label($field, $theme: 'underlined', $is-filled: true) {
         transform: translateY(-$fu-field-padding-top) scale($fu-label-scale);
     }
 }
 
-@mixin fu-common-label-text($block) {
-    @include f-label-text($block, $theme: 'underlined') {
+@mixin fu-common-label-text($field) {
+    @include f-label-text($field, $theme: 'underlined') {
         transform-origin: center left;
         transition: transition(transform), transition(color);
         will-change: transform, color;
@@ -121,17 +121,18 @@ $fu-message-margin: 0.5em 0 0 0 !default;
 
     // Label text > Filled + Not error/hover/focus/disabled)
     @include f-label-text(
-        $block,
+        $field,
         $theme: 'underlined',
-        $state: '#{$f-modifier-filled}:not(:hover):not(:focus):not(:disabled)',
-        $has-error: false
+        $state: ':not(:hover):not(:focus):not(:disabled)',
+        $has-error: false,
+        $is-filled: true
     ) {
         color: $f-label-color-filled;
     }
 
     // Label text > Hover + Not error/disabled)
     @include f-label-text(
-        $block,
+        $field,
         $theme: 'underlined',
         $state: ':hover:not(:disabled)',
         $has-error: false
@@ -141,7 +142,7 @@ $fu-message-margin: 0.5em 0 0 0 !default;
 
     // Label text > Focus + Not error/disabled)
     @include f-label-text(
-        $block,
+        $field,
         $theme: 'underlined',
         $state: ':focus:not(:disabled)',
         $has-error: false
@@ -150,13 +151,13 @@ $fu-message-margin: 0.5em 0 0 0 !default;
     }
 
     // Label text > Error
-    @include f-label-text($block, $theme: 'underlined', $has-error: true) {
+    @include f-label-text($field, $theme: 'underlined', $has-error: true) {
         color: $f-label-color-error;
     }
 
     // Label text > Disabled
     @include f-label-text(
-        $block: $block,
+        $field: $field,
         $theme: 'underlined',
         $state: ':disabled'
     ) {
@@ -164,8 +165,8 @@ $fu-message-margin: 0.5em 0 0 0 !default;
     }
 }
 
-@mixin fu-common-indicator($block) {
-    @include f-indicator($block, $theme: 'underlined') {
+@mixin fu-common-indicator($field) {
+    @include f-indicator($field, $theme: 'underlined') {
         position: absolute;
         transition: transition(color);
         will-change: color;
@@ -184,17 +185,18 @@ $fu-message-margin: 0.5em 0 0 0 !default;
 
     // Indicator > Filled (not disabled/hover/focus/error)
     @include f-indicator(
-        $block,
+        $field,
         $theme: 'underlined',
-        $state: '#{$f-modifier-filled}:not(:disabled):not(:hover):not(:focus)',
-        $has-error: false
+        $state: ':not(:disabled):not(:hover):not(:focus)',
+        $has-error: false,
+        $is-filled: true
     ) {
         color: $f-border-color;
     }
 
     // Indicator > Hover (not disabled/error)
     @include f-indicator(
-        $block,
+        $field,
         $theme: 'underlined',
         $state: ':hover:not(:disabled)',
         $has-error: false
@@ -204,7 +206,7 @@ $fu-message-margin: 0.5em 0 0 0 !default;
 
     // Indicator > Focus (not disabled/error)
     @include f-indicator(
-        $block: $block,
+        $field: $field,
         $theme: 'underlined',
         $state: ':focus:not(:disabled)',
         $has-error: false
@@ -214,7 +216,7 @@ $fu-message-margin: 0.5em 0 0 0 !default;
 
     // Indicator > Active (not disabled/error)
     @include f-indicator(
-        $block: $block,
+        $field: $field,
         $theme: 'underlined',
         $state: ':active:not(:disabled)',
         $has-error: false

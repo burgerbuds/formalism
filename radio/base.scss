@@ -11,59 +11,59 @@
 $f-radio--spacing: 0.5em !default;
 $f-radio--label-line-height: 1 !default;
 
-$block: '.f-radio';
+$field: 'radio';
 
 // Mixins
-@include f-common-base($block);
-@include f-common-inner($block);
-@include f-common-label($block);
-@include f-common-label-text($block);
-@include f-common-label-indicator($block);
-@include f-common-message($block);
+@include f-common-base($field);
+@include f-common-inner($field);
+@include f-common-label($field);
+@include f-common-label-text($field);
+@include f-common-label-indicator($field);
+@include f-common-message($field);
 
-@include f-inner($block) {
+@include f-inner($field) {
     display: inline-flex;
     flex-wrap: nowrap;
     align-items: center;
 }
 
-@include f-field($block) {
+@include f-field($field) {
     clip: rect(1px, 1px, 1px, 1px); // Allows tabbing still
     position: absolute;
 }
 
-@include f-inside($block) {
+@include f-inside($field) {
     content: '';
     display: block;
     width: 1em;
     height: 1em;
     flex-shrink: 0;
     background-color: currentColor;
-    transform: scale(0);
+    transform: translateY(-50%) scale(0);
     transition: transition(transform);
     will-change: transform;
     position: absolute;
     // <=IE11 positioning fix
-    top: 0;
+    top: 50%;
     left: 0;
 }
 
 // Inside > Error
-@include f-inside($block, $state: ':not(:disabled)') {
+@include f-inside($field, $state: ':not(:disabled)') {
     color: $f-error-color;
 }
 
 // Inside > Checked
-@include f-inside($block, $state: ':checked') {
+@include f-inside($field, $state: ':checked') {
     visibility: visible;
 }
 
 // Inside > Disabled
-@include f-inside($block, $state: ':disabled') {
+@include f-inside($field, $state: ':disabled') {
     color: $f-border-color-disabled;
 }
 
-@include f-outside($block) {
+@include f-outside($field) {
     content: '';
     display: block;
     width: 1em;
@@ -73,16 +73,16 @@ $block: '.f-radio';
 }
 
 // Outside > Error
-@include f-outside($block, $has-error: true) {
+@include f-outside($field, $has-error: true) {
     color: $f-error-color;
 }
 
 // Outside > Disabled
-@include f-outside($block) {
+@include f-outside($field) {
     color: $f-border-color-disabled;
 }
 
-@include f-label($block) {
+@include f-label($field) {
     color: inherit;
     position: relative;
     display: flex;
@@ -92,6 +92,6 @@ $block: '.f-radio';
     will-change: color;
 }
 
-@include f-label-text($block) {
+@include f-label-text($field) {
     line-height: $f-radio--label-line-height;
 }
