@@ -46,4 +46,5 @@ $field: 'fieldset';
 
 @include f-legend-label($field) {
     display: flex;
+    align-items: center;
 }
