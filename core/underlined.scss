@@ -34,6 +34,7 @@ $fu-message-margin: 0.5em 0 0 0 !default;
         transition: transition(border-color);
         will-change: border-color;
         padding: $fu-field-padding-top 0 $fu-field-padding-bottom 0;
+        border-radius: 0;
 
         &:hover:not(:disabled) {
             border-color: $f-border-color-hover;
