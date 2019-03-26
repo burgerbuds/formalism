@@ -94,4 +94,6 @@ $field: 'radio';
 
 @include f-label-text($field) {
     line-height: $f-radio--label-line-height;
+    transition: transition(color);
+    will-change: color;
 }

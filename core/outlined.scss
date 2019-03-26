@@ -147,11 +147,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     }
 
     // Label > Filled
-    @include f-label(
-        $field,
-        $theme: 'outlined',
-        $is-filled: true
-    ) {
+    @include f-label($field, $theme: 'outlined', $is-filled: true) {
         transform: translateY(-$fo-field-padding-top);
     }
 }
@@ -162,7 +158,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         position: relative;
         transform-origin: center left;
         transition: transition(color);
-        will-change: transform;
+        will-change: transform, color;
 
         // Label background line mask
         &:before {
