@@ -81,12 +81,7 @@ $f-selector-error: '.has-error';
 
 // Element root
 // - $state unavailable (field state)
-@mixin f-base(
-    $field: null,
-    $theme: null,
-    $has-error: null,
-    $is-filled: null
-) {
+@mixin f-base($field: null, $theme: null, $has-error: null, $is-filled: null) {
     $scope: formalism-scope();
     $block: block-alias($field);
     $block-modifier: block-modifier($block, $theme);
@@ -99,18 +94,14 @@ $f-selector-error: '.has-error';
 
 // Inner wrapping element
 // - $state unavailable (field state)
-@mixin f-inner(
-    $field: null,
-    $theme: null,
-    $has-error: null,
-    $is-filled: null
-) {
+@mixin f-inner($field: null, $theme: null, $has-error: null, $is-filled: null) {
     $scope: formalism-scope();
     $block: block-alias($field);
     $block-modifier: block-modifier($block, $theme);
     $error-modifier: error-modifier($has-error);
     $filled-modifier: filled-modifier($is-filled);
-    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier} #{$block}__inner {
+    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier}
+        #{$block}__inner {
         @content;
     }
 }
@@ -128,7 +119,8 @@ $f-selector-error: '.has-error';
     $block-modifier: block-modifier($block, $theme);
     $error-modifier: error-modifier($has-error);
     $filled-modifier: filled-modifier($is-filled);
-    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier} #{$block}__field#{$state} {
+    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier}
+        #{$block}__field#{$state} {
         @content;
     }
 }
@@ -252,7 +244,8 @@ $f-selector-error: '.has-error';
     $block-modifier: block-modifier($block, $theme);
     $error-modifier: error-modifier($has-error);
     $filled-modifier: filled-modifier($is-filled);
-    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier} #{$block}__message {
+    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier}
+        #{$block}__message {
         @content;
     }
 }
@@ -270,7 +263,8 @@ $f-selector-error: '.has-error';
     $block-modifier: block-modifier($block, $theme);
     $error-modifier: error-modifier($has-error);
     $filled-modifier: filled-modifier($is-filled);
-    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier} #{$block}__legend {
+    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier}
+        #{$block}__legend {
         @content;
     }
 }
