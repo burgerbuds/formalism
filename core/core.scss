@@ -307,6 +307,21 @@ $f-selector-error: '.has-error';
     }
 }
 
+// Inner wrapping element for notifications
+@mixin f-notification-inner($theme: null, $type: null) {
+    $scope: formalism-scope();
+    $block: block-alias('notification');
+    $block-modifier: block-modifier($block, $theme);
+    $type-modifier: if(
+        $type == 'success',
+        '#{$block}--success',
+        if($type == 'error', '#{$block}--error', '')
+    );
+    #{$scope}#{$block}#{$block-modifier}#{$type-modifier} #{$block}__inner {
+        @content;
+    }
+}
+
 // Button
 // Used within field 'search'
 @mixin f-button(
