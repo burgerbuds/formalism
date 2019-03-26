@@ -127,6 +127,26 @@ $common-args: ($field, $theme);
     color: $f-label-color-filled;
 }
 
+// Label text > Focus + Not disabled + No error
+@include f-label-text(
+    $field,
+    $theme: 'outlined',
+    $state: ':focus:not(:disabled)',
+    $has-error: false
+) {
+    color: $f-label-color-focus;
+}
+
+// Label text > Hover + Not disabled + No error
+@include f-label-text(
+    $field,
+    $theme: 'outlined',
+    $state: ':hover:not(:disabled)',
+    $has-error: false
+) {
+    color: $f-label-color-hover;
+}
+
 @include f-message($common-args...) {
     margin: $fo-message-margin;
 }

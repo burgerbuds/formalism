@@ -122,6 +122,8 @@ $field: 'checkbox';
 
 @include f-label-text($field) {
     line-height: $f-checkbox--label-line-height;
+    transition: transition(color);
+    will-change: color;
 }
 
 @include f-field($field) {
