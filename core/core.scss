@@ -17,6 +17,7 @@ $f-bg-color: white !default;
 $f-error-color: #e91e63 !default;
 $f-success-color: #cddc39 !default;
 $f-disabled-color: #767676 !default;
+$f-instruction-color: #767676 !default;
 
 // Field text
 $f-text-font-size: 1em !default;
@@ -46,10 +47,6 @@ $f-border-width-focus: 2px !default;
 $f-border-width-error: 2px !default;
 $f-border-width-success: 2px !default;
 
-// Field messages (error/information)
-$f-message-color: #666 !default;
-$f-message-font-size: 0.9em !default;
-
 // Field indicators (required/option)
 $f-indicator-required-color: $f-border-color !default;
 $f-indicator-required-size: 1em !default;
@@ -67,6 +64,7 @@ $f-selection-bg: $f-highlight-color !default;
 // General settings
 $f-hide-instructions-when-error: true !default;
 $f-field-size: inherit !default;
+$f-message-font-size: 0.9em !default;
 
 // Private variables
 
