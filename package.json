@@ -2,7 +2,7 @@
     "name": "formalism",
     "version": "0.1.15",
     "description": "Modern forms, your way. Modular. Lightweight. Responsive. Stuff that matters.",
-    "main": "common/main.js",
+    "main": "core/main.js",
     "scripts": {
         "start": "webpack-dev-server --mode development --devtool inline-source-map --config webpack.config.js",
         "build": "webpack --mode production --config webpack.config.js --hide-modules",
