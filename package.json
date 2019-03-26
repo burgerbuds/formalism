@@ -1,6 +1,6 @@
 {
     "name": "formalism",
-    "version": "0.1.14",
+    "version": "0.1.15",
     "description": "Modern forms, your way. Modular. Lightweight. Responsive. Stuff that matters.",
     "main": "common/main.js",
     "scripts": {
