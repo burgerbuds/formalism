@@ -46,6 +46,9 @@
         font-family: inherit;
         display: block;
         outline: 0;
+        appearance: none; // Fix field border-radius in iOS
+        -webkit-appearance: none; // Fix field border-radius in iOS
+        touch-action: manipulation; // Enable panning and pinch zoom gestures, but disable additional non-standard gestures
 
         // Field > Disabled
         &:disabled {
