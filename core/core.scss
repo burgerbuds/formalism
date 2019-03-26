@@ -28,7 +28,7 @@ $f-text-caret-color: $f-highlight-color !default;
 $f-label-color: #6f7171 !default;
 $f-label-color-hover: $f-highlight-color !default;
 $f-label-color-focus: $f-highlight-color !default;
-$f-label-color-filled: $f-highlight-color !default;
+$f-label-color-filled: $f-label-color !default;
 $f-label-color-error: $f-error-color !default; // TODO: Roll this out
 $f-label-color-disabled: $f-disabled-color !default;
 
