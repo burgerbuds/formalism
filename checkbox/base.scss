@@ -31,7 +31,7 @@ $field: 'checkbox';
     align-items: center;
 }
 
-@include f-inside($field) {
+@include f-tick($field) {
     content: '';
     display: block;
     font-size: $f-checkbox--size;
@@ -45,18 +45,18 @@ $field: 'checkbox';
     top: 50%;
 }
 
-// Inside > Not disabled + Error
-@include f-inside($field, $state: ':not(:disabled)', $has-error: true) {
+// Tick > Not disabled + Error
+@include f-tick($field, $state: ':not(:disabled)', $has-error: true) {
     color: $f-border-color-error;
 }
 
-// Inside > Disabled
-@include f-inside($field, $state: ':disabled') {
+// Tick > Disabled
+@include f-tick($field, $state: ':disabled') {
     color: $f-border-color-disabled;
 }
 
-// Inside > Checked
-@include f-inside($field, $state: ':checked') {
+// Tick > Checked
+@include f-tick($field, $state: ':checked') {
     visibility: visible;
 
     @if ($f-checkbox--has-animation) {
@@ -88,8 +88,7 @@ $field: 'checkbox';
     }
 }
 
-// Outside
-@include f-outside($field) {
+@include f-tickbox($field) {
     content: '';
     display: block;
     font-size: $f-checkbox--size;
@@ -102,13 +101,13 @@ $field: 'checkbox';
     flex-shrink: 0;
 }
 
-// Outside > Not disabled + Error
-@include f-outside($field, $state: ':not(:disabled)', $has-error: true) {
+// Tickbox > Not disabled + Error
+@include f-tickbox($field, $state: ':not(:disabled)', $has-error: true) {
     color: $f-border-color-error;
 }
 
-// Outside > Disabled
-@include f-outside($field, $state: ':disabled') {
+// Tickbox > Disabled
+@include f-tickbox($field, $state: ':disabled') {
     color: $f-border-color-disabled;
 }
 

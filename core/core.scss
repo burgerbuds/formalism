@@ -402,14 +402,14 @@ $f-selector-error: '.has-error';
 }
 
 // Alias
-@mixin f-outside($args...) {
+@mixin f-tickbox($args...) {
     @include f-label-before($args...) {
         @content;
     }
 }
 
 // Alias
-@mixin f-inside($args...) {
+@mixin f-tick($args...) {
     @include f-label-after($args...) {
         @content;
     }

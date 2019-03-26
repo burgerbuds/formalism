@@ -16,22 +16,18 @@ $field: 'checkbox';
 $theme: 'outlined';
 $common-args: ($field, $theme);
 
-@include f-inside($common-args...) {
+@include f-tick($common-args...) {
     border-right: $fo-checkbox--border-width solid currentColor;
     border-top: $fo-checkbox--border-width solid currentColor;
 }
 
 // Tick > Not disabled + No error
-@include f-inside(
-    $common-args...,
-    $state: ':not(:disabled)',
-    $has-error: false
-) {
+@include f-tick($common-args..., $state: ':not(:disabled)', $has-error: false) {
     color: $f-border-color;
 }
 
 // Tick > Hover + Not disabled + No error
-@include f-inside(
+@include f-tick(
     $common-args...,
     $state: ':hover:not(:disabled)',
     $has-error: false
@@ -40,7 +36,7 @@ $common-args: ($field, $theme);
 }
 
 // Tick > Focus + Not disabled + No error
-@include f-inside(
+@include f-tick(
     $common-args...,
     $state: ':focus:not(:disabled)',
     $has-error: false
@@ -49,7 +45,7 @@ $common-args: ($field, $theme);
 }
 
 // Tick > Active + Not disabled + No error
-@include f-inside(
+@include f-tick(
     $common-args...,
     $state: ':active:not(:disabled)',
     $has-error: false
@@ -58,7 +54,7 @@ $common-args: ($field, $theme);
 }
 
 // Tick > Checked + Not disabled + No error
-@include f-inside(
+@include f-tick(
     $common-args...,
     $state: ':checked:not(:disabled)',
     $has-error: false
@@ -67,14 +63,14 @@ $common-args: ($field, $theme);
 }
 
 // Tickbox
-@include f-outside($common-args...) {
+@include f-tickbox($common-args...) {
     background-color: $f-bg-color;
     border: $fo-checkbox--border-width solid currentColor;
     border-radius: $fo-checkbox--border-radius;
 }
 
 // Tickbox > Not disabled + No error
-@include f-outside(
+@include f-tickbox(
     $common-args...,
     $state: ':not(:disabled)',
     $has-error: false
@@ -83,7 +79,7 @@ $common-args: ($field, $theme);
 }
 
 // Tickbox > Hover + Not disabled + No error
-@include f-outside(
+@include f-tickbox(
     $common-args...,
     $state: ':hover:not(:disabled)',
     $has-error: false
@@ -92,7 +88,7 @@ $common-args: ($field, $theme);
 }
 
 // Tickbox > Focus + Not disabled + No error
-@include f-outside(
+@include f-tickbox(
     $common-args...,
     $state: ':focus:not(:disabled)',
     $has-error: false
@@ -101,7 +97,7 @@ $common-args: ($field, $theme);
 }
 
 // Tickbox > Checked + Not disabled + No error
-@include f-outside(
+@include f-tickbox(
     $common-args...,
     $state: ':checked:not(:disabled)',
     $has-error: false
@@ -110,7 +106,7 @@ $common-args: ($field, $theme);
 }
 
 // Tickbox > Active + Not disabled + No error
-@include f-outside(
+@include f-tickbox(
     $common-args...,
     $state: ':active:not(:disabled)',
     $has-error: false
