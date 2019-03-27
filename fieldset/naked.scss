@@ -7,60 +7,39 @@
 @import './../core/core';
 
 // Variables
-$fn-fieldset--top-spacing: 2em !default;
+$fn-fieldset--padding-top: 2em !default;
 $fn-fieldset--border-width: $f-border-width * 2 !default;
 $fn-fieldset--error-spacing: 1.5em !default;
-$fn-fieldset--message-margin: 1.75em 0 0 0 !default;
+$fn-fieldset--message-margin: 1em 0 0 0 !default;
 $fn-fieldset--content-spacing: 1.25em !default;
 
-// Theme
-.f-fieldset--naked {
-    $block: '.f-fieldset';
-    $error: $f-selector-error;
+$field: 'fieldset';
+$theme: 'naked';
+$common-args: ($field, $theme);
 
-    #{$block}__inner {
-        padding-top: $fn-fieldset--top-spacing;
+@include f-inner($common-args...) {
+    padding-top: $fn-fieldset--padding-top;
+}
 
-        &--stacked {
-            margin-top: -$fn-fieldset--content-spacing;
-            & > * {
-                padding-top: $fn-fieldset--content-spacing;
-            }
-        }
+// Inner > Error
+@include f-base($common-args..., $has-error: true) {
+    border-left: $fn-fieldset--border-width solid $f-error-color;
+    padding-left: $fn-fieldset--error-spacing;
+}
 
-        &--one-line {
-            display: flex;
-            flex-wrap: wrap;
+@include f-label($common-args...) {
+    display: block;
+}
 
-            & > * {
-                &:not(:last-child) {
-                    margin-right: $fn-fieldset--content-spacing;
-                }
-            }
-        }
-    }
+@include f-label-text($common-args...) {
+    color: $f-text-color;
+}
 
-    #{$block}__label {
-        display: block;
-    }
+// Label text > Error
+@include f-label-text($common-args..., $has-error: true) {
+    color: $f-error-color;
+}
 
-    // Label text
-    #{$block}__label-text {
-        color: $f-text-color;
-    }
-
-    // Label text > Error
-    &#{$error} #{$block}__label #{$block}__label-text {
-        color: $f-error-color;
-    }
-
-    // Inner > Error
-    &#{$error} {
-        border-left: $fn-fieldset--border-width solid $f-error-color;
-        padding-left: $fn-fieldset--error-spacing;
-    }
-
-    #{$block}__message {
-        margin: $fn-fieldset--message-margin;
-    }
+@include f-message($common-args...) {
+    margin: $fn-fieldset--message-margin;
 }

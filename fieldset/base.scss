@@ -8,6 +8,8 @@
 @import './../core/common';
 
 // Variables
+$f-fieldset--content-spacing: 1.25em !default;
+
 $field: 'fieldset';
 
 // Mixins
@@ -25,16 +27,22 @@ $field: 'fieldset';
 }
 
 @include f-inner($field) {
+
     &--stacked {
+        margin-top: -$f-fieldset--content-spacing;
         & > * {
+            padding-top: $f-fieldset--content-spacing;
             width: 100%;
         }
     }
 
     &--one-line {
+        margin-top: -$f-fieldset--content-spacing;
         display: flex;
         flex-wrap: wrap;
         & > * {
+            padding-top: $f-fieldset--content-spacing;
+            margin-right: $f-fieldset--content-spacing * 1.25;
             width: auto;
         }
     }

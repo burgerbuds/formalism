@@ -7,12 +7,11 @@
 @import './../core/core';
 @import './../core/outlined';
 
-// Variables > Padding
+// Variables
 $fo-fieldset--padding-top: 2.25em !default;
 $fo-fieldset--padding-bottom: 1.5em !default;
 $fo-fieldset--padding-left: 1.75em !default;
 $fo-fieldset--padding-right: $fo-fieldset--padding-left !default;
-$fo-fieldset--content-spacing: 1.25em !default;
 $fo-fieldset--message-margin: 1.5em 0 -0.75em calc(#{$fo-fieldset--padding-left} +
             #{$f-border-width}) !default;
 
@@ -38,21 +37,6 @@ $common-args: ($field, $theme);
     padding-bottom: $fo-fieldset--padding-bottom;
     padding-left: $fo-fieldset--padding-left;
     padding-right: $fo-fieldset--padding-right;
-
-    &--stacked {
-        margin-top: -$fo-fieldset--content-spacing;
-        & > * {
-            padding-top: $fo-fieldset--content-spacing;
-        }
-    }
-
-    &--one-line {
-        margin-top: -$fo-fieldset--content-spacing;
-        & > * {
-            padding-top: $fo-fieldset--content-spacing;
-            margin-right: $fo-fieldset--content-spacing * 1.25;
-        }
-    }
 }
 
 @include f-legend($common-args...) {
