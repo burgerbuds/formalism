@@ -44,8 +44,12 @@ $common-args: ($field, $theme);
     color: $f-border-color-filled;
 }
 
-// Radio > Hover + Not disabled
-@include f-label-before($common-args..., $state: ':hover:not(:disabled)') {
+// Radio > Hover + Not disabled + No error
+@include f-label-before(
+    $common-args...,
+    $state: ':hover:not(:disabled)',
+    $has-error: false
+) {
     color: $f-border-color-hover;
 }
 
