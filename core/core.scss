@@ -68,9 +68,11 @@ $f-message-font-size: 0.9em !default;
 
 // Private variables
 
-// State selectors
 $f-selector-filled: '.is-filled';
 $f-selector-error: '.has-error';
+$f-text-select-elements: ('input', 'textarea', 'search');
+$f-autofill-elements: ('input', 'search');
+
 
 // ================================
 // Core Mixins

@@ -63,21 +63,24 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
             color: $f-disabled-color;
         }
 
-        // Autofill > Default / Hover
-        &:-webkit-autofill,
-        &:-webkit-autofill:hover {
-            -webkit-box-shadow: 0 0 0 10em $f-bg-color inset !important;
-            // Avoid transitioning when Autofilled
-            transition: box-shadow 0s;
-        }
+        @if (index($f-autofill-elements, $field) != null) {
 
-        // Autofill > Focus / Active
-        &:-webkit-autofill:focus,
-        &:-webkit-autofill:active {
-            -webkit-box-shadow: inset 0 0 0
-                    calc(#{$f-border-width-focus} - #{$f-border-width})
-                    $f-border-color-focus,
-                inset 0 0 0 10em $f-bg-color !important;
+            // Autofill > Default / Hover
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover {
+                -webkit-box-shadow: 0 0 0 10em $f-bg-color inset !important;
+                // Avoid transitioning when Autofilled
+                transition: box-shadow 0s;
+            }
+
+            // Autofill > Focus / Active
+            &:-webkit-autofill:focus,
+            &:-webkit-autofill:active {
+                -webkit-box-shadow: inset 0 0 0
+                        calc(#{$f-border-width-focus} - #{$f-border-width})
+                        $f-border-color-focus,
+                    inset 0 0 0 10em $f-bg-color !important;
+            }
         }
     }
 
@@ -89,13 +92,16 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
             box-shadow: inset 0 0 0
                 calc(#{$f-border-width-error} - #{$f-border-width})
                 $f-border-color-error;
-            // Autofill > Focus / Active
-            &:-webkit-autofill:focus,
-            &:-webkit-autofill:active {
-                -webkit-box-shadow: inset 0 0 0
-                        calc(#{$f-border-width-focus} - #{$f-border-width})
-                        $f-border-color-error,
-                    inset 0 0 0 10em $f-bg-color !important;
+
+            @if (index($f-autofill-elements, $field)) {
+                // Autofill > Focus / Active
+                &:-webkit-autofill:focus,
+                &:-webkit-autofill:active {
+                    -webkit-box-shadow: inset 0 0 0
+                            calc(#{$f-border-width-focus} - #{$f-border-width})
+                            $f-border-color-error,
+                        inset 0 0 0 10em $f-bg-color !important;
+                }
             }
         }
     }
@@ -111,13 +117,16 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         box-shadow: inset 0 0 0
             calc(#{$f-border-width-error} - #{$f-border-width})
             $f-border-color-error;
-        // Autofill > Focus / Active
-        &:-webkit-autofill:focus,
-        &:-webkit-autofill:active {
-            -webkit-box-shadow: inset 0 0 0
-                    calc(#{$f-border-width-focus} - #{$f-border-width})
-                    $f-border-color-error,
-                inset 0 0 0 10em $f-bg-color !important;
+
+        @if (index($f-autofill-elements, $field)) {
+            // Autofill > Focus / Active
+            &:-webkit-autofill:focus,
+            &:-webkit-autofill:active {
+                -webkit-box-shadow: inset 0 0 0
+                        calc(#{$f-border-width-focus} - #{$f-border-width})
+                        $f-border-color-error,
+                    inset 0 0 0 10em $f-bg-color !important;
+            }
         }
     }
 }
@@ -157,8 +166,6 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         display: block;
         position: relative;
         transform-origin: center left;
-        transition: transition(color);
-        will-change: transform, color;
 
         // Label background line mask
         &:before {
@@ -174,7 +181,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         }
     }
 
-    // Label text > Filled + Not error/hover/focus/disabled)
+    // Label text > Filled + Not error/hover/focus/disabled
     @include f-label-text(
         $field,
         $theme: 'outlined',
@@ -185,7 +192,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         color: $f-label-color-filled;
     }
 
-    // Label text > Hover + Not disabled/error)
+    // Label text > Hover + Not disabled + not error
     @include f-label-text(
         $field,
         $theme: 'outlined',
@@ -195,7 +202,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         color: $f-label-color-hover;
     }
 
-    // Label text > Focus + Not disabled/error)
+    // Label text > Focus + Not disabled + not error
     @include f-label-text(
         $field,
         $theme: 'outlined',

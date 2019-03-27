@@ -49,16 +49,19 @@ $fu-message-margin: 0.5em 0 0 0 !default;
             color: $f-disabled-color;
         }
 
-        // Autofill > Default / Hover
-        &:-webkit-autofill,
-        &:-webkit-autofill:hover {
-            -webkit-box-shadow: 0 0 0 10em $f-bg-color inset !important;
-        }
+        @if (index($f-autofill-elements, $field) != null) {
 
-        // Autofill > Focus / Active
-        &:-webkit-autofill:focus,
-        &:-webkit-autofill:active {
-            -webkit-box-shadow: inset 0 0 0 10em $f-bg-color !important;
+            // Autofill > Default / Hover
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover {
+                -webkit-box-shadow: 0 0 0 10em $f-bg-color inset !important;
+            }
+
+            // Autofill > Focus / Active
+            &:-webkit-autofill:focus,
+            &:-webkit-autofill:active {
+                -webkit-box-shadow: inset 0 0 0 10em $f-bg-color !important;
+            }
         }
     }
 

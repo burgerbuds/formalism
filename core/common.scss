@@ -54,58 +54,42 @@
             color: $f-text-color-disabled;
             cursor: not-allowed;
         }
+        // Allow caret/selection/autofill colors only on certain fields
+        @if (index($f-text-select-elements, $field) != null) {
+            caret-color: $f-text-caret-color;
 
-        &::selection {
-            color: $f-selection-color !important;
-            background: $f-selection-bg !important;
-            text-shadow: none;
-        }
-
-        // Selection colors > Disabled
-        &:disabled::selection {
-            color: $f-selection-color !important;
-            background: $f-disabled-color !important;
-            text-shadow: none;
-        }
-
-        @if ($field == 'input') {
-            // Autofill color
-            &:-webkit-autofill {
-                -webkit-text-fill-color: $f-text-color !important;
-            }
-
-            // Field > Disabled
-            &:disabled:-webkit-autofill {
-                color: $f-text-color-disabled;
-                cursor: not-allowed;
-                -webkit-text-fill-color: $f-text-color-disabled !important;
-            }
-
-            &::selection:-webkit-autofill {
+            &::selection {
                 color: $f-selection-color !important;
                 background: $f-selection-bg !important;
                 text-shadow: none;
-                -webkit-text-fill-color: $f-selection-color !important;
             }
 
             // Selection colors > Disabled
-            &:disabled::selection:-webkit-autofill {
+            &:disabled::selection {
                 color: $f-selection-color !important;
                 background: $f-disabled-color !important;
                 text-shadow: none;
-                -webkit-text-fill-color: $f-selection-color !important;
+            }
+
+            @if (index($f-autofill-elements, $field) != null) {
+                // Autofill color
+                &:-webkit-autofill {
+                    -webkit-text-fill-color: $f-text-color !important;
+                }
             }
         }
     }
 
     // Field > Error
     @include f-field($field, $has-error: true) {
-        caret-color: $f-error-color;
-
-        &::selection {
-            color: $f-selection-color !important;
-            background: $f-error-color !important;
-            text-shadow: none;
+        // Allow caret/selection colors only on certain fields
+        @if (index($f-text-select-elements, $field) != null) {
+            caret-color: $f-error-color;
+            &::selection {
+                color: $f-selection-color !important;
+                background: $f-error-color !important;
+                text-shadow: none;
+            }
         }
     }
 }
