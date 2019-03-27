@@ -215,7 +215,7 @@
 
         // Hide the instructions if there's an error
         @if ($f-hide-instructions-when-error) {
-            &--error + #{$field}__message--instruction {
+            &--error + [class$="--instruction"] {
                 display: none;
             }
         }
