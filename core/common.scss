@@ -69,9 +69,33 @@
             text-shadow: none;
         }
 
-        // Autofill color
-        &:-webkit-autofill {
-            -webkit-text-fill-color: $f-text-color !important;
+        @if ($field == 'input') {
+            // Autofill color
+            &:-webkit-autofill {
+                -webkit-text-fill-color: $f-text-color !important;
+            }
+
+            // Field > Disabled
+            &:disabled:-webkit-autofill {
+                color: $f-text-color-disabled;
+                cursor: not-allowed;
+                -webkit-text-fill-color: $f-text-color-disabled !important;
+            }
+
+            &::selection:-webkit-autofill {
+                color: $f-selection-color !important;
+                background: $f-selection-bg !important;
+                text-shadow: none;
+                -webkit-text-fill-color: $f-selection-color !important;
+            }
+
+            // Selection colors > Disabled
+            &:disabled::selection:-webkit-autofill {
+                color: $f-selection-color !important;
+                background: $f-disabled-color !important;
+                text-shadow: none;
+                -webkit-text-fill-color: $f-selection-color !important;
+            }
         }
     }
 
