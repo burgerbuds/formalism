@@ -14,6 +14,7 @@ $field: 'fieldset';
 @include f-common-base($field);
 @include f-common-inner($field);
 @include f-common-message($field);
+@include f-common-legend($field);
 @include f-common-legend-indicator($field);
 @include f-common-legend-text($field);
 

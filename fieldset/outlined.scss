@@ -64,7 +64,6 @@ $common-args: ($field, $theme);
     top: 0;
     left: $fo-fieldset--padding-left;
     transform: translateY(-50%);
-    padding: 0;
     float: left; // https://stackoverflow.com/a/30513633
 }
 

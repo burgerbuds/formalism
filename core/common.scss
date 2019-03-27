@@ -176,6 +176,13 @@
     }
 }
 
+// Fieldset legend
+@mixin f-common-legend($field: null) {
+    @include f-legend($field) {
+        padding: 0;
+    }
+}
+
 // Required or optional indicator
 // Use when indicator is within the legend
 // - Used within Fieldset base
