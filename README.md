@@ -10,7 +10,7 @@ Coming soon.
 👍 Small file size<br>
 👍 Supports style scoping<br>
 👍 Honors the [reduced motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) system feature<br>
-👍 Removes off-brand autofill colors<br>
+👍 Removes off-brand &lt;input> autofill colors<br>
 👍 Removes mobile tap colors<br>
 
 ## Browser support
