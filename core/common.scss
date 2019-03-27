@@ -39,15 +39,14 @@
 @mixin f-common-field($field: null) {
     @include f-field($field) {
         color: $f-text-color;
-        width: 100%;
         border: 0;
-        caret-color: $f-text-caret-color;
+        appearance: none; // Fix field border-radius in iOS
+        -webkit-appearance: none; // Fix field border-radius in iOS
+        width: 100%;
         font-size: $f-text-font-size;
         font-family: inherit;
         display: block;
         outline: 0;
-        appearance: none; // Fix field border-radius in iOS
-        -webkit-appearance: none; // Fix field border-radius in iOS
         touch-action: manipulation; // Enable panning and pinch zoom gestures, but disable additional non-standard gestures
 
         // Field > Disabled

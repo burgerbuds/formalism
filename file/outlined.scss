@@ -36,7 +36,6 @@ $common-args: ($field, $theme);
         scale($fo-label-scale);
     transition: transition(transform), transition(color), transition(letter-spacing);
     will-change: transform, color;
-    transform-origin: center left;
 }
 
 @include f-message($common-args...) {
