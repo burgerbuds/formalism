@@ -1,0 +1,9 @@
+# Browsers that we support
+# https://github.com/browserslist/browserslist#best-practices
+# run this to see supported browsers: npx browserslist
+
+last 1 version
+not dead
+> 0.2%
+IE 10
+Firefox ESR
