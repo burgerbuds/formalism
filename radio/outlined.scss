@@ -25,7 +25,7 @@ $common-args: ($field, $theme);
     border: $fo-radio--border-width solid currentColor;
     color: $f-border-color;
     will-change: box-shadow;
-    transition: transition(box-shadow), transition(color);
+    transition: transition(box-shadow), transition(color), transition(transform);
     box-shadow: inset 0 0 0 0.5em $f-bg-color;
     background-color: currentColor;
 }
@@ -85,6 +85,11 @@ $common-args: ($field, $theme);
     $has-error: false
 ) {
     color: $f-label-color-hover;
+}
+
+// Label text > Disabled
+@include f-label-text($common-args..., $state: ':disabled') {
+    color: $f-label-color-disabled;
 }
 
 @include f-message($common-args...) {

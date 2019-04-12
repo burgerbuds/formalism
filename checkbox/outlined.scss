@@ -10,6 +10,7 @@
 // Variables
 $fo-checkbox--border-radius: 0.15em !default;
 $fo-checkbox--border-width: $f-border-width * 2 !default;
+$fo-checkbox--color-checked: $f-highlight-color !default;
 
 $field: 'checkbox';
 $theme: 'outlined';
@@ -58,7 +59,7 @@ $common-args: ($field, $theme);
     $state: ':checked:not(:disabled)',
     $has-error: false
 ) {
-    color: $f-border-color-filled;
+    color: $fo-checkbox--color-checked;
 }
 
 // Tickbox
@@ -101,7 +102,7 @@ $common-args: ($field, $theme);
     $state: ':checked:not(:disabled)',
     $has-error: false
 ) {
-    color: $f-border-color-filled;
+    color: $fo-checkbox--color-checked;
 }
 
 // Tickbox > Active + Not disabled + No error
@@ -124,8 +125,7 @@ $common-args: ($field, $theme);
 
 // Label text > Focus + Not disabled + No error
 @include f-label-text(
-    $field,
-    $theme: 'outlined',
+    $common-args...,
     $state: ':focus:not(:disabled)',
     $has-error: false
 ) {
@@ -134,12 +134,16 @@ $common-args: ($field, $theme);
 
 // Label text > Hover + Not disabled + No error
 @include f-label-text(
-    $field,
-    $theme: 'outlined',
+    $common-args...,
     $state: ':hover:not(:disabled)',
     $has-error: false
 ) {
     color: $f-label-color-hover;
+}
+
+// Label text > Disabled
+@include f-label-text($common-args..., $state: ':disabled') {
+    color: $f-label-color-disabled;
 }
 
 // Message

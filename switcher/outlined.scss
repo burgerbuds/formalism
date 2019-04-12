@@ -11,6 +11,7 @@
 $fo-switcher--border-width: $f-border-width * 2 !default;
 $fo-switcher--size: 1.15em !default;
 $fo-switcher--field-radius: 10vh !default;
+$fo-switcher--color-checked: $f-highlight-color !default;
 
 $field: 'switcher';
 $theme: 'outlined';
@@ -69,7 +70,7 @@ $common-args: ($field, $theme);
     $state: ':checked:not(:disabled)',
     $has-error: false
 ) {
-    color: $f-border-color-filled;
+    color: $fo-switcher--color-checked;
 }
 
 // Switch knob > Checked
@@ -108,7 +109,7 @@ $common-args: ($field, $theme);
     $state: ':checked:not(:disabled)',
     $has-error: false
 ) {
-    color: $f-border-color-filled;
+    color: $fo-switcher--color-checked;
 }
 
 @include f-label-text($common-args...) {
@@ -123,6 +124,29 @@ $common-args: ($field, $theme);
     $has-error: false
 ) {
     color: $f-label-color-filled;
+}
+
+// Label text > Focus + Not disabled + No error
+@include f-label-text(
+    $common-args...,
+    $state: ':focus:not(:disabled)',
+    $has-error: false
+) {
+    color: $f-label-color-focus;
+}
+
+// Label text > Hover + Not disabled + No error
+@include f-label-text(
+    $common-args...,
+    $state: ':hover:not(:disabled)',
+    $has-error: false
+) {
+    color: $f-label-color-hover;
+}
+
+// Label text > Disabled
+@include f-label-text($common-args..., $state: ':disabled') {
+    color: $f-label-color-disabled;
 }
 
 @include f-message($common-args...) {

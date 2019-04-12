@@ -114,7 +114,7 @@
     }
 }
 
-// Field label text
+// Label text
 @mixin f-common-label-text(
     $field: null,
     $state: null,
@@ -226,7 +226,7 @@
 
         // Hide the instructions if there's an error
         @if ($f-hide-instructions-when-error) {
-            &--error + [class$="--instruction"] {
+            &--error + [class$='--instruction'] {
                 display: none;
             }
         }

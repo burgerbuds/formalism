@@ -43,9 +43,11 @@ $f-border-color-error: $f-error-color !default;
 $f-border-color-success: $f-success-color !default;
 $f-border-color-disabled: #dae0e4 !default;
 $f-border-width: 1px !default; // px only
+$f-border-width-hover: 1px !default;
 $f-border-width-focus: 2px !default;
 $f-border-width-error: 2px !default;
 $f-border-width-success: 2px !default;
+$f-border-width-filled: $f-border-width !default;
 
 // Field indicators (required/option)
 $f-indicator-required-color: $f-border-color !default;
