@@ -70,12 +70,10 @@ $f-message-font-size: 0.9em !default;
 $f-remove-autofill: true !default;
 
 // Private variables
-
 $f-selector-filled: '.is-filled';
 $f-selector-error: '.has-error';
 $f-text-select-elements: ('input', 'textarea', 'search');
 $f-autofill-elements: ('input', 'search');
-
 
 // ================================
 // Core Mixins
@@ -324,21 +322,6 @@ $f-autofill-elements: ('input', 'search');
     }
 }
 
-// Inner wrapping element for notifications
-@mixin f-notification-inner($theme: null, $type: null) {
-    $scope: formalism-scope();
-    $block: block-alias('notification');
-    $block-modifier: block-modifier($block, $theme);
-    $type-modifier: if(
-        $type == 'success',
-        '#{$block}--success',
-        if($type == 'error', '#{$block}--error', '')
-    );
-    #{$scope}#{$block}#{$block-modifier}#{$type-modifier} #{$block}__inner {
-        @content;
-    }
-}
-
 // Button
 // Used within field 'search'
 @mixin f-button(
@@ -464,7 +447,6 @@ $f-autofill-elements: ('input', 'search');
         text: '.f-input',
         checkbox: '.f-checkbox',
         file: '.f-file',
-        notification: '.f-notification',
         radio: '.f-radio',
         search: '.f-search',
         select: '.f-select',
