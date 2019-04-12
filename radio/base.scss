@@ -32,38 +32,8 @@ $field: 'radio';
     position: absolute;
 }
 
-@include f-inside($field) {
-    content: '';
-    display: block;
-    width: 1em;
-    height: 1em;
-    flex-shrink: 0;
-    background-color: currentColor;
-    transform: translateY(-50%) scale(0);
-    transition: transition(transform);
-    will-change: transform;
-    position: absolute;
-    // <=IE11 positioning fix
-    top: 50%;
-    left: 0;
-}
-
-// Inside > Error
-@include f-inside($field, $state: ':not(:disabled)') {
-    color: $f-error-color;
-}
-
-// Inside > Checked
-@include f-inside($field, $state: ':checked') {
-    visibility: visible;
-}
-
-// Inside > Disabled
-@include f-inside($field, $state: ':disabled') {
-    color: $f-border-color-disabled;
-}
-
-@include f-outside($field) {
+// Circle
+@include f-label-before($field) {
     content: '';
     display: block;
     width: 1em;
@@ -72,13 +42,13 @@ $field: 'radio';
     margin-right: $f-radio--spacing;
 }
 
-// Outside > Error
-@include f-outside($field, $has-error: true) {
+// Circle > Error
+@include f-label-before($field, $has-error: true) {
     color: $f-error-color;
 }
 
-// Outside > Disabled
-@include f-outside($field) {
+// Circle > Disabled
+@include f-label-before($field, $state: ':disabled') {
     color: $f-border-color-disabled;
 }
 
@@ -94,4 +64,6 @@ $field: 'radio';
 
 @include f-label-text($field) {
     line-height: $f-radio--label-line-height;
+    transition: transition(color);
+    will-change: color;
 }

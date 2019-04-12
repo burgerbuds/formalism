@@ -17,6 +17,7 @@ $f-bg-color: white !default;
 $f-error-color: #e91e63 !default;
 $f-success-color: #cddc39 !default;
 $f-disabled-color: #767676 !default;
+$f-instruction-color: #767676 !default;
 
 // Field text
 $f-text-font-size: 1em !default;
@@ -25,30 +26,28 @@ $f-text-color-disabled: $f-disabled-color !default;
 $f-text-caret-color: $f-highlight-color !default;
 
 // Field labels
-$f-label-color: #6f7171 !default;
+$f-label-color: inherit !default;
 $f-label-color-hover: $f-highlight-color !default;
 $f-label-color-focus: $f-highlight-color !default;
-$f-label-color-filled: $f-highlight-color !default;
-$f-label-color-error: $f-error-color !default; // TODO: Roll this out
+$f-label-color-filled: $f-text-color !default;
+$f-label-color-error: $f-error-color !default;
 $f-label-color-disabled: $f-disabled-color !default;
 
 // Field borders
 $f-border-color: #a4a8a8 !default;
-$f-border-color-hover: $f-highlight-color !default;
 $f-border-color-focus: $f-highlight-color !default;
-$f-border-color-active: $f-highlight-color !default;
-$f-border-color-filled: $f-highlight-color !default; // TODO: Roll this out
+$f-border-color-hover: $f-border-color-focus !default;
+$f-border-color-active: $f-border-color-focus !default;
+$f-border-color-filled: $f-border-color !default;
 $f-border-color-error: $f-error-color !default;
 $f-border-color-success: $f-success-color !default;
 $f-border-color-disabled: #dae0e4 !default;
 $f-border-width: 1px !default; // px only
+$f-border-width-hover: 1px !default;
 $f-border-width-focus: 2px !default;
 $f-border-width-error: 2px !default;
 $f-border-width-success: 2px !default;
-
-// Field messages (error/information)
-$f-message-color: #666 !default;
-$f-message-font-size: 0.9em !default;
+$f-border-width-filled: $f-border-width !default;
 
 // Field indicators (required/option)
 $f-indicator-required-color: $f-border-color !default;
@@ -67,12 +66,14 @@ $f-selection-bg: $f-highlight-color !default;
 // General settings
 $f-hide-instructions-when-error: true !default;
 $f-field-size: inherit !default;
+$f-message-font-size: 0.9em !default;
+$f-remove-autofill: true !default;
 
 // Private variables
-
-// State selectors
 $f-selector-filled: '.is-filled';
 $f-selector-error: '.has-error';
+$f-text-select-elements: ('input', 'textarea', 'search');
+$f-autofill-elements: ('input', 'search');
 
 // ================================
 // Core Mixins
@@ -81,12 +82,7 @@ $f-selector-error: '.has-error';
 
 // Element root
 // - $state unavailable (field state)
-@mixin f-base(
-    $field: null,
-    $theme: null,
-    $has-error: null,
-    $is-filled: null
-) {
+@mixin f-base($field: null, $theme: null, $has-error: null, $is-filled: null) {
     $scope: formalism-scope();
     $block: block-alias($field);
     $block-modifier: block-modifier($block, $theme);
@@ -99,18 +95,14 @@ $f-selector-error: '.has-error';
 
 // Inner wrapping element
 // - $state unavailable (field state)
-@mixin f-inner(
-    $field: null,
-    $theme: null,
-    $has-error: null,
-    $is-filled: null
-) {
+@mixin f-inner($field: null, $theme: null, $has-error: null, $is-filled: null) {
     $scope: formalism-scope();
     $block: block-alias($field);
     $block-modifier: block-modifier($block, $theme);
     $error-modifier: error-modifier($has-error);
     $filled-modifier: filled-modifier($is-filled);
-    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier} #{$block}__inner {
+    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier}
+        #{$block}__inner {
         @content;
     }
 }
@@ -128,7 +120,11 @@ $f-selector-error: '.has-error';
     $block-modifier: block-modifier($block, $theme);
     $error-modifier: error-modifier($has-error);
     $filled-modifier: filled-modifier($is-filled);
-    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier} #{$block}__field#{$state} {
+    $filled-modifier-edge: filled-modifier-edge($is-filled);
+    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier}
+        #{$block}__field#{$state},
+    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}
+        #{$block}__field#{$filled-modifier-edge}#{$state} {
         @content;
     }
 }
@@ -146,8 +142,12 @@ $f-selector-error: '.has-error';
     $block-modifier: block-modifier($block, $theme);
     $error-modifier: error-modifier($has-error);
     $filled-modifier: filled-modifier($is-filled);
+    $filled-modifier-edge: filled-modifier-edge($is-filled);
     #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier}
         #{$block}__field#{$state}
+        ~ #{$block}__label,
+    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}
+        #{$block}__field#{$filled-modifier-edge}#{$state}
         ~ #{$block}__label {
         @content;
     }
@@ -166,8 +166,13 @@ $f-selector-error: '.has-error';
     $block-modifier: block-modifier($block, $theme);
     $error-modifier: error-modifier($has-error);
     $filled-modifier: filled-modifier($is-filled);
+    $filled-modifier-edge: filled-modifier-edge($is-filled);
     #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier}
         #{$block}__field#{$state}
+        ~ #{$block}__label
+        #{$block}__label-text,
+    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}
+        #{$block}__field#{$filled-modifier-edge}#{$state}
         ~ #{$block}__label
         #{$block}__label-text {
         @content;
@@ -252,7 +257,8 @@ $f-selector-error: '.has-error';
     $block-modifier: block-modifier($block, $theme);
     $error-modifier: error-modifier($has-error);
     $filled-modifier: filled-modifier($is-filled);
-    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier} #{$block}__message {
+    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier}
+        #{$block}__message {
         @content;
     }
 }
@@ -270,7 +276,8 @@ $f-selector-error: '.has-error';
     $block-modifier: block-modifier($block, $theme);
     $error-modifier: error-modifier($has-error);
     $filled-modifier: filled-modifier($is-filled);
-    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier} #{$block}__legend {
+    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier}
+        #{$block}__legend {
         @content;
     }
 }
@@ -395,14 +402,14 @@ $f-selector-error: '.has-error';
 }
 
 // Alias
-@mixin f-outside($args...) {
+@mixin f-tickbox($args...) {
     @include f-label-before($args...) {
         @content;
     }
 }
 
 // Alias
-@mixin f-inside($args...) {
+@mixin f-tick($args...) {
     @include f-label-after($args...) {
         @content;
     }
@@ -440,7 +447,6 @@ $f-selector-error: '.has-error';
         text: '.f-input',
         checkbox: '.f-checkbox',
         file: '.f-file',
-        notification: '.f-notification',
         radio: '.f-radio',
         search: '.f-search',
         select: '.f-select',
@@ -475,6 +481,16 @@ $f-selector-error: '.has-error';
         $is-filled == true,
         $f-selector-filled,
         if($is-filled == false, ':not(#{$f-selector-filled})', null)
+    );
+}
+
+// Create the filled modifier for Microsoft edge
+// Edge adds classes to the field when autofilled
+@function filled-modifier-edge($is-filled: null) {
+    @return if(
+        $is-filled == true,
+        '.edge-autofilled',
+        if($is-filled == false, ':not(.edge-autofilled)', null)
     );
 }
 

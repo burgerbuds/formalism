@@ -34,6 +34,18 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
 // Outlined mixins
 // ================================
 
+@mixin f-field-focus-styles {
+    border-color: $f-border-color-focus;
+    box-shadow: inset 0 0 0 calc(#{$f-border-width-focus} - #{$f-border-width})
+        $f-border-color-focus;
+}
+
+@mixin f-field-active-styles {
+    border-color: $f-border-color-active;
+    box-shadow: inset 0 0 0 calc(#{$f-border-width-focus} - #{$f-border-width})
+        $f-border-color-active;
+}
+
 @mixin fo-common-field($field) {
     @include f-field($field, $theme: 'outlined') {
         color: $f-text-color;
@@ -44,41 +56,120 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         will-change: border-color, box-shadow;
         padding: $fo-field-padding-top $fo-field-padding-right
             $fo-field-padding-bottom $fo-field-padding-left;
+        box-shadow: inset 0 0 0 $f-border-width $f-bg-color;
+
+        @if (
+            $f-remove-autofill and index($f-autofill-elements, $field) != null
+        ) {
+            // Ms Edge autofill class
+            &.edge-autofilled {
+                color: $f-text-color !important;
+                background-color: $f-bg-color !important;
+            }
+            // Autofill > Default + Hover
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover {
+                -webkit-box-shadow: 0 0 0 10em $f-bg-color inset !important;
+                // Avoid transitioning when Autofilled
+                transition: box-shadow 0s;
+            }
+
+            // Autofill > Focus
+            &:-webkit-autofill:focus,
+            &:-webkit-autofill:focus:hover {
+                -webkit-box-shadow: inset
+                        0
+                        0
+                        0
+                        calc(#{$f-border-width-focus} - #{$f-border-width})
+                        $f-border-color-focus,
+                    inset 0 0 0 10em $f-bg-color !important;
+            }
+
+            // Autofill > Active
+            &:-webkit-autofill:active,
+            &:-webkit-autofill:active:hover {
+                -webkit-box-shadow: inset
+                        0
+                        0
+                        0
+                        calc(#{$f-border-width-focus} - #{$f-border-width})
+                        $f-border-color-active,
+                    inset 0 0 0 10em $f-bg-color !important;
+            }
+        }
+    }
+
+    // Field > Hover + Not disabled
+    @include f-field(
+        $field,
+        $theme: 'outlined',
+        $state: ':hover:not(:disabled)'
+    ) {
+        border-color: $f-border-color-hover;
         box-shadow: inset 0 0 0
-            calc(#{$f-border-width-focus} - #{$f-border-width}) $f-bg-color;
+            calc(#{$f-border-width-hover} - #{$f-border-width})
+            $f-border-color-hover;
+    }
 
-        &:hover:not(:disabled) {
-            border-color: $f-border-color-hover;
-        }
+    // Field > Disabled
+    @include f-field($field, $theme: 'outlined', $state: ':disabled') {
+        border-color: $f-border-color-disabled;
+        color: $f-disabled-color;
+    }
 
-        &:focus {
-            border-color: $f-border-color-focus;
-            box-shadow: inset 0 0 0
-                calc(#{$f-border-width-focus} - #{$f-border-width})
-                $f-border-color-focus;
-        }
+    // Field > Focus + Not error
+    @include f-field(
+        $field,
+        $theme: 'outlined',
+        $state: ':focus',
+        $has-error: false
+    ) {
+        @include f-field-focus-styles;
+    }
 
-        &:disabled {
-            border-color: $f-border-color-disabled;
-            color: $f-disabled-color;
-        }
+    // Field > Focus + Hover + Not disabled + Not error
+    @include f-field(
+        $field,
+        $theme: 'outlined',
+        $state: ':focus:hover:not(:disabled)',
+        $has-error: false
+    ) {
+        @include f-field-focus-styles;
+    }
 
-        // Autofill > Default / Hover
-        &:-webkit-autofill,
-        &:-webkit-autofill:hover {
-            -webkit-box-shadow: 0 0 0 10em $f-bg-color inset !important;
-            // Avoid transitioning when Autofilled
-            transition: box-shadow 0s;
-        }
+    // Field > Active + Not error
+    @include f-field(
+        $field,
+        $theme: 'outlined',
+        $state: ':active:not(:disabled)',
+        $has-error: false
+    ) {
+        @include f-field-active-styles;
+    }
 
-        // Autofill > Focus / Active
-        &:-webkit-autofill:focus,
-        &:-webkit-autofill:active {
-            -webkit-box-shadow: inset 0 0 0
-                    calc(#{$f-border-width-focus} - #{$f-border-width})
-                    $f-border-color-focus,
-                inset 0 0 0 10em $f-bg-color !important;
-        }
+    // Field > Active + Hover + Not disabled + Not error
+    @include f-field(
+        $field,
+        $theme: 'outlined',
+        $state: ':active:hover:not(:disabled)',
+        $has-error: false
+    ) {
+        @include f-field-active-styles;
+    }
+
+    // Field > Filled + Not disabled/focus/hover/active + Not error
+    @include f-field(
+        $field,
+        $theme: 'outlined',
+        $state: ':not(:disabled):not(:focus):not(:hover):not(:active)',
+        $has-error: false,
+        $is-filled: true
+    ) {
+        border-color: $f-border-color-filled;
+        box-shadow: inset 0 0 0
+            calc(#{$f-border-width-filled} - #{$f-border-width})
+            $f-border-color-filled;
     }
 
     // Field > Error
@@ -89,13 +180,19 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
             box-shadow: inset 0 0 0
                 calc(#{$f-border-width-error} - #{$f-border-width})
                 $f-border-color-error;
-            // Autofill > Focus / Active
-            &:-webkit-autofill:focus,
-            &:-webkit-autofill:active {
-                -webkit-box-shadow: inset 0 0 0
-                        calc(#{$f-border-width-focus} - #{$f-border-width})
-                        $f-border-color-error,
-                    inset 0 0 0 10em $f-bg-color !important;
+
+            @if (index($f-autofill-elements, $field)) {
+                // Autofill > Focus + Active
+                &:-webkit-autofill:focus,
+                &:-webkit-autofill:active {
+                    -webkit-box-shadow: inset
+                            0
+                            0
+                            0
+                            calc(#{$f-border-width-focus} - #{$f-border-width})
+                            $f-border-color-error,
+                        inset 0 0 0 10em $f-bg-color !important;
+                }
             }
         }
     }
@@ -111,13 +208,19 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         box-shadow: inset 0 0 0
             calc(#{$f-border-width-error} - #{$f-border-width})
             $f-border-color-error;
-        // Autofill > Focus / Active
-        &:-webkit-autofill:focus,
-        &:-webkit-autofill:active {
-            -webkit-box-shadow: inset 0 0 0
-                    calc(#{$f-border-width-focus} - #{$f-border-width})
-                    $f-border-color-error,
-                inset 0 0 0 10em $f-bg-color !important;
+
+        @if (index($f-autofill-elements, $field)) {
+            // Autofill > Focus + Active
+            &:-webkit-autofill:focus,
+            &:-webkit-autofill:active {
+                -webkit-box-shadow: inset
+                        0
+                        0
+                        0
+                        calc(#{$f-border-width-focus} - #{$f-border-width})
+                        $f-border-color-error,
+                    inset 0 0 0 10em $f-bg-color !important;
+            }
         }
     }
 }
@@ -147,11 +250,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
     }
 
     // Label > Filled
-    @include f-label(
-        $field,
-        $theme: 'outlined',
-        $is-filled: true
-    ) {
+    @include f-label($field, $theme: 'outlined', $is-filled: true) {
         transform: translateY(-$fo-field-padding-top);
     }
 }
@@ -161,8 +260,6 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         display: block;
         position: relative;
         transform-origin: center left;
-        transition: transition(color);
-        will-change: transform;
 
         // Label background line mask
         &:before {
@@ -178,7 +275,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         }
     }
 
-    // Label text > Filled + Not error/hover/focus/disabled)
+    // Label text > Filled + Not error/hover/focus/disabled
     @include f-label-text(
         $field,
         $theme: 'outlined',
@@ -189,7 +286,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         color: $f-label-color-filled;
     }
 
-    // Label text > Hover + Not disabled/error)
+    // Label text > Hover + Not disabled + not error
     @include f-label-text(
         $field,
         $theme: 'outlined',
@@ -199,7 +296,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         color: $f-label-color-hover;
     }
 
-    // Label text > Focus + Not disabled/error)
+    // Label text > Focus + Not disabled + not error
     @include f-label-text(
         $field,
         $theme: 'outlined',
@@ -264,17 +361,6 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         }
     }
 
-    // Indicator > Filled (not disabled/hover/focus/error)
-    @include f-indicator(
-        $field,
-        $theme: 'outlined',
-        $state: ':not(:disabled):not(:hover):not(:focus)',
-        $has-error: false,
-        $is-filled: true
-    ) {
-        color: $f-border-color;
-    }
-
     // Indicator > Hover (not disabled/error)
     @include f-indicator(
         $field,
@@ -303,5 +389,16 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $has-error: false
     ) {
         color: $f-border-color-active;
+    }
+
+    // Indicator > Filled (not disabled/hover/focus/error)
+    @include f-indicator(
+        $field,
+        $theme: 'outlined',
+        $state: ':not(:disabled):not(:hover):not(:focus)',
+        $has-error: false,
+        $is-filled: true
+    ) {
+        color: $f-border-color-filled;
     }
 }

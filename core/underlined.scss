@@ -34,6 +34,7 @@ $fu-message-margin: 0.5em 0 0 0 !default;
         transition: transition(border-color);
         will-change: border-color;
         padding: $fu-field-padding-top 0 $fu-field-padding-bottom 0;
+        border-radius: 0;
 
         &:hover:not(:disabled) {
             border-color: $f-border-color-hover;
@@ -48,16 +49,20 @@ $fu-message-margin: 0.5em 0 0 0 !default;
             color: $f-disabled-color;
         }
 
-        // Autofill > Default / Hover
-        &:-webkit-autofill,
-        &:-webkit-autofill:hover {
-            -webkit-box-shadow: 0 0 0 10em $f-bg-color inset !important;
-        }
+        @if (
+            $f-remove-autofill and index($f-autofill-elements, $field) != null
+        ) {
+            // Autofill > Default / Hover
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover {
+                -webkit-box-shadow: 0 0 0 10em $f-bg-color inset !important;
+            }
 
-        // Autofill > Focus / Active
-        &:-webkit-autofill:focus,
-        &:-webkit-autofill:active {
-            -webkit-box-shadow: inset 0 0 0 10em $f-bg-color !important;
+            // Autofill > Focus / Active
+            &:-webkit-autofill:focus,
+            &:-webkit-autofill:active {
+                -webkit-box-shadow: inset 0 0 0 10em $f-bg-color !important;
+            }
         }
     }
 
@@ -119,7 +124,7 @@ $fu-message-margin: 0.5em 0 0 0 !default;
         will-change: transform, color;
     }
 
-    // Label text > Filled + Not error/hover/focus/disabled)
+    // Label text > Filled + Not error/hover/focus/disabled
     @include f-label-text(
         $field,
         $theme: 'underlined',
@@ -130,7 +135,7 @@ $fu-message-margin: 0.5em 0 0 0 !default;
         color: $f-label-color-filled;
     }
 
-    // Label text > Hover + Not error/disabled)
+    // Label text > Hover + Not error/disabled
     @include f-label-text(
         $field,
         $theme: 'underlined',
@@ -140,7 +145,7 @@ $fu-message-margin: 0.5em 0 0 0 !default;
         color: $f-label-color-hover;
     }
 
-    // Label text > Focus + Not error/disabled)
+    // Label text > Focus + Not error/disabled
     @include f-label-text(
         $field,
         $theme: 'underlined',

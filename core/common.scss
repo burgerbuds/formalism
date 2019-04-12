@@ -39,47 +39,61 @@
 @mixin f-common-field($field: null) {
     @include f-field($field) {
         color: $f-text-color;
-        width: 100%;
         border: 0;
-        caret-color: $f-text-caret-color;
+        appearance: none; // Fix field border-radius in iOS
+        -webkit-appearance: none; // Fix field border-radius in iOS
+        width: 100%;
         font-size: $f-text-font-size;
         font-family: inherit;
         display: block;
         outline: 0;
+        touch-action: manipulation; // Enable panning and pinch zoom gestures, but disable additional non-standard gestures
 
         // Field > Disabled
         &:disabled {
             color: $f-text-color-disabled;
             cursor: not-allowed;
         }
+        // Allow caret/selection/autofill colors only on certain fields
+        @if (index($f-text-select-elements, $field) != null) {
+            caret-color: $f-text-caret-color;
 
-        &::selection {
-            color: $f-selection-color !important;
-            background: $f-selection-bg !important;
-            text-shadow: none;
-        }
+            &::selection {
+                color: $f-selection-color !important;
+                background: $f-selection-bg !important;
+                text-shadow: none;
+            }
 
-        // Selection colors > Disabled
-        &:disabled::selection {
-            color: $f-selection-color !important;
-            background: $f-disabled-color !important;
-            text-shadow: none;
-        }
+            // Selection colors > Disabled
+            &:disabled::selection {
+                color: $f-selection-color !important;
+                background: $f-disabled-color !important;
+                text-shadow: none;
+            }
 
-        // Autofill color
-        &:-webkit-autofill {
-            -webkit-text-fill-color: $f-text-color !important;
+            @if (
+                $f-remove-autofill and
+                    index($f-autofill-elements, $field) !=
+                    null
+            ) {
+                // Autofill color
+                &:-webkit-autofill {
+                    -webkit-text-fill-color: $f-text-color !important;
+                }
+            }
         }
     }
 
     // Field > Error
     @include f-field($field, $has-error: true) {
-        caret-color: $f-error-color;
-
-        &::selection {
-            color: $f-selection-color !important;
-            background: $f-error-color !important;
-            text-shadow: none;
+        // Allow caret/selection colors only on certain fields
+        @if (index($f-text-select-elements, $field) != null) {
+            caret-color: $f-error-color;
+            &::selection {
+                color: $f-selection-color !important;
+                background: $f-error-color !important;
+                text-shadow: none;
+            }
         }
     }
 }
@@ -100,7 +114,7 @@
     }
 }
 
-// Field label text
+// Label text
 @mixin f-common-label-text(
     $field: null,
     $state: null,
@@ -166,6 +180,13 @@
     }
 }
 
+// Fieldset legend
+@mixin f-common-legend($field: null) {
+    @include f-legend($field) {
+        padding: 0;
+    }
+}
+
 // Required or optional indicator
 // Use when indicator is within the legend
 // - Used within Fieldset base
@@ -196,7 +217,7 @@
         font-size: $f-message-font-size;
 
         &--instruction {
-            color: $f-message-color;
+            color: $f-instruction-color;
         }
 
         &--error {
@@ -205,7 +226,7 @@
 
         // Hide the instructions if there's an error
         @if ($f-hide-instructions-when-error) {
-            &--error + #{$field}__message--instruction {
+            &--error + [class$='--instruction'] {
                 display: none;
             }
         }

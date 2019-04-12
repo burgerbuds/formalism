@@ -2,15 +2,17 @@
 
 Coming soon.
 
+Formalism is a collection of high-quality form field themes with a pinch of JavaScript.
+
 ## Features
 
-👍 Less JavaScript, more CSS<br>
-👍 Custom theme friendly<br>
-👍 Zero dependencies (aside core.js)<br>
+👍 99% CSS styles with minimal JavaScript (16kB, 5.83kB gzipped)<br>
+👍 Supports custom themes<br>
+👍 Zero dependencies<br>
 👍 Small file size<br>
 👍 Supports style scoping<br>
 👍 Honors the [reduced motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) system feature<br>
-👍 Removes off-brand autofill colors<br>
+👍 Removes off-brand &lt;input> autofill colors (can be disabled)<br>
 👍 Removes mobile tap colors<br>
 
 ## Browser support

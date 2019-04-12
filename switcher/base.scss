@@ -80,7 +80,11 @@ $field: 'switcher';
 }
 
 // Switch groove > Not disabled + Error
-@include f-switcher-groove($field, $state: ':not(:disabled)', $has-error: true) {
+@include f-switcher-groove(
+    $field,
+    $state: ':not(:disabled)',
+    $has-error: true
+) {
     color: $f-error-color;
 }
 
@@ -90,6 +94,5 @@ $field: 'switcher';
 }
 
 @include f-label-text($field) {
-    color: $f-text-color;
     line-height: $f-switcher--label-line-height;
 }

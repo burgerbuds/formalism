@@ -25,9 +25,9 @@ $common-args: ($field, $theme);
 }
 
 @include f-label-text($common-args...) {
-    transition: transition(transform), transition(color), transition(letter-spacing);
+    transition: transition(transform), transition(color),
+        transition(letter-spacing);
     will-change: transform, color;
-    transform-origin: center left;
     transform: translateY(0) scale(1);
 }
 

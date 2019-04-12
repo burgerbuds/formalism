@@ -136,7 +136,6 @@ $common-args: ($field, $theme);
     transition: transition(transform), transition(color),
         transition(letter-spacing);
     will-change: transform, color;
-    transform-origin: center left;
     transform: translateY(0) scale(1);
 }
 

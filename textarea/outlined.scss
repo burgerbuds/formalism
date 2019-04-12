@@ -80,13 +80,13 @@ $common-args: ($field, $theme);
     transition: transition(transform), transition(color),
         transition(letter-spacing);
     will-change: transform, color;
-    transform-origin: center left;
     transform: translateY(0) scale(1);
 }
 
 @include f-indicator($field) {
     // Avoid scrollbar clashing
-    text-shadow: 1px 1px 0 white, 1px 0 0 white, 1px -1px 0 white;
+    text-shadow: 1px 1px 0 #{$f-bg-color}, 1px 0 0 #{$f-bg-color},
+        1px -1px 0 #{$f-bg-color};
 }
 
 @include f-message($common-args...) {

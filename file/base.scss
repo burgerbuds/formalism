@@ -23,3 +23,7 @@ $field: 'file';
         cursor: pointer;
     }
 }
+
+@include f-label($field) {
+    user-select: none;
+}

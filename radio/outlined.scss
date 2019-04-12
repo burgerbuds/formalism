@@ -8,44 +8,45 @@
 @import './../core/outlined';
 
 // Variables
-$fo-radio--size: 1.2em !default;
+$fo-radio--size: 1.25em !default;
 $fo-radio--radius: 50% !default;
-$fo-radio--center-scale-checked: 0.45 !default;
-$fo-radio--border-scale-active: 0.9 !default;
+$fo-radio--dot-checked-size: 0.25em !default;
+$fo-radio--size-active: 0.9 !default;
 $fo-radio--border-width: $f-border-width * 2 !default;
+$fo-radio--circle-color-checked: $f-highlight-color !default;
 
 $field: 'radio';
 $theme: 'outlined';
 $common-args: ($field, $theme);
 
-@include f-inside($common-args...) {
+// Circle
+@include f-label-before($common-args...) {
     font-size: $fo-radio--size;
     border-radius: $fo-radio--radius;
     border: $fo-radio--border-width solid currentColor;
+    color: $f-border-color;
+    will-change: box-shadow;
+    transition: transition(box-shadow), transition(color), transition(transform);
+    box-shadow: inset 0 0 0 0.5em $f-bg-color;
+    background-color: currentColor;
 }
 
-// Inside > Checked
-@include f-inside($common-args..., $state: ':checked') {
-    transform: translateY(-50%) scale(#{$fo-radio--center-scale-checked});
+// Circle > Checked
+@include f-label-before($field, $state: ':checked') {
+    box-shadow: inset 0 0 0 $fo-radio--dot-checked-size $f-bg-color;
 }
 
-// Outer > Active + Not disabled + No error
-@include f-inside($field, $state: ':active:not(:disabled)', $has-error: false) {
-    color: $f-border-color-active;
-}
-
-// Inside > Not error + Not disabled + No error
-// scale(0) by default
-@include f-inside(
-    $common-args...,
-    $state: ':not(:disabled)',
+// Circle > Checked + Not disabled + No error
+@include f-label-before(
+    $field,
+    $state: ':checked:not(:disabled)',
     $has-error: false
 ) {
-    color: $f-border-color;
+    color: $fo-radio--circle-color-checked;
 }
 
-// Inner > Hover + Not disabled + No error
-@include f-inside(
+// Circle > Hover + Not disabled + No error
+@include f-label-before(
     $common-args...,
     $state: ':hover:not(:disabled)',
     $has-error: false
@@ -53,78 +54,41 @@ $common-args: ($field, $theme);
     color: $f-border-color-hover;
 }
 
-// Inner > Focus + Not disabled + No error
-@include f-inside(
-    $common-args...,
-    $state: ':focus:not(:disabled)',
-    $has-error: false
-) {
-    color: $f-border-color-focus;
+// Circle > Active + Not disabled
+@include f-label-before($common-args..., $state: ':active:not(:disabled)') {
+    transform: translateZ(0) scale(#{$fo-radio--size-active});
 }
 
-// Inner > Checked + Not disabled + No error
-@include f-inside(
-    $common-args...,
-    $state: ':checked:not(:disabled)',
-    $has-error: false
-) {
-    color: $f-border-color-filled;
-}
-
-@include f-outside($common-args...) {
-    font-size: $fo-radio--size;
-    border-radius: $fo-radio--radius;
-    border: $fo-radio--border-width solid currentColor;
-    color: $f-border-color;
-    background-color: $f-bg-color;
-    transition: transition(color), transform 0.1s;
-    will-change: color, transform;
-}
-
-// Outer > Active + Not disabled
-@include f-outside($common-args..., $state: ':active:not(:disabled)') {
-    transform: translateZ(0) scale(#{$fo-radio--border-scale-active});
-}
-
-// Inner > Hover + Not disabled + No error
-@include f-outside(
-    $common-args...,
-    $state: ':hover:not(:disabled)',
-    $has-error: false
-) {
-    color: $f-border-color-hover;
-}
-
-// Inner > Focus + Not disabled + No error
-@include f-outside(
-    $common-args...,
-    $state: ':focus:not(:disabled)',
-    $has-error: false
-) {
-    color: $f-border-color-focus;
-}
-
-// Inner > Checked + Not disabled + No error
-@include f-outside(
-    $common-args...,
-    $state: ':checked:not(:disabled)',
-    $has-error: false
-) {
-    color: $f-border-color-filled;
-}
-
-// Inner > Disabled + No error
-@include f-outside($common-args..., $state: ':disabled', $has-error: false) {
-    color: $f-border-color-disabled;
-}
-
-// Label text > Filled + Not disabled
+// Label text > Checked + Not disabled + No error
 @include f-label-text(
     $common-args...,
-    $state: ':not(:disabled)',
-    $is-filled: true
+    $state: ':checked:not(:disabled)',
+    $has-error: false
 ) {
     color: $f-label-color-filled;
+}
+
+// Label text > Focus + Not disabled + No error
+@include f-label-text(
+    $common-args...,
+    $state: ':focus:not(:disabled)',
+    $has-error: false
+) {
+    color: $f-label-color-focus;
+}
+
+// Label text > Hover + Not disabled + No error
+@include f-label-text(
+    $common-args...,
+    $state: ':hover:not(:disabled)',
+    $has-error: false
+) {
+    color: $f-label-color-hover;
+}
+
+// Label text > Disabled
+@include f-label-text($common-args..., $state: ':disabled') {
+    color: $f-label-color-disabled;
 }
 
 @include f-message($common-args...) {
