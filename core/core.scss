@@ -26,19 +26,19 @@ $f-text-color-disabled: $f-disabled-color !default;
 $f-text-caret-color: $f-highlight-color !default;
 
 // Field labels
-$f-label-color: #6f7171 !default;
+$f-label-color: inherit !default;
 $f-label-color-hover: $f-highlight-color !default;
 $f-label-color-focus: $f-highlight-color !default;
 $f-label-color-filled: $f-text-color !default;
-$f-label-color-error: $f-error-color !default; // TODO: Roll this out
+$f-label-color-error: $f-error-color !default;
 $f-label-color-disabled: $f-disabled-color !default;
 
 // Field borders
 $f-border-color: #a4a8a8 !default;
-$f-border-color-hover: $f-highlight-color !default;
 $f-border-color-focus: $f-highlight-color !default;
-$f-border-color-active: $f-highlight-color !default;
-$f-border-color-filled: $f-highlight-color !default; // TODO: Roll this out
+$f-border-color-hover: $f-border-color-focus !default;
+$f-border-color-active: $f-border-color-focus !default;
+$f-border-color-filled: $f-border-color !default;
 $f-border-color-error: $f-error-color !default;
 $f-border-color-success: $f-success-color !default;
 $f-border-color-disabled: #dae0e4 !default;
