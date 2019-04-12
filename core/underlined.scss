@@ -49,8 +49,9 @@ $fu-message-margin: 0.5em 0 0 0 !default;
             color: $f-disabled-color;
         }
 
-        @if (index($f-autofill-elements, $field) != null) {
-
+        @if (
+            $f-remove-autofill and index($f-autofill-elements, $field) != null
+        ) {
             // Autofill > Default / Hover
             &:-webkit-autofill,
             &:-webkit-autofill:hover {

@@ -71,7 +71,11 @@
                 text-shadow: none;
             }
 
-            @if (index($f-autofill-elements, $field) != null) {
+            @if (
+                $f-remove-autofill and
+                    index($f-autofill-elements, $field) !=
+                    null
+            ) {
                 // Autofill color
                 &:-webkit-autofill {
                     -webkit-text-fill-color: $f-text-color !important;

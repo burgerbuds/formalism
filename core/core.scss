@@ -65,6 +65,7 @@ $f-selection-bg: $f-highlight-color !default;
 $f-hide-instructions-when-error: true !default;
 $f-field-size: inherit !default;
 $f-message-font-size: 0.9em !default;
+$f-remove-autofill: true !default;
 
 // Private variables
 
@@ -119,8 +120,11 @@ $f-autofill-elements: ('input', 'search');
     $block-modifier: block-modifier($block, $theme);
     $error-modifier: error-modifier($has-error);
     $filled-modifier: filled-modifier($is-filled);
+    $filled-modifier-edge: filled-modifier-edge($is-filled);
     #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier}
-        #{$block}__field#{$state} {
+        #{$block}__field#{$state},
+    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}
+        #{$block}__field#{$filled-modifier-edge}#{$state} {
         @content;
     }
 }
@@ -138,8 +142,12 @@ $f-autofill-elements: ('input', 'search');
     $block-modifier: block-modifier($block, $theme);
     $error-modifier: error-modifier($has-error);
     $filled-modifier: filled-modifier($is-filled);
+    $filled-modifier-edge: filled-modifier-edge($is-filled);
     #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier}
         #{$block}__field#{$state}
+        ~ #{$block}__label,
+    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}
+        #{$block}__field#{$filled-modifier-edge}#{$state}
         ~ #{$block}__label {
         @content;
     }
@@ -158,8 +166,13 @@ $f-autofill-elements: ('input', 'search');
     $block-modifier: block-modifier($block, $theme);
     $error-modifier: error-modifier($has-error);
     $filled-modifier: filled-modifier($is-filled);
+    $filled-modifier-edge: filled-modifier-edge($is-filled);
     #{$scope}#{$block}#{$block-modifier}#{$error-modifier}#{$filled-modifier}
         #{$block}__field#{$state}
+        ~ #{$block}__label
+        #{$block}__label-text,
+    #{$scope}#{$block}#{$block-modifier}#{$error-modifier}
+        #{$block}__field#{$filled-modifier-edge}#{$state}
         ~ #{$block}__label
         #{$block}__label-text {
         @content;
@@ -484,6 +497,16 @@ $f-autofill-elements: ('input', 'search');
         $is-filled == true,
         $f-selector-filled,
         if($is-filled == false, ':not(#{$f-selector-filled})', null)
+    );
+}
+
+// Create the filled modifier for Microsoft edge
+// Edge adds classes to the field when autofilled
+@function filled-modifier-edge($is-filled: null) {
+    @return if(
+        $is-filled == true,
+        '.edge-autofilled',
+        if($is-filled == false, ':not(.edge-autofilled)', null)
     );
 }
 
