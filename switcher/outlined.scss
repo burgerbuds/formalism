@@ -117,7 +117,7 @@ $common-args: ($field, $theme);
     will-change: transform;
 }
 
-// Label text > Checked + Not error/disabled
+// Label text > Checked + Not disabled + No error
 @include f-label-text(
     $common-args...,
     $state: ':checked:not(:disabled)',

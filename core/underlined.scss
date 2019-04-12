@@ -124,7 +124,7 @@ $fu-message-margin: 0.5em 0 0 0 !default;
         will-change: transform, color;
     }
 
-    // Label text > Filled + Not error/hover/focus/disabled)
+    // Label text > Filled + Not error/hover/focus/disabled
     @include f-label-text(
         $field,
         $theme: 'underlined',
@@ -135,7 +135,7 @@ $fu-message-margin: 0.5em 0 0 0 !default;
         color: $f-label-color-filled;
     }
 
-    // Label text > Hover + Not error/disabled)
+    // Label text > Hover + Not error/disabled
     @include f-label-text(
         $field,
         $theme: 'underlined',
@@ -145,7 +145,7 @@ $fu-message-margin: 0.5em 0 0 0 !default;
         color: $f-label-color-hover;
     }
 
-    // Label text > Focus + Not error/disabled)
+    // Label text > Focus + Not error/disabled
     @include f-label-text(
         $field,
         $theme: 'underlined',

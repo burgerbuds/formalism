@@ -32,7 +32,7 @@ $field: 'radio';
     position: absolute;
 }
 
-// Radio
+// Circle
 @include f-label-before($field) {
     content: '';
     display: block;
@@ -42,12 +42,12 @@ $field: 'radio';
     margin-right: $f-radio--spacing;
 }
 
-// Radio > Error
+// Circle > Error
 @include f-label-before($field, $has-error: true) {
     color: $f-error-color;
 }
 
-// Radio > Disabled
+// Circle > Disabled
 @include f-label-before($field, $state: ':disabled') {
     color: $f-border-color-disabled;
 }
