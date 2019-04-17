@@ -32,6 +32,7 @@ $f-label-color-focus: $f-highlight-color !default;
 $f-label-color-filled: $f-text-color !default;
 $f-label-color-error: $f-error-color !default;
 $f-label-color-disabled: $f-disabled-color !default;
+$f-label-line-height: 1.1 !default;
 
 // Field borders
 $f-border-color: #a4a8a8 !default;
@@ -46,7 +47,6 @@ $f-border-width: 1px !default; // px only
 $f-border-width-hover: 1px !default;
 $f-border-width-focus: 2px !default;
 $f-border-width-error: 2px !default;
-$f-border-width-success: 2px !default;
 $f-border-width-filled: $f-border-width !default;
 
 // Field indicators (required/option)

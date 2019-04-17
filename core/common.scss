@@ -103,6 +103,7 @@
 @mixin f-common-label($field: null) {
     @include f-label($field) {
         user-select: none;
+        line-height: $f-label-line-height;
         font-size: $f-text-font-size;
     }
     // Label > Not disabled
@@ -253,6 +254,7 @@
     @include f-legend-text($field) {
         color: $f-text-color;
         display: block;
+        line-height: $f-label-line-height;
     }
     // Legend text > Error
     @include f-legend-text($field, $has-error: true) {
