@@ -32,6 +32,7 @@
     @include f-inner($field) {
         display: block;
         position: relative;
+        z-index: 1;
     }
 }
 
