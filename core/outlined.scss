@@ -36,14 +36,26 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
 
 @mixin f-field-focus-styles {
     border-color: $f-border-color-focus;
-    box-shadow: inset 0 0 0 calc(#{$f-border-width-focus} - #{$f-border-width})
-        $f-border-color-focus;
+    @if ($f-border-width-focus > $f-border-width) {
+        box-shadow: inset
+            0
+            0
+            0
+            calc(#{$f-border-width-focus} - #{$f-border-width})
+            $f-border-color-focus;
+    }
 }
 
 @mixin f-field-active-styles {
     border-color: $f-border-color-active;
-    box-shadow: inset 0 0 0 calc(#{$f-border-width-focus} - #{$f-border-width})
-        $f-border-color-active;
+    @if ($f-border-width-focus > $f-border-width) {
+        box-shadow: inset
+            0
+            0
+            0
+            calc(#{$f-border-width-focus} - #{$f-border-width})
+            $f-border-color-active;
+    }
 }
 
 @mixin fo-common-field($field) {
@@ -56,7 +68,7 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         will-change: border-color, box-shadow;
         padding: $fo-field-padding-top $fo-field-padding-right
             $fo-field-padding-bottom $fo-field-padding-left;
-        box-shadow: inset 0 0 0 $f-border-width $f-bg-color;
+        box-shadow: inset 0 0 0 0 $f-bg-color;
 
         @if (
             $f-remove-autofill and index($f-autofill-elements, $field) != null
@@ -77,25 +89,33 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
             // Autofill > Focus
             &:-webkit-autofill:focus,
             &:-webkit-autofill:focus:hover {
-                -webkit-box-shadow: inset
-                        0
-                        0
-                        0
-                        calc(#{$f-border-width-focus} - #{$f-border-width})
-                        $f-border-color-focus,
-                    inset 0 0 0 10em $f-bg-color !important;
+                @if ($f-border-width-focus > $f-border-width) {
+                    -webkit-box-shadow: inset
+                            0
+                            0
+                            0
+                            calc(#{$f-border-width-focus} - #{$f-border-width})
+                            $f-border-color-focus,
+                        inset 0 0 0 10em $f-bg-color !important;
+                } @else {
+                    -webkit-box-shadow: inset 0 0 0 10em $f-bg-color !important;
+                }
             }
 
             // Autofill > Active
             &:-webkit-autofill:active,
             &:-webkit-autofill:active:hover {
-                -webkit-box-shadow: inset
-                        0
-                        0
-                        0
-                        calc(#{$f-border-width-focus} - #{$f-border-width})
-                        $f-border-color-active,
-                    inset 0 0 0 10em $f-bg-color !important;
+                @if ($f-border-width-focus > $f-border-width) {
+                    -webkit-box-shadow: inset
+                            0
+                            0
+                            0
+                            calc(#{$f-border-width-focus} - #{$f-border-width})
+                            $f-border-color-active,
+                        inset 0 0 0 10em $f-bg-color !important;
+                } @else {
+                    -webkit-box-shadow: inset 0 0 0 10em $f-bg-color !important;
+                }
             }
         }
     }
@@ -107,9 +127,14 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $state: ':hover:not(:disabled)'
     ) {
         border-color: $f-border-color-hover;
-        box-shadow: inset 0 0 0
-            calc(#{$f-border-width-hover} - #{$f-border-width})
-            $f-border-color-hover;
+        @if ($f-border-width-hover > $f-border-width) {
+            box-shadow: inset
+                0
+                0
+                0
+                calc(#{$f-border-width-hover} - #{$f-border-width})
+                $f-border-color-hover;
+        }
     }
 
     // Field > Disabled
@@ -167,9 +192,14 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $is-filled: true
     ) {
         border-color: $f-border-color-filled;
-        box-shadow: inset 0 0 0
-            calc(#{$f-border-width-filled} - #{$f-border-width})
-            $f-border-color-filled;
+        @if ($f-border-width-filled > $f-border-width) {
+            box-shadow: inset
+                0
+                0
+                0
+                calc(#{$f-border-width-filled} - #{$f-border-width})
+                $f-border-color-filled;
+        }
     }
 
     // Field > Error
@@ -177,21 +207,38 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         &,
         &:hover {
             border-color: $f-border-color-error;
-            box-shadow: inset 0 0 0
-                calc(#{$f-border-width-error} - #{$f-border-width})
-                $f-border-color-error;
+            @if ($f-border-width-error > $f-border-width) {
+                box-shadow: inset
+                    0
+                    0
+                    0
+                    calc(#{$f-border-width-error} - #{$f-border-width})
+                    $f-border-color-error;
+            }
 
             @if (index($f-autofill-elements, $field)) {
                 // Autofill > Focus + Active
                 &:-webkit-autofill:focus,
                 &:-webkit-autofill:active {
-                    -webkit-box-shadow: inset
+                    @if ($f-border-width-focus > $f-border-width) {
+                        -webkit-box-shadow: inset
+                                0
+                                0
+                                0
+                                calc(
+                                    #{$f-border-width-focus} -
+                                        #{$f-border-width}
+                                )
+                                $f-border-color-error,
+                            inset 0 0 0 10em $f-bg-color !important;
+                    } @else {
+                        -webkit-box-shadow: inset
                             0
                             0
                             0
-                            calc(#{$f-border-width-focus} - #{$f-border-width})
-                            $f-border-color-error,
-                        inset 0 0 0 10em $f-bg-color !important;
+                            10em
+                            $f-bg-color !important;
+                    }
                 }
             }
         }
@@ -205,21 +252,30 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
         $is-filled: true
     ) {
         border-color: $f-border-color-error;
-        box-shadow: inset 0 0 0
-            calc(#{$f-border-width-error} - #{$f-border-width})
-            $f-border-color-error;
+        @if ($f-border-width-error > $f-border-width) {
+            box-shadow: inset
+                0
+                0
+                0
+                calc(#{$f-border-width-error} - #{$f-border-width})
+                $f-border-color-error;
+        }
 
         @if (index($f-autofill-elements, $field)) {
             // Autofill > Focus + Active
             &:-webkit-autofill:focus,
             &:-webkit-autofill:active {
-                -webkit-box-shadow: inset
-                        0
-                        0
-                        0
-                        calc(#{$f-border-width-focus} - #{$f-border-width})
-                        $f-border-color-error,
-                    inset 0 0 0 10em $f-bg-color !important;
+                @if ($f-border-width-focus > $f-border-width) {
+                    -webkit-box-shadow: inset
+                            0
+                            0
+                            0
+                            calc(#{$f-border-width-focus} - #{$f-border-width})
+                            $f-border-color-error,
+                        inset 0 0 0 10em $f-bg-color !important;
+                } @else {
+                    -webkit-box-shadow: inset 0 0 0 10em $f-bg-color !important;
+                }
             }
         }
     }
