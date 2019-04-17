@@ -8,7 +8,8 @@
         "watch": "webpack --watch --mode production --config webpack.config.js --display minimal --hide-modules"
     },
     "dependencies": {
-        "core-js": "^3.0.1"
+        "core-js": "^3.0.1",
+        "validator": "^10.11.0"
     },
     "devDependencies": {
         "@babel/core": "^7.4.3",

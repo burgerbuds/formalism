@@ -46,6 +46,7 @@ const initFieldFilledListeners = (
         if (target.type === 'select-one') isFilled = isSelectOneFilled(target);
         // Get the closest container ancestor
         const container = target.closest('[data-container]');
+        if (!container) return;
         // Add or remove the is-filled class
         if (isFilled || target.value.length > 0)
             return container.classList.add('is-filled');

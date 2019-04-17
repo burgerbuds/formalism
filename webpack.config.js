@@ -6,6 +6,7 @@ const settings = {
     devServerUrl: 'http://localhost:8080',
     jsEntry: {
         main: './core/src/main.js',
+        validation: './core/src/validation.js',
     },
     destination: path.resolve(__dirname, 'core'),
     templates: path.resolve(__dirname, 'src'),
