@@ -25,11 +25,16 @@ $common-args: ($field, $theme);
 }
 
 // Base > Error
-// Custom error modifier so we can't accidentally trigger errors fields inside
 @include f-base($common-args..., $has-error: true) {
     border-color: $f-border-color-error;
-    box-shadow: inset 0 0 0 calc(#{$f-border-width-error} - #{$f-border-width})
-        $f-border-color-error;
+    @if ($f-border-width-error > $f-border-width) {
+        box-shadow: inset
+            0
+            0
+            0
+            calc(#{$f-border-width-error} - #{$f-border-width})
+            $f-border-color-error;
+    }
 }
 
 @include f-inner($common-args...) {
