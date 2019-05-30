@@ -5,10 +5,10 @@ const settings = {
     name: 'Formalism',
     devServerUrl: 'http://localhost:8080',
     jsEntry: {
-        main: './core/src/main.js',
-        validation: './core/src/validation.js',
+        main: './src/main.js',
+        freeform: './src/freeform.js',
     },
-    destination: path.resolve(__dirname, 'core'),
+    destination: path.resolve(__dirname),
     templates: path.resolve(__dirname, 'src'),
 };
 
@@ -36,7 +36,7 @@ const configureBabelLoader = () => {
 };
 
 module.exports = (env, argv) => {
-    const isProduction = argv.mode === 'production';
+    // const isProduction = argv.mode === 'production';
     return {
         entry: settings.jsEntry,
         output: {

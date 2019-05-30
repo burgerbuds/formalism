@@ -2,14 +2,13 @@
     "name": "formalism",
     "version": "0.1.21",
     "description": "Modern forms, your way. Modular. Lightweight. Responsive. Stuff that matters.",
-    "main": "core/main.js",
+    "main": "main.js",
     "scripts": {
         "build": "webpack --mode production --config webpack.config.js --hide-modules",
         "watch": "webpack --watch --mode production --config webpack.config.js --display minimal --hide-modules"
     },
     "dependencies": {
-        "core-js": "^3.0.1",
-        "validator": "^10.11.0"
+        "core-js": "^3.0.1"
     },
     "devDependencies": {
         "@babel/core": "^7.4.3",
