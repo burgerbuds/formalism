@@ -18,9 +18,12 @@ $field: 'select';
 @include f-common-message($field);
 
 @include f-field($field) {
-    // line-height: initial; // Removed height as caused an extended height in rows with other fields
     -webkit-appearance: none;
     appearance: none;
+    // Remove arrow in IE10+
+    &::-ms-expand {
+        display: none;
+    }
 }
 
 // Field > Hover + Not disabled
