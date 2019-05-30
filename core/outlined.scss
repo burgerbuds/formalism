@@ -217,6 +217,9 @@ $fo-message-margin-inset: 0.5em 0 0 0.5em !default;
             }
 
             @if (index($f-autofill-elements, $field)) {
+                // Avoid transitioning when Autofilled
+                transition: box-shadow 0s;
+
                 // Autofill > Focus + Active
                 &:-webkit-autofill:focus,
                 &:-webkit-autofill:active {
