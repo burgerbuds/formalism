@@ -148,8 +148,10 @@ if (global.renderErrors === undefined) {
             // Add the errors to the field
             const errorList = errors[fieldName];
             const field = form.querySelector(`[name=${fieldName}]`);
+            if (!field) return;
             // Get parent container
             const container = field.closest(SELECTOR.FIELD_CONTAINER);
+            if (!container) return;
             // Get the component name from its classname
             const componentName = container.classList && container.classList[0];
             const errorTemplate = `
