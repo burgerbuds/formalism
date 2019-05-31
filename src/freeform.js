@@ -119,8 +119,8 @@ const changeSubmitState = (form, addState = true) => {
     // Submit note (optional)
     const submittingNote = document.querySelector(`#submitting-${form.id}`);
     if (submittingNote) {
-        addState && submittingNote.classList.add('is-submitting');
-        !addState && submittingNote.classList.remove('is-submitting');
+        addState && submittingNote.removeAttribute('hidden');
+        !addState && submittingNote.addAttribute('hidden');
         submittingNote.scrollIntoView();
     }
 };
