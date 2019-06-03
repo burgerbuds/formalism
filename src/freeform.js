@@ -76,31 +76,26 @@ const SELECTOR = {
 };
 
 // Add the success message to the top of the form
-if (global.renderFormSuccess === undefined) {
-    global.renderFormSuccess = form => {
-        const successTemplate =
-            window[form.id.replace('-', '')].successTemplate ||
-            'Your form was submitted';
-        form.parentNode.insertAdjacentHTML('beforebegin', successTemplate);
-        // Remove the form
-        removeNode(form.parentNode, 'form');
-        // Remove the note
-        changeSubmitState(form, false);
-    };
-}
+global.renderFormSuccess = form => {
+    const successTemplate =
+        window[form.id.replace('-', '')].successTemplate ||
+        'Your form was submitted';
+    form.insertAdjacentHTML('beforebegin', successTemplate);
+    // Remove the form
+    removeNode(form.parentNode, 'form');
+    // Remove the note
+    changeSubmitState(form, false);
+};
 
 // Add the error message to the top of the form
-if (global.renderFormErrors === undefined) {
-    global.renderFormErrors = (errors, form) => {
-        removeNode(form, SELECTOR.ERROR_NOTE);
-        const errorTemplate =
-            window[form.id.replace('-', '')].errorTemplate || '';
-        form.querySelector(SELECTOR.FORM_INNER).insertAdjacentHTML(
-            'afterbegin',
-            errorTemplate
-        );
-    };
-}
+global.renderFormErrors = (errors, form) => {
+    removeNode(form, SELECTOR.ERROR_NOTE);
+    const errorTemplate = window[form.id.replace('-', '')].errorTemplate || '';
+    form.querySelector(SELECTOR.FORM_INNER).insertAdjacentHTML(
+        'afterbegin',
+        errorTemplate
+    );
+};
 
 const removeExistingErrors = form => {
     removeNode(form, SELECTOR.ERROR_NOTE);
@@ -116,11 +111,11 @@ const changeSubmitState = (form, addState = true) => {
     !addState && form.classList.remove('is-submitting');
     const submitButton = form.querySelector('button[type=submit]');
     submitButton && submitButton.setAttribute('disabled', addState);
-    // Submit note (optional)
+    // Submitting notice (optional)
     const submittingNote = document.querySelector(`#submitting-${form.id}`);
     if (submittingNote) {
         addState && submittingNote.removeAttribute('hidden');
-        !addState && submittingNote.addAttribute('hidden');
+        !addState && submittingNote.setAttribute('hidden', '');
         submittingNote.scrollIntoView();
     }
 };
@@ -137,37 +132,33 @@ const clearFieldError = field => {
 };
 
 // Add the error messages to each field
-if (global.renderErrors === undefined) {
-    global.renderErrors = (errors, form) => {
-        removeExistingErrors(form);
-        changeSubmitState(form, false);
-
-        if (errors.length === 0) return;
-
-        Object.keys(errors).forEach((fieldName, index) => {
-            // Add the errors to the field
-            const errorList = errors[fieldName];
-            const field = form.querySelector(`[name=${fieldName}]`);
-            if (!field) return;
-            // Get parent container
-            const container = field.closest(SELECTOR.FIELD_CONTAINER);
-            if (!container) return;
-            // Get the component name from its classname
-            const componentName = container.classList && container.classList[0];
-            const errorTemplate = `
+global.renderErrors = (errors, form) => {
+    removeExistingErrors(form);
+    changeSubmitState(form, false);
+    if (errors.length === 0) return;
+    Object.keys(errors).forEach((fieldName, index) => {
+        // Add the errors to the field
+        const errorList = errors[fieldName];
+        const field = form.querySelector(`[name=${fieldName}]`);
+        if (!field) return;
+        // Get parent container
+        const container = field.closest(SELECTOR.FIELD_CONTAINER);
+        if (!container) return;
+        // Get the component name from its classname
+        const componentName = container.classList && container.classList[0];
+        const errorTemplate = `
                 <div class="${componentName}__message ${componentName}__message--error" data-field-error>
                     ${errorList.join('<br/>')}
                 </div>
             `;
-            // Add the error class and content
-            container.insertAdjacentHTML('beforeend', errorTemplate);
-            container.classList.add('has-error');
-            blurListener(field, true, clearFieldError);
-            // Scroll the first field into view
-            if (index === 0) field.scrollIntoView();
-        });
-    };
-}
+        // Add the error class and content
+        container.insertAdjacentHTML('beforeend', errorTemplate);
+        container.classList.add('has-error');
+        blurListener(field, true, clearFieldError);
+        // Scroll the first field into view
+        if (index === 0) field.scrollIntoView();
+    });
+};
 
 const blurListener = (target, addListener = true, cb) => {
     if (addListener) {
