@@ -129,3 +129,13 @@ $field: 'checkbox';
     clip: rect(1px, 1px, 1px, 1px); // Allows tabbing still
     position: absolute;
 }
+
+// Indicator > Filled (not disabled/hover/focus/error)
+@include f-label-indicator(
+    $field,
+    $state: ':not(:disabled):not(:hover):not(:focus)',
+    $has-error: false,
+    $is-filled: true
+) {
+    color: $f-border-color-filled;
+}

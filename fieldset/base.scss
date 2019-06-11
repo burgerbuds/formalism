@@ -60,3 +60,8 @@ $field: 'fieldset';
     display: flex;
     align-items: center;
 }
+
+// Indicator > Filled (not disabled/hover/focus/error)
+@include f-legend-indicator($field, $has-error: false, $is-filled: true) {
+    color: $f-border-color-filled;
+}
