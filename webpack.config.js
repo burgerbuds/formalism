@@ -6,7 +6,6 @@ const settings = {
     devServerUrl: 'http://localhost:8080',
     jsEntry: {
         main: './src/main.js',
-        freeform: './src/freeform.js',
     },
     destination: path.resolve(__dirname),
     templates: path.resolve(__dirname, 'src'),
