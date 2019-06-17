@@ -22,7 +22,8 @@ $field: 'fieldset';
 
 @include f-base($field) {
     border: 0;
-    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
     padding: 0;
 }
 
