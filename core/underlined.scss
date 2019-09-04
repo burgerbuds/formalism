@@ -26,62 +26,125 @@ $fu-indicator-optional-letter-spacing: 0.02em !default;
 // Variables > Messages
 $fu-message-margin: 0.5em 0 0 0 !default;
 
+// ================================
+// Outlined mixins
+// ================================
+
+@mixin f-field-focus-styles {
+    border-color: $f-border-color-focus;
+
+    @if ($f-border-width-focus > $f-border-width) {
+        box-shadow: inset 0 calc((#{$f-border-width-focus} * -1) + #{$f-border-width}) 0 0 $f-border-color-focus;
+    }
+}
+
+@mixin f-field-active-styles {
+    border-color: $f-border-color-active;
+
+    @if ($f-border-width-focus > $f-border-width) {
+        box-shadow: inset 0 calc((#{$f-border-width-focus} * -1) + #{$f-border-width}) 0 0 $f-border-color-active;
+    }
+}
+
 @mixin fu-common-field($field) {
     @include f-field($field, $theme: 'underlined') {
         color: $f-text-color;
         background-color: $f-bg-color;
         border-bottom: $f-border-width solid $f-border-color;
-        transition: transition(border-color);
-        will-change: border-color;
-        padding: $fu-field-padding-top 0 $fu-field-padding-bottom 0;
         border-radius: 0;
+        transition: transition(border-color), transition(box-shadow);
+        will-change: border-color, box-shadow;
+        padding: $fu-field-padding-top 0 $fu-field-padding-bottom 0;
+        box-shadow: inset 0 0 0 0 $f-bg-color;
+    }
 
-        &:hover:not(:disabled) {
-            border-color: $f-border-color-hover;
+    // Field > Hover + Not disabled
+    @include f-field($field,
+        $theme: 'underlined',
+        $state: ':hover:not(:disabled)'
+
+    ) {
+        border-color: $f-border-color-hover;
+
+        @if ($f-border-width-hover > $f-border-width) {
+            box-shadow: inset 0 calc((#{$f-border-width-hover} * -1) + #{$f-border-width}) 0 0 $f-border-color-hover;
         }
+    }
 
-        &:focus {
-            border-color: $f-border-color-focus;
-        }
+    // Field > Disabled
+    @include f-field($field, $theme: 'underlined', $state: ':disabled') {
+        border-color: $f-border-color-disabled;
+        color: $f-disabled-color;
+    }
 
-        &:disabled {
-            border-color: $f-border-color-disabled;
-            color: $f-disabled-color;
-        }
+    // Field > Focus + Not error
+    @include f-field($field,
+        $theme: 'underlined',
+        $state: ':focus',
+        $has-error: false) {
+        @include f-field-focus-styles;
+    }
 
-        @if (
-            $f-remove-autofill and index($f-autofill-elements, $field) != null
-        ) {
-            // Autofill > Default / Hover
-            &:-webkit-autofill,
-            &:-webkit-autofill:hover {
-                -webkit-box-shadow: 0 0 0 10em $f-bg-color inset !important;
-            }
+    // Field > Focus + Hover + Not disabled + Not error
+    @include f-field($field,
+        $theme: 'underlined',
+        $state: ':focus:hover:not(:disabled)',
+        $has-error: false) {
+        @include f-field-focus-styles;
+    }
 
-            // Autofill > Focus / Active
-            &:-webkit-autofill:focus,
-            &:-webkit-autofill:active {
-                -webkit-box-shadow: inset 0 0 0 10em $f-bg-color !important;
-            }
+    // Field > Active + Not error
+    @include f-field($field,
+        $theme: 'underlined',
+        $state: ':active:not(:disabled)',
+        $has-error: false) {
+        @include f-field-active-styles;
+    }
+
+    // Field > Active + Hover + Not disabled + Not error
+    @include f-field($field,
+        $theme: 'underlined',
+        $state: ':active:hover:not(:disabled)',
+        $has-error: false) {
+        @include f-field-active-styles;
+    }
+
+    // Field > Filled + Not disabled/focus/hover/active + Not error
+    @include f-field($field,
+        $theme: 'underlined',
+        $state: ':not(:disabled):not(:focus):not(:hover):not(:active)',
+        $has-error: false,
+        $is-filled: true) {
+        border-color: $f-border-color-filled;
+
+        @if ($f-border-width-filled > $f-border-width) {
+            box-shadow: inset 0 calc((#{$f-border-width-filled} * -1) + #{$f-border-width}) 0 0 $f-border-color-filled;
         }
     }
 
     // Field > Error
     @include f-field($field, $theme: 'underlined', $has-error: true) {
+
         &,
         &:hover {
             border-color: $f-border-color-error;
+
+            @if ($f-border-width-error > $f-border-width) {
+                box-shadow: inset 0 calc((#{$f-border-width-error} * -1) + #{$f-border-width}) 0 0 $f-border-color-error;
+            }
         }
     }
 
     // Field > Filled + Error
-    @include f-field(
-        $field,
+    @include f-field($field,
         $theme: 'underlined',
         $has-error: true,
-        $is-filled: true
-    ) {
+        $is-filled: true) {
         border-color: $f-border-color-error;
+
+        @if ($f-border-width-error > $f-border-width) {
+            box-shadow: inset 0 calc((#{$f-border-width-error} * -1) + #{$f-border-width}) 0 0 $f-border-color-error;
+        }
     }
 }
 
@@ -125,33 +188,27 @@ $fu-message-margin: 0.5em 0 0 0 !default;
     }
 
     // Label text > Filled + Not error/hover/focus/disabled
-    @include f-label-text(
-        $field,
+    @include f-label-text($field,
         $theme: 'underlined',
         $state: ':not(:hover):not(:focus):not(:disabled)',
         $has-error: false,
-        $is-filled: true
-    ) {
+        $is-filled: true) {
         color: $f-label-color-filled;
     }
 
-    // Label text > Hover + Not error/disabled
-    @include f-label-text(
-        $field,
+    // Label text > Hover + Not disabled + not error
+    @include f-label-text($field,
         $theme: 'underlined',
         $state: ':hover:not(:disabled)',
-        $has-error: false
-    ) {
+        $has-error: false) {
         color: $f-label-color-hover;
     }
 
-    // Label text > Focus + Not error/disabled
-    @include f-label-text(
-        $field,
+    // Label text > Focus + Not disabled + not error
+    @include f-label-text($field,
         $theme: 'underlined',
         $state: ':focus:not(:disabled)',
-        $has-error: false
-    ) {
+        $has-error: false) {
         color: $f-label-color-focus;
     }
 
@@ -161,10 +218,10 @@ $fu-message-margin: 0.5em 0 0 0 !default;
     }
 
     // Label text > Disabled
-    @include f-label-text(
-        $field: $field,
+    @include f-label-text($field: $field,
         $theme: 'underlined',
         $state: ':disabled'
+
     ) {
         color: $f-label-color-disabled;
     }
@@ -189,43 +246,35 @@ $fu-message-margin: 0.5em 0 0 0 !default;
     }
 
     // Indicator > Filled (not disabled/hover/focus/error)
-    @include f-indicator(
-        $field,
+    @include f-indicator($field,
         $theme: 'underlined',
         $state: ':not(:disabled):not(:hover):not(:focus)',
         $has-error: false,
-        $is-filled: true
-    ) {
+        $is-filled: true) {
         color: $f-border-color;
     }
 
     // Indicator > Hover (not disabled/error)
-    @include f-indicator(
-        $field,
+    @include f-indicator($field,
         $theme: 'underlined',
         $state: ':hover:not(:disabled)',
-        $has-error: false
-    ) {
+        $has-error: false) {
         color: $f-border-color-hover;
     }
 
     // Indicator > Focus (not disabled/error)
-    @include f-indicator(
-        $field: $field,
+    @include f-indicator($field: $field,
         $theme: 'underlined',
         $state: ':focus:not(:disabled)',
-        $has-error: false
-    ) {
+        $has-error: false) {
         color: $f-border-color-focus;
     }
 
     // Indicator > Active (not disabled/error)
-    @include f-indicator(
-        $field: $field,
+    @include f-indicator($field: $field,
         $theme: 'underlined',
         $state: ':active:not(:disabled)',
-        $has-error: false
-    ) {
+        $has-error: false) {
         color: $f-border-color-active;
     }
 }
