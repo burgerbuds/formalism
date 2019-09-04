@@ -33,14 +33,14 @@
         "framework",
         "form bootstrap"
     ],
-    "author": "simple-integrated-marketing",
+    "author": "burgerbuds",
     "license": "ISC",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/simple-integrated-marketing/formalism.git"
+        "url": "git+https://github.com/burgerbuds/formalism.git"
     },
     "bugs": {
-        "url": "https://github.com/simple-integrated-marketing/formalism/issues"
+        "url": "https://github.com/burgerbuds/formalism/issues"
     },
-    "homepage": "https://github.com/simple-integrated-marketing/formalism#readme"
+    "homepage": "https://github.com/burgerbuds/formalism#readme"
 }
