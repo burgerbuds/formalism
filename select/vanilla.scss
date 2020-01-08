@@ -1,0 +1,141 @@
+// ================================
+// Select vanilla
+// Requires: select/base.scss
+// ================================
+
+// Imports
+@import './../core/core';
+@import './../core/vanilla';
+
+// Variables > Arrow
+$fv-select--arrow-type: 'chevron' !default; // chevron / triangle
+$fv-select--arrow-thickness: 0.1em !default;
+$fv-select--arrow-size: 0.5em !default;
+$fv-select--arrow-color: grey !default;
+$fv-select--arrow-color-hover: $f-highlight-color !default;
+$fv-select--arrow-color-focus: $fv-select--arrow-color-hover !default;
+$fv-select--arrow-color-disabled: $f-border-color-disabled !default;
+
+// Variables > Field
+$fv-select--field-padding-right: $fv-field-padding-right * 3 !default;
+
+$field: 'select';
+$theme: 'vanilla';
+$common-args: ($field, $theme);
+
+// Mixins
+@include fv-common-field($field);
+@include fv-common-label($field);
+@include fv-common-label-text($field);
+@include fv-common-indicator($field);
+
+@include f-field($common-args...) {
+    padding-right: $fv-select--field-padding-right;
+}
+
+@include f-inner($common-args...) {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+@include f-label($common-args...) {
+    order: -2;
+}
+
+@include f-icon($common-args...) {
+    position: absolute;
+    transform-origin: center right;
+    pointer-events: none;
+    transition: transition(border-color);
+    right: calc(
+        #{$fv-select--field-padding-right/2} + #{$fv-select--arrow-size/2}
+    );
+    bottom: calc(#{$fv-field-padding-bottom} + #{$f-border-width});
+}
+
+// Chevron down arrow
+@if ($fv-select--arrow-type == 'chevron') {
+    @include f-icon($common-args...) {
+        // Open chevron arrow ᐯ
+        transform: translateY(-50%) rotate(45deg);
+        margin-top: 0.05em; // Visual realignment
+        width: $fv-select--arrow-size;
+        height: $fv-select--arrow-size;
+        display: block;
+        border-style: solid;
+        border-width: 0 $fv-select--arrow-thickness $fv-select--arrow-thickness
+            0;
+        border-color: $fv-select--arrow-color;
+    }
+
+    // Arrow > Hover
+    @include f-icon($common-args..., $state: ':hover') {
+        border-color: $fv-select--arrow-color-hover;
+    }
+
+    // Arrow > Focus
+    @include f-icon($common-args..., $state: ':focus') {
+        border-color: $fv-select--arrow-color-focus;
+    }
+
+    // Arrow > Error
+    @include f-icon($common-args..., $has-error: true) {
+        border-color: $f-border-color-error;
+    }
+
+    // Arrow > Hover + Error
+    @include f-icon($common-args..., $state: ':hover', $has-error: true) {
+        border-color: $f-border-color-error;
+    }
+
+    // Arrow > Focus + Error
+    @include f-icon($common-args..., $state: ':focus', $has-error: true) {
+        border-color: $f-border-color-error;
+    }
+} @else if ($fv-select--arrow-type == 'triangle') {
+    // Solid triangle arrow ▼
+    @include f-icon($common-args...) {
+        transform: translateY(-50%);
+        margin-top: 0.35em; // Visual realignment
+        width: 0;
+        height: 0;
+        border-left: $fv-select--arrow-size/1.5 solid transparent;
+        border-right: $fv-select--arrow-size/1.5 solid transparent;
+        border-top: $fv-select--arrow-size/1.5 solid $fv-select--arrow-color;
+    }
+
+    // Arrow > Hover
+    @include f-icon($common-args..., $state: ':hover') {
+        border-top-color: $fv-select--arrow-color-hover;
+    }
+
+    // Arrow > Focus
+    @include f-icon($common-args..., $state: ':focus') {
+        border-top-color: $fv-select--arrow-color-focus;
+    }
+
+    // Arrow > Error
+    @include f-icon($common-args..., $has-error: true) {
+        border-top-color: $f-border-color-error;
+    }
+
+    // Arrow > Hover + Error
+    @include f-icon($common-args..., $state: ':hover', $has-error: true) {
+        border-top-color: $f-border-color-error;
+    }
+
+    // Arrow > Focus + Error
+    @include f-icon($common-args..., $state: ':focus', $has-error: true) {
+        border-top-color: $f-border-color-error;
+    }
+}
+
+// Arrow > Disabled
+@include f-icon($common-args..., $state: ':disabled') {
+    border-color: $fv-select--arrow-color-disabled;
+}
+
+@include f-message($common-args...) {
+    margin: $fv-message-margin-inset;
+}

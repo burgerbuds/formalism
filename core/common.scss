@@ -45,6 +45,7 @@
         -webkit-appearance: none; // Fix field border-radius in iOS
         width: 100%;
         font-size: $f-text-font-size;
+        line-height: $f-text-line-height;
         font-family: inherit;
         display: block;
         outline: 0;

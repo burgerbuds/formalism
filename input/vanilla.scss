@@ -1,0 +1,39 @@
+// ================================
+// Input Vanilla
+// Requires: input/base.scss
+// ================================
+
+// Imports
+@import './../core/core';
+@import './../core/vanilla';
+
+// Variables
+$field: 'input';
+$theme: 'vanilla';
+$common-args: ($field, $theme);
+
+// Mixins
+@include fv-common-field($field);
+@include fv-common-label($field);
+@include fv-common-label-text($field);
+@include fv-common-indicator($field);
+
+@include f-inner($common-args...) {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+@include f-label($common-args...) {
+    order: -2;
+}
+
+@include f-label-text($common-args...) {
+    transition: transition(color),
+        transition(letter-spacing);
+    will-change: color;
+}
+
+@include f-message($common-args...) {
+    margin: $fv-message-margin-inset;
+}

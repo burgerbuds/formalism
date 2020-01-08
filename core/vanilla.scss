@@ -1,0 +1,425 @@
+// ================================
+// Vanilla Variables
+// Requires: common/core.scss
+// ================================
+
+// Variables > Labels
+$fv-label-margin: 0 0 0.5em !default;
+
+// Variables > Field
+$fv-bg-color-focus: $f-bg-color !default;
+$fv-bg-color-hover: $f-bg-color !default;
+$fv-bg-color-active: $f-bg-color !default;
+$fv-bg-color-filled: $f-bg-color !default;
+$fv-bg-color-error: $f-bg-color !default;
+$fv-bg-color-success: $f-bg-color !default;
+$fv-bg-color-disabled: #dae0e4 !default;
+
+// Variables > Field padding
+$fv-field-padding-vertical: 1.1em !default;
+$fv-field-padding-horizontal: 0.9em !default;
+
+// Variables > Field padding fine tuning
+$fv-field-padding-top: $fv-field-padding-vertical * 1.1 !default;
+$fv-field-padding-bottom: $fv-field-padding-vertical !default;
+$fv-field-padding-left: $fv-field-padding-horizontal !default;
+$fv-field-padding-right: $fv-field-padding-horizontal !default;
+
+// Variables > Border
+$fv-border-radius: 0.25em !default;
+
+// Variables > Indicator
+$fv-indicator-required-spacer: 0.2em !default;
+$fv-indicator-optional-spacer: 0.5em !default;
+$fv-indicator-optional-letter-spacing: 0.02em !default;
+
+// Variables > Messages
+$fv-message-margin: 0.5em 0 0 0 !default;
+$fv-message-margin-inset: 0.5em 0 0 0.5em !default;
+
+// ================================
+// vanilla mixins
+// ================================
+
+@mixin f-field-focus-styles {
+    border-color: $f-border-color-focus;
+    background-color: $fv-bg-color-focus;
+    @if ($f-border-width-focus > $f-border-width) {
+        box-shadow: inset
+            0
+            0
+            0
+            calc(#{$f-border-width-focus} - #{$f-border-width})
+            $f-border-color-focus;
+    }
+}
+
+@mixin f-field-active-styles {
+	border-color: $f-border-color-active;
+	background-color: $fv-bg-color-active;
+    @if ($f-border-width-focus > $f-border-width) {
+        box-shadow: inset
+            0
+            0
+            0
+            calc(#{$f-border-width-focus} - #{$f-border-width})
+            $f-border-color-active;
+    }
+}
+
+@mixin fv-common-field($field) {
+    @include f-field($field, $theme: 'vanilla') {
+        color: $f-text-color;
+        background-color: $f-bg-color;
+        border: $f-border-width solid $f-border-color;
+        border-radius: $fv-border-radius;
+        transition: transition(border-color), transition(box-shadow);
+        will-change: border-color, box-shadow;
+        padding: $fv-field-padding-top $fv-field-padding-right
+            $fv-field-padding-bottom $fv-field-padding-left;
+        box-shadow: inset 0 0 0 0 $f-bg-color;
+
+        @if (
+            $f-remove-autofill and index($f-autofill-elements, $field) != null
+        ) {
+            // Ms Edge autofill class
+            &.edge-autofilled {
+                color: $f-text-color !important;
+                background-color: $f-bg-color !important;
+            }
+            // Autofill > Default + Hover
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover {
+                -webkit-box-shadow: 0 0 0 10em $f-bg-color inset !important;
+                // Avoid transitioning when Autofilled
+                transition: box-shadow 0s;
+            }
+
+            // Autofill > Focus
+            &:-webkit-autofill:focus,
+            &:-webkit-autofill:focus:hover {
+                @if ($f-border-width-focus > $f-border-width) {
+                    -webkit-box-shadow: inset
+                            0
+                            0
+                            0
+                            calc(#{$f-border-width-focus} - #{$f-border-width})
+                            $f-border-color-focus,
+                        inset 0 0 0 10em $f-bg-color !important;
+                } @else {
+                    -webkit-box-shadow: inset 0 0 0 10em $f-bg-color !important;
+                }
+            }
+
+            // Autofill > Active
+            &:-webkit-autofill:active,
+            &:-webkit-autofill:active:hover {
+                @if ($f-border-width-focus > $f-border-width) {
+                    -webkit-box-shadow: inset
+                            0
+                            0
+                            0
+                            calc(#{$f-border-width-focus} - #{$f-border-width})
+                            $f-border-color-active,
+                        inset 0 0 0 10em $f-bg-color !important;
+                } @else {
+                    -webkit-box-shadow: inset 0 0 0 10em $f-bg-color !important;
+                }
+            }
+        }
+    }
+
+    // Field > Hover + Not disabled
+    @include f-field(
+        $field,
+        $theme: 'vanilla',
+        $state: ':hover:not(:disabled)'
+    ) {
+        border-color: $f-border-color-hover;
+        @if ($f-border-width-hover > $f-border-width) {
+            box-shadow: inset
+                0
+                0
+                0
+                calc(#{$f-border-width-hover} - #{$f-border-width})
+                $f-border-color-hover;
+        }
+    }
+
+    // Field > Disabled
+    @include f-field($field, $theme: 'vanilla', $state: ':disabled') {
+        border-color: $f-border-color-disabled;
+        color: $f-disabled-color;
+    }
+
+    // Field > Focus + Not error
+    @include f-field(
+        $field,
+        $theme: 'vanilla',
+        $state: ':focus',
+        $has-error: false
+    ) {
+        @include f-field-focus-styles;
+    }
+
+    // Field > Focus + Hover + Not disabled + Not error
+    @include f-field(
+        $field,
+        $theme: 'vanilla',
+        $state: ':focus:hover:not(:disabled)',
+        $has-error: false
+    ) {
+        @include f-field-focus-styles;
+    }
+
+    // Field > Active + Not error
+    @include f-field(
+        $field,
+        $theme: 'vanilla',
+        $state: ':active:not(:disabled)',
+        $has-error: false
+    ) {
+        @include f-field-active-styles;
+    }
+
+    // Field > Active + Hover + Not disabled + Not error
+    @include f-field(
+        $field,
+        $theme: 'vanilla',
+        $state: ':active:hover:not(:disabled)',
+        $has-error: false
+    ) {
+        @include f-field-active-styles;
+    }
+
+    // Field > Filled + Not disabled/focus/hover/active + Not error
+    @include f-field(
+        $field,
+        $theme: 'vanilla',
+        $state: ':not(:disabled):not(:focus):not(:hover):not(:active):not(.f-select__field)',
+        $has-error: false,
+        $is-filled: true
+    ) {
+		border-color: $f-border-color-filled;
+		background-color: $fv-bg-color-filled;
+        @if ($f-border-width-filled > $f-border-width) {
+            box-shadow: inset
+                0
+                0
+                0
+                calc(#{$f-border-width-filled} - #{$f-border-width})
+                $f-border-color-filled;
+        }
+    }
+
+    // Field > Error
+    @include f-field($field, $theme: 'vanilla', $has-error: true) {
+        &,
+        &:hover {
+			border-color: $f-border-color-error;
+			background-color: $fv-bg-color-error;
+            @if ($f-border-width-error > $f-border-width) {
+                box-shadow: inset
+                    0
+                    0
+                    0
+                    calc(#{$f-border-width-error} - #{$f-border-width})
+                    $f-border-color-error;
+            }
+
+            @if (index($f-autofill-elements, $field)) {
+                // Avoid transitioning when Autofilled
+                transition: box-shadow 0s;
+
+                // Autofill > Focus + Active
+                &:-webkit-autofill:focus,
+                &:-webkit-autofill:active {
+                    @if ($f-border-width-focus > $f-border-width) {
+                        -webkit-box-shadow: inset
+                                0
+                                0
+                                0
+                                calc(
+                                    #{$f-border-width-focus} -
+                                        #{$f-border-width}
+                                )
+                                $f-border-color-error,
+                            inset 0 0 0 10em $f-bg-color !important;
+                    } @else {
+                        -webkit-box-shadow: inset
+                            0
+                            0
+                            0
+                            10em
+                            $f-bg-color !important;
+                    }
+                }
+            }
+        }
+    }
+
+    // Field > Filled + Error
+    @include f-field(
+        $field,
+        $theme: 'vanilla',
+        $has-error: true,
+        $is-filled: true
+    ) {
+        border-color: $f-border-color-error;
+        @if ($f-border-width-error > $f-border-width) {
+            box-shadow: inset
+                0
+                0
+                0
+                calc(#{$f-border-width-error} - #{$f-border-width})
+                $f-border-color-error;
+        }
+
+        @if (index($f-autofill-elements, $field)) {
+            // Autofill > Focus + Active
+            &:-webkit-autofill:focus,
+            &:-webkit-autofill:active {
+                @if ($f-border-width-focus > $f-border-width) {
+                    -webkit-box-shadow: inset
+                            0
+                            0
+                            0
+                            calc(#{$f-border-width-focus} - #{$f-border-width})
+                            $f-border-color-error,
+                        inset 0 0 0 10em $f-bg-color !important;
+                } @else {
+                    -webkit-box-shadow: inset 0 0 0 10em $f-bg-color !important;
+                }
+            }
+        }
+    }
+}
+
+@mixin fv-common-label($field) {
+    @include f-label($field, $theme: 'vanilla') {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin: $fv-label-margin;
+    }
+}
+
+@mixin fv-common-label-text($field) {
+    @include f-label-text($field, $theme: 'vanilla') {
+        display: block;
+        position: relative;
+    }
+
+    // Label text > Filled + Not error/hover/focus/disabled
+    @include f-label-text(
+        $field,
+        $theme: 'vanilla',
+        $state: ':not(:hover):not(:focus):not(:disabled):not(.f-select__field)',
+        $has-error: false,
+        $is-filled: true
+    ) {
+        color: $f-label-color-filled;
+    }
+
+    // Label text > Hover + Not disabled + not error
+    @include f-label-text(
+        $field,
+        $theme: 'vanilla',
+        $state: ':hover:not(:disabled)',
+        $has-error: false
+    ) {
+        color: $f-label-color-hover;
+    }
+
+    // Label text > Focus + Not disabled + not error
+    @include f-label-text(
+        $field,
+        $theme: 'vanilla',
+        $state: ':focus:not(:disabled)',
+        $has-error: false
+    ) {
+        color: $f-label-color-focus;
+    }
+
+    // Label text > Error
+    @include f-label-text($field, $theme: 'vanilla', $has-error: true) {
+        color: $f-label-color-error;
+    }
+
+    // Label text > Filled
+    @include f-label-text(
+        $field: $field,
+		$theme: 'vanilla',
+		$state: ':not(.f-select__field)',
+        $is-filled: true
+    ) {
+        color: $f-label-color-filled;
+    }
+
+    // Label text > Disabled
+    @include f-label-text(
+        $field: $field,
+        $theme: 'vanilla',
+        $state: ':disabled'
+    ) {
+        color: $f-label-color-disabled;
+    }
+}
+
+@mixin fv-common-indicator($field) {
+    @include f-indicator($field, $theme: 'vanilla') {
+        transition: transition(color);
+        will-change: color;
+        order: -1;
+
+        &--optional {
+            padding-left: $fv-indicator-optional-spacer;
+            letter-spacing: $fv-indicator-optional-letter-spacing;
+        }
+
+        &--required {
+            padding-left: $fv-indicator-required-spacer;
+        }
+    }
+
+    // Indicator > Hover (not disabled/error)
+    @include f-indicator(
+        $field,
+        $theme: 'vanilla',
+        $state: ':hover:not(:disabled)',
+        $has-error: false
+    ) {
+        color: $f-border-color-hover;
+    }
+
+    // Indicator > Focus (not disabled/error)
+    @include f-indicator(
+        $field: $field,
+        $theme: 'vanilla',
+        $state: ':focus:not(:disabled)',
+        $has-error: false
+    ) {
+        color: $f-border-color-focus;
+    }
+
+    // Indicator > Active (not disabled/error)
+    @include f-indicator(
+        $field: $field,
+        $theme: 'vanilla',
+        $state: ':active:not(:disabled)',
+        $has-error: false
+    ) {
+        color: $f-border-color-active;
+    }
+
+    // Indicator > Filled (not disabled/hover/focus/error)
+    @include f-indicator(
+        $field,
+        $theme: 'vanilla',
+        $state: ':not(:disabled):not(:hover):not(:focus)',
+        $has-error: false,
+        $is-filled: true
+    ) {
+        color: $f-border-color-filled;
+    }
+}
