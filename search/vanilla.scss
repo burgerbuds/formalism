@@ -1,0 +1,164 @@
+// ================================
+// Search Vanilla
+// Requires: search/base.scss
+// ================================
+
+// Imports
+@import './../core/core';
+@import './../core/vanilla';
+
+// Variables > Button
+$fv-search--button-width-base: 3.5em; // Non-configurable min width
+$fv-search--button-width-additional: 0em !default;
+$fv-search--button-scale-active: 0.9 !default;
+$fv-search--button-color: $f-border-color !default;
+$fv-search--button-color-hover: $f-highlight-color !default;
+$fv-search--button-color-focus: $f-highlight-color !default;
+$fv-search--button-color-active: $f-highlight-color !default;
+$fv-search--button-color-error: $f-error-color !default;
+
+// Variables > Icons
+$fv-search--icon-size: 1.5em !default;
+$fv-search--icon-max-height: 45% !default;
+$fv-search--icon-stroke-width: 3px !default;
+$fv-search--icon-position: 0em, 0em !default; // translate(x, y) fine tuning
+$fv-search--cancel-stroke-width: 4px !default;
+
+// Variables > Protected
+$fv-button-width: calc(
+    #{$fv-search--button-width-base} + #{$fv-search--button-width-additional}
+);
+
+// Variables
+$field: 'search';
+$theme: 'vanilla';
+$common-args: ($field, $theme);
+
+// Mixins
+@include fv-common-field($field);
+@include fv-common-label($field);
+@include fv-common-label-text($field);
+@include fv-common-indicator($field);
+
+@include f-base($common-args...) {
+    // Cancel button
+    $button-color: str-replace(
+        #{inspect($fv-search--button-color)},
+        '#',
+        '%23'
+    );
+    input::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+        transform: translateZ(0);
+        height: 1.5em;
+        width: 1em;
+        cursor: pointer;
+        margin-left: 0.75em;
+        transition: transition(background-color), transition(transform);
+        will-change: background-color, transform;
+        transform-origin: 50%;
+        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 27.707 27.707' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='.854' x2='26.854' y1='.854' y2='26.854' stroke='#{$button-color}' stroke-width='#{$fv-search--cancel-stroke-width}'/%3E%3Cline x1='.854' x2='26.854' y1='26.854' y2='.854' stroke='#{$button-color}' stroke-width='#{$fv-search--cancel-stroke-width}'/%3E%3C/svg%3E%0A")
+            no-repeat 50%;
+        background-size: 90%;
+    }
+
+    // Cancel button > Hover
+    $button-color: str-replace(
+        #{inspect($fv-search--button-color-hover)},
+        '#',
+        '%23'
+    );
+    input::-webkit-search-cancel-button:hover {
+        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 27.707 27.707' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='.854' x2='26.854' y1='.854' y2='26.854' stroke='#{$button-color}' stroke-width='#{$fv-search--cancel-stroke-width}'/%3E%3Cline x1='.854' x2='26.854' y1='26.854' y2='.854' stroke='#{$button-color}' stroke-width='#{$fv-search--cancel-stroke-width}'/%3E%3C/svg%3E%0A")
+            no-repeat 50%;
+        background-size: 90%;
+    }
+
+    // Cancel button > Active
+    input::-webkit-search-cancel-button:active {
+        color: $fv-search--button-color-active;
+        transform: translateZ(0) scale(#{$fv-search--button-scale-active});
+    }
+}
+
+@include f-field($common-args...) {
+    padding-right: $fv-button-width;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+@include f-inner($common-args...) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@include f-label($common-args...) {
+    order: -2;
+}
+
+@include f-label-text($common-args...) {
+    transition: transition(transform), transition(color),
+        transition(letter-spacing);
+    will-change: transform, color;
+    transform: translateY(0) scale(1);
+}
+
+@include f-button($common-args...) {
+    margin-bottom: -0.15em; // Visual realignment
+    position: absolute;
+    bottom: calc(#{$fv-field-padding-top} + #{$f-border-width});
+    right: $f-border-width;
+    color: $fv-search--button-color;
+    width: $fv-button-width;
+    transition: transition(background-color), transition(transform),
+        transition(color);
+    will-change: background-color, transform, color;
+    transform-origin: 50%;
+
+    &:hover {
+        color: $fv-search--button-color-hover;
+    }
+
+    &:focus {
+        outline: 0;
+        color: $fv-search--button-color-focus;
+    }
+
+    &:active {
+        color: $fv-search--button-color-active;
+        transform: translateZ(0) scale(#{$fv-search--button-scale-active});
+    }
+
+    &:disabled {
+        color: $f-disabled-color;
+        user-select: none;
+    }
+
+    &--icon svg {
+        width: 1em;
+        height: 1em;
+        pointer-events: none;
+        max-height: $fv-search--icon-max-height;
+        font-size: $fv-search--icon-size;
+        transform: translate($fv-search--icon-position);
+
+        * {
+            stroke-width: $fv-search--icon-stroke-width;
+        }
+    }
+}
+
+// Button > Error
+@include f-button($common-args..., $has-error: true) {
+    color: $fv-search--button-color-error;
+}
+
+// Button > Focus + Error
+@include f-button($common-args..., $state: ':focus', $has-error: true) {
+    color: $f-border-color-error;
+}
+
+@include f-message($common-args...) {
+    margin: $fv-message-margin-inset;
+}
