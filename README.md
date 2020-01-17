@@ -1,4 +1,5 @@
 # Formalism
+![npm version](https://img.shields.io/npm/v/formalism?color=red&logo=npm)
 
 Coming soon.
 
