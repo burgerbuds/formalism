@@ -1,46 +1,46 @@
 {
-    "name": "formalism",
-    "version": "0.3.1",
-    "description": "Modern forms, your way. Modular. Lightweight. Responsive. Stuff that matters.",
-    "main": "main.js",
-    "scripts": {
-        "build": "webpack --mode production --config webpack.config.js --hide-modules",
-        "watch": "webpack --watch --mode production --config webpack.config.js --display minimal --hide-modules"
-    },
-    "dependencies": {
-        "core-js": "^3.0.1"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.4.3",
-        "@babel/preset-env": "^7.4.3",
-        "babel-loader": "^8.0.5",
-        "file-loader": "^4.0.0",
-        "terser-webpack-plugin": "^1.2.3",
-        "webpack": "^4.29.6",
-        "webpack-cli": "^3.3.0",
-        "webpack-dev-server": "^3.3.0"
-    },
-    "browserify-shim": {},
-    "prettier": {
-        "trailingComma": "es5",
-        "useTabs": false,
-        "tabWidth": 4,
-        "semi": true,
-        "singleQuote": true
-    },
-    "keywords": [
-        "form",
-        "framework",
-        "form bootstrap"
-    ],
-    "author": "burgerbuds",
-    "license": "ISC",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/burgerbuds/formalism.git"
-    },
-    "bugs": {
-        "url": "https://github.com/burgerbuds/formalism/issues"
-    },
-    "homepage": "https://github.com/burgerbuds/formalism#readme"
+	"name": "formalism",
+	"version": "0.3.2",
+	"description": "Modern forms, your way. Modular. Lightweight. Responsive. Stuff that matters.",
+	"main": "main.js",
+	"scripts": {
+		"build": "webpack --mode production --config webpack.config.js --hide-modules",
+		"watch": "webpack --watch --mode production --config webpack.config.js --display minimal --hide-modules"
+	},
+	"dependencies": {
+		"core-js": "^3.0.1"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.4.3",
+		"@babel/preset-env": "^7.4.3",
+		"babel-loader": "^8.0.5",
+		"file-loader": "^4.0.0",
+		"terser-webpack-plugin": "^1.2.3",
+		"webpack": "^4.29.6",
+		"webpack-cli": "^3.3.0",
+		"webpack-dev-server": "^3.3.0"
+	},
+	"browserify-shim": {},
+	"prettier": {
+		"trailingComma": "es5",
+		"useTabs": false,
+		"tabWidth": 4,
+		"semi": true,
+		"singleQuote": true
+	},
+	"keywords": [
+		"form",
+		"framework",
+		"form bootstrap"
+	],
+	"author": "burgerbuds",
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/burgerbuds/formalism.git"
+	},
+	"bugs": {
+		"url": "https://github.com/burgerbuds/formalism/issues"
+	},
+	"homepage": "https://github.com/burgerbuds/formalism#readme"
 }

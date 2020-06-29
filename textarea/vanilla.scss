@@ -1,0 +1,91 @@
+// ================================
+// Textarea Vanilla
+// Requires: textarea/base.scss
+// ================================
+
+// Imports
+@import './../core/core';
+@import './../core/vanilla';
+
+// Variables
+$fv-textarea-webkit-styles: true !default;
+
+// Variables
+$field: 'textarea';
+$theme: 'vanilla';
+$common-args: ($field, $theme);
+
+// Mixins
+@include fv-common-field($field);
+@include fv-common-label($field);
+@include fv-common-label-text($field);
+@include fv-common-indicator($field);
+
+@if ($fv-textarea-webkit-styles) {
+    @include f-base($common-args...) {
+        // Custom scrollbar styles
+        ::-webkit-scrollbar {
+            width: 0.5em;
+            max-width: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: $f-border-color;
+        }
+        // Custom resizing styles
+        // This is disabled with the js autoresizing
+        ::-webkit-resizer {
+            background-color: $f-border-color;
+            border: #{$f-border-width / 2} solid #{$f-bg-color};
+            border-left: none;
+        }
+    }
+
+    // Field > Error
+    @include f-field($common-args..., $has-error: true) {
+        // Custom scrollbar styles
+        &::-webkit-scrollbar-thumb {
+            background: $f-border-color-error;
+        }
+    }
+
+    // Field > Focus + Error
+    @include f-field($common-args..., $state: ':focus', $has-error: true) {
+        // Custom scrollbar styles
+        &::-webkit-scrollbar-thumb {
+            background: $f-border-color-error;
+        }
+    }
+
+    // Field > Hover
+    @include f-field($common-args..., $state: ':hover') {
+        &::-webkit-scrollbar-thumb {
+            background: $f-border-color-hover;
+        }
+    }
+
+    // Field > Focus
+    @include f-field($common-args..., $state: ':focus') {
+        &::-webkit-scrollbar-thumb {
+            background: $f-border-color-focus;
+        }
+    }
+}
+
+@include f-inner($common-args...) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@include f-label($common-args...) {
+    order: -2;
+}
+
+@include f-label-text($common-args...) {
+    transition: transition(color), transition(letter-spacing);
+    will-change: color;
+}
+
+@include f-message($common-args...) {
+    margin: $fv-message-margin-inset;
+}
